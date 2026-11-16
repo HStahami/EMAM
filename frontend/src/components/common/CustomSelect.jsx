@@ -52,9 +52,9 @@ export function CustomSelect({ options, placeholder }) {
               left: 0,
               right: 0,
               marginTop: '0.5rem',
-              background: 'rgba(7, 34, 36, 0.95)',
+              background: 'rgba(44, 5, 13, 0.96)',
               backdropFilter: 'blur(16px)',
-              border: '1px solid rgba(197, 229, 232, 0.2)',
+              border: '1px solid rgba(241, 163, 42, 0.25)',
               borderRadius: '8px',
               zIndex: 50,
               overflow: 'hidden',
@@ -80,7 +80,7 @@ export function CustomSelect({ options, placeholder }) {
                   fontSize: 'inherit',
                   fontFamily: 'inherit'
                 }}
-                onMouseOver={(e) => e.currentTarget.style.background = 'rgba(197, 229, 232, 0.1)'}
+                onMouseOver={(e) => e.currentTarget.style.background = 'rgba(241, 163, 42, 0.12)'}
                 onMouseOut={(e) => e.currentTarget.style.background = 'transparent'}
               >
                 {option.label}

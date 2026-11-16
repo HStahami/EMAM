@@ -76,7 +76,7 @@ export default function TypingCertificateModal({ isOpen, onClose, certificate })
               className="absolute inset-[16px] pointer-events-none"
               style={{
                 clipPath: 'polygon(65px 0, 100% 0, 100% 100%, 0 100%, 0 65px)',
-                border: '1.5px solid rgba(197, 229, 232, 0.28)'
+                border: '1.5px solid rgba(241, 163, 42, 0.28)'
               }}
             />
 

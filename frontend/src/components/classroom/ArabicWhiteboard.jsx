@@ -3,7 +3,7 @@ import { PenTool, Eraser, RotateCcw, Trash2, Download, Check } from 'lucide-reac
 
 const COLORS = [
   { label: 'White', value: '#ffffff' },
-  { label: 'Teal', value: '#00a896' },
+  { label: 'Emam Gold', value: '#f1a32a' },
   { label: 'Emerald', value: 'var(--color-primary)' },
   { label: 'Sky Blue', value: 'var(--color-primary)' },
   { label: 'Amber', value: '#f59e0b' },

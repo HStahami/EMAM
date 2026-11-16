@@ -1116,8 +1116,8 @@ export function StudentProfile() {
 
       {/* Request Profile Update Modal */}
       {showUpdateRequestModal && (
-        <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(3, 14, 15, 0.88)', backdropFilter: 'blur(10px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 999, padding: '1rem' }}>
-          <div style={{ padding: '2rem', maxWidth: '500px', width: '100%', borderRadius: '16px', backgroundColor: 'rgba(35, 4, 10, 0.92)', border: '1px solid rgba(241, 163, 42, 0.25)', boxShadow: '0 25px 60px rgba(0, 0, 0, 0.95)' }}>
+        <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0, 0, 0, 0.75)', backdropFilter: 'blur(10px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 999, padding: '1rem' }}>
+          <div style={{ padding: '2rem', maxWidth: '500px', width: '100%', borderRadius: '16px', backgroundColor: 'rgba(44, 5, 13, 0.96)', border: '1px solid rgba(241, 163, 42, 0.25)', boxShadow: '0 25px 60px rgba(0, 0, 0, 0.95)' }}>
             <h3 style={{ color: 'var(--color-white)', marginBottom: '0.5rem', fontSize: '1.25rem', fontWeight: 700 }}>Request Profile Update</h3>
             <p style={{ color: '#f0ceb3', fontSize: '0.88rem', marginBottom: '1.25rem', lineHeight: '1.4' }}>
               Describe the specific information or details you need updated (e.g. phone number, address, preferred class slot). Administration will review your note and contact you.

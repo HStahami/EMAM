@@ -405,14 +405,14 @@ export function InstructorClassroom() {
                   padding: '7px 15px',
                   fontSize: '0.82rem',
                   color: 'var(--color-primary)',
-                  border: '1px solid rgba(197, 229, 232, 0.35)',
+                  border: '1px solid rgba(241, 163, 42, 0.35)',
                   borderRadius: '6px',
                   cursor: 'pointer',
                   fontWeight: 600,
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '6px',
-                  background: 'rgba(197, 229, 232, 0.08)',
+                  background: 'rgba(241, 163, 42, 0.08)',
                   whiteSpace: 'nowrap'
                 }}
                 title="Request to reschedule this class session"

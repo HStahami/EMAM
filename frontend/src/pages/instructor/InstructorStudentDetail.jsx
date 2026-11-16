@@ -281,7 +281,7 @@ export function InstructorStudentDetail() {
                   <p style={{ fontSize: "0.85rem", color: "#f0ceb3" }}>{sub.content}</p>
 
                   {sub.feedback && (
-                    <div style={{ marginTop: "0.4rem", padding: "0.6rem", backgroundColor: "rgba(197, 229, 232, 0.08)", borderRadius: "6px", fontSize: "0.85rem" }}>
+                    <div style={{ marginTop: "0.4rem", padding: "0.6rem", backgroundColor: "rgba(241, 163, 42, 0.08)", borderRadius: "6px", fontSize: "0.85rem" }}>
                       <strong style={{ color: "var(--color-primary)" }}>Instructor Feedback:</strong> {sub.feedback}
                     </div>
                   )}

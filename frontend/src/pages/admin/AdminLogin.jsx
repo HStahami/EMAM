@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Lock } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { inputStyle } from '../../components/common/styles';
@@ -31,9 +32,12 @@ export function AdminLogin({ onLogin }) {
 
   return (
     <div style={{ minHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
-      <div className="glass-panel" style={{ padding: '3rem', maxWidth: '400px', width: '100%', textAlign: 'center' }}>
-        <Lock size={48} color="var(--color-primary)" style={{ margin: '0 auto 1.5rem' }} />
-        <h2 style={{ fontSize: '2rem', fontWeight: '700', marginBottom: '1.5rem' }} className="gradient-text">Admin Portal</h2>
+      <div className="glass-panel" style={{ padding: '2.5rem', maxWidth: '440px', width: '100%', textAlign: 'center', backgroundColor: 'rgba(44, 5, 13, 0.65)', border: '1px solid rgba(241, 163, 42, 0.18)', boxShadow: '0 20px 40px rgba(0,0,0,0.5)' }}>
+        <Link to="/" style={{ display: 'inline-block', marginBottom: '1.25rem' }}>
+          <img src="/emam_logo.png" alt="Emam Logo" style={{ height: 54, width: 54, objectFit: 'contain' }} />
+        </Link>
+        <h1 style={{ fontSize: '1.6rem', fontWeight: 700, color: '#fff', marginBottom: '0.35rem' }}>Admin Portal Login</h1>
+        <p style={{ color: 'rgba(241,163,42,0.55)', fontSize: '0.85rem', marginBottom: '1.75rem' }}>Institutional management, student onboarding & platform controls.</p>
         {error && <p style={{ color: '#ff6b6b', marginBottom: '1rem', fontSize: '0.9rem' }}>{error}</p>}
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem', textAlign: 'left' }}>
           <div>
@@ -68,6 +72,7 @@ export function AdminLogin({ onLogin }) {
             {isSubmitting ? 'Logging in...' : 'Login'}
           </button>
         </form>
+        <div style={{ marginTop: '1.5rem' }}><Link to="/" style={{ color: 'var(--color-primary)', fontSize: '0.85rem', textDecoration: 'none' }}>← Return to Main Website</Link></div>
       </div>
     </div>
   );

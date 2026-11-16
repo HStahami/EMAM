@@ -1221,11 +1221,27 @@ export function AdminDashboard({ onLogout }) {
               textAlign: 'left'
             }}
           >
-            <span style={{ color: 'var(--color-white)', fontWeight: 700, margin: 0, fontSize: '1.25rem' }} className="gradient-text">
-              LMS Panel
+            <img src="/emam_logo.png" alt="Emam Logo" style={{ height: 28, width: 28, objectFit: 'contain' }} />
+            <span style={{ color: '#ffffff', fontWeight: 800, margin: 0, fontSize: '1.25rem', letterSpacing: '-0.02em' }}>
+              Emam LMS
             </span>
-            <span style={{ color: '#64748b', fontSize: '0.9rem' }} className="hide-on-mobile">•</span>
-            <span style={{ color: 'var(--color-primary)', fontSize: '0.95rem', fontWeight: 600, textTransform: 'capitalize' }} className="hide-on-mobile">
+            <span
+              style={{
+                fontSize: '0.72rem',
+                fontWeight: 600,
+                textTransform: 'uppercase',
+                letterSpacing: '0.04em',
+                padding: '2px 8px',
+                borderRadius: '6px',
+                backgroundColor: 'rgba(241, 163, 42, 0.15)',
+                color: 'var(--color-primary)',
+                border: '1px solid rgba(241, 163, 42, 0.28)',
+              }}
+            >
+              Admin Portal
+            </span>
+            <span style={{ color: 'rgba(241, 163, 42, 0.4)', fontSize: '0.9rem' }} className="hide-on-mobile">•</span>
+            <span style={{ color: 'var(--color-primary)', fontSize: '0.9rem', fontWeight: 600, textTransform: 'capitalize' }} className="hide-on-mobile">
               {activeTab === 'chataudit' ? 'Chat Audit' : (activeTab === 'classes' ? 'Class Tracking' : activeTab)}
             </span>
           </button>
@@ -1239,7 +1255,7 @@ export function AdminDashboard({ onLogout }) {
               setSidebarOpen(false);
             }}
             style={{
-              background: activeTab === 'overview' ? 'var(--color-primary)' : 'rgba(197, 229, 232, 0.08)',
+              background: activeTab === 'overview' ? 'var(--color-primary)' : 'rgba(241, 163, 42, 0.08)',
               color: activeTab === 'overview' ? 'var(--color-bg-dark)' : 'var(--color-primary)',
               border: '1px solid rgba(241, 163, 42, 0.25)',
               padding: '6px 16px',
@@ -1265,7 +1281,7 @@ export function AdminDashboard({ onLogout }) {
             }}
             style={{
               position: 'relative',
-              background: activeTab === 'notifications' ? 'rgba(241, 163, 42, 0.15)' : 'rgba(197, 229, 232, 0.08)',
+              background: activeTab === 'notifications' ? 'rgba(241, 163, 42, 0.15)' : 'rgba(241, 163, 42, 0.08)',
               color: activeTab === 'notifications' ? 'var(--color-primary)' : '#f0ceb3',
               border: activeTab === 'notifications' ? '1px solid var(--color-primary)' : '1px solid rgba(241, 163, 42, 0.25)',
               padding: '6px 10px',
@@ -1310,9 +1326,9 @@ export function AdminDashboard({ onLogout }) {
             type="button"
             onClick={onLogout}
             style={{
-              background: 'rgba(231, 76, 60, 0.12)',
-              color: '#ff6b6b',
-              border: '1px solid rgba(231, 76, 60, 0.3)',
+              background: 'rgba(105, 14, 31, 0.45)',
+              color: 'var(--color-primary)',
+              border: '1px solid rgba(241, 163, 42, 0.35)',
               padding: '6px 14px',
               borderRadius: '8px',
               fontSize: '0.82rem',
@@ -1399,7 +1415,7 @@ export function AdminDashboard({ onLogout }) {
                   borderRadius: '8px',
                   cursor: 'pointer',
                   fontWeight: activeTab === tab.id ? 700 : 500,
-                  background: activeTab === tab.id ? 'var(--color-primary)' : 'rgba(197, 229, 232, 0.05)',
+                  background: activeTab === tab.id ? 'var(--color-primary)' : 'rgba(241, 163, 42, 0.05)',
                   color: activeTab === tab.id ? 'var(--color-bg-dark)' : 'var(--color-primary)',
                   transition: 'all 0.15s ease'
                 }}
@@ -1419,12 +1435,13 @@ export function AdminDashboard({ onLogout }) {
                 width: '100%',
                 textAlign: 'left',
                 padding: '11px 16px',
-                border: 'none',
+                border: '1px solid rgba(241, 163, 42, 0.35)',
                 marginTop: 'auto',
-                color: '#ff6b6b',
+                color: 'var(--color-primary)',
                 fontSize: '0.9rem',
+                fontWeight: 600,
                 borderRadius: '8px',
-                background: 'rgba(231, 76, 60, 0.1)',
+                background: 'rgba(105, 14, 31, 0.45)',
                 cursor: 'pointer'
               }}
               onClick={onLogout}
@@ -1458,8 +1475,8 @@ export function AdminDashboard({ onLogout }) {
                   gap: '6px',
                   padding: '7px 16px',
                   borderRadius: '8px',
-                  background: 'rgba(197, 229, 232, 0.08)',
-                  border: '1px solid rgba(197, 229, 232, 0.22)',
+                  background: 'rgba(241, 163, 42, 0.08)',
+                  border: '1px solid rgba(241, 163, 42, 0.22)',
                   color: 'var(--color-primary)',
                   cursor: 'pointer',
                   fontSize: '0.82rem',
@@ -1505,8 +1522,8 @@ export function AdminDashboard({ onLogout }) {
                   const yMid2 = Math.round(yMax * 0.33);
 
                   const bars = [
-                    { label: 'Enrolled Students', count: overviewAnalytics.lifecycle.total_students, color: 'rgba(44, 5, 13, 0.85)', border: '1.5px solid #00A896', countColor: '#fff' },
-                    { label: 'Active Students', count: overviewAnalytics.lifecycle.active_students, color: '#00A896', border: 'none', countColor: '#fff' },
+                    { label: 'Enrolled Students', count: overviewAnalytics.lifecycle.total_students, color: 'rgba(44, 5, 13, 0.85)', border: '1.5px solid #f1a32a', countColor: '#fff' },
+                    { label: 'Active Students', count: overviewAnalytics.lifecycle.active_students, color: '#f1a32a', border: 'none', countColor: '#fff' },
                     { label: 'Dropout Students', count: overviewAnalytics.lifecycle.dropout_students, color: '#334e68', border: 'none', countColor: '#cbd5e1' },
                     { label: 'Graduate Students', count: overviewAnalytics.lifecycle.graduated_students, color: '#f0ceb3', border: 'none', countColor: 'rgba(44, 5, 13, 0.85)' }
                   ];
@@ -1533,12 +1550,12 @@ export function AdminDashboard({ onLogout }) {
                         </div>
 
                         {/* Chart Area */}
-                        <div style={{ flex: 1, position: 'relative', display: 'flex', alignItems: 'flex-end', justifyContent: 'space-around', gap: '1rem', borderBottom: '1px solid rgba(197, 229, 232, 0.18)' }}>
+                        <div style={{ flex: 1, position: 'relative', display: 'flex', alignItems: 'flex-end', justifyContent: 'space-around', gap: '1rem', borderBottom: '1px solid rgba(241, 163, 42, 0.18)' }}>
                           {/* Background Grid Lines */}
                           <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', pointerEvents: 'none', zIndex: 0 }}>
-                            <div style={{ borderTop: '1px dashed rgba(197, 229, 232, 0.08)', width: '100%' }} />
-                            <div style={{ borderTop: '1px dashed rgba(197, 229, 232, 0.08)', width: '100%' }} />
-                            <div style={{ borderTop: '1px dashed rgba(197, 229, 232, 0.08)', width: '100%' }} />
+                            <div style={{ borderTop: '1px dashed rgba(241, 163, 42, 0.08)', width: '100%' }} />
+                            <div style={{ borderTop: '1px dashed rgba(241, 163, 42, 0.08)', width: '100%' }} />
+                            <div style={{ borderTop: '1px dashed rgba(241, 163, 42, 0.08)', width: '100%' }} />
                             <div style={{ borderTop: '1px solid transparent', width: '100%' }} />
                           </div>
 
@@ -1606,7 +1623,7 @@ export function AdminDashboard({ onLogout }) {
                         cy="80"
                         r="58"
                         fill="transparent"
-                        stroke="rgba(197, 229, 232, 0.08)"
+                        stroke="rgba(241, 163, 42, 0.08)"
                         strokeWidth="20"
                       />
                       {/* Segments */}
@@ -1628,7 +1645,7 @@ export function AdminDashboard({ onLogout }) {
                                 cy="80"
                                 r="58"
                                 fill="transparent"
-                                stroke="#00A896"
+                                stroke="#f1a32a"
                                 strokeWidth="20"
                                 strokeDasharray={`${actLen} ${C}`}
                                 strokeDashoffset={0}
@@ -1679,8 +1696,8 @@ export function AdminDashboard({ onLogout }) {
                   {/* Donut Legend */}
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                     {[
-                      { label: 'Enrolled Students', count: overviewAnalytics.lifecycle.total_students, pct: 100, color: 'rgba(44, 5, 13, 0.85)', border: '1.5px solid #00A896' },
-                      { label: 'Active Students', count: overviewAnalytics.lifecycle.active_students, pct: overviewAnalytics.lifecycle.active_pct, color: '#00A896' },
+                      { label: 'Enrolled Students', count: overviewAnalytics.lifecycle.total_students, pct: 100, color: 'rgba(44, 5, 13, 0.85)', border: '1.5px solid #f1a32a' },
+                      { label: 'Active Students', count: overviewAnalytics.lifecycle.active_students, pct: overviewAnalytics.lifecycle.active_pct, color: '#f1a32a' },
                       { label: 'Dropout Students', count: overviewAnalytics.lifecycle.dropout_students, pct: overviewAnalytics.lifecycle.dropout_pct, color: '#334e68' },
                       { label: 'Graduate Students', count: overviewAnalytics.lifecycle.graduated_students, pct: overviewAnalytics.lifecycle.graduated_pct, color: '#f0ceb3' }
                     ].map((leg, lIdx) => (
@@ -1716,7 +1733,7 @@ export function AdminDashboard({ onLogout }) {
               <div style={{
                 borderRadius: '14px',
                 overflow: 'hidden',
-                border: '1px solid rgba(197, 229, 232, 0.16)',
+                border: '1px solid rgba(241, 163, 42, 0.16)',
                 backgroundColor: 'rgba(5, 23, 25, 0.95)',
                 display: 'flex',
                 flexDirection: 'column',
@@ -1741,8 +1758,8 @@ export function AdminDashboard({ onLogout }) {
                     type="button"
                     onClick={() => { setActiveTab('admissions'); setAdmissionFilter('pending'); }}
                     style={{
-                      background: 'rgba(197, 229, 232, 0.08)',
-                      border: '1px solid rgba(197, 229, 232, 0.22)',
+                      background: 'rgba(241, 163, 42, 0.08)',
+                      border: '1px solid rgba(241, 163, 42, 0.22)',
                       color: 'var(--color-primary)',
                       borderRadius: '20px',
                       padding: '3px 12px',
@@ -1789,7 +1806,7 @@ export function AdminDashboard({ onLogout }) {
                           gap: '0.75rem',
                           padding: '0.7rem 0.85rem',
                           backgroundColor: 'rgba(255, 255, 255, 0.03)',
-                          border: '1px solid rgba(197, 229, 232, 0.08)',
+                          border: '1px solid rgba(241, 163, 42, 0.08)',
                           borderRadius: '10px'
                         }}>
                           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', minWidth: 0 }}>
@@ -1841,7 +1858,7 @@ export function AdminDashboard({ onLogout }) {
               <div style={{
                 borderRadius: '14px',
                 overflow: 'hidden',
-                border: '1px solid rgba(197, 229, 232, 0.16)',
+                border: '1px solid rgba(241, 163, 42, 0.16)',
                 backgroundColor: 'rgba(5, 23, 25, 0.95)',
                 display: 'flex',
                 flexDirection: 'column',
@@ -1866,8 +1883,8 @@ export function AdminDashboard({ onLogout }) {
                     type="button"
                     onClick={() => setActiveTab('instructors')}
                     style={{
-                      background: 'rgba(197, 229, 232, 0.08)',
-                      border: '1px solid rgba(197, 229, 232, 0.22)',
+                      background: 'rgba(241, 163, 42, 0.08)',
+                      border: '1px solid rgba(241, 163, 42, 0.22)',
                       color: 'var(--color-primary)',
                       borderRadius: '20px',
                       padding: '3px 12px',
@@ -1897,7 +1914,7 @@ export function AdminDashboard({ onLogout }) {
                         gap: '0.75rem',
                         padding: '0.7rem 0.85rem',
                         backgroundColor: 'rgba(255, 255, 255, 0.03)',
-                        border: '1px solid rgba(197, 229, 232, 0.08)',
+                        border: '1px solid rgba(241, 163, 42, 0.08)',
                         borderRadius: '10px'
                       }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '10px', minWidth: 0 }}>
@@ -1919,7 +1936,7 @@ export function AdminDashboard({ onLogout }) {
                           width: '24px',
                           height: '24px',
                           borderRadius: '50%',
-                          backgroundColor: '#041c1e',
+                          backgroundColor: '#2c050d',
                           border: '1px solid rgba(241, 163, 42, 0.30)',
                           color: 'var(--color-primary)',
                           fontSize: '0.78rem',
@@ -1941,7 +1958,7 @@ export function AdminDashboard({ onLogout }) {
               <div style={{
                 borderRadius: '14px',
                 overflow: 'hidden',
-                border: '1px solid rgba(197, 229, 232, 0.16)',
+                border: '1px solid rgba(241, 163, 42, 0.16)',
                 backgroundColor: 'rgba(5, 23, 25, 0.95)',
                 display: 'flex',
                 flexDirection: 'column',
@@ -1966,8 +1983,8 @@ export function AdminDashboard({ onLogout }) {
                     type="button"
                     onClick={() => { setActiveTab('students'); setStudentFilter('all'); }}
                     style={{
-                      background: 'rgba(197, 229, 232, 0.08)',
-                      border: '1px solid rgba(197, 229, 232, 0.22)',
+                      background: 'rgba(241, 163, 42, 0.08)',
+                      border: '1px solid rgba(241, 163, 42, 0.22)',
                       color: 'var(--color-primary)',
                       borderRadius: '20px',
                       padding: '3px 12px',
@@ -2005,7 +2022,7 @@ export function AdminDashboard({ onLogout }) {
                           gap: '0.75rem',
                           padding: '0.7rem 0.85rem',
                           backgroundColor: 'rgba(255, 255, 255, 0.03)',
-                          border: '1px solid rgba(197, 229, 232, 0.08)',
+                          border: '1px solid rgba(241, 163, 42, 0.08)',
                           borderRadius: '10px'
                         }}>
                           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', minWidth: 0 }}>
@@ -2050,7 +2067,7 @@ export function AdminDashboard({ onLogout }) {
               <div style={{
                 borderRadius: '14px',
                 overflow: 'hidden',
-                border: '1px solid rgba(197, 229, 232, 0.16)',
+                border: '1px solid rgba(241, 163, 42, 0.16)',
                 backgroundColor: 'rgba(5, 23, 25, 0.95)',
                 display: 'flex',
                 flexDirection: 'column',
@@ -2075,8 +2092,8 @@ export function AdminDashboard({ onLogout }) {
                     type="button"
                     onClick={() => setActiveTab('modules')}
                     style={{
-                      background: 'rgba(197, 229, 232, 0.08)',
-                      border: '1px solid rgba(197, 229, 232, 0.22)',
+                      background: 'rgba(241, 163, 42, 0.08)',
+                      border: '1px solid rgba(241, 163, 42, 0.22)',
                       color: 'var(--color-primary)',
                       borderRadius: '20px',
                       padding: '3px 12px',
@@ -2106,7 +2123,7 @@ export function AdminDashboard({ onLogout }) {
                         gap: '0.75rem',
                         padding: '0.7rem 0.85rem',
                         backgroundColor: 'rgba(255, 255, 255, 0.03)',
-                        border: '1px solid rgba(197, 229, 232, 0.08)',
+                        border: '1px solid rgba(241, 163, 42, 0.08)',
                         borderRadius: '10px'
                       }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '10px', minWidth: 0, flex: 1 }}>
@@ -2114,7 +2131,7 @@ export function AdminDashboard({ onLogout }) {
                             width: '24px',
                             height: '24px',
                             borderRadius: '50%',
-                            backgroundColor: '#041c1e',
+                            backgroundColor: '#2c050d',
                             border: '1px solid rgba(241, 163, 42, 0.30)',
                             color: 'var(--color-primary)',
                             fontSize: '0.78rem',
@@ -2148,7 +2165,7 @@ export function AdminDashboard({ onLogout }) {
               <div style={{
                 borderRadius: '14px',
                 overflow: 'hidden',
-                border: '1px solid rgba(197, 229, 232, 0.16)',
+                border: '1px solid rgba(241, 163, 42, 0.16)',
                 backgroundColor: 'rgba(5, 23, 25, 0.95)',
                 display: 'flex',
                 flexDirection: 'column',
@@ -2173,8 +2190,8 @@ export function AdminDashboard({ onLogout }) {
                     type="button"
                     onClick={() => { setActiveTab('students'); setStudentFilter('active'); }}
                     style={{
-                      background: 'rgba(197, 229, 232, 0.08)',
-                      border: '1px solid rgba(197, 229, 232, 0.22)',
+                      background: 'rgba(241, 163, 42, 0.08)',
+                      border: '1px solid rgba(241, 163, 42, 0.22)',
                       color: 'var(--color-primary)',
                       borderRadius: '20px',
                       padding: '3px 12px',
@@ -2204,7 +2221,7 @@ export function AdminDashboard({ onLogout }) {
                         gap: '0.75rem',
                         padding: '0.7rem 0.85rem',
                         backgroundColor: 'rgba(255, 255, 255, 0.03)',
-                        border: '1px solid rgba(197, 229, 232, 0.08)',
+                        border: '1px solid rgba(241, 163, 42, 0.08)',
                         borderRadius: '10px'
                       }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '10px', minWidth: 0 }}>
@@ -2244,7 +2261,7 @@ export function AdminDashboard({ onLogout }) {
               <div style={{
                 borderRadius: '14px',
                 overflow: 'hidden',
-                border: '1px solid rgba(197, 229, 232, 0.16)',
+                border: '1px solid rgba(241, 163, 42, 0.16)',
                 backgroundColor: 'rgba(5, 23, 25, 0.95)',
                 display: 'flex',
                 flexDirection: 'column',
@@ -2269,8 +2286,8 @@ export function AdminDashboard({ onLogout }) {
                     type="button"
                     onClick={() => { setActiveTab('classes'); setClassViewMode('reschedules'); }}
                     style={{
-                      background: 'rgba(197, 229, 232, 0.08)',
-                      border: '1px solid rgba(197, 229, 232, 0.22)',
+                      background: 'rgba(241, 163, 42, 0.08)',
+                      border: '1px solid rgba(241, 163, 42, 0.22)',
                       color: 'var(--color-primary)',
                       borderRadius: '20px',
                       padding: '3px 12px',
@@ -2311,7 +2328,7 @@ export function AdminDashboard({ onLogout }) {
                           gap: '0.75rem',
                           padding: '0.7rem 0.85rem',
                           backgroundColor: 'rgba(255, 255, 255, 0.03)',
-                          border: '1px solid rgba(197, 229, 232, 0.08)',
+                          border: '1px solid rgba(241, 163, 42, 0.08)',
                           borderRadius: '10px'
                         }}>
                           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', minWidth: 0 }}>
@@ -2319,7 +2336,7 @@ export function AdminDashboard({ onLogout }) {
                               width: '36px',
                               height: '36px',
                               borderRadius: '8px',
-                              backgroundColor: 'rgba(197, 229, 232, 0.08)',
+                              backgroundColor: 'rgba(241, 163, 42, 0.08)',
                               border: '1px solid rgba(241, 163, 42, 0.12)',
                               display: 'flex',
                               alignItems: 'center',
@@ -2380,7 +2397,7 @@ export function AdminDashboard({ onLogout }) {
                     fontSize: '0.85rem',
                     fontWeight: admissionFilter === f.id ? '700' : '500',
                     cursor: 'pointer',
-                    background: admissionFilter === f.id ? 'var(--color-primary)' : 'rgba(197, 229, 232, 0.08)',
+                    background: admissionFilter === f.id ? 'var(--color-primary)' : 'rgba(241, 163, 42, 0.08)',
                     color: admissionFilter === f.id ? 'var(--color-bg-dark)' : 'var(--color-primary)',
                     border: admissionFilter === f.id ? '1px solid var(--color-primary)' : '1px solid rgba(241, 163, 42, 0.18)',
                     transition: 'all 0.2s ease'
@@ -2749,8 +2766,8 @@ export function AdminDashboard({ onLogout }) {
 
             {/* Assign Modal Overlay */}
             {selectedStudent && (
-              <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(3, 14, 15, 0.88)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 200, padding: '1rem' }}>
-                <div style={{ padding: '2rem', maxWidth: '440px', width: '100%', maxHeight: '90vh', overflowY: 'auto', borderRadius: '16px', backgroundColor: 'rgba(35, 4, 10, 0.92)', border: '1px solid rgba(241, 163, 42, 0.25)', boxShadow: '0 25px 60px rgba(0, 0, 0, 0.95)' }}>
+              <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0, 0, 0, 0.75)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 200, padding: '1rem' }}>
+                <div style={{ padding: '2rem', maxWidth: '440px', width: '100%', maxHeight: '90vh', overflowY: 'auto', borderRadius: '16px', backgroundColor: 'rgba(44, 5, 13, 0.96)', border: '1px solid rgba(241, 163, 42, 0.25)', boxShadow: '0 25px 60px rgba(0, 0, 0, 0.95)' }}>
                   <h3 style={{ color: 'var(--color-white)', marginBottom: '0.5rem', fontSize: '1.25rem' }}>Assign Class Details</h3>
                   <p style={{ color: '#cbd5e1', fontSize: '0.9rem', marginBottom: '1rem' }}>
                     Student: <strong style={{ color: '#fff' }}>{selectedStudent.first_name} {selectedStudent.last_name || selectedStudent.name || ''}</strong> ({selectedStudent.student_code || 'ID Pending'})
@@ -2802,8 +2819,8 @@ export function AdminDashboard({ onLogout }) {
 
             {/* Edit Student Info Modal */}
             {editingStudent && (
-              <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(3, 14, 15, 0.9)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 300, padding: '1.5rem' }}>
-                <div style={{ padding: '2rem', maxWidth: '650px', width: '100%', maxHeight: '90vh', overflowY: 'auto', borderRadius: '16px', backgroundColor: 'rgba(35, 4, 10, 0.92)', border: '1px solid rgba(241, 163, 42, 0.30)', boxShadow: '0 25px 60px rgba(0, 0, 0, 0.95)' }}>
+              <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0, 0, 0, 0.75)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 300, padding: '1.5rem' }}>
+                <div style={{ padding: '2rem', maxWidth: '650px', width: '100%', maxHeight: '90vh', overflowY: 'auto', borderRadius: '16px', backgroundColor: 'rgba(44, 5, 13, 0.96)', border: '1px solid rgba(241, 163, 42, 0.30)', boxShadow: '0 25px 60px rgba(0, 0, 0, 0.95)' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '0.75rem' }}>
                     <div>
                       <h3 style={{ color: 'var(--color-white)', fontSize: '1.3rem', fontWeight: 700, margin: 0 }}>
@@ -3002,8 +3019,8 @@ export function AdminDashboard({ onLogout }) {
 
             {/* View Full Student Profile Modal */}
             {viewingStudent && (
-              <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(3, 14, 15, 0.88)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 200, padding: '1.5rem' }}>
-                <div style={{ padding: '2rem', maxWidth: '620px', width: '100%', maxHeight: '90vh', overflowY: 'auto', borderRadius: '16px', backgroundColor: 'rgba(35, 4, 10, 0.92)', border: '1px solid rgba(241, 163, 42, 0.25)', boxShadow: '0 25px 60px rgba(0, 0, 0, 0.95)' }}>
+              <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0, 0, 0, 0.75)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 200, padding: '1.5rem' }}>
+                <div style={{ padding: '2rem', maxWidth: '620px', width: '100%', maxHeight: '90vh', overflowY: 'auto', borderRadius: '16px', backgroundColor: 'rgba(44, 5, 13, 0.96)', border: '1px solid rgba(241, 163, 42, 0.25)', boxShadow: '0 25px 60px rgba(0, 0, 0, 0.95)' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.25rem', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '0.75rem' }}>
                     <div>
                       <h3 style={{ color: 'var(--color-white)', fontSize: '1.35rem', fontWeight: 700 }}>
@@ -3629,11 +3646,11 @@ export function AdminDashboard({ onLogout }) {
                               padding: '6px 14px',
                               fontSize: '0.82rem',
                               color: 'var(--color-primary)',
-                              border: '1px solid rgba(197, 229, 232, 0.35)',
+                              border: '1px solid rgba(241, 163, 42, 0.35)',
                               borderRadius: '6px',
                               cursor: 'pointer',
                               fontWeight: 600,
-                              background: 'rgba(197, 229, 232, 0.08)',
+                              background: 'rgba(241, 163, 42, 0.08)',
                               whiteSpace: 'nowrap'
                             }}
                           >
@@ -3712,7 +3729,7 @@ export function AdminDashboard({ onLogout }) {
                   type="button"
                   onClick={() => { setClassViewMode('instructors'); setSelectedInstructorForDetail(null); void fetchClassStats(); }}
                   style={{
-                    background: (classViewMode === 'instructors' || classViewMode === 'detail') ? 'var(--color-primary)' : 'rgba(197, 229, 232, 0.08)',
+                    background: (classViewMode === 'instructors' || classViewMode === 'detail') ? 'var(--color-primary)' : 'rgba(241, 163, 42, 0.08)',
                     color: (classViewMode === 'instructors' || classViewMode === 'detail') ? 'var(--color-bg-dark)' : 'var(--color-primary)',
                     border: '1px solid rgba(241, 163, 42, 0.25)',
                     padding: '8px 18px',
@@ -3730,7 +3747,7 @@ export function AdminDashboard({ onLogout }) {
                   type="button"
                   onClick={() => { setClassViewMode('reschedules'); setSelectedInstructorForDetail(null); void fetchReschedules(); }}
                   style={{
-                    background: classViewMode === 'reschedules' ? 'var(--color-primary)' : 'rgba(197, 229, 232, 0.08)',
+                    background: classViewMode === 'reschedules' ? 'var(--color-primary)' : 'rgba(241, 163, 42, 0.08)',
                     color: classViewMode === 'reschedules' ? 'var(--color-bg-dark)' : 'var(--color-primary)',
                     border: '1px solid rgba(241, 163, 42, 0.25)',
                     padding: '8px 18px',
@@ -3819,7 +3836,7 @@ export function AdminDashboard({ onLogout }) {
                           </div>
 
                           {/* Course/Slot Display */}
-                          <div style={{ margin: '0.85rem 0', padding: '0.6rem 0.8rem', background: 'rgba(0, 0, 0, 0.25)', borderRadius: '8px', border: '1px solid rgba(197, 229, 232, 0.1)' }}>
+                          <div style={{ margin: '0.85rem 0', padding: '0.6rem 0.8rem', background: 'rgba(0, 0, 0, 0.25)', borderRadius: '8px', border: '1px solid rgba(241, 163, 42, 0.1)' }}>
                             <span style={{ color: '#94a3b8', fontSize: '0.75rem', display: 'block', marginBottom: '3px', textTransform: 'uppercase', fontWeight: 600 }}>
                               {inst.is_multi_course ? `${inst.assigned_slots.length} Assigned Courses` : 'Course & Schedule'}
                             </span>
@@ -3847,7 +3864,7 @@ export function AdminDashboard({ onLogout }) {
                               <span style={{ display: 'block', fontSize: '0.7rem', color: '#94a3b8' }}>Conducted</span>
                               <strong style={{ fontSize: '1.15rem', color: '#fff' }}>{inst.overall_stats.conducted}</strong>
                             </div>
-                            <div style={{ background: 'rgba(197, 229, 232, 0.05)', padding: '8px 4px', borderRadius: '6px', border: '1px solid rgba(241, 163, 42, 0.12)' }}>
+                            <div style={{ background: 'rgba(241, 163, 42, 0.05)', padding: '8px 4px', borderRadius: '6px', border: '1px solid rgba(241, 163, 42, 0.12)' }}>
                               <span style={{ display: 'block', fontSize: '0.7rem', color: 'var(--color-primary)' }}>Baki</span>
                               <strong style={{ fontSize: '1.15rem', color: 'var(--color-primary)' }}>{inst.overall_stats.remaining}</strong>
                             </div>
@@ -4936,7 +4953,7 @@ export function AdminDashboard({ onLogout }) {
                                       fontSize: '0.8rem',
                                       cursor: 'pointer',
                                       color: 'var(--color-primary)',
-                                      border: '1px solid rgba(197, 229, 232, 0.35)',
+                                      border: '1px solid rgba(241, 163, 42, 0.35)',
                                       display: 'inline-flex',
                                       alignItems: 'center',
                                       gap: '4px'
@@ -4994,7 +5011,7 @@ export function AdminDashboard({ onLogout }) {
                                       fontSize: '0.8rem',
                                       cursor: 'pointer',
                                       color: 'var(--color-primary)',
-                                      border: '1px solid rgba(197, 229, 232, 0.35)',
+                                      border: '1px solid rgba(241, 163, 42, 0.35)',
                                       display: 'inline-flex',
                                       alignItems: 'center',
                                       gap: '4px'
@@ -5065,10 +5082,10 @@ export function AdminDashboard({ onLogout }) {
                       onChange={(e) => setBcTargetRole(e.target.value)}
                       style={{ ...inputStyle, width: '100%', background: 'rgba(255,255,255,0.05)', color: '#fff' }}
                     >
-                      <option value="all" style={{ background: '#12252a' }}>All Platform Users (Students + Instructors)</option>
-                      <option value="student" style={{ background: '#12252a' }}>All Enrolled Students Only</option>
-                      <option value="instructor" style={{ background: '#12252a' }}>All Instructors Only</option>
-                      <option value="specific" style={{ background: '#12252a' }}>Specific User (By ID / Name)</option>
+                      <option value="all" style={{ background: '#2c050d' }}>All Platform Users (Students + Instructors)</option>
+                      <option value="student" style={{ background: '#2c050d' }}>All Enrolled Students Only</option>
+                      <option value="instructor" style={{ background: '#2c050d' }}>All Instructors Only</option>
+                      <option value="specific" style={{ background: '#2c050d' }}>Specific User (By ID / Name)</option>
                     </select>
                   </div>
 
@@ -5081,17 +5098,17 @@ export function AdminDashboard({ onLogout }) {
                         onChange={(e) => setBcTargetUser(e.target.value)}
                         style={{ ...inputStyle, width: '100%', background: 'rgba(255,255,255,0.05)', color: '#fff' }}
                       >
-                        <option value="" style={{ background: '#12252a' }}>-- Select Recipient --</option>
-                        <optgroup label="Students" style={{ background: '#12252a' }}>
+                        <option value="" style={{ background: '#2c050d' }}>-- Select Recipient --</option>
+                        <optgroup label="Students" style={{ background: '#2c050d' }}>
                           {students.map(s => (
-                            <option key={s._id || s.id} value={s._id || s.id} style={{ background: '#12252a' }}>
+                            <option key={s._id || s.id} value={s._id || s.id} style={{ background: '#2c050d' }}>
                               {s.full_name || s.student_name || s.username} ({s.roll_number || 'Student'})
                             </option>
                           ))}
                         </optgroup>
-                        <optgroup label="Instructors" style={{ background: '#12252a' }}>
+                        <optgroup label="Instructors" style={{ background: '#2c050d' }}>
                           {instructors.map(inst => (
-                            <option key={inst._id || inst.id} value={inst._id || inst.id} style={{ background: '#12252a' }}>
+                            <option key={inst._id || inst.id} value={inst._id || inst.id} style={{ background: '#2c050d' }}>
                               {inst.full_name || inst.name || inst.username} ({inst.specialization || 'Instructor'})
                             </option>
                           ))}
@@ -5175,7 +5192,7 @@ export function AdminDashboard({ onLogout }) {
             </div>
 
             {/* Security Banner */}
-            <div style={{ background: 'rgba(241, 163, 42, 0.15)', border: '1px solid rgba(241, 163, 42, 0.15)', padding: '12px 18px', borderRadius: '8px', marginBottom: '1.5rem', color: '#00a896', fontSize: '0.88rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <div style={{ background: 'rgba(241, 163, 42, 0.15)', border: '1px solid rgba(241, 163, 42, 0.15)', padding: '12px 18px', borderRadius: '8px', marginBottom: '1.5rem', color: '#f1a32a', fontSize: '0.88rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
               <Shield size={18} style={{ flexShrink: 0 }} />
               <span>
                 <strong> Audit Oversight Active:</strong> Administrators can inspect conversation history between students and their assigned instructors for policy compliance. Sending messages into private user threads is restricted.
@@ -5242,7 +5259,7 @@ export function AdminDashboard({ onLogout }) {
                         <h3 style={{ color: '#fff', fontSize: '1.1rem', margin: 0, fontWeight: 'bold' }}>
                           Chat Audit: {auditActiveThread.student_name} &amp; {auditActiveThread.instructor_name}
                         </h3>
-                        <span style={{ fontSize: '0.75rem', color: '#00a896' }}>
+                        <span style={{ fontSize: '0.75rem', color: '#f1a32a' }}>
                           Thread ID: {auditActiveThread.thread_id || auditActiveThread._id || auditActiveThread.id}
                         </span>
                       </div>
@@ -5337,7 +5354,7 @@ export function AdminDashboard({ onLogout }) {
           <div
             role="presentation"
             style={{
-              background: 'rgba(35, 4, 10, 0.92)',
+              background: 'rgba(44, 5, 13, 0.96)',
               border: '1px solid rgba(241, 163, 42, 0.25)',
               boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.7)',
               borderRadius: '12px',
@@ -5444,7 +5461,7 @@ export function AdminDashboard({ onLogout }) {
           padding: '1rem'
         }}>
           <div style={{
-            background: 'rgba(35, 4, 10, 0.92)',
+            background: 'rgba(44, 5, 13, 0.96)',
             border: '1px solid rgba(241, 163, 42, 0.25)',
             boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.7)',
             borderRadius: '12px',
@@ -5571,8 +5588,8 @@ export function AdminDashboard({ onLogout }) {
       )}
       {/* Graduate Student Modal */}
       {graduatingStudent && (
-        <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(3, 14, 15, 0.88)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 220, padding: '1rem' }}>
-          <div style={{ padding: '2rem', maxWidth: '500px', width: '100%', maxHeight: '90vh', overflowY: 'auto', borderRadius: '16px', backgroundColor: 'rgba(35, 4, 10, 0.92)', border: '1px solid rgba(46, 204, 113, 0.4)', boxShadow: '0 25px 60px rgba(0, 0, 0, 0.95)' }}>
+        <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0, 0, 0, 0.75)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 220, padding: '1rem' }}>
+          <div style={{ padding: '2rem', maxWidth: '500px', width: '100%', maxHeight: '90vh', overflowY: 'auto', borderRadius: '16px', backgroundColor: 'rgba(44, 5, 13, 0.96)', border: '1px solid rgba(46, 204, 113, 0.4)', boxShadow: '0 25px 60px rgba(0, 0, 0, 0.95)' }}>
             <h3 style={{ color: 'var(--color-white)', margin: '0 0 1rem 0', fontSize: '1.3rem' }}>Mark Student as Graduated</h3>
 
             <p style={{ color: '#cbd5e1', fontSize: '0.9rem', marginBottom: '1.25rem' }}>
@@ -5604,7 +5621,7 @@ export function AdminDashboard({ onLogout }) {
                     id="admin_grad_grade"
                     value={graduateForm.final_grade}
                     onChange={e => setGraduateForm({ ...graduateForm, final_grade: e.target.value })}
-                    style={{ ...inputStyle, width: '100%', background: '#071d20' }}
+                    style={{ ...inputStyle, width: '100%', background: '#2c050d' }}
                   >
                     <option value="A+">A+ (Outstanding)</option>
                     <option value="A">A (Excellent)</option>
@@ -5681,8 +5698,8 @@ export function AdminDashboard({ onLogout }) {
 
       {/* Dropout Student Modal */}
       {droppingStudent && (
-        <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(3, 14, 15, 0.88)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 220, padding: '1rem' }}>
-          <div style={{ padding: '2rem', maxWidth: '500px', width: '100%', maxHeight: '90vh', overflowY: 'auto', borderRadius: '16px', backgroundColor: 'rgba(35, 4, 10, 0.92)', border: '1px solid rgba(231, 76, 60, 0.4)', boxShadow: '0 25px 60px rgba(0, 0, 0, 0.95)' }}>
+        <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0, 0, 0, 0.75)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 220, padding: '1rem' }}>
+          <div style={{ padding: '2rem', maxWidth: '500px', width: '100%', maxHeight: '90vh', overflowY: 'auto', borderRadius: '16px', backgroundColor: 'rgba(44, 5, 13, 0.96)', border: '1px solid rgba(231, 76, 60, 0.4)', boxShadow: '0 25px 60px rgba(0, 0, 0, 0.95)' }}>
             <h3 style={{ color: 'var(--color-white)', margin: '0 0 1rem 0', fontSize: '1.3rem' }}>Mark Student as Dropout</h3>
 
             <p style={{ color: '#cbd5e1', fontSize: '0.9rem', marginBottom: '1.25rem' }}>
@@ -5698,7 +5715,7 @@ export function AdminDashboard({ onLogout }) {
                   id="admin_drop_reason"
                   value={dropoutForm.dropout_reason}
                   onChange={e => setDropoutForm({ ...dropoutForm, dropout_reason: e.target.value })}
-                  style={{ ...inputStyle, width: '100%', background: '#071d20' }}
+                  style={{ ...inputStyle, width: '100%', background: '#2c050d' }}
                 >
                   <option value="Time constraints / Schedule conflict">Time constraints / Schedule conflict</option>
                   <option value="Financial reasons / Fee constraints">Financial reasons / Fee constraints</option>
@@ -5766,8 +5783,8 @@ export function AdminDashboard({ onLogout }) {
 
       {/* Cancel Admission Modal with Reason Dispatch */}
       {cancelingAdmission && (
-        <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(3, 14, 15, 0.88)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 220, padding: '1rem' }}>
-          <div style={{ padding: '2rem', maxWidth: '520px', width: '100%', maxHeight: '90vh', overflowY: 'auto', borderRadius: '16px', backgroundColor: 'rgba(35, 4, 10, 0.92)', border: '1px solid rgba(231, 76, 60, 0.45)', boxShadow: '0 25px 60px rgba(0, 0, 0, 0.95)' }}>
+        <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0, 0, 0, 0.75)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 220, padding: '1rem' }}>
+          <div style={{ padding: '2rem', maxWidth: '520px', width: '100%', maxHeight: '90vh', overflowY: 'auto', borderRadius: '16px', backgroundColor: 'rgba(44, 5, 13, 0.96)', border: '1px solid rgba(231, 76, 60, 0.45)', boxShadow: '0 25px 60px rgba(0, 0, 0, 0.95)' }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
               <h3 style={{ color: '#ff6b6b', margin: 0, fontSize: '1.25rem', fontWeight: 'bold' }}>Cancel Admission Application</h3>
               <button
@@ -5804,7 +5821,7 @@ export function AdminDashboard({ onLogout }) {
                   id="admin_cancel_preset"
                   value={cancelReasonPreset}
                   onChange={e => setCancelReasonPreset(e.target.value)}
-                  style={{ ...inputStyle, width: '100%', background: '#071d20', color: '#fff' }}
+                  style={{ ...inputStyle, width: '100%', background: '#2c050d', color: '#fff' }}
                 >
                   <option value="Fee payment receipt not verified within stipulated deadline">Fee payment receipt not verified within stipulated deadline</option>
                   <option value="Batch / slot capacity for the selected timings is full">Batch / slot capacity for the selected timings is full</option>

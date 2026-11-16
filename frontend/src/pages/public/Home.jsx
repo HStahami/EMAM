@@ -284,7 +284,15 @@ export function Home() {
       {/* ======================================================== */}
       {/* 1. ENTERPRISE HERO SECTION                               */}
       {/* ======================================================== */}
-      <section style={{ minHeight: 'calc(100vh - 5.5rem)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '1.25rem 1.5rem 2.25rem', position: 'relative', overflow: 'hidden' }}>
+      <section style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '2rem 1.5rem', position: 'relative', overflow: 'hidden' }}>
+        {/* Top Left Brand Logo & Name */}
+        <div style={{ position: 'absolute', top: '1.75rem', left: 'clamp(1.5rem, 4vw, 3rem)', display: 'flex', alignItems: 'center', zIndex: 10 }}>
+          <Link to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+            <img src="/emam_logo.png" alt="Emam Logo" style={{ height: '42px', width: '42px', objectFit: 'contain' }} />
+            <span style={{ fontSize: '1.6rem', fontWeight: '800', letterSpacing: '-0.5px' }} className="gradient-text">Emam</span>
+          </Link>
+        </div>
+
         {/* Ambient Radial Glows (Burgundy & Gold) */}
         <motion.div
           animate={{

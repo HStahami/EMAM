@@ -105,10 +105,11 @@ function AppLayout() {
   const isInstructorRoute = location.pathname.startsWith('/instructor');
   const isStudentRoute = location.pathname.startsWith('/student');
   const isPortalRoute = isAdminRoute || isInstructorRoute || isStudentRoute;
+  const isHomePage = location.pathname === '/';
 
   return (
     <div className="app-container">
-      {!isPortalRoute && (
+      {!isPortalRoute && !isHomePage && (
         <div style={{ position: 'fixed', top: '1rem', left: '0', right: '0', zIndex: 100, display: 'flex', justifyContent: 'center' }}>
           <div style={{ width: '90%', maxWidth: '1200px' }}>
             <Navbar />
@@ -121,7 +122,7 @@ function AppLayout() {
           flex: 1,
           display: 'flex',
           flexDirection: 'column',
-          paddingTop: isInstructorRoute || isStudentRoute ? '0' : isAdminRoute ? '2rem' : '5.5rem',
+          paddingTop: isInstructorRoute || isStudentRoute || isHomePage ? '0' : isAdminRoute ? '2rem' : '5.5rem',
           paddingLeft: isInstructorRoute || isStudentRoute ? '0' : isAdminRoute ? '2rem' : '0',
           paddingRight: isInstructorRoute || isStudentRoute ? '0' : isAdminRoute ? '2rem' : '0',
         }}

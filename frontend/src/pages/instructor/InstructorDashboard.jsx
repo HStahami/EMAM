@@ -250,14 +250,21 @@ export function InstructorDashboard() {
                       to={`/instructor/classroom?slot_id=${c.slot_id}&auto_start=true`}
                       className={c.is_live ? "btn-primary" : "glass-panel"}
                       style={{
-                        padding: "4px 10px",
-                        fontSize: "0.78rem",
+                        padding: "5px 12px",
+                        fontSize: "0.8rem",
                         textDecoration: "none",
                         borderRadius: "6px",
                         fontWeight: 600,
-                        border: "1px solid rgba(241, 163, 42, 0.18)"
+                        color: "var(--color-primary)",
+                        backgroundColor: c.is_live ? undefined : "rgba(105, 14, 31, 0.45)",
+                        border: "1px solid rgba(241, 163, 42, 0.35)",
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "6px",
+                        transition: "all 0.2s"
                       }}
                     >
+                      <Video size={13} />
                       {c.is_live ? "Join Live" : "Launch Class"}
                     </Link>
                   </div>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { Bell, FileText, CheckSquare, Award, Calendar, Video, AlertCircle } from 'lucide-react';
 import { notificationsApi } from '../../api';
 
 export function StudentNotifications() {
@@ -64,17 +65,17 @@ export function StudentNotifications() {
   const getIcon = (type) => {
     switch (type) {
       case 'task':
-        return 'Task';
+        return <CheckSquare size={18} color="var(--color-primary)" />;
       case 'submission':
-        return 'Submission';
+        return <FileText size={18} color="var(--color-primary)" />;
       case 'assessment':
-        return 'Grade';
+        return <Award size={18} color="var(--color-primary)" />;
       case 'schedule':
-        return 'Schedule';
+        return <Calendar size={18} color="var(--color-primary)" />;
       case 'classroom':
-        return 'Live';
+        return <Video size={18} color="var(--color-primary)" />;
       default:
-        return 'Alert';
+        return <Bell size={18} color="var(--color-primary)" />;
     }
   };
 
@@ -194,29 +195,44 @@ export function StudentNotifications() {
                 backgroundColor: notif.is_read ? 'rgba(44, 5, 13, 0.65)' : 'rgba(44, 5, 13, 0.65)',
               }}
             >
-              <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
+              <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start', flex: 1, minWidth: 0 }}>
                 <div
                   style={{
-                    width: '38px',
-                    height: '38px',
+                    width: '40px',
+                    height: '40px',
                     borderRadius: '50%',
                     backgroundColor: notif.is_read ? 'rgba(255, 255, 255, 0.05)' : 'rgba(241, 163, 42, 0.15)',
+                    border: '1px solid rgba(241, 163, 42, 0.22)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    fontSize: '1.1rem',
                     flexShrink: 0,
                   }}
                 >
                   {getIcon(notif.notification_type || notif.type)}
                 </div>
 
-                <div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.35rem', flexWrap: 'wrap' }}>
+                    <span
+                      style={{
+                        padding: '0.2rem 0.55rem',
+                        borderRadius: '6px',
+                        fontSize: '0.72rem',
+                        fontWeight: 700,
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.04em',
+                        backgroundColor: 'rgba(241, 163, 42, 0.15)',
+                        color: 'var(--color-primary)',
+                        border: '1px solid rgba(241, 163, 42, 0.22)',
+                      }}
+                    >
+                      {notif.notification_type || notif.type || 'Notice'}
+                    </span>
                     <h3
                       style={{
                         margin: 0,
-                        fontSize: '0.95rem',
+                        fontSize: '0.98rem',
                         fontWeight: notif.is_read ? 500 : 700,
                         color: notif.is_read ? '#e2e8f0' : '#fff',
                       }}
@@ -236,7 +252,7 @@ export function StudentNotifications() {
                     )}
                   </div>
 
-                  <p style={{ margin: 0, color: '#f0ceb3', fontSize: '0.85rem', lineHeight: '1.4' }}>
+                  <p style={{ margin: 0, color: '#f0ceb3', fontSize: '0.86rem', lineHeight: '1.45' }}>
                     {notif.message}
                   </p>
 

@@ -393,24 +393,114 @@ export function Home() {
             transition={{ duration: 0.7, delay: 0.45 }}
             style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(190px, 1fr))', gap: '1rem', width: '100%', maxWidth: '940px', margin: '0 auto' }}
           >
-            <div className="glass-panel" style={{ padding: '0.9rem 0.75rem', textAlign: 'center', borderRadius: '14px' }}>
-              <div style={{ fontSize: '1.55rem', fontWeight: '800', color: 'var(--color-primary)', marginBottom: '0.2rem' }}>A1 – B2</div>
-              <div style={{ fontSize: '0.82rem', color: '#f0ceb3', fontWeight: '500' }}>CEFR Aligned Arabic Curriculum</div>
+            {/* Card 1 — CEFR Curriculum */}
+            <div className="glass-panel" style={{ padding: '1.1rem 0.9rem 0.9rem', textAlign: 'center', borderRadius: '14px', position: 'relative', overflow: 'hidden' }}>
+              <div style={{ marginBottom: '0.55rem', display: 'flex', justifyContent: 'center' }}>
+                <svg width="52" height="38" viewBox="0 0 52 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  {/* Open book pages */}
+                  <rect x="2" y="6" width="23" height="28" rx="3" fill="rgba(105,14,31,0.7)" stroke="rgba(241,163,42,0.5)" strokeWidth="1.2"/>
+                  <rect x="27" y="6" width="23" height="28" rx="3" fill="rgba(105,14,31,0.7)" stroke="rgba(241,163,42,0.5)" strokeWidth="1.2"/>
+                  {/* Spine line */}
+                  <line x1="26" y1="5" x2="26" y2="35" stroke="#f1a32a" strokeWidth="1.6"/>
+                  {/* Left page lines */}
+                  <line x1="7" y1="13" x2="20" y2="13" stroke="rgba(241,163,42,0.4)" strokeWidth="1"/>
+                  <line x1="7" y1="17" x2="20" y2="17" stroke="rgba(241,163,42,0.4)" strokeWidth="1"/>
+                  <line x1="7" y1="21" x2="20" y2="21" stroke="rgba(241,163,42,0.4)" strokeWidth="1"/>
+                  <line x1="7" y1="25" x2="16" y2="25" stroke="rgba(241,163,42,0.3)" strokeWidth="1"/>
+                  {/* Right page lines */}
+                  <line x1="32" y1="13" x2="45" y2="13" stroke="rgba(241,163,42,0.4)" strokeWidth="1"/>
+                  <line x1="32" y1="17" x2="45" y2="17" stroke="rgba(241,163,42,0.4)" strokeWidth="1"/>
+                  <line x1="32" y1="21" x2="45" y2="21" stroke="rgba(241,163,42,0.4)" strokeWidth="1"/>
+                  <line x1="32" y1="25" x2="41" y2="25" stroke="rgba(241,163,42,0.3)" strokeWidth="1"/>
+                  {/* Arabic letter alif hint on right page top */}
+                  <text x="38" y="12" fontSize="8" fill="rgba(241,163,42,0.7)" fontFamily="serif" textAnchor="middle">ا</text>
+                </svg>
+              </div>
+              <div style={{ fontSize: '1.45rem', fontWeight: '800', color: 'var(--color-primary)', marginBottom: '0.18rem', letterSpacing: '-0.3px' }}>A1 – B2</div>
+              <div style={{ fontSize: '0.78rem', color: '#f0ceb3', fontWeight: '500', lineHeight: '1.4' }}>CEFR Aligned Arabic Curriculum</div>
             </div>
 
-            <div className="glass-panel" style={{ padding: '0.9rem 0.75rem', textAlign: 'center', borderRadius: '14px' }}>
-              <div style={{ fontSize: '1.55rem', fontWeight: '800', color: 'var(--color-primary)', marginBottom: '0.2rem' }}>200 Levels</div>
-              <div style={{ fontSize: '0.82rem', color: '#f0ceb3', fontWeight: '500' }}>Progressive Touch-Typing Lab</div>
+            {/* Card 2 — Typing Lab */}
+            <div className="glass-panel" style={{ padding: '1.1rem 0.9rem 0.9rem', textAlign: 'center', borderRadius: '14px', position: 'relative', overflow: 'hidden' }}>
+              <div style={{ marginBottom: '0.55rem', display: 'flex', justifyContent: 'center' }}>
+                <svg width="52" height="38" viewBox="0 0 52 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  {/* Keyboard base */}
+                  <rect x="3" y="10" width="46" height="22" rx="4" fill="rgba(105,14,31,0.7)" stroke="rgba(241,163,42,0.5)" strokeWidth="1.2"/>
+                  {/* Key row 1 */}
+                  <rect x="7" y="14" width="6" height="4" rx="1.2" fill="rgba(241,163,42,0.25)" stroke="rgba(241,163,42,0.4)" strokeWidth="0.8"/>
+                  <rect x="15" y="14" width="6" height="4" rx="1.2" fill="rgba(241,163,42,0.25)" stroke="rgba(241,163,42,0.4)" strokeWidth="0.8"/>
+                  <rect x="23" y="14" width="6" height="4" rx="1.2" fill="rgba(241,163,42,0.25)" stroke="rgba(241,163,42,0.4)" strokeWidth="0.8"/>
+                  <rect x="31" y="14" width="6" height="4" rx="1.2" fill="rgba(241,163,42,0.25)" stroke="rgba(241,163,42,0.4)" strokeWidth="0.8"/>
+                  <rect x="39" y="14" width="6" height="4" rx="1.2" fill="rgba(241,163,42,0.25)" stroke="rgba(241,163,42,0.4)" strokeWidth="0.8"/>
+                  {/* Key row 2 */}
+                  <rect x="9" y="20" width="6" height="4" rx="1.2" fill="rgba(241,163,42,0.2)" stroke="rgba(241,163,42,0.3)" strokeWidth="0.8"/>
+                  <rect x="17" y="20" width="6" height="4" rx="1.2" fill="rgba(241,163,42,0.2)" stroke="rgba(241,163,42,0.3)" strokeWidth="0.8"/>
+                  {/* Space bar highlighted gold */}
+                  <rect x="17" y="26" width="18" height="4" rx="1.5" fill="rgba(241,163,42,0.45)" stroke="#f1a32a" strokeWidth="0.9"/>
+                  <rect x="25" y="20" width="6" height="4" rx="1.2" fill="rgba(241,163,42,0.2)" stroke="rgba(241,163,42,0.3)" strokeWidth="0.8"/>
+                  <rect x="33" y="20" width="6" height="4" rx="1.2" fill="rgba(241,163,42,0.2)" stroke="rgba(241,163,42,0.3)" strokeWidth="0.8"/>
+                  {/* Arabic letter on center key */}
+                  <text x="28" y="23.5" fontSize="6" fill="rgba(241,163,42,0.9)" fontFamily="serif" textAnchor="middle">ب</text>
+                </svg>
+              </div>
+              <div style={{ fontSize: '1.45rem', fontWeight: '800', color: 'var(--color-primary)', marginBottom: '0.18rem', letterSpacing: '-0.3px' }}>200 Levels</div>
+              <div style={{ fontSize: '0.78rem', color: '#f0ceb3', fontWeight: '500', lineHeight: '1.4' }}>Progressive Touch-Typing Lab</div>
             </div>
 
-            <div className="glass-panel" style={{ padding: '0.9rem 0.75rem', textAlign: 'center', borderRadius: '14px' }}>
-              <div style={{ fontSize: '1.55rem', fontWeight: '800', color: 'var(--color-primary)', marginBottom: '0.2rem' }}>1-on-1 &amp; Cohort</div>
-              <div style={{ fontSize: '0.82rem', color: '#f0ceb3', fontWeight: '500' }}>Virtual Smart Classroom Studio</div>
+            {/* Card 3 — Virtual Classroom */}
+            <div className="glass-panel" style={{ padding: '1.1rem 0.9rem 0.9rem', textAlign: 'center', borderRadius: '14px', position: 'relative', overflow: 'hidden' }}>
+              <div style={{ marginBottom: '0.55rem', display: 'flex', justifyContent: 'center' }}>
+                <svg width="52" height="38" viewBox="0 0 52 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  {/* Monitor screen */}
+                  <rect x="4" y="4" width="44" height="26" rx="3.5" fill="rgba(105,14,31,0.7)" stroke="rgba(241,163,42,0.5)" strokeWidth="1.2"/>
+                  {/* Screen content — whiteboard area */}
+                  <rect x="8" y="7" width="36" height="20" rx="2" fill="rgba(44,5,13,0.8)"/>
+                  {/* Whiteboard line strokes — Arabic writing simulation */}
+                  <path d="M12 14 Q18 11 22 14 Q26 17 30 13" stroke="#f1a32a" strokeWidth="1.1" fill="none" strokeLinecap="round"/>
+                  <path d="M12 19 Q16 17 20 19" stroke="rgba(241,163,42,0.5)" strokeWidth="0.9" fill="none" strokeLinecap="round"/>
+                  {/* Camera dot top-right of screen */}
+                  <circle cx="40" cy="8.5" r="1.4" fill="rgba(241,163,42,0.6)"/>
+                  {/* Monitor stand */}
+                  <rect x="23" y="30" width="6" height="3" rx="1" fill="rgba(241,163,42,0.3)"/>
+                  <rect x="19" y="33" width="14" height="2" rx="1" fill="rgba(241,163,42,0.25)"/>
+                  {/* Two small attendee boxes bottom of screen */}
+                  <rect x="10" y="22" width="7" height="4" rx="1" fill="rgba(241,163,42,0.15)" stroke="rgba(241,163,42,0.3)" strokeWidth="0.7"/>
+                  <rect x="19" y="22" width="7" height="4" rx="1" fill="rgba(241,163,42,0.15)" stroke="rgba(241,163,42,0.3)" strokeWidth="0.7"/>
+                  <rect x="28" y="22" width="7" height="4" rx="1" fill="rgba(241,163,42,0.15)" stroke="rgba(241,163,42,0.3)" strokeWidth="0.7"/>
+                </svg>
+              </div>
+              <div style={{ fontSize: '1.45rem', fontWeight: '800', color: 'var(--color-primary)', marginBottom: '0.18rem', letterSpacing: '-0.3px' }}>1-on-1 &amp; Cohort</div>
+              <div style={{ fontSize: '0.78rem', color: '#f0ceb3', fontWeight: '500', lineHeight: '1.4' }}>Virtual Smart Classroom Studio</div>
             </div>
 
-            <div className="glass-panel" style={{ padding: '0.9rem 0.75rem', textAlign: 'center', borderRadius: '14px' }}>
-              <div style={{ fontSize: '1.55rem', fontWeight: '800', color: 'var(--color-primary)', marginBottom: '0.2rem' }}>Multi-Tenant</div>
-              <div style={{ fontSize: '0.82rem', color: '#f0ceb3', fontWeight: '500' }}>Dedicated Institutional Spaces</div>
+            {/* Card 4 — Multi-Tenant */}
+            <div className="glass-panel" style={{ padding: '1.1rem 0.9rem 0.9rem', textAlign: 'center', borderRadius: '14px', position: 'relative', overflow: 'hidden' }}>
+              <div style={{ marginBottom: '0.55rem', display: 'flex', justifyContent: 'center' }}>
+                <svg width="52" height="38" viewBox="0 0 52 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  {/* Three layered building shapes = multi-tenant spaces */}
+                  {/* Back building */}
+                  <rect x="30" y="8" width="18" height="26" rx="2.5" fill="rgba(105,14,31,0.5)" stroke="rgba(241,163,42,0.3)" strokeWidth="1"/>
+                  {/* Back windows */}
+                  <rect x="33" y="12" width="4" height="3" rx="0.8" fill="rgba(241,163,42,0.2)"/>
+                  <rect x="39" y="12" width="4" height="3" rx="0.8" fill="rgba(241,163,42,0.2)"/>
+                  <rect x="33" y="17" width="4" height="3" rx="0.8" fill="rgba(241,163,42,0.2)"/>
+                  <rect x="39" y="17" width="4" height="3" rx="0.8" fill="rgba(241,163,42,0.2)"/>
+                  {/* Front main building */}
+                  <rect x="4" y="12" width="26" height="22" rx="2.5" fill="rgba(105,14,31,0.75)" stroke="rgba(241,163,42,0.55)" strokeWidth="1.2"/>
+                  {/* Front windows */}
+                  <rect x="8" y="16" width="5" height="4" rx="0.8" fill="rgba(241,163,42,0.3)" stroke="rgba(241,163,42,0.4)" strokeWidth="0.6"/>
+                  <rect x="15" y="16" width="5" height="4" rx="0.8" fill="rgba(241,163,42,0.3)" stroke="rgba(241,163,42,0.4)" strokeWidth="0.6"/>
+                  <rect x="22" y="16" width="5" height="4" rx="0.8" fill="rgba(241,163,42,0.3)" stroke="rgba(241,163,42,0.4)" strokeWidth="0.6"/>
+                  <rect x="8" y="23" width="5" height="4" rx="0.8" fill="rgba(241,163,42,0.2)"/>
+                  <rect x="15" y="23" width="5" height="4" rx="0.8" fill="rgba(241,163,42,0.2)"/>
+                  {/* Front door */}
+                  <rect x="12" y="28" width="8" height="6" rx="1" fill="rgba(241,163,42,0.4)" stroke="#f1a32a" strokeWidth="0.8"/>
+                  {/* Roof accent line */}
+                  <line x1="4" y1="12" x2="30" y2="12" stroke="rgba(241,163,42,0.6)" strokeWidth="1.2"/>
+                </svg>
+              </div>
+              <div style={{ fontSize: '1.45rem', fontWeight: '800', color: 'var(--color-primary)', marginBottom: '0.18rem', letterSpacing: '-0.3px' }}>Multi-Tenant</div>
+              <div style={{ fontSize: '0.78rem', color: '#f0ceb3', fontWeight: '500', lineHeight: '1.4' }}>Dedicated Institutional Spaces</div>
             </div>
           </motion.div>
         </div>

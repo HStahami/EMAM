@@ -222,17 +222,26 @@ export function StudentLayout({ children }) {
             <button
               onClick={handleLogout}
               style={{
-                background: 'rgba(239, 68, 68, 0.1)',
-                border: '1px solid rgba(239, 68, 68, 0.25)',
-                color: '#f87171',
+                background: 'rgba(105, 14, 31, 0.45)',
+                border: '1px solid rgba(241, 163, 42, 0.35)',
+                color: 'var(--color-primary)',
                 borderRadius: '6px',
                 cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
                 gap: '0.35rem',
                 fontSize: '0.8rem',
-                padding: '0.35rem 0.6rem',
-                fontWeight: 500,
+                padding: '0.35rem 0.65rem',
+                fontWeight: 600,
+                transition: 'all 0.2s ease',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'var(--color-primary)';
+                e.currentTarget.style.color = '#2c050d';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'rgba(105, 14, 31, 0.45)';
+                e.currentTarget.style.color = 'var(--color-primary)';
               }}
               title="Sign Out"
             >
@@ -498,9 +507,9 @@ export function StudentLayout({ children }) {
                   width: '100%',
                   padding: '0.75rem',
                   borderRadius: '8px',
-                  border: '1px solid rgba(239, 68, 68, 0.3)',
-                  backgroundColor: 'rgba(239, 68, 68, 0.12)',
-                  color: '#f87171',
+                  border: '1px solid rgba(241, 163, 42, 0.35)',
+                  backgroundColor: 'rgba(105, 14, 31, 0.45)',
+                  color: 'var(--color-primary)',
                   cursor: 'pointer',
                   fontWeight: 600,
                   fontSize: '0.9rem',
@@ -508,6 +517,7 @@ export function StudentLayout({ children }) {
                   alignItems: 'center',
                   justifyContent: 'center',
                   gap: '0.5rem',
+                  transition: 'all 0.2s ease',
                 }}
               >
                 <LogOut size={16} /> Sign Out

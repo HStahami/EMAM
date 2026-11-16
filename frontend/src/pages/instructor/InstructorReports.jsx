@@ -154,7 +154,7 @@ export function InstructorReports() {
           style={{
             padding: '1rem 1.5rem',
             borderLeft: '4px solid #ef4444',
-            color: '#f87171',
+            color: '#f0ceb3',
             backgroundColor: 'rgba(239, 68, 68, 0.08)',
           }}
         >
@@ -183,7 +183,7 @@ export function InstructorReports() {
             value={selectedSlotId}
             onChange={(e) => setSelectedSlotId(e.target.value)}
             style={{
-              backgroundColor: 'rgba(44, 5, 13, 0.65)',
+              backgroundColor: 'rgba(44, 5, 13, 0.95)', border: '1px solid rgba(241, 163, 42, 0.3)', boxShadow: '0 16px 40px rgba(0,0,0,0.6)',
               color: '#fff',
               border: '1px solid rgba(241, 163, 42, 0.18)',
               padding: '0.6rem 1.2rem',
@@ -234,17 +234,17 @@ export function InstructorReports() {
           <div style={{ fontSize: '0.8rem', color: 'rgba(241,163,42,0.55)' }}>Across recorded sessions</div>
         </div>
 
-        <div className="glass-panel" style={{ padding: '1.5rem', borderLeft: '4px solid #f59e0b' }}>
+        <div className="glass-panel" style={{ padding: '1.5rem', borderLeft: '4px solid var(--color-primary)' }}>
           <div style={{ fontSize: '0.8rem', color: 'rgba(241,163,42,0.55)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
             Avg Task Completion
           </div>
-          <div style={{ fontSize: '2rem', fontWeight: 700, color: '#fbbf24', margin: '0.4rem 0' }}>
+          <div style={{ fontSize: '2rem', fontWeight: 700, color: 'var(--color-primary)', margin: '0.4rem 0' }}>
             {avgCompletion}%
           </div>
           <div style={{ fontSize: '0.8rem', color: 'rgba(241,163,42,0.55)' }}>Assigned homework & quizzes</div>
         </div>
 
-        <div className="glass-panel" style={{ padding: '1.5rem', borderLeft: '4px solid #a855f7' }}>
+        <div className="glass-panel" style={{ padding: '1.5rem', borderLeft: '4px solid var(--color-primary)' }}>
           <div style={{ fontSize: '0.8rem', color: 'rgba(241,163,42,0.55)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
             Avg Assessment Score
           </div>
@@ -314,7 +314,7 @@ export function InstructorReports() {
                           style={{
                             width: `${st.attendance_rate || 0}%`,
                             height: '100%',
-                            backgroundColor: (st.attendance_rate || 0) >= 80 ? 'var(--color-primary)' : '#f87171',
+                            backgroundColor: (st.attendance_rate || 0) >= 80 ? 'var(--color-primary)' : '#f0ceb3',
                           }}
                         />
                       </div>
@@ -349,7 +349,7 @@ export function InstructorReports() {
                     </div>
                   </td>
                   <td style={{ padding: '1rem', color: 'var(--color-primary)', fontWeight: 600 }}>
-                    {st.average_score != null ? `${st.average_score}%` : '�'}
+                    {st.average_score != null ? `${st.average_score}%` : "N/A"}
                   </td>
                   <td style={{ padding: '1rem' }}>
                     <span
@@ -381,7 +381,7 @@ export function InstructorReports() {
                         fontWeight: 600,
                       }}
                     >
-                      View Report ?
+                      View Report →
                     </button>
                   </td>
                 </tr>
@@ -412,8 +412,9 @@ export function InstructorReports() {
               width: '100%',
               maxWidth: '640px',
               padding: '2rem',
-              backgroundColor: 'rgba(44, 5, 13, 0.65)',
-              border: '1px solid rgba(241, 163, 42, 0.18)',
+              backgroundColor: 'rgba(44, 5, 13, 0.95)',
+              border: '1px solid rgba(241, 163, 42, 0.3)',
+              boxShadow: '0 16px 40px rgba(0,0,0,0.6)',
               maxHeight: '90vh',
               overflowY: 'auto',
             }}
@@ -452,7 +453,7 @@ export function InstructorReports() {
                     alignItems: 'center',
                     padding: '1rem 1.5rem',
                     borderRadius: '8px',
-                    background: 'rgba(255, 255, 255, 0.05)',
+                    background: 'rgba(44, 5, 13, 0.75)',
                     border: '1px solid rgba(241, 163, 42, 0.18)',
                   }}
                 >
@@ -488,14 +489,14 @@ export function InstructorReports() {
                       </div>
                       <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)' }}>Late</div>
                     </div>
-                    <div style={{ padding: '0.75rem', borderRadius: '6px', background: 'rgba(96, 165, 250, 0.1)' }}>
-                      <div style={{ fontSize: '1.2rem', fontWeight: 700, color: '#60a5fa' }}>
+                    <div style={{ padding: '0.75rem', borderRadius: '6px', background: 'rgba(240, 206, 179, 0.15)' }}>
+                      <div style={{ fontSize: '1.2rem', fontWeight: 700, color: '#f0ceb3' }}>
                         {studentReport.attendance?.excused || 0}
                       </div>
                       <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)' }}>Excused</div>
                     </div>
-                    <div style={{ padding: '0.75rem', borderRadius: '6px', background: 'rgba(248, 113, 113, 0.1)' }}>
-                      <div style={{ fontSize: '1.2rem', fontWeight: 700, color: '#f87171' }}>
+                    <div style={{ padding: '0.75rem', borderRadius: '6px', background: 'rgba(105, 14, 31, 0.45)' }}>
+                      <div style={{ fontSize: '1.2rem', fontWeight: 700, color: '#f0ceb3' }}>
                         {studentReport.attendance?.absent || 0}
                       </div>
                       <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)' }}>Absent</div>
@@ -509,7 +510,7 @@ export function InstructorReports() {
                     Tasks & Academic Milestones
                   </h4>
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-                    <div style={{ padding: '1rem', borderRadius: '8px', background: 'rgba(255, 255, 255, 0.05)' }}>
+                    <div style={{ padding: '1rem', borderRadius: '8px', background: 'rgba(44, 5, 13, 0.75)', border: '1px solid rgba(241, 163, 42, 0.18)' }}>
                       <div style={{ fontSize: '0.8rem', color: 'rgba(241,163,42,0.55)' }}>Tasks Submitted</div>
                       <div style={{ fontSize: '1.3rem', fontWeight: 700, color: '#fff', margin: '0.2rem 0' }}>
                         {studentReport.tasks?.total_submitted} / {studentReport.tasks?.total_assigned}
@@ -519,7 +520,7 @@ export function InstructorReports() {
                       </div>
                     </div>
 
-                    <div style={{ padding: '1rem', borderRadius: '8px', background: 'rgba(255, 255, 255, 0.05)' }}>
+                    <div style={{ padding: '1rem', borderRadius: '8px', background: 'rgba(44, 5, 13, 0.75)', border: '1px solid rgba(241, 163, 42, 0.18)' }}>
                       <div style={{ fontSize: '0.8rem', color: 'rgba(241,163,42,0.55)' }}>Graded Assessments</div>
                       <div style={{ fontSize: '1.3rem', fontWeight: 700, color: '#fff', margin: '0.2rem 0' }}>
                         {studentReport.assessments?.total_graded} Graded

@@ -339,7 +339,7 @@ export function InstructorClassroom() {
                   padding: '7px 12px',
                   fontSize: '0.82rem',
                   color: 'var(--color-primary)',
-                  border: '1px solid #38bdf8',
+                  border: '1px solid rgba(241, 163, 42, 0.35)',
                   cursor: 'pointer',
                   borderRadius: '6px',
                   fontWeight: 600
@@ -521,7 +521,7 @@ export function InstructorClassroom() {
                       height: '60px',
                       borderRadius: '50%',
                       background: 'rgba(241, 163, 42, 0.15)',
-                      border: '2px solid #38bdf8',
+                      border: '2px solid rgba(241, 163, 42, 0.4)',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
@@ -544,7 +544,7 @@ export function InstructorClassroom() {
                       <button
                         onClick={openUnlimitedWindow}
                         className="glass-panel"
-                        style={{ padding: '8px 16px', fontSize: '0.85rem', color: 'var(--color-primary)', border: '1px solid #38bdf8' }}
+                        style={{ padding: '8px 16px', fontSize: '0.85rem', color: 'var(--color-primary)', border: '1px solid rgba(241, 163, 42, 0.35)' }}
                       >
                         Re-open Dedicated Window
                       </button>
@@ -729,7 +729,7 @@ export function InstructorClassroom() {
             </div>
 
             {rescheduleSuccess && (
-              <div style={{ padding: '10px 14px', borderRadius: '8px', background: 'rgba(241, 163, 42, 0.15)', border: '1px solid #10b981', color: 'var(--color-primary)', fontSize: '0.85rem', marginBottom: '1rem' }}>
+              <div style={{ padding: '10px 14px', borderRadius: '8px', background: 'rgba(241, 163, 42, 0.15)', border: '1px solid rgba(241, 163, 42, 0.4)', color: 'var(--color-primary)', fontSize: '0.85rem', marginBottom: '1rem' }}>
                 {rescheduleSuccess}
               </div>
             )}

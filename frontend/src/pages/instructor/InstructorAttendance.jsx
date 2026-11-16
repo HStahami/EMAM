@@ -290,16 +290,16 @@ export function InstructorAttendance() {
 
         {/* Counter Pills */}
         <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-          <div style={{ padding: '0.4rem 0.8rem', borderRadius: '6px', background: 'rgba(241, 163, 42, 0.15)', color: 'var(--color-primary)', fontSize: '0.85rem', fontWeight: 600 }}>
+          <div style={{ padding: '0.4rem 0.8rem', borderRadius: '6px', background: 'rgba(241, 163, 42, 0.15)', color: 'var(--color-primary)', border: '1px solid rgba(241, 163, 42, 0.25)', fontSize: '0.85rem', fontWeight: 600 }}>
             {counts.present} Present
           </div>
-          <div style={{ padding: '0.4rem 0.8rem', borderRadius: '6px', background: 'rgba(248, 113, 113, 0.15)', color: '#f87171', fontSize: '0.85rem', fontWeight: 600 }}>
+          <div style={{ padding: '0.4rem 0.8rem', borderRadius: '6px', background: 'rgba(105, 14, 31, 0.45)', color: '#f0ceb3', border: '1px solid rgba(241, 163, 42, 0.2)', fontSize: '0.85rem', fontWeight: 600 }}>
             {counts.absent} Absent
           </div>
-          <div style={{ padding: '0.4rem 0.8rem', borderRadius: '6px', background: 'rgba(251, 191, 36, 0.15)', color: '#fbbf24', fontSize: '0.85rem', fontWeight: 600 }}>
+          <div style={{ padding: '0.4rem 0.8rem', borderRadius: '6px', background: 'rgba(241, 163, 42, 0.1)', color: 'var(--color-primary)', border: '1px solid rgba(241, 163, 42, 0.2)', fontSize: '0.85rem', fontWeight: 600 }}>
             {counts.late} Late
           </div>
-          <div style={{ padding: '0.4rem 0.8rem', borderRadius: '6px', background: 'rgba(96, 165, 250, 0.15)', color: '#60a5fa', fontSize: '0.85rem', fontWeight: 600 }}>
+          <div style={{ padding: '0.4rem 0.8rem', borderRadius: '6px', background: 'rgba(44, 5, 13, 0.65)', color: '#f0ceb3', border: '1px solid rgba(241, 163, 42, 0.18)', fontSize: '0.85rem', fontWeight: 600 }}>
             {counts.excused} Excused
           </div>
         </div>
@@ -353,10 +353,10 @@ export function InstructorAttendance() {
                     <td style={{ padding: '1rem' }}>
                       <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
                         {[
-                          { key: 'present', label: 'Present', bg: 'rgba(241, 163, 42, 0.15)', activeBg: 'var(--color-primary)', color: 'var(--color-primary)' },
-                          { key: 'absent', label: 'Absent', bg: 'rgba(239, 68, 68, 0.2)', activeBg: '#ef4444', color: '#f87171' },
-                          { key: 'late', label: 'Late', bg: 'rgba(245, 158, 11, 0.2)', activeBg: '#f59e0b', color: '#fbbf24' },
-                          { key: 'excused', label: 'Excused', bg: 'rgba(59, 130, 246, 0.2)', activeBg: '#3b82f6', color: '#60a5fa' },
+                          { key: 'present', label: 'Present', bg: 'rgba(241, 163, 42, 0.15)', activeBg: 'var(--color-primary)', color: 'var(--color-primary)', activeColor: '#2c050d' },
+                          { key: 'absent', label: 'Absent', bg: 'rgba(105, 14, 31, 0.35)', activeBg: '#690e1f', color: '#f0ceb3', activeColor: '#fff' },
+                          { key: 'late', label: 'Late', bg: 'rgba(241, 163, 42, 0.1)', activeBg: 'var(--color-primary)', color: 'var(--color-primary)', activeColor: '#2c050d' },
+                          { key: 'excused', label: 'Excused', bg: 'rgba(44, 5, 13, 0.65)', activeBg: 'rgba(105, 14, 31, 0.75)', color: '#f0ceb3', activeColor: '#fff' },
                         ].map((btn) => {
                           const isSelected = currentStatus === btn.key;
                           return (
@@ -369,9 +369,9 @@ export function InstructorAttendance() {
                                 borderRadius: '6px',
                                 fontSize: '0.8rem',
                                 fontWeight: isSelected ? 700 : 500,
-                                border: isSelected ? `1px solid ${btn.color}` : '1px solid transparent',
+                                border: isSelected ? `1px solid ${btn.color}` : '1px solid rgba(241, 163, 42, 0.18)',
                                 backgroundColor: isSelected ? btn.activeBg : btn.bg,
-                                color: isSelected ? '#ffffff' : btn.color,
+                                color: isSelected ? (btn.activeColor || '#ffffff') : btn.color,
                                 cursor: 'pointer',
                                 transition: 'all 0.15s',
                               }}
@@ -449,7 +449,7 @@ export function InstructorAttendance() {
                             : rec.status === 'late'
                             ? 'rgba(251, 191, 36, 0.2)'
                             : rec.status === 'excused'
-                            ? 'rgba(96, 165, 250, 0.2)'
+                            ? 'rgba(240, 206, 179, 0.2)'
                             : 'rgba(248, 113, 113, 0.2)',
                         color:
                           rec.status === 'present'
@@ -457,7 +457,7 @@ export function InstructorAttendance() {
                             : rec.status === 'late'
                             ? '#fbbf24'
                             : rec.status === 'excused'
-                            ? '#60a5fa'
+                            ? '#f0ceb3'
                             : '#f87171',
                       }}
                     >
@@ -465,7 +465,7 @@ export function InstructorAttendance() {
                     </span>
                   </td>
                   <td style={{ padding: '0.75rem 1rem', color: '#f0ceb3', fontSize: '0.85rem' }}>
-                    {rec.remarks || '�'}
+                    {rec.remarks || "-"}
                   </td>
                   <td style={{ padding: '0.75rem 1rem', color: 'rgba(241,163,42,0.55)', fontSize: '0.85rem' }}>
                     {rec.date}

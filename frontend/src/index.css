@@ -220,14 +220,14 @@ body {
 }
 
 .admin-sidebar button.logout-btn {
-  color: #ff6b6b !important;
-  background: rgba(255, 107, 107, 0.08) !important;
-  border: 1px solid rgba(255, 107, 107, 0.2) !important;
+  color: var(--color-primary) !important;
+  background: rgba(105, 14, 31, 0.45) !important;
+  border: 1px solid rgba(241, 163, 42, 0.35) !important;
 }
 
 .admin-sidebar button.logout-btn:hover {
-  color: #fff !important;
-  background: rgba(255, 107, 107, 0.2) !important;
+  color: #2c050d !important;
+  background: var(--color-primary) !important;
 }
 
 .stats-cards-grid button.stat-card-btn {

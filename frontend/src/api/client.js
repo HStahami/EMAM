@@ -4,7 +4,12 @@ export const BACKEND_URL = API_BASE.startsWith("http") ? API_BASE.replace(/\/api
 export const getAvatarUrl = (avatarUrl, name) => {
   if (!avatarUrl) {
     const encoded = encodeURIComponent(name || "Instructor");
-    return `https://ui-avatars.com/api/?name=${encoded}&background=C5E5E8&color=072224&size=150&font-size=0.33&bold=true`;
+    return `https://ui-avatars.com/api/?name=${encoded}&background=690e1f&color=f1a32a&size=150&font-size=0.33&bold=true`;
+  }
+  if (avatarUrl.includes("ui-avatars.com")) {
+    return avatarUrl
+      .replace(/background=[A-Fa-f0-9]+/i, "background=690e1f")
+      .replace(/color=[A-Fa-f0-9]+/i, "color=f1a32a");
   }
   if (avatarUrl.startsWith("/uploads")) {
     return `${BACKEND_URL}${avatarUrl}`;

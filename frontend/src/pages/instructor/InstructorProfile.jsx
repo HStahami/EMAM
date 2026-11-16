@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { instructorsApi, authApi } from '../../api';
 import { useAuth } from '../../context/AuthContext';
+import { getAvatarUrl } from '../../api/client';
 
 export function InstructorProfile() {
   const { user, refreshUser } = useAuth();
@@ -181,7 +182,7 @@ export function InstructorProfile() {
             >
               {formData.avatar_url ? (
                 <img
-                  src={formData.avatar_url}
+                  src={getAvatarUrl(formData.avatar_url, profile?.name)}
                   alt="Avatar"
                   style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                   onError={(e) => {
@@ -203,12 +204,13 @@ export function InstructorProfile() {
 
             <span
               style={{
-                padding: '0.2rem 0.6rem',
+                padding: '0.2rem 0.65rem',
                 borderRadius: '999px',
                 fontSize: '0.75rem',
                 fontWeight: 600,
                 backgroundColor: 'rgba(241, 163, 42, 0.15)',
                 color: 'var(--color-primary)',
+                border: '1px solid rgba(241, 163, 42, 0.3)',
                 textTransform: 'uppercase',
               }}
             >

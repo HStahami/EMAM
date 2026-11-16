@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+﻿import React, { useState, useRef, useEffect } from 'react';
 import { Plus, Trash2, LogOut, Bell, CheckCircle2, Megaphone, Shield, MessageSquare, Send, RefreshCw, Mail, Award, Search, Key, Hourglass, Users, Trophy, BookOpen, AlertTriangle, Calendar, ArrowRight } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { API_BASE, getAvatarUrl } from '../../api/client';
@@ -83,6 +83,16 @@ export function AdminDashboard({ onLogout }) {
   const [auditThreads, setAuditThreads] = useState([]);
   const [auditActiveThread, setAuditActiveThread] = useState(null);
   const [auditMessages, setAuditMessages] = useState([]);
+
+  // Faculty Applications State
+  const [instructorSubView, setInstructorSubView] = useState('active'); // 'active' | 'applications'
+  const [facultyApplications, setFacultyApplications] = useState([]);
+  const [facultyAppsLoading, setFacultyAppsLoading] = useState(false);
+  const [appActionLoading, setAppActionLoading] = useState(null); // appId being actioned
+  const [showCancelModal, setShowCancelModal] = useState(false);
+  const [cancelTargetApp, setCancelTargetApp] = useState(null);
+  const [cancelReason, setCancelReason] = useState('');
+  const [cancelReasonLoading, setCancelReasonLoading] = useState(false);
 
   // Class Tracking & Reschedules State
   const [classStats, setClassStats] = useState([]);
@@ -416,6 +426,44 @@ export function AdminDashboard({ onLogout }) {
     } catch (e) { console.error(e); }
   };
 
+  const fetchFacultyApplications = async () => {
+    try {
+      setFacultyAppsLoading(true);
+      const res = await fetch(`${API_BASE}/instructors/applications`, { headers });
+      if (res.ok) {
+        const data = await res.json();
+        setFacultyApplications(Array.isArray(data) ? data : []);
+      }
+    } catch (e) { console.error(e); } finally { setFacultyAppsLoading(false); }
+  };
+
+  const handleApproveApplication = async (appId) => {
+    if (!window.confirm('Approve this faculty application? A portal account will be created and credentials emailed to the applicant.')) return;
+    setAppActionLoading(appId);
+    try {
+      const res = await fetch(`${API_BASE}/instructors/applications/${appId}/approve`, { method: 'PATCH', headers });
+      if (!res.ok) { const e = await res.json().catch(() => ({})); throw new Error(e.detail || 'Approval failed'); }
+      alert('Application approved. Credentials dispatched to applicant email.');
+      await fetchFacultyApplications();
+      await fetchInstructors();
+    } catch (e) { alert(e.message || 'Failed to approve'); } finally { setAppActionLoading(null); }
+  };
+
+  const handleCancelApplication = async () => {
+    if (!cancelTargetApp || !cancelReason.trim()) { alert('Please provide a cancellation reason.'); return; }
+    setCancelReasonLoading(true);
+    try {
+      const res = await fetch(`${API_BASE}/instructors/applications/${cancelTargetApp._id || cancelTargetApp.id}/cancel`, {
+        method: 'PATCH', headers: { ...headers, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ reason: cancelReason.trim() })
+      });
+      if (!res.ok) { const e = await res.json().catch(() => ({})); throw new Error(e.detail || 'Cancel failed'); }
+      alert('Application cancelled. Notification email sent to applicant.');
+      setShowCancelModal(false); setCancelTargetApp(null); setCancelReason('');
+      await fetchFacultyApplications();
+    } catch (e) { alert(e.message || 'Failed to cancel'); } finally { setCancelReasonLoading(false); }
+  };
+
   const fetchModules = async () => {
     try {
       const res = await fetch(`${API_BASE}/modules/`);
@@ -718,7 +766,7 @@ export function AdminDashboard({ onLogout }) {
       void fetchInstructors(); 
       void fetchSlots(); 
     }
-    if (activeTab === 'instructors') void fetchInstructors();
+    if (activeTab === 'instructors') { void fetchInstructors(); void fetchFacultyApplications(); }
     if (activeTab === 'modules') void fetchModules();
     if (activeTab === 'slots') void fetchSlots();
     if (activeTab === 'contacts') void fetchContacts();
@@ -1154,7 +1202,7 @@ export function AdminDashboard({ onLogout }) {
     { id: 'students', label: 'Students' },
     { id: 'graduates', label: 'Graduates' },
     { id: 'dropouts', label: 'Dropouts' },
-    { id: 'instructors', label: 'Instructors' },
+    { id: 'instructors', label: facultyApplications.filter(a => a.status === 'pending').length > 0 ? `Instructors (${facultyApplications.filter(a => a.status === 'pending').length})` : 'Instructors' },
     { id: 'modules', label: 'Modules' },
     { id: 'slots', label: 'Slots' },
     { id: 'contacts', label: 'Messages' },
@@ -1197,7 +1245,7 @@ export function AdminDashboard({ onLogout }) {
             title={sidebarOpen ? "Close Navigation Menu" : "Open Navigation Menu"}
             aria-label={sidebarOpen ? "Close Navigation Menu" : "Open Navigation Menu"}
           >
-            <span style={{ fontSize: '1.2rem', lineHeight: 1 }}>{sidebarOpen ? '✕' : '☰'}</span>
+            <span style={{ fontSize: '1.2rem', lineHeight: 1 }}>{sidebarOpen ? 'âœ•' : 'â˜°'}</span>
             <span>{sidebarOpen ? 'Close Menu' : 'Menu'}</span>
           </button>
 
@@ -1240,7 +1288,7 @@ export function AdminDashboard({ onLogout }) {
             >
               Admin Portal
             </span>
-            <span style={{ color: 'rgba(241, 163, 42, 0.4)', fontSize: '0.9rem' }} className="hide-on-mobile">•</span>
+            <span style={{ color: 'rgba(241, 163, 42, 0.4)', fontSize: '0.9rem' }} className="hide-on-mobile">â€¢</span>
             <span style={{ color: 'var(--color-primary)', fontSize: '0.9rem', fontWeight: 600, textTransform: 'capitalize' }} className="hide-on-mobile">
               {activeTab === 'chataudit' ? 'Chat Audit' : (activeTab === 'classes' ? 'Class Tracking' : activeTab)}
             </span>
@@ -1399,7 +1447,7 @@ export function AdminDashboard({ onLogout }) {
                 className="glass-panel"
                 style={{ padding: '4px 10px', fontSize: '0.85rem', border: 'none', color: '#aaa', cursor: 'pointer' }}
               >
-                ✕
+                âœ•
               </button>
             </div>
 
@@ -1768,7 +1816,7 @@ export function AdminDashboard({ onLogout }) {
                       cursor: 'pointer'
                     }}
                   >
-                    View All →
+                    View All â†’
                   </button>
                 </div>
 
@@ -1831,7 +1879,7 @@ export function AdminDashboard({ onLogout }) {
                                 {adm.name}
                               </div>
                               <div style={{ color: '#94a3b8', fontSize: '0.76rem' }}>
-                                Applied for {adm.course} • {formatTimeAgo(adm.created_at)}
+                                Applied for {adm.course} â€¢ {formatTimeAgo(adm.created_at)}
                               </div>
                             </div>
                           </div>
@@ -1893,7 +1941,7 @@ export function AdminDashboard({ onLogout }) {
                       cursor: 'pointer'
                     }}
                   >
-                    View All →
+                    View All â†’
                   </button>
                 </div>
 
@@ -1993,7 +2041,7 @@ export function AdminDashboard({ onLogout }) {
                       cursor: 'pointer'
                     }}
                   >
-                    View All →
+                    View All â†’
                   </button>
                 </div>
 
@@ -2036,7 +2084,7 @@ export function AdminDashboard({ onLogout }) {
                                 {st.name}
                               </div>
                               <div style={{ color: 'var(--color-primary)', fontSize: '0.76rem', fontWeight: 600 }}>
-                                {st.academic_score}% • {st.grade}
+                                {st.academic_score}% â€¢ {st.grade}
                               </div>
                             </div>
                           </div>
@@ -2102,7 +2150,7 @@ export function AdminDashboard({ onLogout }) {
                       cursor: 'pointer'
                     }}
                   >
-                    View All →
+                    View All â†’
                   </button>
                 </div>
 
@@ -2200,7 +2248,7 @@ export function AdminDashboard({ onLogout }) {
                       cursor: 'pointer'
                     }}
                   >
-                    View All →
+                    View All â†’
                   </button>
                 </div>
 
@@ -2210,7 +2258,7 @@ export function AdminDashboard({ onLogout }) {
                     <div style={{ textAlign: 'center', padding: '1.75rem 1rem' }}>
                       <CheckCircle2 size={24} style={{ color: 'var(--color-primary)', margin: '0 auto 6px auto' }} />
                       <div style={{ color: '#cbd5e1', fontSize: '0.86rem', fontWeight: 600 }}>Zero Students at Risk</div>
-                      <div style={{ color: '#94a3b8', fontSize: '0.78rem', marginTop: '2px' }}>All students maintain attendance ≥ 80% & timely tasks.</div>
+                      <div style={{ color: '#94a3b8', fontSize: '0.78rem', marginTop: '2px' }}>All students maintain attendance â‰¥ 80% & timely tasks.</div>
                     </div>
                   ) : (
                     overviewAnalytics.students_at_risk.slice(0, 3).map((st) => (
@@ -2296,7 +2344,7 @@ export function AdminDashboard({ onLogout }) {
                       cursor: 'pointer'
                     }}
                   >
-                    View All →
+                    View All â†’
                   </button>
                 </div>
 
@@ -2483,7 +2531,7 @@ export function AdminDashboard({ onLogout }) {
                         </td>
                         <td style={tableCellStyle}>
                           <span style={{ fontSize: '0.82rem', color: '#888' }}>
-                            {adm.created_at ? new Date(adm.created_at).toLocaleDateString() : '—'}
+                            {adm.created_at ? new Date(adm.created_at).toLocaleDateString() : 'â€”'}
                           </span>
                         </td>
                         <td style={tableCellStyle}>
@@ -2655,7 +2703,7 @@ export function AdminDashboard({ onLogout }) {
                             </div>
                           )}
                           <div style={{ fontSize: '0.75rem', color: '#94a3b8' }}>
-                            {std.preferred_days || 'Weekdays'} • {std.preferred_class_type || '1 on 1'}
+                            {std.preferred_days || 'Weekdays'} â€¢ {std.preferred_class_type || '1 on 1'}
                           </div>
                           {std.preferred_time_slot && (
                             <div style={{ fontSize: '0.72rem', color: '#f39c12' }} title="Suggested Slot">
@@ -2776,12 +2824,12 @@ export function AdminDashboard({ onLogout }) {
                   {/* Student's Saved Preferences Notice for Admin */}
                   <div style={{ backgroundColor: 'rgba(0, 0, 0, 0.4)', border: '1px solid rgba(241, 163, 42, 0.18)', borderRadius: '8px', padding: '0.85rem', marginBottom: '1.25rem', fontSize: '0.82rem', color: '#f0ceb3' }}>
                     <div style={{ fontWeight: '700', color: 'var(--color-primary)', marginBottom: '0.35rem' }}>Student's Saved Preferences:</div>
-                    <div>• <strong>Course:</strong> {selectedStudent.course || selectedStudent.preferred_course || 'Modern Standard Arabic'}</div>
+                    <div>â€¢ <strong>Course:</strong> {selectedStudent.course || selectedStudent.preferred_course || 'Modern Standard Arabic'}</div>
                     {(selectedStudent.selected_module || selectedStudent.module) && (
-                      <div>• <strong>Module / Track:</strong> {selectedStudent.selected_module || selectedStudent.module}</div>
+                      <div>â€¢ <strong>Module / Track:</strong> {selectedStudent.selected_module || selectedStudent.module}</div>
                     )}
-                    <div>• <strong>Format:</strong> {selectedStudent.preferred_days || 'Weekdays'} ({selectedStudent.preferred_class_type || '1 on 1'})</div>
-                    <div>• <strong>Suggested Time:</strong> <span style={{ color: '#f39c12', fontWeight: '600' }}>{selectedStudent.preferred_time_slot || 'Not specified'}</span></div>
+                    <div>â€¢ <strong>Format:</strong> {selectedStudent.preferred_days || 'Weekdays'} ({selectedStudent.preferred_class_type || '1 on 1'})</div>
+                    <div>â€¢ <strong>Suggested Time:</strong> <span style={{ color: '#f39c12', fontWeight: '600' }}>{selectedStudent.preferred_time_slot || 'Not specified'}</span></div>
                   </div>
 
                   <form onSubmit={handleAssignSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
@@ -2789,11 +2837,11 @@ export function AdminDashboard({ onLogout }) {
                       <label htmlFor="admin_assign_slot" style={{ display: 'block', color: 'var(--color-primary)', marginBottom: '0.4rem', fontSize: '0.85rem' }}>Assign Class Slot *</label>
                       <select id="admin_assign_slot" required value={assignSlot} onChange={e => setAssignSlot(e.target.value)} style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.15)', background: 'rgba(0,0,0,0.5)', color: 'white', fontSize: '0.9rem' }}>
                         <option value="" disabled>Choose Slot...</option>
-                        {slots.filter(s => s.status === 'Active' || (selectedStudent && selectedStudent.slot && (selectedStudent.slot === `${s.days} — ${s.time}` || selectedStudent.slot === `${s.days} ${s.time}`))).map(s => {
-                          const val = `${s.days} — ${s.time}`;
+                        {slots.filter(s => s.status === 'Active' || (selectedStudent && selectedStudent.slot && (selectedStudent.slot === `${s.days} â€” ${s.time}` || selectedStudent.slot === `${s.days} ${s.time}`))).map(s => {
+                          const val = `${s.days} â€” ${s.time}`;
                           return <option key={s._id || s.id} value={val}>{val}</option>;
                         })}
-                        {selectedStudent && selectedStudent.slot && !slots.some(s => `${s.days} — ${s.time}` === selectedStudent.slot || `${s.days} ${s.time}` === selectedStudent.slot) && (
+                        {selectedStudent && selectedStudent.slot && !slots.some(s => `${s.days} â€” ${s.time}` === selectedStudent.slot || `${s.days} ${s.time}` === selectedStudent.slot) && (
                           <option value={selectedStudent.slot}>{selectedStudent.slot} (Current)</option>
                         )}
                       </select>
@@ -3027,7 +3075,7 @@ export function AdminDashboard({ onLogout }) {
                         {viewingStudent.first_name} {viewingStudent.last_name || viewingStudent.name || ''}
                       </h3>
                       <div style={{ fontSize: '0.85rem', color: 'var(--color-primary)', fontWeight: 600 }}>
-                        Student ID: {viewingStudent.student_code || 'PENDING'} • Status: <span style={{ color: viewingStudent.status === 'Cancelled' ? '#e74c3c' : '#2ecc71', fontWeight: 'bold' }}>{viewingStudent.status || 'Active'}</span>
+                        Student ID: {viewingStudent.student_code || 'PENDING'} â€¢ Status: <span style={{ color: viewingStudent.status === 'Cancelled' ? '#e74c3c' : '#2ecc71', fontWeight: 'bold' }}>{viewingStudent.status || 'Active'}</span>
                       </div>
                     </div>
                     <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
@@ -3536,31 +3584,58 @@ export function AdminDashboard({ onLogout }) {
 
         {activeTab === 'instructors' && (
           <div>
-            <h2 style={{ color: 'var(--color-white)', marginBottom: '1.5rem' }}>Instructors Management</h2>
+            {/* Sub-view Switcher */}
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '1rem' }}>
+              <h2 style={{ color: 'var(--color-white)', margin: 0 }}>
+                {instructorSubView === 'active' ? 'Active Certified Faculty' : 'Faculty Applications'}
+              </h2>
+              <div style={{ display: 'flex', gap: '0.5rem' }}>
+                {[
+                  { id: 'active', label: 'Active Faculty' },
+                  { id: 'applications', label: `Applications${facultyApplications.filter(a => a.status === 'pending').length > 0 ? ` (${facultyApplications.filter(a => a.status === 'pending').length} Pending)` : ''}` }
+                ].map(sv => (
+                  <button
+                    key={sv.id}
+                    type="button"
+                    onClick={() => { setInstructorSubView(sv.id); if (sv.id === 'applications') void fetchFacultyApplications(); }}
+                    style={{
+                      padding: '8px 16px', borderRadius: '20px', fontSize: '0.85rem', fontWeight: 600, cursor: 'pointer',
+                      background: instructorSubView === sv.id ? 'var(--color-primary)' : 'rgba(241,163,42,0.08)',
+                      color: instructorSubView === sv.id ? '#1a0008' : 'var(--color-primary)',
+                      border: `1px solid ${instructorSubView === sv.id ? 'var(--color-primary)' : 'rgba(241,163,42,0.3)'}`,
+                    }}
+                  >
+                    {sv.label}
+                  </button>
+                ))}
+              </div>
+            </div>
 
-            {/* Instructor Form */}
-            <div className="glass-panel" style={{ padding: '2rem', marginBottom: '2.5rem' }}>
-              <h3 style={{ color: 'var(--color-white)', marginBottom: '1.5rem', fontSize: '1.3rem' }}>
-                {editingInstId ? 'Edit Instructor' : 'Add New Instructor'}
-              </h3>
-              {instFormSuccess && <p style={{ color: '#2ecc71', marginBottom: '1rem' }}>{instFormSuccess}</p>}
-              {instFormError && <p style={{ color: '#ff6b6b', marginBottom: '1rem' }}>{instFormError}</p>}
+            {instructorSubView === 'active' && (
+              <div>
+                {/* Instructor Form */}
+                <div className="glass-panel" style={{ padding: '2rem', marginBottom: '2.5rem' }}>
+                  <h3 style={{ color: 'var(--color-white)', marginBottom: '1.5rem', fontSize: '1.3rem' }}>
+                    {editingInstId ? 'Edit Instructor' : 'Add New Instructor'}
+                  </h3>
+                  {instFormSuccess && <p style={{ color: '#2ecc71', marginBottom: '1rem' }}>{instFormSuccess}</p>}
+                  {instFormError && <p style={{ color: '#ff6b6b', marginBottom: '1rem' }}>{instFormError}</p>}
 
-              <form onSubmit={handleAddOrUpdateInstructor} style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
-                <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-                  <div style={{ flex: 1, minWidth: '220px' }}>
-                    <label htmlFor="admin_inst_name" style={{ display: 'block', color: 'var(--color-primary)', marginBottom: '0.4rem', fontSize: '0.9rem' }}>Instructor Name *</label>
-                    <input id="admin_inst_name" type="text" placeholder="e.g. Instructor Ahmed" value={newInstName} onChange={e => setNewInstName(e.target.value)} required style={{ ...inputStyle, width: '100%' }} />
-                  </div>
-                  <div style={{ flex: 1, minWidth: '220px' }}>
-                    <label htmlFor="admin_inst_email" style={{ display: 'block', color: 'var(--color-primary)', marginBottom: '0.4rem', fontSize: '0.9rem' }}>Instructor Email * (for portal login & credentials)</label>
-                    <input id="admin_inst_email" type="email" placeholder="e.g. instructor.ahmed@example.com" value={newInstEmail} onChange={e => setNewInstEmail(e.target.value)} required style={{ ...inputStyle, width: '100%' }} />
-                  </div>
-                  <div style={{ flex: 1, minWidth: '220px' }}>
-                    <label htmlFor="admin_inst_spec" style={{ display: 'block', color: 'var(--color-primary)', marginBottom: '0.4rem', fontSize: '0.9rem' }}>Specialty / Role</label>
-                    <input id="admin_inst_spec" type="text" placeholder="e.g. Grammar & Morphology" value={newInstSpec} onChange={e => setNewInstSpec(e.target.value)} style={{ ...inputStyle, width: '100%' }} />
-                  </div>
-                </div>
+                  <form onSubmit={handleAddOrUpdateInstructor} style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
+                    <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+                      <div style={{ flex: 1, minWidth: '220px' }}>
+                        <label htmlFor="admin_inst_name" style={{ display: 'block', color: 'var(--color-primary)', marginBottom: '0.4rem', fontSize: '0.9rem' }}>Instructor Name *</label>
+                        <input id="admin_inst_name" type="text" placeholder="e.g. Instructor Ahmed" value={newInstName} onChange={e => setNewInstName(e.target.value)} required style={{ ...inputStyle, width: '100%' }} />
+                      </div>
+                      <div style={{ flex: 1, minWidth: '220px' }}>
+                        <label htmlFor="admin_inst_email" style={{ display: 'block', color: 'var(--color-primary)', marginBottom: '0.4rem', fontSize: '0.9rem' }}>Instructor Email * (for portal login & credentials)</label>
+                        <input id="admin_inst_email" type="email" placeholder="e.g. instructor.ahmed@example.com" value={newInstEmail} onChange={e => setNewInstEmail(e.target.value)} required style={{ ...inputStyle, width: '100%' }} />
+                      </div>
+                      <div style={{ flex: 1, minWidth: '220px' }}>
+                        <label htmlFor="admin_inst_spec" style={{ display: 'block', color: 'var(--color-primary)', marginBottom: '0.4rem', fontSize: '0.9rem' }}>Specialty / Role</label>
+                        <input id="admin_inst_spec" type="text" placeholder="e.g. Grammar & Morphology" value={newInstSpec} onChange={e => setNewInstSpec(e.target.value)} style={{ ...inputStyle, width: '100%' }} />
+                      </div>
+                    </div>
 
                 <div style={{ fontSize: '0.85rem', color: '#94a3b8', background: 'rgba(241, 163, 42, 0.15)', padding: '10px 14px', borderRadius: '8px', border: '1px solid rgba(241, 163, 42, 0.15)' }}>
                   <strong>Automatic Credentials Dispatch:</strong> Saving this instructor creates a secure portal account and automatically emails their temporary login credentials and password.
@@ -3627,7 +3702,7 @@ export function AdminDashboard({ onLogout }) {
                           {inst.students && inst.students.length > 0 ? (
                             inst.students.map((s, idx) => (
                               <span key={idx} style={{ color: '#f0ceb3' }}>
-                                • {s.slot ? `${s.slot}: ` : ''}{s.name}{!s.slot ? ' (Unassigned)' : ''}
+                                â€¢ {s.slot ? `${s.slot}: ` : ''}{s.name}{!s.slot ? ' (Unassigned)' : ''}
                               </span>
                             ))
                           ) : (
@@ -3704,6 +3779,104 @@ export function AdminDashboard({ onLogout }) {
               </table>
             </div>
           </div>
+            )}
+
+            {instructorSubView === 'applications' && (
+              <div>
+                <div style={{ background: 'rgba(241,163,42,0.1)', border: '1px solid rgba(241,163,42,0.2)', borderRadius: '10px', padding: '12px 16px', marginBottom: '1.5rem', fontSize: '0.88rem', color: '#f0ceb3' }}>
+                  Faculty applications submitted from the landing page. Approve to auto-create a portal account and email credentials. Cancel to send a formal rejection notice.
+                </div>
+
+                {facultyAppsLoading ? (
+                  <div style={{ textAlign: 'center', padding: '3rem', color: '#94a3b8' }}>Loading applications...</div>
+                ) : facultyApplications.length === 0 ? (
+                  <div style={{ textAlign: 'center', padding: '3rem' }}>
+                    <div style={{ color: '#64748b', fontSize: '0.95rem' }}>No faculty applications received yet.</div>
+                  </div>
+                ) : (
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                    {facultyApplications.map(app => {
+                      const appId = app._id || app.id;
+                      const statusColor = app.status === 'approved' ? '#2ecc71' : app.status === 'cancelled' ? '#e74c3c' : '#f39c12';
+                      const statusBg = app.status === 'approved' ? 'rgba(46,204,113,0.1)' : app.status === 'cancelled' ? 'rgba(231,76,60,0.1)' : 'rgba(243,156,18,0.1)';
+                      return (
+                        <div key={appId} className="glass-panel" style={{ padding: '1.25rem 1.5rem', borderRadius: '12px' }}>
+                          <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap' }}>
+                            <div style={{ flex: 1, minWidth: '0' }}>
+                              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.5rem', flexWrap: 'wrap' }}>
+                                <span style={{ color: '#fff', fontWeight: 700, fontSize: '1.05rem' }}>{app.first_name} {app.last_name}</span>
+                                <span style={{ padding: '2px 10px', borderRadius: '12px', fontSize: '0.75rem', fontWeight: 700, background: statusBg, color: statusColor, border: `1px solid ${statusColor}40`, textTransform: 'capitalize' }}>{app.status || 'pending'}</span>
+                              </div>
+                              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '0.4rem', fontSize: '0.84rem' }}>
+                                <div><span style={{ color: '#64748b' }}>Email: </span><span style={{ color: '#f0ceb3' }}>{app.email}</span></div>
+                                {app.phone && <div><span style={{ color: '#64748b' }}>Phone: </span><span style={{ color: '#f0ceb3' }}>{app.phone}</span></div>}
+                                {app.specialization && <div><span style={{ color: '#64748b' }}>Specialization: </span><span style={{ color: '#fff' }}>{app.specialization}</span></div>}
+                                {app.qualification && <div><span style={{ color: '#64748b' }}>Qualification: </span><span style={{ color: '#fff' }}>{app.qualification}</span></div>}
+                                {app.experience_years !== undefined && <div><span style={{ color: '#64748b' }}>Experience: </span><span style={{ color: '#fff' }}>{app.experience_years} yr{app.experience_years !== 1 ? 's' : ''}</span></div>}
+                                {app.preferred_schedule && <div><span style={{ color: '#64748b' }}>Schedule: </span><span style={{ color: '#fff' }}>{app.preferred_schedule}</span></div>}
+                                <div><span style={{ color: '#64748b' }}>Applied: </span><span style={{ color: '#94a3b8' }}>{app.created_at ? new Date(app.created_at).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) : 'Recently'}</span></div>
+                              </div>
+                              {app.about && <div style={{ marginTop: '0.6rem', fontSize: '0.83rem', color: '#94a3b8', fontStyle: 'italic', borderLeft: '2px solid rgba(241,163,42,0.3)', paddingLeft: '0.75rem' }}>{app.about}</div>}
+                              {app.cancel_reason && <div style={{ marginTop: '0.5rem', fontSize: '0.82rem', color: '#e74c3c' }}>Cancellation reason: {app.cancel_reason}</div>}
+                            </div>
+
+                            {app.status === 'pending' && (
+                              <div style={{ display: 'flex', gap: '0.5rem', flexShrink: 0, flexWrap: 'wrap' }}>
+                                <button
+                                  type="button"
+                                  disabled={appActionLoading === appId}
+                                  onClick={() => handleApproveApplication(appId)}
+                                  style={{ padding: '8px 16px', borderRadius: '8px', fontSize: '0.83rem', fontWeight: 700, cursor: appActionLoading === appId ? 'wait' : 'pointer', background: 'rgba(46,204,113,0.15)', color: '#2ecc71', border: '1px solid rgba(46,204,113,0.4)', whiteSpace: 'nowrap' }}
+                                >
+                                  {appActionLoading === appId ? 'Approving...' : 'Approve & Provision'}
+                                </button>
+                                <button
+                                  type="button"
+                                  onClick={() => { setCancelTargetApp(app); setCancelReason(''); setShowCancelModal(true); }}
+                                  style={{ padding: '8px 16px', borderRadius: '8px', fontSize: '0.83rem', fontWeight: 700, cursor: 'pointer', background: 'rgba(231,76,60,0.1)', color: '#e74c3c', border: '1px solid rgba(231,76,60,0.35)', whiteSpace: 'nowrap' }}
+                                >
+                                  Cancel Application
+                                </button>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Cancel Application Reason Modal */}
+        {showCancelModal && cancelTargetApp && (
+          <div style={{ position: 'fixed', inset: 0, zIndex: 2000, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(8px)', padding: '1rem' }}>
+            <div style={{ width: '100%', maxWidth: '480px', borderRadius: '20px', border: '1px solid rgba(231,76,60,0.4)', background: 'linear-gradient(135deg, rgba(105,14,31,0.97), rgba(44,5,13,0.99))', padding: '2rem', position: 'relative' }}>
+              <button onClick={() => setShowCancelModal(false)} style={{ position: 'absolute', top: '1rem', right: '1rem', background: 'rgba(255,255,255,0.1)', border: 'none', borderRadius: '50%', width: '32px', height: '32px', color: '#fff', cursor: 'pointer', fontSize: '1.1rem' }}>Ã—</button>
+              <h3 style={{ color: '#fff', marginBottom: '0.5rem' }}>Cancel Faculty Application</h3>
+              <p style={{ color: '#f0ceb3', fontSize: '0.88rem', marginBottom: '1.25rem' }}>
+                You are cancelling the application from <strong>{cancelTargetApp.first_name} {cancelTargetApp.last_name}</strong>. A cancellation notice will be emailed to <span style={{ color: 'var(--color-primary)' }}>{cancelTargetApp.email}</span>.
+              </p>
+              <div style={{ marginBottom: '1rem' }}>
+                <label style={{ display: 'block', color: '#f0ceb3', fontSize: '0.85rem', fontWeight: 600, marginBottom: '0.4rem' }}>Cancellation Reason *</label>
+                <textarea
+                  rows={4}
+                  value={cancelReason}
+                  onChange={e => setCancelReason(e.target.value)}
+                  placeholder="e.g. The position has been filled. We encourage you to reapply in a future intake."
+                  style={{ width: '100%', padding: '11px 14px', borderRadius: '10px', background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(241,163,42,0.25)', color: '#fff', outline: 'none', boxSizing: 'border-box', resize: 'vertical' }}
+                />
+              </div>
+              <div style={{ display: 'flex', gap: '0.75rem' }}>
+                <button type="button" onClick={() => setShowCancelModal(false)} style={{ flex: 1, padding: '11px', borderRadius: '10px', background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)', color: '#fff', cursor: 'pointer', fontWeight: 600 }}>Back</button>
+                <button type="button" disabled={cancelReasonLoading || !cancelReason.trim()} onClick={handleCancelApplication} style={{ flex: 1, padding: '11px', borderRadius: '10px', background: 'rgba(231,76,60,0.9)', border: '1px solid #e74c3c', color: '#fff', cursor: cancelReasonLoading || !cancelReason.trim() ? 'not-allowed' : 'pointer', fontWeight: 700, opacity: cancelReasonLoading || !cancelReason.trim() ? 0.65 : 1 }}>
+                  {cancelReasonLoading ? 'Cancelling...' : 'Confirm Cancel & Notify'}
+                </button>
+              </div>
+            </div>
+          </div>
         )}
 
 
@@ -3713,7 +3886,7 @@ export function AdminDashboard({ onLogout }) {
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '1rem' }}>
               <div>
                 <h2 style={{ color: 'var(--color-white)', margin: 0, fontSize: '1.6rem' }}>
-                  {classViewMode === 'reschedules' ? 'Class Reschedule Management' : (classViewMode === 'detail' ? `Class History — ${selectedInstructorForDetail?.name || 'Instructor'}` : 'Instructor Class Tracking & Scorecards')}
+                  {classViewMode === 'reschedules' ? 'Class Reschedule Management' : (classViewMode === 'detail' ? `Class History â€” ${selectedInstructorForDetail?.name || 'Instructor'}` : 'Instructor Class Tracking & Scorecards')}
                 </h2>
                 <p style={{ color: '#aaa', margin: '4px 0 0 0', fontSize: '0.9rem' }}>
                   {classViewMode === 'reschedules'
@@ -3851,7 +4024,7 @@ export function AdminDashboard({ onLogout }) {
                               </div>
                             ) : (
                               <div style={{ color: 'var(--color-primary)', fontSize: '0.86rem', fontWeight: 600 }}>
-                                {inst.assigned_slots[0]?.course_name || 'Arabic Program'} — {inst.assigned_slots[0]?.days || 'Schedule'} ({inst.assigned_slots[0]?.time || ''})
+                                {inst.assigned_slots[0]?.course_name || 'Arabic Program'} â€” {inst.assigned_slots[0]?.days || 'Schedule'} ({inst.assigned_slots[0]?.time || ''})
                               </div>
                             )}
                           </div>
@@ -3880,7 +4053,7 @@ export function AdminDashboard({ onLogout }) {
 
                           <div style={{ marginTop: '0.85rem', display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
                             <span style={{ color: 'var(--color-primary)', fontSize: '0.82rem', fontWeight: 600 }}>
-                              View Complete Details →
+                              View Complete Details â†’
                             </span>
                           </div>
                         </div>
@@ -3910,7 +4083,7 @@ export function AdminDashboard({ onLogout }) {
                     cursor: 'pointer'
                   }}
                 >
-                  ← Back to All Instructors
+                  â† Back to All Instructors
                 </button>
 
                 {/* Instructor Top Profile Banner */}
@@ -3982,7 +4155,7 @@ export function AdminDashboard({ onLogout }) {
                           color: selectedCourseTab === s.slot_id ? 'var(--color-bg-dark)' : 'var(--color-primary)'
                         }}
                       >
-                        {s.course_name} — {s.days} {s.time}
+                        {s.course_name} â€” {s.days} {s.time}
                       </button>
                     ))}
                   </div>
@@ -4090,19 +4263,19 @@ export function AdminDashboard({ onLogout }) {
                                     </span>
                                     {sess.actual_end_at && (
                                       <span style={{ color: '#94a3b8', fontSize: '0.8rem' }}>
-                                        {' '}– {new Date(sess.actual_end_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                                        {' '}â€“ {new Date(sess.actual_end_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                                       </span>
                                     )}
                                   </div>
                                 ) : (
-                                  <span style={{ color: '#666' }}>—</span>
+                                  <span style={{ color: '#666' }}>â€”</span>
                                 )}
                               </td>
                               <td style={tableCellStyle}>
                                 {sess.duration_minutes ? (
                                   <span>{sess.duration_minutes} mins</span>
                                 ) : (
-                                  <span style={{ color: '#666' }}>—</span>
+                                  <span style={{ color: '#666' }}>â€”</span>
                                 )}
                               </td>
                               <td style={tableCellStyle}>
@@ -4338,7 +4511,7 @@ export function AdminDashboard({ onLogout }) {
                       className="glass-panel"
                       style={{ border: 'none', color: '#94a3b8', padding: '6px 10px', fontSize: '1rem', cursor: 'pointer', borderRadius: '6px' }}
                     >
-                      ✕
+                      âœ•
                     </button>
                   </div>
 
@@ -4598,7 +4771,7 @@ export function AdminDashboard({ onLogout }) {
                     <tr key={s._id || s.id}>
                       <td style={tableCellStyle}><strong>{s.days}</strong></td>
                       <td style={tableCellStyle}>{s.time}</td>
-                      <td style={tableCellStyle}><span style={{ color: 'var(--color-primary)' }}>{s.days} — {s.time}</span></td>
+                      <td style={tableCellStyle}><span style={{ color: 'var(--color-primary)' }}>{s.days} â€” {s.time}</span></td>
                       <td style={tableCellStyle}>
                         <span style={{
                           padding: '4px 10px',
@@ -5238,7 +5411,7 @@ export function AdminDashboard({ onLogout }) {
                           }}
                         >
                           <div style={{ color: '#fff', fontWeight: 'bold', fontSize: '0.9rem', marginBottom: '4px' }}>
-                             {th.student_name || 'Student'} ↔  {th.instructor_name || 'Instructor'}
+                             {th.student_name || 'Student'} â†”  {th.instructor_name || 'Instructor'}
                           </div>
                           <div style={{ color: '#aaa', fontSize: '0.78rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                             {th.last_message || 'No messages exchanged yet'}
@@ -5282,7 +5455,7 @@ export function AdminDashboard({ onLogout }) {
                               <div style={{ fontSize: '0.72rem', color: '#888', marginBottom: '3px' }}>
                                 <strong style={{ color: msg.sender_role === 'student' ? '#f0ceb3' : 'var(--color-primary)' }}>
                                   {senderDisplay} ({msg.sender_role})
-                                </strong> • {new Date(msg.timestamp || msg.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                                </strong> â€¢ {new Date(msg.timestamp || msg.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                               </div>
                               <div style={{
                                 maxWidth: '75%',
@@ -5792,7 +5965,7 @@ export function AdminDashboard({ onLogout }) {
                 onClick={() => setCancelingAdmission(null)}
                 style={{ background: 'transparent', border: 'none', color: '#94a3b8', fontSize: '1.2rem', cursor: 'pointer', padding: '4px 8px' }}
               >
-                ✕
+                âœ•
               </button>
             </div>
 

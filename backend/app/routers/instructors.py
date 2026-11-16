@@ -7,8 +7,17 @@ from typing import Optional, List
 from app.database import get_db
 from app.core.dependencies import get_current_user, require_admin, require_roles
 from app.core.security import hash_password
+from app.models import FacultyApplicationCreate, FacultyApplicationCancelRequest
 from app.services.storage_service import upload_media_file
 from app.services.credential_service import generate_secure_temporary_password, send_instructor_credentials
+from app.services.email_service import (
+    send_instructor_application_alert,
+    send_instructor_application_ack,
+    send_instructor_cancellation_email,
+    contains_emoji,
+    sanitize_text
+)
+from app.services.notification_service import create_notification
 
 router = APIRouter(prefix="/api/instructors", tags=["Instructors"])
 
@@ -35,7 +44,7 @@ def _format_instructor(doc: dict) -> dict:
             doc["avatar"] = doc["avatar_url"]
         else:
             name_quoted = quote_plus(doc.get("name", "Instructor"))
-            doc["avatar"] = f"https://ui-avatars.com/api/?name={name_quoted}&background=C5E5E8&color=072224&size=150&font-size=0.33&bold=true"
+            doc["avatar"] = f"https://ui-avatars.com/api/?name={name_quoted}&background=690e1f&color=f1a32a&size=150&font-size=0.33&bold=true"
     doc["avatar_url"] = doc.get("avatar")
     return doc
 
@@ -653,3 +662,358 @@ async def resend_instructor_credentials_api(
     except Exception as e:
         print(f"ERROR resending instructor credentials: {e}")
         raise HTTPException(status_code=500, detail="Could not resend credentials.")
+
+
+
+# ========================================================
+# FACULTY APPLICATION & ONBOARDING PIPELINE
+# ========================================================
+
+@router.post("/apply", summary="Submit a new faculty teaching application (Public)")
+async def submit_faculty_application(data: FacultyApplicationCreate):
+    db = get_db()
+    if db is None:
+        raise HTTPException(status_code=503, detail="Database service temporarily unavailable.")
+
+    # 1. Anti-Bot Honeypot
+    if data.bot_field and data.bot_field.strip():
+        return {"message": "Application submitted successfully!", "application_id": "verified"}
+
+    # 2. Character & Content Sanitization
+    if contains_emoji(data.first_name) or contains_emoji(data.last_name) or contains_emoji(data.phone):
+        raise HTTPException(
+            status_code=400,
+            detail="Emojis and unsupported symbols are not allowed in name or contact fields."
+        )
+
+    clean_first_name = sanitize_text(data.first_name)
+    clean_last_name = sanitize_text(data.last_name)
+    clean_phone = sanitize_text(data.phone)
+    clean_email = str(data.email).strip().lower()
+    clean_specialization = sanitize_text(data.specialization or "Classical Arabic & Syntax")
+    clean_qualification = sanitize_text(data.qualification or "Alimiyyah / Ijazah in Arabic")
+    clean_experience = sanitize_text(data.experience_years or "3+ Years")
+    clean_about = sanitize_text(data.about or "")
+    clean_schedule = sanitize_text(data.preferred_schedule or "Flexible")
+
+    if len(clean_first_name) < 2 or len(clean_last_name) < 2:
+        raise HTTPException(status_code=400, detail="First name and Last name must each be at least 2 characters.")
+    if len(clean_phone) < 7:
+        raise HTTPException(status_code=400, detail="Please enter a valid contact phone number.")
+
+    full_name = f"{clean_first_name} {clean_last_name}".strip()
+
+    # 3. Prevent duplicate pending applications
+    existing_pending = await db.faculty_applications.find_one({
+        "email": clean_email,
+        "status": "Pending"
+    })
+    if existing_pending:
+        raise HTTPException(
+            status_code=400,
+            detail="An active faculty application for this email address is already under review."
+        )
+
+    doc = {
+        "first_name": clean_first_name,
+        "last_name": clean_last_name,
+        "name": full_name,
+        "email": clean_email,
+        "phone": clean_phone,
+        "specialization": clean_specialization,
+        "qualification": clean_qualification,
+        "experience_years": clean_experience,
+        "about": clean_about,
+        "preferred_schedule": clean_schedule,
+        "cv_url": data.cv_url,
+        "status": "Pending",
+        "created_at": datetime.now(timezone.utc),
+        "updated_at": datetime.now(timezone.utc)
+    }
+
+    try:
+        res = await db.faculty_applications.insert_one(doc)
+        app_id = str(res.inserted_id)
+    except Exception as e:
+        print(f"[FACULTY APPLICATION ERROR] DB Insert failed: {e}")
+        raise HTTPException(status_code=503, detail="Could not submit application at this time.")
+
+    # 4. Email acknowledgment to applicant
+    try:
+        send_instructor_application_ack(full_name, clean_email, app_id, clean_specialization)
+    except Exception as ack_err:
+        print(f"[FACULTY ACK EMAIL ERROR]: {ack_err}")
+
+    # 5. Email alert to Super Admin
+    try:
+        send_instructor_application_alert(full_name, clean_email, clean_phone, app_id, clean_specialization)
+    except Exception as alert_err:
+        print(f"[FACULTY ALERT EMAIL ERROR]: {alert_err}")
+
+    # 6. In-App Notification for Super Admin
+    try:
+        admin_cursor = db.users.find({"role": "admin"})
+        async for admin in admin_cursor:
+            await create_notification(
+                db=db,
+                recipient_user_id=admin["_id"],
+                title="New Faculty Application",
+                message=f"{full_name} ({clean_email}) applied for {clean_specialization} faculty position.",
+                notification_type="system",
+                related_entity_type="faculty_application",
+                related_entity_id=app_id
+            )
+    except Exception as notif_err:
+        print(f"[FACULTY NOTIFICATION ERROR]: {notif_err}")
+
+    return {
+        "message": "Faculty application submitted successfully! Your submission is now under review by the Academic Board.",
+        "application_id": app_id
+    }
+
+
+@router.get("/applications", summary="Get all faculty applications (Admin Only)")
+async def get_all_faculty_applications(admin_user: dict = Depends(require_admin)):
+    db = get_db()
+    if db is None:
+        return []
+    try:
+        apps = []
+        async for doc in db.faculty_applications.find().sort("created_at", -1):
+            doc["id"] = str(doc["_id"])
+            doc["_id"] = str(doc["_id"])
+            apps.append(doc)
+        return apps
+    except Exception as e:
+        print(f"[FACULTY APPLICATIONS FETCH ERROR]: {e}")
+        return []
+
+
+@router.patch("/applications/{app_id}/approve", summary="Approve faculty application and create instructor profile (Admin Only)")
+async def approve_faculty_application(app_id: str, admin_user: dict = Depends(require_admin)):
+    db = get_db()
+    if db is None:
+        raise HTTPException(status_code=503, detail="Database unavailable.")
+
+    try:
+        app_doc = await db.faculty_applications.find_one({"_id": ObjectId(app_id)})
+        if not app_doc:
+            raise HTTPException(status_code=404, detail="Faculty application not found.")
+
+        if app_doc.get("status") == "Approved":
+            return {"message": "Application is already approved.", "already_approved": True}
+
+        applicant_name = app_doc.get("name") or f"{app_doc.get('first_name', '')} {app_doc.get('last_name', '')}".strip() or "Instructor"
+        clean_first_name = app_doc.get("first_name", "Instructor")
+        clean_last_name = app_doc.get("last_name", "")
+        applicant_email = str(app_doc.get("email", "")).strip().lower()
+        specialization = app_doc.get("specialization") or "Classical Arabic & Syntax"
+        qualification = app_doc.get("qualification") or "Alimiyyah / Ijazah in Arabic"
+        experience_years = app_doc.get("experience_years") or "3+ Years"
+        about_text = app_doc.get("about") or f"Certified Instructor in {specialization} with {experience_years} experience."
+
+        # 1. Generate secure credentials
+        temp_password = generate_secure_temporary_password(10)
+        password_hash = hash_password(temp_password)
+
+        # 2. Determine unique username
+        email_prefix = applicant_email.split("@")[0] if "@" in applicant_email else clean_first_name.lower()
+        base_username = re.sub(r'[^a-zA-Z0-9_]', '', f"inst_{email_prefix.lower()}")[:20]
+        username = base_username
+
+        counter = 1
+        while await db.users.find_one({"username": username}):
+            username = f"{base_username}_{counter}"
+            counter += 1
+
+        # 3. Create or Update user in `users`
+        existing_user = await db.users.find_one({"email": applicant_email})
+        if existing_user:
+            user_id = existing_user["_id"]
+            await db.users.update_one(
+                {"_id": user_id},
+                {"$set": {
+                    "role": "instructor",
+                    "status": "active",
+                    "username": username,
+                    "password_hash": password_hash,
+                    "updated_at": datetime.now(timezone.utc)
+                }}
+            )
+        else:
+            res_user = await db.users.insert_one({
+                "username": username,
+                "email": applicant_email,
+                "password_hash": password_hash,
+                "role": "instructor",
+                "status": "active",
+                "first_login": True,
+                "profile_completed": True,
+                "created_at": datetime.now(timezone.utc),
+                "updated_at": datetime.now(timezone.utc)
+            })
+            user_id = res_user.inserted_id
+
+        # 4. Create or Update instructor in `instructors`
+        name_quoted = quote_plus(applicant_name)
+        avatar_url = f"https://ui-avatars.com/api/?name={name_quoted}&background=690e1f&color=f1a32a&size=150&font-size=0.33&bold=true"
+
+        existing_instructor = await db.instructors.find_one({
+            "$or": [
+                {"email": applicant_email},
+                {"user_id": user_id}
+            ]
+        })
+
+        if existing_instructor:
+            inst_id = existing_instructor["_id"]
+            await db.instructors.update_one(
+                {"_id": inst_id},
+                {"$set": {
+                    "name": applicant_name,
+                    "first_name": clean_first_name,
+                    "last_name": clean_last_name,
+                    "specialty": specialization,
+                    "specialization": specialization,
+                    "qualification": qualification,
+                    "experience_years": experience_years,
+                    "about": about_text,
+                    "bio": about_text,
+                    "is_active": True,
+                    "user_id": user_id,
+                    "username": username,
+                    "updated_at": datetime.now(timezone.utc)
+                }}
+            )
+        else:
+            res_inst = await db.instructors.insert_one({
+                "name": applicant_name,
+                "first_name": clean_first_name,
+                "last_name": clean_last_name,
+                "email": applicant_email,
+                "phone": app_doc.get("phone", ""),
+                "specialty": specialization,
+                "specialization": specialization,
+                "qualification": qualification,
+                "experience_years": experience_years,
+                "about": about_text,
+                "bio": about_text,
+                "preferred_schedule": app_doc.get("preferred_schedule", "Flexible"),
+                "avatar": avatar_url,
+                "avatar_url": avatar_url,
+                "user_id": user_id,
+                "username": username,
+                "is_active": True,
+                "application_id": app_id,
+                "approved_by": admin_user.get("username", "admin"),
+                "approved_at": datetime.now(timezone.utc),
+                "created_at": datetime.now(timezone.utc),
+                "updated_at": datetime.now(timezone.utc)
+            })
+            inst_id = res_inst.inserted_id
+
+        # 5. Update Application Status
+        await db.faculty_applications.update_one(
+            {"_id": ObjectId(app_id)},
+            {"$set": {
+                "status": "Approved",
+                "approved_by": admin_user.get("username", "admin"),
+                "approved_at": datetime.now(timezone.utc),
+                "instructor_id": str(inst_id),
+                "user_id": str(user_id),
+                "username": username
+            }}
+        )
+
+        # 6. Deliver Instructor Credentials via Email
+        credentials_sent = False
+        try:
+            credentials_sent = send_instructor_credentials(
+                instructor_name=applicant_name,
+                instructor_email=applicant_email,
+                username=username,
+                temp_password=temp_password
+            )
+        except Exception as mail_err:
+            print(f"[FACULTY APPROVAL EMAIL ERROR]: {mail_err}")
+
+        # 7. In-App Notification for newly approved instructor
+        try:
+            await create_notification(
+                db=db,
+                recipient_user_id=user_id,
+                title="Welcome to Emam Certified Faculty!",
+                message=f"Your faculty appointment has been approved. You are now officially listed on the Emam public faculty directory.",
+                notification_type="system",
+                related_entity_type="instructor",
+                related_entity_id=str(inst_id)
+            )
+        except Exception as notif_err:
+            print(f"[FACULTY APPROVAL NOTIF ERROR]: {notif_err}")
+
+        return {
+            "message": f"Faculty application approved. Instructor profile created for {applicant_name} and login credentials sent.",
+            "instructor_id": str(inst_id),
+            "username": username,
+            "credentials_sent": bool(credentials_sent)
+        }
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"[FACULTY APPROVAL ERROR]: {e}")
+        raise HTTPException(status_code=500, detail="Could not approve faculty application.")
+
+
+@router.patch("/applications/{app_id}/cancel", summary="Cancel/reject faculty application (Admin Only)")
+async def cancel_faculty_application(
+    app_id: str,
+    data: Optional[FacultyApplicationCancelRequest] = None,
+    admin_user: dict = Depends(require_admin)
+):
+    db = get_db()
+    if db is None:
+        raise HTTPException(status_code=503, detail="Database unavailable.")
+
+    try:
+        app_doc = await db.faculty_applications.find_one({"_id": ObjectId(app_id)})
+        if not app_doc:
+            raise HTTPException(status_code=404, detail="Faculty application not found.")
+
+        reason = (data.reason.strip() if data and data.reason and data.reason.strip() else "Academic prerequisites or current faculty intake quota fulfilled")
+        admin_name = admin_user.get("username", "admin")
+
+        await db.faculty_applications.update_one(
+            {"_id": ObjectId(app_id)},
+            {"$set": {
+                "status": "Canceled",
+                "cancellation_reason": reason,
+                "canceled_by": admin_name,
+                "canceled_at": datetime.now(timezone.utc)
+            }}
+        )
+
+        applicant_name = app_doc.get("name") or f"{app_doc.get('first_name', '')} {app_doc.get('last_name', '')}".strip() or "Applicant"
+        applicant_email = app_doc.get("email")
+
+        if applicant_email:
+            try:
+                send_instructor_cancellation_email(
+                    instructor_name=applicant_name,
+                    instructor_email=applicant_email,
+                    form_id=app_id,
+                    reason=reason
+                )
+            except Exception as mail_err:
+                print(f"[FACULTY CANCEL EMAIL ERROR]: {mail_err}")
+
+        return {
+            "message": f"Faculty application for {applicant_name} has been canceled and notification email sent.",
+            "status": "Canceled"
+        }
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"[FACULTY CANCEL ERROR]: {e}")
+        raise HTTPException(status_code=500, detail="Could not cancel faculty application.")

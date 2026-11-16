@@ -28,6 +28,25 @@ class AdmissionCancelRequest(BaseModel):
     reason: Optional[str] = "Administrative review / Fee verification pending"
 
 
+# --- Faculty Application Models ---
+class FacultyApplicationCreate(BaseModel):
+    first_name: str
+    last_name: str
+    email: EmailStr
+    phone: str
+    specialization: Optional[str] = "Classical Arabic & Syntax"
+    qualification: Optional[str] = "Alimiyyah / Ijazah in Arabic"
+    experience_years: Optional[str] = "3+ Years"
+    about: Optional[str] = ""
+    preferred_schedule: Optional[str] = "Flexible (Weekdays & Weekends)"
+    cv_url: Optional[str] = None
+    bot_field: Optional[str] = None
+
+
+class FacultyApplicationCancelRequest(BaseModel):
+    reason: Optional[str] = "Application requirements or intake quota fulfilled"
+
+
 # --- Contact Models ---
 class ContactCreate(BaseModel):
     first_name: str

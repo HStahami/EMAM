@@ -518,3 +518,155 @@ Emam
     )
 
     return send_email(student_email, subject, body, html_body)
+
+
+def send_instructor_application_alert(
+    instructor_name: str,
+    instructor_email: str,
+    instructor_phone: str,
+    form_id: str,
+    specialization: str = "Classical Arabic & Syntax"
+) -> bool:
+    """Alerts Super Admin when a new faculty teaching application is submitted."""
+    subject = f"New Faculty Application: {instructor_name} ({specialization})"
+    admin_email = getattr(settings, "ADMIN_ALERT_EMAIL", "alarabiafi@gmail.com") or "alarabiafi@gmail.com"
+
+    body = f"""New Faculty Application Received!
+
+Applicant Name: {instructor_name}
+Email Address: {instructor_email}
+Contact Number: {instructor_phone}
+Specialization: {specialization}
+Application ID: {form_id}
+
+Please log in to the Emam Admin Portal to review credentials, resume, and approve/cancel this faculty member.
+"""
+
+    table = create_table_box([
+        ("Application ID", form_id, True),
+        ("Applicant Name", instructor_name, False),
+        ("Email Address", instructor_email, False),
+        ("Contact Phone", instructor_phone, False),
+        ("Specialization", specialization, True),
+        ("Status", "Pending Super Admin Review", False)
+    ], border_color="#690e1f")
+
+    html_body = build_base_email_html(
+        title="New Certified Faculty Application",
+        recipient_name="Administrator",
+        badge_label="Faculty Application",
+        body_html=f'''
+        <p>A new instructor application has been submitted through the Emam landing page faculty portal.</p>
+        <p>Applicant <strong>{instructor_name}</strong> is applying to join the Emam teaching faculty.</p>
+        ''',
+        highlight_box_html=table,
+        button_label="Open Admin Dashboard",
+        button_url="/admin",
+        sub_note_html="Review qualifications, teaching experience, and finalize instructor onboarding in the Admin Portal."
+    )
+
+    return send_email(admin_email, subject, body, html_body)
+
+
+def send_instructor_application_ack(
+    instructor_name: str,
+    instructor_email: str,
+    form_id: str,
+    specialization: str = "Classical Arabic & Syntax"
+) -> bool:
+    """Sends confirmation to the instructor applicant that their application is under review."""
+    subject = f"Emam Faculty Application Received — ID #{form_id[:8]}"
+
+    body = f"""Dear {instructor_name},
+
+Assalamu Alaikum wa Rahmatullah,
+
+Thank you for applying to join the Certified Teaching Faculty at Emam.
+
+We have received your application for the {specialization} teaching track (Application ID: {form_id}).
+Our Academic Board reviews credentials, pedagogical experience, and schedule compatibility.
+
+Next Steps:
+1. Academic Credentials Review (typically 24-48 business hours).
+2. If shortlisted, you will receive onboarding instructions and verification details.
+3. Upon final approval, your official Instructor Portal account will be generated, and your profile will be published on the Emam Public Certified Faculty Directory.
+
+JazakAllah Khair,
+Academic Dean's Office
+Emam
+"""
+
+    table = create_table_box([
+        ("Application ID", form_id, True),
+        ("Applicant Name", instructor_name, False),
+        ("Teaching Track", specialization, True),
+        ("Current Status", "Under Academic Review", False)
+    ], border_color="#690e1f")
+
+    html_body = build_base_email_html(
+        title="Faculty Application Received",
+        recipient_name=instructor_name,
+        badge_label="Application Received",
+        body_html=f'''
+        <p>Assalamu Alaikum wa Rahmatullah,</p>
+        <p>Thank you for your interest in joining the certified teaching faculty at <strong>Emam</strong>.</p>
+        <p>Your application for the <strong>{specialization}</strong> track has been logged into our academic evaluation queue.</p>
+        ''',
+        highlight_box_html=table,
+        sub_note_html='''
+        <strong>Next Steps:</strong><br/>
+        Our Academic Review Board evaluates credentials, qualifications, and curriculum fit. Once approved, your Instructor Portal login credentials will be emailed to you, and your profile will be published in our Certified Faculty Directory.
+        '''
+    )
+
+    return send_email(instructor_email, subject, body, html_body)
+
+
+def send_instructor_cancellation_email(
+    instructor_name: str,
+    instructor_email: str,
+    form_id: str,
+    reason: Optional[str] = None
+) -> bool:
+    """Notifies instructor applicant if their application is rejected/canceled."""
+    subject = f"Update regarding your Emam Faculty Application — #{form_id[:8]}"
+    effective_reason = (reason.strip() if reason and reason.strip() else "Academic prerequisites or current faculty intake quota fulfilled")
+
+    body = f"""Dear {instructor_name},
+
+Assalamu Alaikum wa Rahmatullah,
+
+Thank you for your interest in teaching at Emam and for submitting your credentials (Application ID: {form_id}).
+
+After careful evaluation by the Academic Board, we regret to inform you that we are unable to proceed with your faculty appointment at this time.
+
+Reason / Decision Notes:
+{effective_reason}
+
+We appreciate the time you took to apply and wish you the very best in your academic and teaching endeavors.
+
+JazakAllah Khair,
+Academic Dean's Office
+Emam
+"""
+
+    table = create_table_box([
+        ("Application ID", form_id, True),
+        ("Status", "Canceled / Not Selected", False),
+        ("Reason / Notes", effective_reason, False)
+    ], border_color="#ef4444", bg_color="#fef2f2")
+
+    html_body = build_base_email_html(
+        title="Faculty Application Status Update",
+        recipient_name=instructor_name,
+        badge_label="Status Update",
+        body_html=f'''
+        <p>Assalamu Alaikum wa Rahmatullah,</p>
+        <p>Thank you for submitting your application to join the certified teaching faculty at Emam.</p>
+        <p>After careful evaluation, we are unable to approve your application for the current academic session.</p>
+        ''',
+        highlight_box_html=table,
+        sub_note_html="You may re-apply in future intake cycles when new faculty slots open across our curriculum tracks."
+    )
+
+    return send_email(instructor_email, subject, body, html_body)

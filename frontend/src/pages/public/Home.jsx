@@ -30,10 +30,30 @@ export function Home() {
     email: '',
     phone: '',
     plan: 'Institute Campus License',
+    brandingChoice: 'standard', // 'standard' | 'custom'
+    primaryColor: '#690e1f',
+    secondaryColor: '#f1a32a',
     requirements: ''
   });
   const [instituteSubmitting, setInstituteSubmitting] = useState(false);
   const [instituteSubmitted, setInstituteSubmitted] = useState(false);
+
+  // Faculty Application Modal State
+  const [facultyModalOpen, setFacultyModalOpen] = useState(false);
+  const [facultyForm, setFacultyForm] = useState({
+    first_name: '',
+    last_name: '',
+    email: '',
+    phone: '',
+    specialization: 'Arabic Grammar (Nahw & Sarf)',
+    qualification: "Master's in Arabic Linguistics",
+    experience_years: '3',
+    about: '',
+    preferred_schedule: 'Weekday Evenings & Weekend Cohorts'
+  });
+  const [facultySubmitting, setFacultySubmitting] = useState(false);
+  const [facultySubmitted, setFacultySubmitted] = useState(false);
+  const [facultyError, setFacultyError] = useState(null);
 
   useEffect(() => {
     const fetchModules = async () => {
@@ -100,13 +120,17 @@ export function Home() {
     }
     setInstituteSubmitting(true);
     try {
+      const brandingDetails = instituteForm.brandingChoice === 'custom'
+        ? `Custom Branding Selected:\n- Primary Color: ${instituteForm.primaryColor}\n- Secondary Color: ${instituteForm.secondaryColor}\n- Custom Logo & Styling Requested`
+        : 'Standard Emam Branding Selected (As-is)';
+
       await contactApi.submit({
         first_name: instituteForm.name.split(' ')[0] || instituteForm.name,
         last_name: instituteForm.name.split(' ').slice(1).join(' ') || (instituteForm.organization ? `(${instituteForm.organization})` : 'Institution Head'),
         email: instituteForm.email,
         phone: instituteForm.phone || '+44 0000 000000',
         subject: `Institutional SaaS Provisioning Request — ${instituteForm.organization || 'Academy / School'}`,
-        message: `Plan Selected: ${instituteForm.plan}\nOrganization: ${instituteForm.organization || 'Not specified'}\nPhone/WhatsApp: ${instituteForm.phone || 'Not specified'}\nRequirements & Deployment Notes:\n${instituteForm.requirements || 'Requested an isolated institutional tenant setup on Emam Arabic LMS.'}`
+        message: `Plan Selected: ${instituteForm.plan}\nOrganization: ${instituteForm.organization || 'Not specified'}\nPhone/WhatsApp: ${instituteForm.phone || 'Not specified'}\nBranding Choice: ${brandingDetails}\n\nRequirements & Deployment Notes:\n${instituteForm.requirements || 'Requested an isolated institutional tenant setup on Emam Arabic LMS.'}`
       });
       setInstituteSubmitted(true);
     } catch (err) {
@@ -114,6 +138,28 @@ export function Home() {
       alert('Unable to submit your request at this moment. Please reach out via our contact page.');
     } finally {
       setInstituteSubmitting(false);
+    }
+  };
+
+  const handleFacultySubmit = async (e) => {
+    e.preventDefault();
+    setFacultyError(null);
+    if (!facultyForm.first_name || !facultyForm.last_name || !facultyForm.email) {
+      setFacultyError('Please fill in your name and valid email address.');
+      return;
+    }
+    setFacultySubmitting(true);
+    try {
+      await instructorsApi.applyFaculty({
+        ...facultyForm,
+        experience_years: parseInt(facultyForm.experience_years, 10) || 0
+      });
+      setFacultySubmitted(true);
+    } catch (err) {
+      console.error(err);
+      setFacultyError(err.message || 'Unable to submit faculty application right now. Please try again.');
+    } finally {
+      setFacultySubmitting(false);
     }
   };
 
@@ -135,18 +181,18 @@ export function Home() {
     },
     {
       id: 'instructor',
-      label: 'For Instructors',
-      title: 'Dedicated Virtual Teaching Studio',
-      subtitle: 'Professional workspace for Arabic tutors, language coaches, and linguistic scholars.',
+      label: 'For Certified Faculty',
+      title: 'Join Emam Certified Arabic Faculty',
+      subtitle: 'Teach enrolled Emam students in live virtual classrooms with our accredited curriculum.',
       points: [
-        'Dedicated instructor portal with centralized student roster and attendance',
-        'Integrated WebRTC virtual smart classroom with dual-canvas whiteboard',
-        'Structured assignment distribution, evaluation, and grading workflow',
-        'Direct consultation messaging bridge with active students',
-        'Flexible schedule configuration for weekday 1-on-1 and weekend cohorts'
+        'Appointed teaching status across enrolled Emam student cohorts',
+        'Integrated WebRTC virtual smart classroom with Arabic dual-canvas whiteboard',
+        'Centralized student attendance, auto-saved smart class notes, and grading suite',
+        'Automated assignment distribution and student consultation channel',
+        'Accredited faculty profile featured in the public Emam faculty directory'
       ],
-      actionLabel: 'Instructor Workspace Info',
-      actionLink: '/instructor/login'
+      actionLabel: 'Apply as Instructor',
+      actionModal: 'faculty'
     },
     {
       id: 'institute',
@@ -161,7 +207,7 @@ export function Home() {
         'Super Admin technical support, institutional onboarding, and custom domain options'
       ],
       actionLabel: 'Request Institute Provisioning',
-      actionModal: true
+      actionModal: 'institute'
     }
   ];
 
@@ -188,23 +234,22 @@ export function Home() {
     },
     {
       id: 'instructor',
-      name: 'Instructor Workspace',
-      badge: 'Independent Tutors',
-      priceMonthly: '£49',
-      priceAnnual: '£39',
-      period: 'per month',
-      description: 'Designed for independent Arabic teachers and scholars conducting private 1-on-1 tutoring and small group workshops.',
+      name: 'Emam Certified Faculty',
+      badge: 'Academic Faculty Appointment',
+      priceMonthly: 'Accredited',
+      priceAnnual: 'Accredited',
+      period: 'Faculty Appointment',
+      description: 'Instructors are appointed members of official Emam faculty. We do not sell private tutor subscriptions — faculty teach enrolled Emam students.',
       features: [
-        'Full Instructor Portal access & student roster management',
+        'Official Emam Certified Faculty status & public profile',
+        'Directly assigned student cohorts from Emam admissions',
         'Virtual Smart Classroom with integrated Arabic digital whiteboard',
-        'Manage up to 25 active concurrent private students',
         'Assignment distribution, grading, and attendance tracking',
-        'In-platform direct messaging & consultation channel',
-        'Official certified tutor profile listing on Emam',
-        'Priority technical assistance'
+        'Direct consultation messaging bridge with active students',
+        'Super Admin credential provisioning & academic onboarding'
       ],
-      ctaText: 'Access Tutor Portal',
-      ctaLink: '/instructor/login',
+      ctaText: 'Apply to Join Faculty',
+      actionModal: 'faculty',
       isPopular: false
     },
     {
@@ -225,7 +270,7 @@ export function Home() {
         'Institutional data ownership, compliance, and priority SLA support'
       ],
       ctaText: 'Request Institute Demo',
-      actionModal: true,
+      actionModal: 'institute',
       isPopular: true
     }
   ];
@@ -244,8 +289,8 @@ export function Home() {
       a: 'Our typing lab features 200 progressive difficulty levels mapped to the standard Arabic 101 keyboard. It includes automatic transliteration for QWERTY keyboards, real-time WPM and accuracy metrics, and awards an official verifiable digital certificate upon completing the curriculum.'
     },
     {
-      q: 'Can instructors use Emam to teach their own independent students?',
-      a: 'Yes. Our Instructor Workspace provides certified tutors with a standalone virtual teaching studio, including an interactive Arabic digital whiteboard, student attendance tracking, assignment evaluation, and direct messaging.'
+      q: 'How are instructors selected and assigned to students on Emam?',
+      a: 'Instructors on Emam are certified academic faculty members appointed through our formal application and verification process. Students enrolled through Emam admissions are assigned to our certified faculty cohorts. We do not operate as an unvetted marketplace of independent tutors.'
     },
     {
       q: 'How are certificates verified on Emam?',
@@ -595,12 +640,17 @@ export function Home() {
                 </div>
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'flex-end', justifyContent: 'center' }}>
-                  {current.actionModal ? (
+                  {current.actionModal === 'faculty' ? (
                     <button
-                      onClick={() => {
-                        setInstituteSubmitted(false);
-                        setInstituteModalOpen(true);
-                      }}
+                      onClick={() => { setFacultySubmitted(false); setFacultyError(null); setFacultyModalOpen(true); }}
+                      className="btn-primary"
+                      style={{ padding: '14px 30px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.95rem' }}
+                    >
+                      {current.actionLabel}
+                    </button>
+                  ) : current.actionModal === 'institute' ? (
+                    <button
+                      onClick={() => { setInstituteSubmitted(false); setInstituteModalOpen(true); }}
                       className="btn-primary"
                       style={{ padding: '14px 30px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.95rem' }}
                     >
@@ -990,7 +1040,15 @@ export function Home() {
 
                 {/* CTA Action */}
                 <div>
-                  {tier.actionModal ? (
+                  {tier.actionModal === 'faculty' ? (
+                    <button
+                      onClick={() => { setFacultySubmitted(false); setFacultyError(null); setFacultyModalOpen(true); }}
+                      className="btn-primary"
+                      style={{ width: '100%', padding: '14px', fontSize: '1rem', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
+                    >
+                      {tier.ctaText}
+                    </button>
+                  ) : tier.actionModal === 'institute' ? (
                     <button
                       onClick={() => {
                         setInstituteForm({ ...instituteForm, plan: tier.name });
@@ -1393,6 +1451,59 @@ export function Home() {
                         style={{ width: '100%', padding: '11px 14px', borderRadius: '10px', background: 'rgba(0, 0, 0, 0.3)', border: '1px solid rgba(241, 163, 42, 0.25)', color: '#fff', outline: 'none', boxSizing: 'border-box', resize: 'vertical' }}
                       />
                     </div>
+
+                    {/* Branding Choice */}
+                    <div>
+                      <label style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', fontWeight: '600', marginBottom: '0.6rem' }}>Branding Preference</label>
+                      <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+                        {[
+                          { value: 'standard', label: 'As It Is', desc: 'Use Emam default branding' },
+                          { value: 'custom', label: 'Customize Branding', desc: 'Set your own colors & logo' }
+                        ].map(opt => (
+                          <button
+                            key={opt.value}
+                            type="button"
+                            onClick={() => setInstituteForm({ ...instituteForm, brandingChoice: opt.value })}
+                            style={{
+                              flex: 1,
+                              minWidth: '130px',
+                              padding: '10px 14px',
+                              borderRadius: '10px',
+                              border: `1px solid ${instituteForm.brandingChoice === opt.value ? 'rgba(241,163,42,0.7)' : 'rgba(241,163,42,0.2)'}`,
+                              background: instituteForm.brandingChoice === opt.value ? 'rgba(241,163,42,0.15)' : 'rgba(0,0,0,0.25)',
+                              color: '#fff',
+                              cursor: 'pointer',
+                              textAlign: 'left'
+                            }}
+                          >
+                            <div style={{ fontWeight: 700, fontSize: '0.88rem', color: instituteForm.brandingChoice === opt.value ? 'var(--color-primary)' : '#fff' }}>{opt.label}</div>
+                            <div style={{ fontSize: '0.75rem', color: '#94a3b8', marginTop: '2px' }}>{opt.desc}</div>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    {instituteForm.brandingChoice === 'custom' && (
+                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', padding: '1rem', borderRadius: '10px', border: '1px solid rgba(241,163,42,0.2)', background: 'rgba(0,0,0,0.2)' }}>
+                        <div>
+                          <label style={{ display: 'block', fontSize: '0.82rem', color: '#f0ceb3', fontWeight: '600', marginBottom: '0.35rem' }}>Primary Color</label>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                            <input type="color" value={instituteForm.primaryColor} onChange={(e) => setInstituteForm({ ...instituteForm, primaryColor: e.target.value })} style={{ width: '40px', height: '36px', border: 'none', borderRadius: '6px', background: 'none', cursor: 'pointer' }} />
+                            <input type="text" value={instituteForm.primaryColor} onChange={(e) => setInstituteForm({ ...instituteForm, primaryColor: e.target.value })} placeholder="#690e1f" style={{ flex: 1, padding: '8px 10px', borderRadius: '8px', background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(241,163,42,0.2)', color: '#fff', fontSize: '0.85rem', outline: 'none', boxSizing: 'border-box' }} />
+                          </div>
+                        </div>
+                        <div>
+                          <label style={{ display: 'block', fontSize: '0.82rem', color: '#f0ceb3', fontWeight: '600', marginBottom: '0.35rem' }}>Secondary / Accent Color</label>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                            <input type="color" value={instituteForm.secondaryColor} onChange={(e) => setInstituteForm({ ...instituteForm, secondaryColor: e.target.value })} style={{ width: '40px', height: '36px', border: 'none', borderRadius: '6px', background: 'none', cursor: 'pointer' }} />
+                            <input type="text" value={instituteForm.secondaryColor} onChange={(e) => setInstituteForm({ ...instituteForm, secondaryColor: e.target.value })} placeholder="#f1a32a" style={{ flex: 1, padding: '8px 10px', borderRadius: '8px', background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(241,163,42,0.2)', color: '#fff', fontSize: '0.85rem', outline: 'none', boxSizing: 'border-box' }} />
+                          </div>
+                        </div>
+                        <div style={{ gridColumn: '1 / -1' }}>
+                          <div style={{ fontSize: '0.78rem', color: '#94a3b8' }}>Custom logo can be provided after provisioning. Emam Super Admin will configure your tenant during onboarding.</div>
+                        </div>
+                      </div>
+                    )}
                   </div>
 
                   <button
@@ -1402,6 +1513,143 @@ export function Home() {
                     style={{ width: '100%', padding: '14px', fontSize: '1rem', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', opacity: instituteSubmitting ? 0.7 : 1 }}
                   >
                     {instituteSubmitting ? 'Submitting Request...' : 'Submit Institutional Request'}
+                  </button>
+                </form>
+              )}
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* ======================================================== */}
+      {/* 11. FACULTY APPLICATION MODAL                            */}
+      {/* ======================================================== */}
+      <AnimatePresence>
+        {facultyModalOpen && (
+          <div style={{ position: 'fixed', inset: 0, zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem', background: 'rgba(0, 0, 0, 0.85)', backdropFilter: 'blur(8px)' }}>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              style={{
+                width: '100%',
+                maxWidth: '640px',
+                maxHeight: '90vh',
+                overflowY: 'auto',
+                borderRadius: '24px',
+                border: '1px solid rgba(241, 163, 42, 0.35)',
+                background: 'linear-gradient(135deg, rgba(105, 14, 31, 0.97), rgba(44, 5, 13, 0.99))',
+                padding: '2.5rem',
+                position: 'relative',
+                boxShadow: '0 20px 60px rgba(0, 0, 0, 0.9)'
+              }}
+            >
+              {/* Close */}
+              <button
+                onClick={() => setFacultyModalOpen(false)}
+                style={{ position: 'absolute', top: '1.25rem', right: '1.25rem', background: 'rgba(255,255,255,0.1)', border: 'none', borderRadius: '50%', width: '36px', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', cursor: 'pointer' }}
+              >
+                <span style={{ fontSize: '1.4rem', lineHeight: '1' }}>&times;</span>
+              </button>
+
+              {facultySubmitted ? (
+                <div style={{ textAlign: 'center', padding: '2rem 1rem' }}>
+                  <div style={{ width: '64px', height: '64px', borderRadius: '50%', background: 'rgba(46, 204, 113, 0.15)', border: '1px solid #2ecc71', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem auto' }}>
+                    <span style={{ fontSize: '1.8rem', color: '#2ecc71' }}>✓</span>
+                  </div>
+                  <h3 style={{ fontSize: '1.6rem', color: '#fff', fontWeight: '700', marginBottom: '0.75rem' }}>Application Submitted</h3>
+                  <p style={{ color: '#f0ceb3', fontSize: '0.98rem', lineHeight: '1.6', marginBottom: '2rem' }}>
+                    Your faculty application has been received. Emam Super Admin will review your application and contact you via email with the outcome and next steps.
+                  </p>
+                  <button onClick={() => setFacultyModalOpen(false)} className="btn-primary" style={{ padding: '12px 32px' }}>Close</button>
+                </div>
+              ) : (
+                <form onSubmit={handleFacultySubmit}>
+                  <div style={{ color: 'var(--color-primary)', fontSize: '0.8rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '0.5rem' }}>
+                    Emam Certified Faculty Application
+                  </div>
+                  <h3 style={{ fontSize: '1.6rem', color: 'var(--color-white)', fontWeight: '800', marginBottom: '0.4rem' }}>Apply to Teach at Emam</h3>
+                  <p style={{ color: '#f0ceb3', fontSize: '0.9rem', marginBottom: '1.75rem', lineHeight: '1.5' }}>
+                    Join Emam&apos;s certified Arabic faculty. Your application will be reviewed by Super Admin. Approved faculty receive a secure portal account and are listed in the public faculty directory.
+                  </p>
+
+                  {facultyError && (
+                    <div style={{ background: 'rgba(231,76,60,0.15)', border: '1px solid rgba(231,76,60,0.4)', borderRadius: '10px', padding: '10px 14px', color: '#e74c3c', fontSize: '0.88rem', marginBottom: '1rem' }}>
+                      {facultyError}
+                    </div>
+                  )}
+
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '1.5rem' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+                      <div>
+                        <label style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', fontWeight: '600', marginBottom: '0.35rem' }}>First Name *</label>
+                        <input type="text" required value={facultyForm.first_name} onChange={(e) => setFacultyForm({ ...facultyForm, first_name: e.target.value })} placeholder="e.g. Abdullah" style={{ width: '100%', padding: '11px 14px', borderRadius: '10px', background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(241,163,42,0.25)', color: '#fff', outline: 'none', boxSizing: 'border-box' }} />
+                      </div>
+                      <div>
+                        <label style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', fontWeight: '600', marginBottom: '0.35rem' }}>Last Name *</label>
+                        <input type="text" required value={facultyForm.last_name} onChange={(e) => setFacultyForm({ ...facultyForm, last_name: e.target.value })} placeholder="e.g. Al-Farouq" style={{ width: '100%', padding: '11px 14px', borderRadius: '10px', background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(241,163,42,0.25)', color: '#fff', outline: 'none', boxSizing: 'border-box' }} />
+                      </div>
+                    </div>
+
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+                      <div>
+                        <label style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', fontWeight: '600', marginBottom: '0.35rem' }}>Email Address *</label>
+                        <input type="email" required value={facultyForm.email} onChange={(e) => setFacultyForm({ ...facultyForm, email: e.target.value })} placeholder="ustadh@example.com" style={{ width: '100%', padding: '11px 14px', borderRadius: '10px', background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(241,163,42,0.25)', color: '#fff', outline: 'none', boxSizing: 'border-box' }} />
+                      </div>
+                      <div>
+                        <label style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', fontWeight: '600', marginBottom: '0.35rem' }}>Phone / WhatsApp</label>
+                        <input type="text" value={facultyForm.phone} onChange={(e) => setFacultyForm({ ...facultyForm, phone: e.target.value })} placeholder="+44 7700 900000" style={{ width: '100%', padding: '11px 14px', borderRadius: '10px', background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(241,163,42,0.25)', color: '#fff', outline: 'none', boxSizing: 'border-box' }} />
+                      </div>
+                    </div>
+
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+                      <div>
+                        <label style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', fontWeight: '600', marginBottom: '0.35rem' }}>Area of Specialization</label>
+                        <select value={facultyForm.specialization} onChange={(e) => setFacultyForm({ ...facultyForm, specialization: e.target.value })} style={{ width: '100%', padding: '11px 14px', borderRadius: '10px', background: 'rgba(0,0,0,0.5)', border: '1px solid rgba(241,163,42,0.25)', color: '#fff', outline: 'none', boxSizing: 'border-box' }}>
+                          <option value="Arabic Grammar (Nahw & Sarf)">Arabic Grammar (Nahw &amp; Sarf)</option>
+                          <option value="Quranic Arabic & Tafsir">Quranic Arabic &amp; Tafsir</option>
+                          <option value="Classical Arabic Literature">Classical Arabic Literature</option>
+                          <option value="Modern Standard Arabic (MSA)">Modern Standard Arabic (MSA)</option>
+                          <option value="Arabic Morphology & Linguistics">Arabic Morphology &amp; Linguistics</option>
+                          <option value="Arabic Touch-Typing & Keyboard">Arabic Touch-Typing &amp; Keyboard</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', fontWeight: '600', marginBottom: '0.35rem' }}>Years of Experience</label>
+                        <select value={facultyForm.experience_years} onChange={(e) => setFacultyForm({ ...facultyForm, experience_years: e.target.value })} style={{ width: '100%', padding: '11px 14px', borderRadius: '10px', background: 'rgba(0,0,0,0.5)', border: '1px solid rgba(241,163,42,0.25)', color: '#fff', outline: 'none', boxSizing: 'border-box' }}>
+                          <option value="1">1 year</option>
+                          <option value="2">2 years</option>
+                          <option value="3">3 years</option>
+                          <option value="5">5 years</option>
+                          <option value="8">8+ years</option>
+                          <option value="12">12+ years</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div>
+                      <label style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', fontWeight: '600', marginBottom: '0.35rem' }}>Academic Qualification</label>
+                      <input type="text" value={facultyForm.qualification} onChange={(e) => setFacultyForm({ ...facultyForm, qualification: e.target.value })} placeholder="e.g. M.A. Arabic Linguistics, Al-Azhar University" style={{ width: '100%', padding: '11px 14px', borderRadius: '10px', background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(241,163,42,0.25)', color: '#fff', outline: 'none', boxSizing: 'border-box' }} />
+                    </div>
+
+                    <div>
+                      <label style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', fontWeight: '600', marginBottom: '0.35rem' }}>Preferred Teaching Schedule</label>
+                      <select value={facultyForm.preferred_schedule} onChange={(e) => setFacultyForm({ ...facultyForm, preferred_schedule: e.target.value })} style={{ width: '100%', padding: '11px 14px', borderRadius: '10px', background: 'rgba(0,0,0,0.5)', border: '1px solid rgba(241,163,42,0.25)', color: '#fff', outline: 'none', boxSizing: 'border-box' }}>
+                        <option value="Weekday Evenings & Weekend Cohorts">Weekday Evenings &amp; Weekend Cohorts</option>
+                        <option value="Weekday Mornings (1-on-1)">Weekday Mornings (1-on-1)</option>
+                        <option value="Weekend Group Sessions Only">Weekend Group Sessions Only</option>
+                        <option value="Flexible / As Assigned">Flexible / As Assigned</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', fontWeight: '600', marginBottom: '0.35rem' }}>About You / Teaching Philosophy</label>
+                      <textarea rows={3} value={facultyForm.about} onChange={(e) => setFacultyForm({ ...facultyForm, about: e.target.value })} placeholder="Briefly describe your teaching background, methodology, and why you wish to join Emam faculty..." style={{ width: '100%', padding: '11px 14px', borderRadius: '10px', background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(241,163,42,0.25)', color: '#fff', outline: 'none', boxSizing: 'border-box', resize: 'vertical' }} />
+                    </div>
+                  </div>
+
+                  <button type="submit" disabled={facultySubmitting} className="btn-primary" style={{ width: '100%', padding: '14px', fontSize: '1rem', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', opacity: facultySubmitting ? 0.7 : 1 }}>
+                    {facultySubmitting ? 'Submitting Application...' : 'Submit Faculty Application'}
                   </button>
                 </form>
               )}

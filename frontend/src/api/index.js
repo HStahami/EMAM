@@ -261,6 +261,45 @@ export const instructorsApi = {
     });
     if (!res.ok) throw new Error("Failed to delete instructor");
     return res.json();
+  },
+  applyFaculty: async (data) => {
+    const res = await apiClient("/instructors/apply", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.detail || "Failed to submit faculty application");
+    }
+    return res.json();
+  },
+  getApplications: async () => {
+    const res = await apiClient("/instructors/applications");
+    if (!res.ok) throw new Error("Failed to load faculty applications");
+    return res.json();
+  },
+  approveApplication: async (appId) => {
+    const res = await apiClient(`/instructors/applications/${appId}/approve`, {
+      method: "PATCH",
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.detail || "Failed to approve faculty application");
+    }
+    return res.json();
+  },
+  cancelApplication: async (appId, data) => {
+    const res = await apiClient(`/instructors/applications/${appId}/cancel`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data || {}),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.detail || "Failed to cancel faculty application");
+    }
+    return res.json();
   }
 };
 

@@ -211,10 +211,10 @@ export function InstructorClassroom() {
 
   if (loading) {
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '60vh', gap: '1rem', color: '#cbd5e1' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '60vh', gap: '1rem', color: '#f0ceb3' }}>
         <Loader2 size={36} className="spin-animation" style={{ color: 'var(--color-primary)' }} />
         <h3 style={{ margin: 0, fontSize: '1.2rem', color: '#fff' }}>Connecting to Instructor Classroom...</h3>
-        <p style={{ margin: 0, color: '#94a3b8', fontSize: '0.88rem' }}>Loading assigned classes and active schedule.</p>
+        <p style={{ margin: 0, color: '#f0ceb3', fontSize: '0.88rem' }}>Loading assigned classes and active schedule.</p>
       </div>
     );
   }
@@ -231,7 +231,7 @@ export function InstructorClassroom() {
           alignItems: 'center',
           flexWrap: 'wrap',
           gap: '1rem',
-          backgroundColor: '#072224',
+          backgroundColor: 'rgba(44, 5, 13, 0.85)',
           borderLeft: '4px solid var(--color-primary)'
         }}
       >
@@ -245,7 +245,7 @@ export function InstructorClassroom() {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              color: '#cbd5e1',
+              color: '#f0ceb3',
               borderRadius: '8px',
               textDecoration: 'none'
             }}
@@ -255,7 +255,7 @@ export function InstructorClassroom() {
           </Link>
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-              <span style={{ fontSize: '0.75rem', background: 'rgba(0, 168, 150, 0.2)', color: 'var(--color-primary)', padding: '2px 8px', borderRadius: '4px', fontWeight: 600 }}>
+              <span style={{ fontSize: '0.75rem', background: 'rgba(241, 163, 42, 0.15)', color: 'var(--color-primary)', padding: '2px 8px', borderRadius: '4px', fontWeight: 600 }}>
                 INSTRUCTOR VIRTUAL ROOM
               </span>
               {isLive ? (
@@ -264,7 +264,7 @@ export function InstructorClassroom() {
                   ● YOU ARE LIVE (Students Notified)
                 </span>
               ) : (
-                <span style={{ fontSize: '0.85rem', color: '#94a3b8', display: 'flex', alignItems: 'center', gap: '4px', fontWeight: 500 }}>
+                <span style={{ fontSize: '0.85rem', color: '#f0ceb3', display: 'flex', alignItems: 'center', gap: '4px', fontWeight: 500 }}>
                   ○ Session Offline (Ready to Launch)
                 </span>
               )}
@@ -290,8 +290,8 @@ export function InstructorClassroom() {
                   }
                 }}
                 style={{
-                  backgroundColor: '#092528',
-                  border: '1px solid rgba(0, 168, 150, 0.4)',
+                  backgroundColor: 'rgba(35, 4, 10, 0.92)',
+                  border: '1px solid rgba(241, 163, 42, 0.15)',
                   color: '#fff',
                   borderRadius: '6px',
                   padding: '6px 12px',
@@ -310,7 +310,7 @@ export function InstructorClassroom() {
           )}
 
           {selectedSlot && (
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '0.85rem', color: '#cbd5e1' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '0.85rem', color: '#f0ceb3' }}>
               <span style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
                 <Calendar size={14} style={{ color: 'var(--color-primary)' }} />
                 {slotTitle}
@@ -319,7 +319,7 @@ export function InstructorClassroom() {
                 <Users size={13} style={{ color: 'var(--color-primary)' }} />
                 {selectedSlot.students_count || 0} Enrolled
               </span>
-              <span style={{ display: 'flex', alignItems: 'center', gap: '5px', background: 'rgba(241, 163, 42, 0.15)', border: '1px solid rgba(241, 163, 42, 0.15)', color: '#34d399', padding: '3px 8px', borderRadius: '4px' }} title="Automated real-time attendance count for today">
+              <span style={{ display: 'flex', alignItems: 'center', gap: '5px', background: 'rgba(241, 163, 42, 0.15)', border: '1px solid rgba(241, 163, 42, 0.15)', color: 'var(--color-primary)', padding: '3px 8px', borderRadius: '4px' }} title="Automated real-time attendance count for today">
                 <CheckCircle2 size={13} />
                 {attendeesCount} Present Today
               </span>
@@ -428,12 +428,12 @@ export function InstructorClassroom() {
             style={{
               padding: '6px 12px',
               fontSize: '0.8rem',
-              color: '#cbd5e1',
+              color: '#f0ceb3',
               display: 'flex',
               alignItems: 'center',
               gap: '5px',
               cursor: 'pointer',
-              border: '1px solid rgba(255,255,255,0.1)'
+              border: '1px solid rgba(241, 163, 42, 0.18)'
             }}
           >
             {fullVideoMode ? <Minimize2 size={14} /> : <Maximize2 size={14} />}
@@ -482,7 +482,7 @@ export function InstructorClassroom() {
                   onClick={openUnlimitedWindow}
                   style={{
                     backgroundColor: 'var(--color-primary)',
-                    color: '#041416',
+                    color: '#2c050d',
                     border: 'none',
                     padding: '4px 10px',
                     borderRadius: '5px',
@@ -504,7 +504,7 @@ export function InstructorClassroom() {
                     style={{
                       height: '100%',
                       minHeight: '480px',
-                      backgroundColor: '#041416',
+                      backgroundColor: '#2c050d',
                       borderRadius: '12px',
                       border: '1px solid rgba(241, 163, 42, 0.15)',
                       display: 'flex',
@@ -530,7 +530,7 @@ export function InstructorClassroom() {
                       <ExternalLink size={28} />
                     </div>
                     <h3 style={{ color: '#fff', margin: 0, fontSize: '1.25rem' }}>Meeting is Active in Dedicated Window</h3>
-                    <p style={{ color: '#94a3b8', margin: 0, maxWidth: '420px', fontSize: '0.88rem', lineHeight: 1.6 }}>
+                    <p style={{ color: '#f0ceb3', margin: 0, maxWidth: '420px', fontSize: '0.88rem', lineHeight: 1.6 }}>
                       Your classroom video is running in a separate window. In-portal video is paused here to ensure you only appear once in the meeting.
                     </p>
                     <div style={{ display: 'flex', gap: '0.75rem', marginTop: '0.5rem' }}>
@@ -567,10 +567,10 @@ export function InstructorClassroom() {
                 width: '100%',
                 height: '100%',
                 minHeight: '520px',
-                backgroundColor: '#041416',
+                backgroundColor: '#2c050d',
                 borderRadius: '12px',
                 overflow: 'hidden',
-                border: '1px solid rgba(0, 168, 150, 0.25)',
+                border: '1px solid rgba(241, 163, 42, 0.15)',
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
@@ -584,7 +584,7 @@ export function InstructorClassroom() {
                 width: '72px',
                 height: '72px',
                 borderRadius: '50%',
-                background: 'rgba(0, 168, 150, 0.15)',
+                background: 'rgba(241, 163, 42, 0.15)',
                 border: '2px solid var(--color-primary)',
                 display: 'flex',
                 alignItems: 'center',
@@ -598,7 +598,7 @@ export function InstructorClassroom() {
                 <h3 style={{ color: '#fff', fontSize: '1.4rem', margin: '0 0 8px 0', fontWeight: 700 }}>
                   Ready to Start Live Class?
                 </h3>
-                <p style={{ color: '#94a3b8', fontSize: '0.92rem', margin: '0 0 12px 0', lineHeight: 1.6 }}>
+                <p style={{ color: '#f0ceb3', fontSize: '0.92rem', margin: '0 0 12px 0', lineHeight: 1.6 }}>
                   Clicking the button below officially launches the live virtual room, sets the class status to <strong>LIVE</strong>, and automatically sends a real-time notification to all enrolled students so they can join!
                 </p>
                 <div style={{
@@ -609,11 +609,11 @@ export function InstructorClassroom() {
                   padding: '6px 14px',
                   borderRadius: '20px',
                   fontSize: '0.85rem',
-                  color: '#cbd5e1'
+                  color: '#f0ceb3'
                 }}>
                   <Calendar size={14} style={{ color: 'var(--color-primary)' }} />
                   <span>{slotTitle}</span>
-                  <span style={{ color: '#64748b' }}>•</span>
+                  <span style={{ color: 'rgba(241,163,42,0.55)' }}>•</span>
                   <span>{selectedSlot?.students_count || 0} Students Enrolled</span>
                 </div>
               </div>
@@ -652,7 +652,7 @@ export function InstructorClassroom() {
                     cursor: 'pointer',
                     backgroundColor: 'rgba(255, 255, 255, 0.08)',
                     color: '#fff',
-                    border: '1px solid rgba(255, 255, 255, 0.2)'
+                    border: '1px solid rgba(241, 163, 42, 0.18)'
                   }}
                   title="Officially launch class and open meeting in separate HD window"
                 >
@@ -702,7 +702,7 @@ export function InstructorClassroom() {
           <div className="glass-panel" style={{
             width: '100%',
             maxWidth: '520px',
-            backgroundColor: '#072224',
+            backgroundColor: 'rgba(44, 5, 13, 0.85)',
             border: '1px solid rgba(241, 163, 42, 0.25)',
             borderRadius: '16px',
             padding: '2rem',
@@ -714,7 +714,7 @@ export function InstructorClassroom() {
                 <h3 style={{ color: 'var(--color-white)', margin: 0, fontSize: '1.25rem', fontWeight: 700 }} className="gradient-text">
                   Request Class Reschedule
                 </h3>
-                <p style={{ color: '#94a3b8', fontSize: '0.82rem', margin: '4px 0 0 0' }}>
+                <p style={{ color: '#f0ceb3', fontSize: '0.82rem', margin: '4px 0 0 0' }}>
                   Admin will review this request and automatically notify your enrolled students.
                 </p>
               </div>
@@ -722,7 +722,7 @@ export function InstructorClassroom() {
                 type="button"
                 onClick={() => setShowRescheduleModal(false)}
                 className="glass-panel"
-                style={{ border: 'none', color: '#94a3b8', padding: '6px 10px', fontSize: '1rem', cursor: 'pointer', borderRadius: '6px' }}
+                style={{ border: 'none', color: '#f0ceb3', padding: '6px 10px', fontSize: '1rem', cursor: 'pointer', borderRadius: '6px' }}
               >
                 ✕
               </button>
@@ -762,7 +762,7 @@ export function InstructorClassroom() {
                   required
                 >
                   {classes.map((c) => (
-                    <option key={c.slot_id} value={c.slot_id} style={{ background: '#072224', color: '#fff' }}>
+                    <option key={c.slot_id} value={c.slot_id} style={{ background: 'rgba(44, 5, 13, 0.85)', color: '#fff' }}>
                       {c.days} — {c.time} ({c.students_count || 0} students)
                     </option>
                   ))}
@@ -772,7 +772,7 @@ export function InstructorClassroom() {
               {/* Two Dates on Top Side by Side */}
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                 <div>
-                  <label style={{ display: 'block', color: '#94a3b8', fontSize: '0.82rem', fontWeight: 600, marginBottom: '0.4rem' }}>
+                  <label style={{ display: 'block', color: '#f0ceb3', fontSize: '0.82rem', fontWeight: 600, marginBottom: '0.4rem' }}>
                     Original Class Date
                   </label>
                   <input
@@ -850,8 +850,8 @@ export function InstructorClassroom() {
                   style={{
                     padding: '9px 18px',
                     borderRadius: '8px',
-                    border: '1px solid rgba(255,255,255,0.15)',
-                    color: '#cbd5e1',
+                    border: '1px solid rgba(241, 163, 42, 0.18)',
+                    color: '#f0ceb3',
                     fontSize: '0.88rem',
                     cursor: 'pointer'
                   }}

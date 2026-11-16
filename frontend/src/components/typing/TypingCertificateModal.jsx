@@ -67,7 +67,7 @@ export default function TypingCertificateModal({ isOpen, onClose, certificate })
             style={{
               background: 'radial-gradient(circle at 50% 35%, #0c3e42 0%, #082d30 65%, #051e20 100%)',
               clipPath: 'polygon(75px 0, 100% 0, 100% 100%, 0 100%, 0 75px)',
-              boxShadow: '0 30px 70px -15px rgba(0, 0, 0, 0.8), 0 0 40px rgba(12, 62, 66, 0.5)',
+              boxShadow: '0 30px 70px -15px rgba(0, 0, 0, 0.8), 0 0 40px rgba(105, 14, 31, 0.6)',
               fontFamily: "'Cairo', 'Tajawal', sans-serif"
             }}
           >

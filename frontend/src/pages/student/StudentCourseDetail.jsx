@@ -72,7 +72,7 @@ export function StudentCourseDetail() {
             <div style={{ padding: '0.5rem 1rem', borderRadius: '6px', background: 'rgba(241, 163, 42, 0.15)', color: 'var(--color-primary)', fontSize: '0.85rem' }}>
               {tasks.length} Assigned Tasks
             </div>
-            <div style={{ padding: '0.5rem 1rem', borderRadius: '6px', background: 'rgba(52, 211, 153, 0.1)', color: '#34d399', fontSize: '0.85rem' }}>
+            <div style={{ padding: '0.5rem 1rem', borderRadius: '6px', background: 'rgba(241, 163, 42, 0.15)', color: 'var(--color-primary)', fontSize: '0.85rem' }}>
               {resources.length} Learning Resources
             </div>
           </div>
@@ -97,7 +97,7 @@ export function StudentCourseDetail() {
                     padding: '0.85rem',
                     borderRadius: '6px',
                     backgroundColor: 'rgba(255, 255, 255, 0.03)',
-                    border: '1px solid rgba(255, 255, 255, 0.06)',
+                    border: '1px solid rgba(241, 163, 42, 0.18)',
                   }}
                 >
                   <div style={{ fontWeight: 600, color: '#fff', fontSize: '0.9rem' }}>{t.title}</div>
@@ -126,7 +126,7 @@ export function StudentCourseDetail() {
                     padding: '0.85rem',
                     borderRadius: '6px',
                     backgroundColor: 'rgba(255, 255, 255, 0.03)',
-                    border: '1px solid rgba(255, 255, 255, 0.06)',
+                    border: '1px solid rgba(241, 163, 42, 0.18)',
                     display: 'flex',
                     justifyContent: 'space-between',
                     alignItems: 'center',

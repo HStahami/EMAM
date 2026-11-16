@@ -58,7 +58,7 @@ export function StudentLogin() {
           maxWidth: '440px',
           padding: '2.5rem',
           textAlign: 'center',
-          backgroundColor: 'rgba(15, 23, 42, 0.95)',
+          backgroundColor: 'rgba(44, 5, 13, 0.65)',
           border: '1px solid rgba(241, 163, 42, 0.18)',
           boxShadow: '0 20px 40px rgba(0,0,0,0.5)',
         }}
@@ -107,8 +107,8 @@ export function StudentLogin() {
               style={{
                 width: '100%',
                 padding: '0.75rem 1rem',
-                backgroundColor: 'rgba(15, 23, 42, 0.8)',
-                border: '1px solid rgba(255, 255, 255, 0.12)',
+                backgroundColor: 'rgba(44, 5, 13, 0.65)',
+                border: '1px solid rgba(241, 163, 42, 0.25)',
                 borderRadius: '8px',
                 color: '#fff',
                 fontSize: '0.9rem',
@@ -132,8 +132,8 @@ export function StudentLogin() {
                 style={{
                   width: '100%',
                   padding: '0.75rem 2.8rem 0.75rem 1rem',
-                  backgroundColor: 'rgba(15, 23, 42, 0.8)',
-                  border: '1px solid rgba(255, 255, 255, 0.12)',
+                  backgroundColor: 'rgba(44, 5, 13, 0.65)',
+                  border: '1px solid rgba(241, 163, 42, 0.25)',
                   borderRadius: '8px',
                   color: '#fff',
                   fontSize: '0.9rem',

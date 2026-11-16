@@ -143,7 +143,7 @@ export function StudentClassroom() {
           alignItems: 'center',
           flexWrap: 'wrap',
           gap: '1rem',
-          backgroundColor: '#072224',
+          backgroundColor: 'rgba(44, 5, 13, 0.85)',
           borderLeft: '4px solid var(--color-primary)'
         }}
       >
@@ -157,7 +157,7 @@ export function StudentClassroom() {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              color: '#cbd5e1',
+              color: '#f0ceb3',
               borderRadius: '8px',
               textDecoration: 'none'
             }}
@@ -179,7 +179,7 @@ export function StudentClassroom() {
                   {attendanceMarked ? (
                     <span style={{
                       fontSize: '0.78rem',
-                      color: '#34d399',
+                      color: 'var(--color-primary)',
                       background: 'rgba(241, 163, 42, 0.15)',
                       border: '1px solid rgba(241, 163, 42, 0.15)',
                       padding: '2px 8px',
@@ -228,14 +228,14 @@ export function StudentClassroom() {
         {/* Timetable & Instructor Info */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', flexWrap: 'wrap' }}>
           {slotLabel && (
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.85rem', color: '#cbd5e1' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.85rem', color: '#f0ceb3' }}>
               <Calendar size={15} style={{ color: 'var(--color-primary)' }} />
               <span>{slotLabel}</span>
             </div>
           )}
 
           {instructor && (
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.85rem', color: '#cbd5e1' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.85rem', color: '#f0ceb3' }}>
               <User size={15} style={{ color: 'var(--color-primary)' }} />
               <span>Instructor: <strong style={{ color: '#fff' }}>{instructor.name}</strong></span>
             </div>
@@ -253,7 +253,7 @@ export function StudentClassroom() {
                 padding: '6px 12px',
                 fontSize: '0.8rem',
                 color: 'var(--color-primary)',
-                border: '1px solid #38bdf8',
+                border: '1px solid var(--color-primary)',
                 cursor: 'pointer',
                 borderRadius: '6px',
                 fontWeight: 600
@@ -272,12 +272,12 @@ export function StudentClassroom() {
             style={{
               padding: '6px 12px',
               fontSize: '0.8rem',
-              color: '#cbd5e1',
+              color: '#f0ceb3',
               display: 'flex',
               alignItems: 'center',
               gap: '5px',
               cursor: 'pointer',
-              border: '1px solid rgba(255,255,255,0.1)'
+              border: '1px solid rgba(241, 163, 42, 0.18)'
             }}
           >
             {fullVideoMode ? <Minimize2 size={14} /> : <Maximize2 size={14} />}
@@ -291,7 +291,7 @@ export function StudentClassroom() {
         className="show-on-mobile-only"
         style={{
           display: 'none', // Overridden by CSS media queries
-          backgroundColor: '#092528',
+          backgroundColor: 'rgba(35, 4, 10, 0.92)',
           borderRadius: '8px',
           padding: '4px',
           gap: '4px'
@@ -305,7 +305,7 @@ export function StudentClassroom() {
             borderRadius: '6px',
             border: 'none',
             background: activeTabMobile === 'video' ? 'var(--color-primary)' : 'transparent',
-            color: activeTabMobile === 'video' ? '#041416' : '#94a3b8',
+            color: activeTabMobile === 'video' ? '#2c050d' : '#f0ceb3',
             fontWeight: 'bold',
             display: 'flex',
             alignItems: 'center',
@@ -323,7 +323,7 @@ export function StudentClassroom() {
             borderRadius: '6px',
             border: 'none',
             background: activeTabMobile === 'notes' ? 'var(--color-primary)' : 'transparent',
-            color: activeTabMobile === 'notes' ? '#041416' : '#94a3b8',
+            color: activeTabMobile === 'notes' ? '#2c050d' : '#f0ceb3',
             fontWeight: 'bold',
             display: 'flex',
             alignItems: 'center',
@@ -377,7 +377,7 @@ export function StudentClassroom() {
                   onClick={openUnlimitedWindow}
                   style={{
                     backgroundColor: 'var(--color-primary)',
-                    color: '#041416',
+                    color: '#2c050d',
                     border: 'none',
                     padding: '4px 10px',
                     borderRadius: '5px',
@@ -409,10 +409,10 @@ export function StudentClassroom() {
                 width: '100%',
                 height: '100%',
                 minHeight: '520px',
-                backgroundColor: '#041416',
+                backgroundColor: '#2c050d',
                 borderRadius: '12px',
                 overflow: 'hidden',
-                border: '1px solid rgba(0, 168, 150, 0.25)',
+                border: '1px solid rgba(241, 163, 42, 0.15)',
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
@@ -440,7 +440,7 @@ export function StudentClassroom() {
                 <h3 style={{ color: '#fff', fontSize: '1.35rem', margin: '0 0 8px 0', fontWeight: 700 }}>
                   Class Has Not Started Yet
                 </h3>
-                <p style={{ color: '#94a3b8', fontSize: '0.92rem', margin: 0, lineHeight: 1.6 }}>
+                <p style={{ color: '#f0ceb3', fontSize: '0.92rem', margin: 0, lineHeight: 1.6 }}>
                   Your instructor has not launched this live class session yet.
                   Please wait — this screen will connect automatically as soon as your instructor goes live!
                 </p>
@@ -450,12 +450,12 @@ export function StudentClassroom() {
                 display: 'flex',
                 alignItems: 'center',
                 gap: '8px',
-                color: '#cbd5e1',
+                color: '#f0ceb3',
                 fontSize: '0.82rem',
                 background: 'rgba(255, 255, 255, 0.05)',
                 padding: '6px 14px',
                 borderRadius: '20px',
-                border: '1px solid rgba(255, 255, 255, 0.1)'
+                border: '1px solid rgba(241, 163, 42, 0.18)'
               }}>
                 <RefreshCw size={13} className="spin-animation" style={{ color: 'var(--color-primary)' }} />
                 <span>Checking live status every 6s...</span>
@@ -467,11 +467,11 @@ export function StudentClassroom() {
                   style={{
                     padding: '9px 18px',
                     backgroundColor: 'rgba(255, 255, 255, 0.08)',
-                    color: '#cbd5e1',
+                    color: '#f0ceb3',
                     borderRadius: '8px',
                     textDecoration: 'none',
                     fontSize: '0.85rem',
-                    border: '1px solid rgba(255, 255, 255, 0.15)'
+                    border: '1px solid rgba(241, 163, 42, 0.18)'
                   }}
                 >
                   Return to Dashboard

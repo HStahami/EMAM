@@ -773,7 +773,7 @@ export default function StudentTypingLab() {
                 <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: '#f59e0b' }}></span> Ring</span>
                 <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: 'var(--color-primary)' }}></span> Middle</span>
                 <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: '#06b6d4' }}></span> Index</span>
-                <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: '#a855f7' }}></span> Thumb</span>
+                <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: 'var(--color-primary)' }}></span> Thumb</span>
               </div>
             </div>
 

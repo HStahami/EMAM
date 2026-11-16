@@ -66,7 +66,7 @@ export function StudentDashboard() {
         className="glass-panel"
         style={{
           padding: '2rem',
-          background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(7, 34, 36, 0.8) 100%)',
+          background: 'linear-gradient(135deg, rgba(44, 5, 13, 0.65) 0%, rgba(44, 5, 13, 0.85) 100%)',
           borderLeft: '4px solid var(--color-primary)',
           display: 'flex',
           justifyContent: 'space-between',
@@ -80,7 +80,7 @@ export function StudentDashboard() {
             <span style={{ fontSize: '0.8rem', background: 'rgba(241, 163, 42, 0.12)', color: 'var(--color-primary)', padding: '2px 8px', borderRadius: '4px', fontWeight: 600 }}>
               {data?.student?.student_code || 'STUDENT'}
             </span>
-            <span style={{ fontSize: '0.8rem', background: 'rgba(52, 211, 153, 0.15)', color: '#34d399', padding: '2px 8px', borderRadius: '4px', fontWeight: 600 }}>
+            <span style={{ fontSize: '0.8rem', background: 'rgba(241, 163, 42, 0.15)', color: 'var(--color-primary)', padding: '2px 8px', borderRadius: '4px', fontWeight: 600 }}>
               Active Enrolled
             </span>
           </div>
@@ -101,7 +101,7 @@ export function StudentDashboard() {
               padding: '1rem 1.25rem',
               backgroundColor: 'rgba(255, 255, 255, 0.05)',
               borderRadius: '8px',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
+              border: '1px solid rgba(241, 163, 42, 0.18)',
               minWidth: '220px',
             }}
           >
@@ -147,11 +147,11 @@ export function StudentDashboard() {
                     justifyContent: 'center',
                     gap: '6px',
                     fontSize: '0.75rem',
-                    color: '#cbd5e1',
+                    color: '#f0ceb3',
                     backgroundColor: 'rgba(255, 255, 255, 0.06)',
                     padding: '5px 8px',
                     borderRadius: '4px',
-                    border: '1px solid rgba(255, 255, 255, 0.1)'
+                    border: '1px solid rgba(241, 163, 42, 0.18)'
                   }}>
                     <span>Class Not Started Yet</span>
                   </div>
@@ -168,8 +168,8 @@ export function StudentDashboard() {
                       fontWeight: 600,
                       borderRadius: '6px',
                       backgroundColor: 'rgba(241, 163, 42, 0.12)',
-                      color: '#cbd5e1',
-                      border: '1px solid rgba(255, 255, 255, 0.15)'
+                      color: '#f0ceb3',
+                      border: '1px solid rgba(241, 163, 42, 0.18)'
                     }}
                   >
                     <BookOpen size={15} /> Open Classroom & Notes
@@ -186,8 +186,8 @@ export function StudentDashboard() {
         className="glass-panel"
         style={{
           padding: '1.5rem 2rem',
-          background: 'linear-gradient(135deg, rgba(12, 62, 66, 0.7) 0%, rgba(7, 34, 36, 0.9) 100%)',
-          border: '1px solid #14494e',
+          background: 'linear-gradient(135deg, rgba(105, 14, 31, 0.6) 0%, rgba(44, 5, 13, 0.85) 100%)',
+          border: '1px solid rgba(241, 163, 42, 0.28)',
           borderRadius: '12px',
           display: 'flex',
           justifyContent: 'space-between',
@@ -202,12 +202,12 @@ export function StudentDashboard() {
               width: '52px',
               height: '52px',
               borderRadius: '12px',
-              backgroundColor: 'rgba(223, 178, 89, 0.15)',
-              border: '1px solid rgba(223, 178, 89, 0.3)',
+              backgroundColor: 'rgba(241, 163, 42, 0.15)',
+              border: '1px solid rgba(241, 163, 42, 0.15)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              color: '#dfb259'
+              color: 'var(--color-primary)'
             }}
           >
             <Keyboard size={28} />
@@ -217,7 +217,7 @@ export function StudentDashboard() {
               <span style={{ fontSize: '0.75rem', fontWeight: 700, padding: '2px 8px', borderRadius: '4px', backgroundColor: 'rgba(241, 163, 42, 0.12)', color: '#f0ceb3', border: '1px solid rgba(241, 163, 42, 0.25)' }}>
                 200 Practice Levels
               </span>
-              <span style={{ fontSize: '0.75rem', fontWeight: 700, padding: '2px 8px', borderRadius: '4px', backgroundColor: 'rgba(223, 178, 89, 0.15)', color: '#dfb259', border: '1px solid rgba(223, 178, 89, 0.3)' }}>
+              <span style={{ fontSize: '0.75rem', fontWeight: 700, padding: '2px 8px', borderRadius: '4px', backgroundColor: 'rgba(241, 163, 42, 0.15)', color: 'var(--color-primary)', border: '1px solid rgba(241, 163, 42, 0.15)' }}>
                 Verified Certificate
               </span>
             </div>
@@ -242,9 +242,9 @@ export function StudentDashboard() {
             fontWeight: 700,
             textDecoration: 'none',
             borderRadius: '8px',
-            background: 'linear-gradient(to right, #dfb259, #b8862d)',
-            color: '#072224',
-            boxShadow: '0 4px 14px rgba(223, 178, 89, 0.3)'
+            background: 'linear-gradient(135deg, #f1a32a, #d48b19)',
+            color: 'rgba(44, 5, 13, 0.85)',
+            boxShadow: '0 4px 14px rgba(241, 163, 42, 0.15)'
           }}
         >
           <Keyboard size={18} />
@@ -276,7 +276,7 @@ export function StudentDashboard() {
           <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
             Attendance Rate
           </div>
-          <div style={{ fontSize: '1.8rem', fontWeight: 700, color: '#34d399', margin: '0.3rem 0' }}>
+          <div style={{ fontSize: '1.8rem', fontWeight: 700, color: 'var(--color-primary)', margin: '0.3rem 0' }}>
             {attendanceRate}%
           </div>
           <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)' }}>
@@ -284,11 +284,11 @@ export function StudentDashboard() {
           </div>
         </div>
 
-        <div className="glass-panel" style={{ padding: '1.4rem', borderLeft: '4px solid #f59e0b' }}>
+        <div className="glass-panel" style={{ padding: '1.4rem', borderLeft: '4px solid var(--color-primary)' }}>
           <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
             Tasks Completed
           </div>
-          <div style={{ fontSize: '1.8rem', fontWeight: 700, color: '#fbbf24', margin: '0.3rem 0' }}>
+          <div style={{ fontSize: '1.8rem', fontWeight: 700, color: 'var(--color-primary)', margin: '0.3rem 0' }}>
             {progress?.tasks?.total_submitted || 0} / {progress?.tasks?.total_assigned || 0}
           </div>
           <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)' }}>
@@ -296,11 +296,11 @@ export function StudentDashboard() {
           </div>
         </div>
 
-        <div className="glass-panel" style={{ padding: '1.4rem', borderLeft: '4px solid #a855f7' }}>
+        <div className="glass-panel" style={{ padding: '1.4rem', borderLeft: '4px solid var(--color-primary)' }}>
           <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
             Average Grade
           </div>
-          <div style={{ fontSize: '1.8rem', fontWeight: 700, color: '#c084fc', margin: '0.3rem 0' }}>
+          <div style={{ fontSize: '1.8rem', fontWeight: 700, color: 'var(--color-primary)', margin: '0.3rem 0' }}>
             {avgScore !== null && avgScore !== undefined ? `${avgScore}%` : 'N/A'}
           </div>
           <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)' }}>
@@ -326,13 +326,13 @@ export function StudentDashboard() {
           <Link to="/student/tasks" className="btn-primary" style={{ textDecoration: 'none', padding: '0.55rem 1.2rem', fontSize: '0.85rem' }}>
             View Tasks
           </Link>
-          <Link to="/student/courses" className="glass-panel" style={{ textDecoration: 'none', padding: '0.55rem 1.2rem', fontSize: '0.85rem', color: '#fff', border: '1px solid rgba(255,255,255,0.1)' }}>
+          <Link to="/student/courses" className="glass-panel" style={{ textDecoration: 'none', padding: '0.55rem 1.2rem', fontSize: '0.85rem', color: '#fff', border: '1px solid rgba(241, 163, 42, 0.18)' }}>
             Course Syllabus
           </Link>
-          <Link to="/student/attendance" className="glass-panel" style={{ textDecoration: 'none', padding: '0.55rem 1.2rem', fontSize: '0.85rem', color: '#fff', border: '1px solid rgba(255,255,255,0.1)' }}>
+          <Link to="/student/attendance" className="glass-panel" style={{ textDecoration: 'none', padding: '0.55rem 1.2rem', fontSize: '0.85rem', color: '#fff', border: '1px solid rgba(241, 163, 42, 0.18)' }}>
             Attendance Sheet
           </Link>
-          <Link to="/student/resources" className="glass-panel" style={{ textDecoration: 'none', padding: '0.55rem 1.2rem', fontSize: '0.85rem', color: '#fff', border: '1px solid rgba(255,255,255,0.1)' }}>
+          <Link to="/student/resources" className="glass-panel" style={{ textDecoration: 'none', padding: '0.55rem 1.2rem', fontSize: '0.85rem', color: '#fff', border: '1px solid rgba(241, 163, 42, 0.18)' }}>
             Study Materials
           </Link>
         </div>
@@ -364,7 +364,7 @@ export function StudentDashboard() {
                     padding: '1rem',
                     borderRadius: '8px',
                     backgroundColor: 'rgba(255, 255, 255, 0.03)',
-                    border: '1px solid rgba(255, 255, 255, 0.06)',
+                    border: '1px solid rgba(241, 163, 42, 0.18)',
                     display: 'flex',
                     justifyContent: 'space-between',
                     alignItems: 'center',
@@ -382,7 +382,7 @@ export function StudentDashboard() {
 
                   <div>
                     {t.is_submitted ? (
-                      <span style={{ fontSize: '0.75rem', padding: '3px 8px', borderRadius: '4px', background: 'rgba(52, 211, 153, 0.15)', color: '#34d399', fontWeight: 600 }}>
+                      <span style={{ fontSize: '0.75rem', padding: '3px 8px', borderRadius: '4px', background: 'rgba(241, 163, 42, 0.15)', color: 'var(--color-primary)', fontWeight: 600 }}>
                         Submitted
                       </span>
                     ) : (
@@ -425,7 +425,7 @@ export function StudentDashboard() {
                     padding: '1rem',
                     borderRadius: '8px',
                     backgroundColor: 'rgba(255, 255, 255, 0.03)',
-                    border: '1px solid rgba(255, 255, 255, 0.06)',
+                    border: '1px solid rgba(241, 163, 42, 0.18)',
                   }}
                 >
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.35rem' }}>
@@ -433,7 +433,7 @@ export function StudentDashboard() {
                       {sub.task_title}
                     </h4>
                     {sub.grade ? (
-                      <span style={{ fontSize: '0.75rem', padding: '2px 8px', borderRadius: '4px', background: 'rgba(192, 132, 252, 0.15)', color: '#c084fc', fontWeight: 700 }}>
+                      <span style={{ fontSize: '0.75rem', padding: '2px 8px', borderRadius: '4px', background: 'rgba(241, 163, 42, 0.15)', color: 'var(--color-primary)', fontWeight: 700 }}>
                         Grade: {sub.grade} ({sub.score}%)
                       </span>
                     ) : (
@@ -444,7 +444,7 @@ export function StudentDashboard() {
                   </div>
 
                   {sub.feedback && (
-                    <p style={{ margin: '0.4rem 0 0 0', fontSize: '0.8rem', color: '#34d399', fontStyle: 'italic', background: 'rgba(241, 163, 42, 0.15)', padding: '0.4rem 0.6rem', borderRadius: '4px' }}>
+                    <p style={{ margin: '0.4rem 0 0 0', fontSize: '0.8rem', color: 'var(--color-primary)', fontStyle: 'italic', background: 'rgba(241, 163, 42, 0.15)', padding: '0.4rem 0.6rem', borderRadius: '4px' }}>
                       "{sub.feedback}"
                     </p>
                   )}

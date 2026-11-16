@@ -88,9 +88,9 @@ export function StudentResources() {
             style={{
               flex: 1,
               minWidth: '220px',
-              backgroundColor: 'rgba(15, 23, 42, 0.8)',
+              backgroundColor: 'rgba(44, 5, 13, 0.65)',
               color: '#fff',
-              border: '1px solid rgba(255, 255, 255, 0.12)',
+              border: '1px solid rgba(241, 163, 42, 0.25)',
               padding: '0.6rem 1rem',
               borderRadius: '8px',
               fontSize: '0.9rem',
@@ -101,9 +101,9 @@ export function StudentResources() {
             value={typeFilter}
             onChange={(e) => setTypeFilter(e.target.value)}
             style={{
-              backgroundColor: 'rgba(15, 23, 42, 0.8)',
+              backgroundColor: 'rgba(44, 5, 13, 0.65)',
               color: '#fff',
-              border: '1px solid rgba(255, 255, 255, 0.12)',
+              border: '1px solid rgba(241, 163, 42, 0.25)',
               padding: '0.6rem 1rem',
               borderRadius: '8px',
               fontSize: '0.9rem',

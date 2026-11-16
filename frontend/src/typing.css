@@ -202,28 +202,28 @@
 .border-t-0 { border-top-width: 0px !important; }
 .border-none { border: none !important; }
 
-.border-\[\#14494e\] { border-color: #690e1f; }
-.border-\[\#14494e\]\/60 { border-color: rgba(105, 14, 31, 0.6); }
-.border-\[\#14494e\]\/70 { border-color: rgba(105, 14, 31, 0.7); }
+.border-\[\#690e1f\] { border-color: #690e1f; }
+.border-\[\#690e1f\]\/60 { border-color: rgba(105, 14, 31, 0.6); }
+.border-\[\#690e1f\]\/70 { border-color: rgba(105, 14, 31, 0.7); }
 .border-\[\#1a5b61\] { border-color: #7a1125; }
 .border-\[\#C5E5E8\] { border-color: #f1a32a; }
-.border-\[\#dfb259\] { border-color: #dfb259; }
-.border-\[\#dfb259\]\/20 { border-color: rgba(223, 178, 89, 0.2); }
-.border-\[\#dfb259\]\/30 { border-color: rgba(223, 178, 89, 0.3); }
+.border-\[\#f1a32a\] { border-color: #f1a32a; }
+.border-\[\#f1a32a\]\/20 { border-color: rgba(241, 163, 42, 0.2); }
+.border-\[\#f1a32a\]\/30 { border-color: rgba(241, 163, 42, 0.3); }
 
 .border-cyan-500\/20 { border-color: rgba(241, 163, 42, 0.2); }
 .border-cyan-500\/30 { border-color: rgba(241, 163, 42, 0.3); }
 .border-cyan-500\/40 { border-color: rgba(241, 163, 42, 0.4); }
-.border-emerald-400 { border-color: #34d399; }
-.border-emerald-400\/40 { border-color: rgba(52, 211, 153, 0.4); }
-.border-emerald-500 { border-color: #10b981; }
-.border-emerald-500\/20 { border-color: rgba(16, 185, 129, 0.2); }
-.border-emerald-500\/30 { border-color: rgba(16, 185, 129, 0.3); }
-.border-emerald-500\/40 { border-color: rgba(16, 185, 129, 0.4); }
-.border-emerald-500\/50 { border-color: rgba(16, 185, 129, 0.5); }
-.border-purple-500\/20 { border-color: rgba(168, 85, 247, 0.2); }
-.border-purple-500\/30 { border-color: rgba(168, 85, 247, 0.3); }
-.border-purple-500\/40 { border-color: rgba(168, 85, 247, 0.4); }
+.border-emerald-400 { border-color: #f1a32a; }
+.border-emerald-400\/40 { border-color: rgba(241, 163, 42, 0.4); }
+.border-emerald-500 { border-color: #f1a32a; }
+.border-emerald-500\/20 { border-color: rgba(241, 163, 42, 0.2); }
+.border-emerald-500\/30 { border-color: rgba(241, 163, 42, 0.3); }
+.border-emerald-500\/40 { border-color: rgba(241, 163, 42, 0.4); }
+.border-emerald-500\/50 { border-color: rgba(241, 163, 42, 0.5); }
+.border-purple-500\/20 { border-color: rgba(241, 163, 42, 0.2); }
+.border-purple-500\/30 { border-color: rgba(241, 163, 42, 0.3); }
+.border-purple-500\/40 { border-color: rgba(241, 163, 42, 0.4); }
 .border-amber-500\/30 { border-color: rgba(245, 158, 11, 0.3); }
 .border-amber-500\/40 { border-color: rgba(245, 158, 11, 0.4); }
 .border-rose-500 { border-color: #f43f5e; }
@@ -249,24 +249,24 @@
 .bg-\[\#093437\] { background-color: #4a0a16; }
 .bg-\[\#0c3e42\] { background-color: #5c0c1b; }
 .bg-\[\#0c3e42\]\/60 { background-color: rgba(92, 12, 27, 0.6); }
-.bg-\[\#14494e\] { background-color: #690e1f; }
+.bg-\[\#690e1f\] { background-color: #690e1f; }
 .bg-\[\#1a5b61\] { background-color: #7a1125; }
-.bg-\[\#dfb259\] { background-color: #dfb259; }
-.bg-\[\#dfb259\]\/10 { background-color: rgba(223, 178, 89, 0.1); }
-.bg-\[\#dfb259\]\/20 { background-color: rgba(223, 178, 89, 0.2); }
+.bg-\[\#f1a32a\] { background-color: #f1a32a; }
+.bg-\[\#f1a32a\]\/10 { background-color: rgba(241, 163, 42, 0.1); }
+.bg-\[\#f1a32a\]\/20 { background-color: rgba(241, 163, 42, 0.2); }
 
 .bg-cyan-500\/5 { background-color: rgba(6, 182, 212, 0.05); }
 .bg-cyan-500\/10 { background-color: rgba(6, 182, 212, 0.1); }
-.bg-emerald-500 { background-color: #10b981; }
-.bg-emerald-500\/10 { background-color: rgba(16, 185, 129, 0.1); }
-.bg-emerald-500\/20 { background-color: rgba(16, 185, 129, 0.2); }
-.bg-emerald-500\/30 { background-color: rgba(16, 185, 129, 0.3); }
-.bg-emerald-600 { background-color: #059669; }
-.bg-emerald-950\/60 { background-color: rgba(2, 44, 34, 0.6); }
+.bg-emerald-500 { background-color: #f1a32a; }
+.bg-emerald-500\/10 { background-color: rgba(241, 163, 42, 0.1); }
+.bg-emerald-500\/20 { background-color: rgba(241, 163, 42, 0.2); }
+.bg-emerald-500\/30 { background-color: rgba(241, 163, 42, 0.3); }
+.bg-emerald-600 { background-color: #f1a32a; }
+.bg-emerald-950\/60 { background-color: rgba(44, 5, 13, 0.6); }
 .bg-cyan-500 { background-color: #06b6d4; }
-.bg-purple-500 { background-color: #a855f7; }
-.bg-purple-500\/10 { background-color: rgba(168, 85, 247, 0.1); }
-.bg-purple-500\/20 { background-color: rgba(168, 85, 247, 0.2); }
+.bg-purple-500 { background-color: #f1a32a; }
+.bg-purple-500\/10 { background-color: rgba(241, 163, 42, 0.1); }
+.bg-purple-500\/20 { background-color: rgba(241, 163, 42, 0.2); }
 .bg-amber-500 { background-color: #f59e0b; }
 .bg-amber-500\/10 { background-color: rgba(245, 158, 11, 0.1); }
 .bg-rose-500 { background-color: #f43f5e; }
@@ -280,14 +280,14 @@
 .bg-transparent { background-color: transparent !important; }
 
 /* Gradients */
-.bg-gradient-to-r { background-image: linear-gradient(to right, var(--tw-gradient-stops, #dfb259, #b8862d)); }
-.bg-gradient-to-l { background-image: linear-gradient(to left, var(--tw-gradient-stops, #dfb259, #b8862d)); }
-.bg-gradient-to-br { background-image: linear-gradient(to bottom right, var(--tw-gradient-stops, #dfb259, #b8862d)); }
+.bg-gradient-to-r { background-image: linear-gradient(to right, var(--tw-gradient-stops, #f1a32a, #690e1f)); }
+.bg-gradient-to-l { background-image: linear-gradient(to left, var(--tw-gradient-stops, #f1a32a, #690e1f)); }
+.bg-gradient-to-br { background-image: linear-gradient(to bottom right, var(--tw-gradient-stops, #f1a32a, #690e1f)); }
 
-.from-\[\#dfb259\] { --tw-gradient-stops: #dfb259, #b8862d; }
-.to-\[\#b8862d\] { --tw-gradient-stops: #dfb259, #b8862d; }
-.from-\[\#dfb259\]\/20 { --tw-gradient-stops: rgba(223, 178, 89, 0.2), rgba(184, 134, 45, 0.2); }
-.to-\[\#b8862d\]\/20 { --tw-gradient-stops: rgba(223, 178, 89, 0.2), rgba(184, 134, 45, 0.2); }
+.from-\[\#f1a32a\] { --tw-gradient-stops: #f1a32a, #690e1f; }
+.to-\[\#690e1f\] { --tw-gradient-stops: #f1a32a, #690e1f; }
+.from-\[\#f1a32a\]\/20 { --tw-gradient-stops: rgba(241, 163, 42, 0.2), rgba(105, 14, 31, 0.2); }
+.to-\[\#690e1f\]\/20 { --tw-gradient-stops: rgba(241, 163, 42, 0.2), rgba(105, 14, 31, 0.2); }
 
 /* Typography */
 .text-white { color: #ffffff; }
@@ -299,19 +299,19 @@
 .text-\[\#b6e4e8\] { color: #f0ceb3; }
 .text-\[\#d6eeee\] { color: #fdfdfd; }
 .text-\[\#a0d4d8\] { color: #f0ceb3; }
-.text-\[\#dfb259\] { color: #dfb259; }
+.text-\[\#f1a32a\] { color: #f1a32a; }
 .text-\[\#072224\] { color: #2c050d; }
 
 .text-cyan-300 { color: #67e8f9; }
 .text-cyan-400 { color: #22d3ee; }
-.text-emerald-300 { color: #6ee7b7; }
-.text-emerald-400 { color: #34d399; }
+.text-emerald-300 { color: #f0ceb3; }
+.text-emerald-400 { color: #f1a32a; }
 .text-amber-300 { color: #fcd34d; }
 .text-amber-400 { color: #fbbf24; }
 .text-rose-300 { color: #fda4af; }
 .text-rose-400 { color: #fb7185; }
-.text-purple-300 { color: #d8b4fe; }
-.text-purple-400 { color: #c084fc; }
+.text-purple-300 { color: #f0ceb3; }
+.text-purple-400 { color: #f0ceb3; }
 .text-red-300 { color: #fca5a5; }
 .text-red-400 { color: #f87171; }
 
@@ -354,7 +354,7 @@
 .underline { text-decoration: underline; }
 .underline-offset-8 { text-underline-offset: 8px; }
 .decoration-4 { text-decoration-thickness: 4px; }
-.decoration-\[\#dfb259\] { text-decoration-color: #dfb259; }
+.decoration-\[\#f1a32a\] { text-decoration-color: #f1a32a; }
 
 /* Shadows & Filters */
 .shadow-sm { box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); }
@@ -381,9 +381,9 @@
 .hover\:brightness-110:hover { filter: brightness(1.1); }
 .hover\:bg-white\/10:hover { background-color: rgba(255, 255, 255, 0.1); }
 .hover\:bg-\[\#1a5b61\]:hover { background-color: #7a1125; }
-.hover\:bg-\[\#14494e\]:hover { background-color: #690e1f; }
-.hover\:bg-emerald-500:hover { background-color: #10b981; }
-.hover\:bg-emerald-500\/30:hover { background-color: rgba(16, 185, 129, 0.3); }
+.hover\:bg-\[\#690e1f\]:hover { background-color: #690e1f; }
+.hover\:bg-emerald-500:hover { background-color: #f1a32a; }
+.hover\:bg-emerald-500\/30:hover { background-color: rgba(241, 163, 42, 0.3); }
 .hover\:border-\[\#C5E5E8\]:hover { border-color: #f1a32a; }
 .hover\:text-white:hover { color: #ffffff; }
 .hover\:underline:hover { text-decoration: underline; }

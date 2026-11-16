@@ -274,7 +274,7 @@ export function StudentProfile() {
           flexWrap: 'wrap',
           alignItems: 'center',
           gap: '1.5rem',
-          background: 'linear-gradient(135deg, rgba(241, 163, 42, 0.15) 0%, rgba(15, 23, 42, 0.4) 100%)',
+          background: 'linear-gradient(135deg, rgba(241, 163, 42, 0.15) 0%, rgba(44, 5, 13, 0.65) 100%)',
           border: '1px solid rgba(241, 163, 42, 0.15)',
         }}
       >
@@ -308,7 +308,7 @@ export function StudentProfile() {
                 fontSize: '0.85rem',
                 fontWeight: 700,
                 background: 'rgba(241, 163, 42, 0.15)',
-                color: '#34d399',
+                color: 'var(--color-primary)',
                 padding: '0.25rem 0.65rem',
                 borderRadius: '6px',
                 border: '1px solid rgba(241, 163, 42, 0.15)',
@@ -320,9 +320,10 @@ export function StudentProfile() {
               style={{
                 fontSize: '0.75rem',
                 fontWeight: 600,
-                background: status.toLowerCase() === 'active' ? 'rgba(34, 197, 94, 0.15)' : 'rgba(234, 179, 8, 0.15)',
-                color: status.toLowerCase() === 'active' ? '#4ade80' : '#facc15',
-                padding: '0.2rem 0.55rem',
+                background: 'rgba(241, 163, 42, 0.15)',
+                color: 'var(--color-primary)',
+                border: '1px solid rgba(241, 163, 42, 0.3)',
+                padding: '0.2rem 0.65rem',
                 borderRadius: '999px',
                 textTransform: 'uppercase',
               }}
@@ -330,18 +331,18 @@ export function StudentProfile() {
               {status}
             </span>
           </div>
-          <p style={{ margin: 0, color: '#94a3b8', fontSize: '0.95rem' }}>
+          <p style={{ margin: 0, color: '#f0ceb3', fontSize: '0.95rem' }}>
             {email}
           </p>
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '0.25rem' }}>
-          <span style={{ fontSize: '0.8rem', color: '#64748b' }}>Account Role</span>
+          <span style={{ fontSize: '0.8rem', color: 'rgba(241,163,42,0.55)' }}>Account Role</span>
           <span style={{ fontSize: '0.9rem', fontWeight: 600, color: '#e2e8f0', textTransform: 'capitalize' }}>
             {user?.role || 'Student'}
           </span>
           {profile?.created_at && (
-            <span style={{ fontSize: '0.75rem', color: '#64748b', marginTop: '0.25rem' }}>
+            <span style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)', marginTop: '0.25rem' }}>
               Joined: {new Date(profile.created_at).toLocaleDateString()}
             </span>
           )}
@@ -363,7 +364,7 @@ export function StudentProfile() {
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 700, color: '#34d399', fontSize: '1.05rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 700, color: 'var(--color-primary)', fontSize: '1.05rem' }}>
               Profile Details Locked & Verified
             </div>
             {hasRequestedUpdate ? (
@@ -375,13 +376,13 @@ export function StudentProfile() {
                 type="button"
                 onClick={() => setShowUpdateRequestModal(true)}
                 className="btn-primary"
-                style={{ padding: '0.45rem 1rem', fontSize: '0.85rem', cursor: isCompleted ? 'not-allowed' : 'pointer', opacity: isCompleted ? 0.6 : 1, background: 'linear-gradient(135deg, #f59e0b, #d97706)', border: 'none' }}
+                style={{ padding: '0.45rem 1rem', fontSize: '0.85rem', cursor: isCompleted ? 'not-allowed' : 'pointer', opacity: isCompleted ? 0.6 : 1 }}
               >
                 Request Profile Update
               </button>
             )}
           </div>
-          <p style={{ margin: 0, fontSize: '0.88rem', color: '#94a3b8' }}>
+          <p style={{ margin: 0, fontSize: '0.88rem', color: '#f0ceb3' }}>
             Your profile details are saved and locked to prevent unauthorized changes. If you need to make updates, click "Request Profile Update" to send a note to administration.
           </p>
           {hasRequestedUpdate && profile?.update_request_note && (
@@ -400,7 +401,7 @@ export function StudentProfile() {
             borderRadius: '10px',
             background: 'rgba(241, 163, 42, 0.15)',
             border: '1px solid rgba(241, 163, 42, 0.15)',
-            color: '#34d399',
+            color: 'var(--color-primary)',
             fontSize: '0.95rem',
           }}
         >
@@ -415,7 +416,7 @@ export function StudentProfile() {
             borderRadius: '10px',
             background: 'rgba(241, 163, 42, 0.15)',
             border: '1px solid rgba(241, 163, 42, 0.15)',
-            color: '#34d399',
+            color: 'var(--color-primary)',
             fontSize: '0.95rem',
             display: 'flex',
             alignItems: 'center',
@@ -452,7 +453,7 @@ export function StudentProfile() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.25rem' }}>
             {/* 1. Name */}
             <div>
-              <label htmlFor="student-profile-name" style={{ display: 'block', fontSize: '0.85rem', color: '#94a3b8', marginBottom: '0.4rem', fontWeight: 500 }}>
+              <label htmlFor="student-profile-name" style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', marginBottom: '0.4rem', fontWeight: 500 }}>
                 Name
               </label>
               <input
@@ -464,19 +465,19 @@ export function StudentProfile() {
                   width: '100%',
                   padding: '0.75rem',
                   borderRadius: '8px',
-                  border: '1px solid rgba(255, 255, 255, 0.1)',
-                  background: 'rgba(15, 23, 42, 0.6)',
-                  color: '#64748b',
+                  border: '1px solid rgba(241, 163, 42, 0.18)',
+                  background: 'rgba(44, 5, 13, 0.65)',
+                  color: 'rgba(241,163,42,0.55)',
                   cursor: 'not-allowed',
                   boxSizing: 'border-box',
                 }}
               />
-              <span style={{ fontSize: '0.75rem', color: '#64748b' }}>Official registration name.</span>
+              <span style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)' }}>Official registration name.</span>
             </div>
 
             {/* 2. Father/Guardian Name */}
             <div>
-              <label htmlFor="student-profile-guardian" style={{ display: 'block', fontSize: '0.85rem', color: '#cbd5e1', marginBottom: '0.4rem', fontWeight: 500 }}>
+              <label htmlFor="student-profile-guardian" style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', marginBottom: '0.4rem', fontWeight: 500 }}>
                 Father / Guardian Name *
               </label>
               <input
@@ -492,8 +493,8 @@ export function StudentProfile() {
                   width: '100%',
                   padding: '0.75rem',
                   borderRadius: '8px',
-                  border: '1px solid rgba(255, 255, 255, 0.15)',
-                  background: 'rgba(15, 23, 42, 0.4)',
+                  border: '1px solid rgba(241, 163, 42, 0.18)',
+                  background: 'rgba(44, 5, 13, 0.65)',
                   color: '#f8fafc',
                   outline: 'none',
                   boxSizing: 'border-box',
@@ -503,7 +504,7 @@ export function StudentProfile() {
 
             {/* 3. Email */}
             <div>
-              <label htmlFor="student-profile-email" style={{ display: 'block', fontSize: '0.85rem', color: '#94a3b8', marginBottom: '0.4rem', fontWeight: 500 }}>
+              <label htmlFor="student-profile-email" style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', marginBottom: '0.4rem', fontWeight: 500 }}>
                 Email
               </label>
               <input
@@ -515,19 +516,19 @@ export function StudentProfile() {
                   width: '100%',
                   padding: '0.75rem',
                   borderRadius: '8px',
-                  border: '1px solid rgba(255, 255, 255, 0.1)',
-                  background: 'rgba(15, 23, 42, 0.6)',
-                  color: '#64748b',
+                  border: '1px solid rgba(241, 163, 42, 0.18)',
+                  background: 'rgba(44, 5, 13, 0.65)',
+                  color: 'rgba(241,163,42,0.55)',
                   cursor: 'not-allowed',
                   boxSizing: 'border-box',
                 }}
               />
-              <span style={{ fontSize: '0.75rem', color: '#64748b' }}>Account login email identifier.</span>
+              <span style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)' }}>Account login email identifier.</span>
             </div>
 
             {/* 4. Phone Number */}
             <div>
-              <label htmlFor="student-profile-phone" style={{ display: 'block', fontSize: '0.85rem', color: '#cbd5e1', marginBottom: '0.4rem', fontWeight: 500 }}>
+              <label htmlFor="student-profile-phone" style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', marginBottom: '0.4rem', fontWeight: 500 }}>
                 Phone Number *
               </label>
               <input
@@ -543,8 +544,8 @@ export function StudentProfile() {
                   width: '100%',
                   padding: '0.75rem',
                   borderRadius: '8px',
-                  border: '1px solid rgba(255, 255, 255, 0.15)',
-                  background: 'rgba(15, 23, 42, 0.4)',
+                  border: '1px solid rgba(241, 163, 42, 0.18)',
+                  background: 'rgba(44, 5, 13, 0.65)',
                   color: '#f8fafc',
                   outline: 'none',
                   boxSizing: 'border-box',
@@ -554,7 +555,7 @@ export function StudentProfile() {
 
             {/* 5. Father/Guardian Number */}
             <div>
-              <label htmlFor="student-profile-guardian-phone" style={{ display: 'block', fontSize: '0.85rem', color: '#cbd5e1', marginBottom: '0.4rem', fontWeight: 500 }}>
+              <label htmlFor="student-profile-guardian-phone" style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', marginBottom: '0.4rem', fontWeight: 500 }}>
                 Father / Guardian Number *
               </label>
               <input
@@ -570,8 +571,8 @@ export function StudentProfile() {
                   width: '100%',
                   padding: '0.75rem',
                   borderRadius: '8px',
-                  border: '1px solid rgba(255, 255, 255, 0.15)',
-                  background: 'rgba(15, 23, 42, 0.4)',
+                  border: '1px solid rgba(241, 163, 42, 0.18)',
+                  background: 'rgba(44, 5, 13, 0.65)',
                   color: '#f8fafc',
                   outline: 'none',
                   boxSizing: 'border-box',
@@ -581,7 +582,7 @@ export function StudentProfile() {
 
             {/* 6. Date of Birth */}
             <div>
-              <label htmlFor="student-profile-dob" style={{ display: 'block', fontSize: '0.85rem', color: '#cbd5e1', marginBottom: '0.4rem', fontWeight: 500 }}>
+              <label htmlFor="student-profile-dob" style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', marginBottom: '0.4rem', fontWeight: 500 }}>
                 Date of Birth *
               </label>
               <input
@@ -596,8 +597,8 @@ export function StudentProfile() {
                   width: '100%',
                   padding: '0.75rem',
                   borderRadius: '8px',
-                  border: '1px solid rgba(255, 255, 255, 0.15)',
-                  background: 'rgba(15, 23, 42, 0.4)',
+                  border: '1px solid rgba(241, 163, 42, 0.18)',
+                  background: 'rgba(44, 5, 13, 0.65)',
                   color: '#f8fafc',
                   outline: 'none',
                   boxSizing: 'border-box',
@@ -607,7 +608,7 @@ export function StudentProfile() {
 
             {/* 7. Country */}
             <div>
-              <label htmlFor="student-profile-country" style={{ display: 'block', fontSize: '0.85rem', color: '#cbd5e1', marginBottom: '0.4rem', fontWeight: 500 }}>
+              <label htmlFor="student-profile-country" style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', marginBottom: '0.4rem', fontWeight: 500 }}>
                 Country *
               </label>
               <input
@@ -623,8 +624,8 @@ export function StudentProfile() {
                   width: '100%',
                   padding: '0.75rem',
                   borderRadius: '8px',
-                  border: '1px solid rgba(255, 255, 255, 0.15)',
-                  background: 'rgba(15, 23, 42, 0.4)',
+                  border: '1px solid rgba(241, 163, 42, 0.18)',
+                  background: 'rgba(44, 5, 13, 0.65)',
                   color: '#f8fafc',
                   outline: 'none',
                   boxSizing: 'border-box',
@@ -634,7 +635,7 @@ export function StudentProfile() {
 
             {/* 8. City */}
             <div>
-              <label htmlFor="student-profile-city" style={{ display: 'block', fontSize: '0.85rem', color: '#cbd5e1', marginBottom: '0.4rem', fontWeight: 500 }}>
+              <label htmlFor="student-profile-city" style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', marginBottom: '0.4rem', fontWeight: 500 }}>
                 City *
               </label>
               <input
@@ -650,8 +651,8 @@ export function StudentProfile() {
                   width: '100%',
                   padding: '0.75rem',
                   borderRadius: '8px',
-                  border: '1px solid rgba(255, 255, 255, 0.15)',
-                  background: 'rgba(15, 23, 42, 0.4)',
+                  border: '1px solid rgba(241, 163, 42, 0.18)',
+                  background: 'rgba(44, 5, 13, 0.65)',
                   color: '#f8fafc',
                   outline: 'none',
                   boxSizing: 'border-box',
@@ -661,7 +662,7 @@ export function StudentProfile() {
 
             {/* 9. Address */}
             <div style={{ gridColumn: '1 / -1' }}>
-              <label htmlFor="student-profile-address" style={{ display: 'block', fontSize: '0.85rem', color: '#cbd5e1', marginBottom: '0.4rem', fontWeight: 500 }}>
+              <label htmlFor="student-profile-address" style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', marginBottom: '0.4rem', fontWeight: 500 }}>
                 Address *
               </label>
               <input
@@ -677,8 +678,8 @@ export function StudentProfile() {
                   width: '100%',
                   padding: '0.75rem',
                   borderRadius: '8px',
-                  border: '1px solid rgba(255, 255, 255, 0.15)',
-                  background: 'rgba(15, 23, 42, 0.4)',
+                  border: '1px solid rgba(241, 163, 42, 0.18)',
+                  background: 'rgba(44, 5, 13, 0.65)',
                   color: '#f8fafc',
                   outline: 'none',
                   boxSizing: 'border-box',
@@ -696,7 +697,7 @@ export function StudentProfile() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.25rem' }}>
             {/* 10. Education */}
             <div>
-              <label htmlFor="student-profile-education" style={{ display: 'block', fontSize: '0.85rem', color: '#cbd5e1', marginBottom: '0.4rem', fontWeight: 500 }}>
+              <label htmlFor="student-profile-education" style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', marginBottom: '0.4rem', fontWeight: 500 }}>
                 Education *
               </label>
               <select
@@ -710,8 +711,8 @@ export function StudentProfile() {
                   width: '100%',
                   padding: '0.75rem',
                   borderRadius: '8px',
-                  border: '1px solid rgba(255, 255, 255, 0.15)',
-                  background: 'rgba(15, 23, 42, 0.8)',
+                  border: '1px solid rgba(241, 163, 42, 0.18)',
+                  background: 'rgba(44, 5, 13, 0.65)',
                   color: '#f8fafc',
                   outline: 'none',
                   boxSizing: 'border-box',
@@ -730,7 +731,7 @@ export function StudentProfile() {
 
             {/* 11. How did you hear about us? */}
             <div>
-              <label htmlFor="student-profile-referral" style={{ display: 'block', fontSize: '0.85rem', color: '#cbd5e1', marginBottom: '0.4rem', fontWeight: 500 }}>
+              <label htmlFor="student-profile-referral" style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', marginBottom: '0.4rem', fontWeight: 500 }}>
                 How did you hear about us? *
               </label>
               <select
@@ -744,8 +745,8 @@ export function StudentProfile() {
                   width: '100%',
                   padding: '0.75rem',
                   borderRadius: '8px',
-                  border: '1px solid rgba(255, 255, 255, 0.15)',
-                  background: 'rgba(15, 23, 42, 0.8)',
+                  border: '1px solid rgba(241, 163, 42, 0.18)',
+                  background: 'rgba(44, 5, 13, 0.65)',
                   color: '#f8fafc',
                   outline: 'none',
                   boxSizing: 'border-box',
@@ -771,7 +772,7 @@ export function StudentProfile() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.25rem' }}>
             {/* Course */}
             <div>
-              <label htmlFor="student-profile-course" style={{ display: 'block', fontSize: '0.85rem', color: '#cbd5e1', marginBottom: '0.4rem', fontWeight: 500 }}>
+              <label htmlFor="student-profile-course" style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', marginBottom: '0.4rem', fontWeight: 500 }}>
                 Course *
               </label>
               <select
@@ -785,8 +786,8 @@ export function StudentProfile() {
                   width: '100%',
                   padding: '0.75rem',
                   borderRadius: '8px',
-                  border: '1px solid rgba(255, 255, 255, 0.15)',
-                  background: 'rgba(15, 23, 42, 0.8)',
+                  border: '1px solid rgba(241, 163, 42, 0.18)',
+                  background: 'rgba(44, 5, 13, 0.65)',
                   color: '#f8fafc',
                   outline: 'none',
                   boxSizing: 'border-box',
@@ -801,7 +802,7 @@ export function StudentProfile() {
             {/* Dynamic Modules Options based on Course */}
             {formData.course === 'Modern Standard Arabic' && (
               <div>
-                <label htmlFor="student-profile-modules-opt" style={{ display: 'block', fontSize: '0.85rem', color: '#cbd5e1', marginBottom: '0.4rem', fontWeight: 500 }}>
+                <label htmlFor="student-profile-modules-opt" style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', marginBottom: '0.4rem', fontWeight: 500 }}>
                   Modules (Options) *
                 </label>
                 <select
@@ -815,8 +816,8 @@ export function StudentProfile() {
                     width: '100%',
                     padding: '0.75rem',
                     borderRadius: '8px',
-                    border: '1px solid rgba(255, 255, 255, 0.15)',
-                    background: 'rgba(15, 23, 42, 0.8)',
+                    border: '1px solid rgba(241, 163, 42, 0.18)',
+                    background: 'rgba(44, 5, 13, 0.65)',
                     color: '#f8fafc',
                     outline: 'none',
                     boxSizing: 'border-box',
@@ -833,7 +834,7 @@ export function StudentProfile() {
 
             {formData.course === 'Arabic Training (MENA)' && (
               <div>
-                <label htmlFor="student-profile-module-track" style={{ display: 'block', fontSize: '0.85rem', color: '#cbd5e1', marginBottom: '0.4rem', fontWeight: 500 }}>
+                <label htmlFor="student-profile-module-track" style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', marginBottom: '0.4rem', fontWeight: 500 }}>
                   Module / Training Track *
                 </label>
                 <select
@@ -845,8 +846,8 @@ export function StudentProfile() {
                     width: '100%',
                     padding: '0.75rem',
                     borderRadius: '8px',
-                    border: '1px solid rgba(255, 255, 255, 0.1)',
-                    background: 'rgba(15, 23, 42, 0.5)',
+                    border: '1px solid rgba(241, 163, 42, 0.18)',
+                    background: 'rgba(44, 5, 13, 0.65)',
                     color: 'var(--color-primary)',
                     fontWeight: 600,
                     cursor: 'not-allowed',
@@ -860,7 +861,7 @@ export function StudentProfile() {
 
             {/* Days */}
             <div>
-              <label htmlFor="student-profile-days" style={{ display: 'block', fontSize: '0.85rem', color: '#cbd5e1', marginBottom: '0.4rem', fontWeight: 500 }}>
+              <label htmlFor="student-profile-days" style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', marginBottom: '0.4rem', fontWeight: 500 }}>
                 Days *
               </label>
               <select
@@ -874,8 +875,8 @@ export function StudentProfile() {
                   width: '100%',
                   padding: '0.75rem',
                   borderRadius: '8px',
-                  border: '1px solid rgba(255, 255, 255, 0.15)',
-                  background: 'rgba(15, 23, 42, 0.8)',
+                  border: '1px solid rgba(241, 163, 42, 0.18)',
+                  background: 'rgba(44, 5, 13, 0.65)',
                   color: '#f8fafc',
                   outline: 'none',
                   boxSizing: 'border-box',
@@ -891,7 +892,7 @@ export function StudentProfile() {
 
             {/* Class Type: for Modern Standard Arabic & Arabic For Kids */}
             <div>
-              <label htmlFor="student-profile-class-type" style={{ display: 'block', fontSize: '0.85rem', color: '#cbd5e1', marginBottom: '0.4rem', fontWeight: 500 }}>
+              <label htmlFor="student-profile-class-type" style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', marginBottom: '0.4rem', fontWeight: 500 }}>
                 Class Type *
               </label>
               {formData.course === 'Arabic Training (MENA)' ? (
@@ -903,8 +904,8 @@ export function StudentProfile() {
                     width: '100%',
                     padding: '0.75rem',
                     borderRadius: '8px',
-                    border: '1px solid rgba(255, 255, 255, 0.1)',
-                    background: 'rgba(15, 23, 42, 0.5)',
+                    border: '1px solid rgba(241, 163, 42, 0.18)',
+                    background: 'rgba(44, 5, 13, 0.65)',
                     color: 'var(--color-primary)',
                     fontWeight: 600,
                     cursor: 'not-allowed',
@@ -922,8 +923,8 @@ export function StudentProfile() {
                     width: '100%',
                     padding: '0.75rem',
                     borderRadius: '8px',
-                    border: '1px solid rgba(255, 255, 255, 0.1)',
-                    background: 'rgba(15, 23, 42, 0.5)',
+                    border: '1px solid rgba(241, 163, 42, 0.18)',
+                    background: 'rgba(44, 5, 13, 0.65)',
                     color: 'var(--color-primary)',
                     fontWeight: 600,
                     cursor: 'not-allowed',
@@ -943,8 +944,8 @@ export function StudentProfile() {
                     width: '100%',
                     padding: '0.75rem',
                     borderRadius: '8px',
-                    border: '1px solid rgba(255, 255, 255, 0.15)',
-                    background: 'rgba(15, 23, 42, 0.8)',
+                    border: '1px solid rgba(241, 163, 42, 0.18)',
+                    background: 'rgba(44, 5, 13, 0.65)',
                     color: '#f8fafc',
                     outline: 'none',
                     boxSizing: 'border-box',
@@ -958,7 +959,7 @@ export function StudentProfile() {
 
             {/* Preferred Time Slot (Student's suggestion) */}
             <div style={{ gridColumn: '1 / -1' }}>
-              <label htmlFor="student-profile-time-slot" style={{ display: 'block', fontSize: '0.85rem', color: '#cbd5e1', marginBottom: '0.4rem', fontWeight: 500 }}>
+              <label htmlFor="student-profile-time-slot" style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', marginBottom: '0.4rem', fontWeight: 500 }}>
                 Preferred Time Slot (Your Suggestion) *
               </label>
               <input
@@ -974,15 +975,15 @@ export function StudentProfile() {
                   width: '100%',
                   padding: '0.75rem',
                   borderRadius: '8px',
-                  border: '1px solid rgba(255, 255, 255, 0.15)',
-                  background: 'rgba(15, 23, 42, 0.8)',
+                  border: '1px solid rgba(241, 163, 42, 0.18)',
+                  background: 'rgba(44, 5, 13, 0.65)',
                   color: '#f8fafc',
                   outline: 'none',
                   boxSizing: 'border-box',
                 }}
               />
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem', marginTop: '0.5rem', alignItems: 'center' }}>
-                <span style={{ fontSize: '0.75rem', color: '#94a3b8' }}>Quick suggestions:</span>
+                <span style={{ fontSize: '0.75rem', color: '#f0ceb3' }}>Quick suggestions:</span>
                 {[
                   'Morning (08:00 AM - 12:00 PM)',
                   'Afternoon (12:00 PM - 05:00 PM)',
@@ -1000,7 +1001,7 @@ export function StudentProfile() {
                       padding: '3px 9px',
                       borderRadius: '12px',
                       background: formData.preferred_time_slot === sug ? 'rgba(241, 163, 42, 0.25)' : 'rgba(255, 255, 255, 0.05)',
-                      color: formData.preferred_time_slot === sug ? 'var(--color-primary)' : '#cbd5e1',
+                      color: formData.preferred_time_slot === sug ? 'var(--color-primary)' : '#f0ceb3',
                       border: formData.preferred_time_slot === sug ? '1px solid var(--color-primary)' : '1px solid rgba(255, 255, 255, 0.1)',
                       cursor: isCompleted ? 'not-allowed' : 'pointer', opacity: isCompleted ? 0.6 : 1,
                       transition: 'all 0.15s ease',
@@ -1020,7 +1021,7 @@ export function StudentProfile() {
             Academic Bio & Arabic Goals
           </h2>
           <div>
-            <label htmlFor="student-profile-bio" style={{ display: 'block', fontSize: '0.85rem', color: '#cbd5e1', marginBottom: '0.4rem', fontWeight: 500 }}>
+            <label htmlFor="student-profile-bio" style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', marginBottom: '0.4rem', fontWeight: 500 }}>
               About You / Goals in Arabic Learning
             </label>
             <textarea
@@ -1035,8 +1036,8 @@ export function StudentProfile() {
                 width: '100%',
                 padding: '0.75rem',
                 borderRadius: '8px',
-                border: '1px solid rgba(255, 255, 255, 0.15)',
-                background: 'rgba(15, 23, 42, 0.4)',
+                border: '1px solid rgba(241, 163, 42, 0.18)',
+                background: 'rgba(44, 5, 13, 0.65)',
                 color: '#f8fafc',
                 outline: 'none',
                 resize: 'vertical',
@@ -1080,9 +1081,9 @@ export function StudentProfile() {
                 style={{
                   padding: '0.75rem 1.5rem',
                   borderRadius: '8px',
-                  border: '1px solid rgba(255, 255, 255, 0.2)',
+                  border: '1px solid rgba(241, 163, 42, 0.18)',
                   background: 'transparent',
-                  color: '#cbd5e1',
+                  color: '#f0ceb3',
                   cursor: saving ? 'not-allowed' : 'pointer',
                   fontWeight: 600,
                 }}
@@ -1116,9 +1117,9 @@ export function StudentProfile() {
       {/* Request Profile Update Modal */}
       {showUpdateRequestModal && (
         <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(3, 14, 15, 0.88)', backdropFilter: 'blur(10px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 999, padding: '1rem' }}>
-          <div style={{ padding: '2rem', maxWidth: '500px', width: '100%', borderRadius: '16px', backgroundColor: '#092528', border: '1px solid rgba(241, 163, 42, 0.25)', boxShadow: '0 25px 60px rgba(0, 0, 0, 0.95)' }}>
+          <div style={{ padding: '2rem', maxWidth: '500px', width: '100%', borderRadius: '16px', backgroundColor: 'rgba(35, 4, 10, 0.92)', border: '1px solid rgba(241, 163, 42, 0.25)', boxShadow: '0 25px 60px rgba(0, 0, 0, 0.95)' }}>
             <h3 style={{ color: 'var(--color-white)', marginBottom: '0.5rem', fontSize: '1.25rem', fontWeight: 700 }}>Request Profile Update</h3>
-            <p style={{ color: '#94a3b8', fontSize: '0.88rem', marginBottom: '1.25rem', lineHeight: '1.4' }}>
+            <p style={{ color: '#f0ceb3', fontSize: '0.88rem', marginBottom: '1.25rem', lineHeight: '1.4' }}>
               Describe the specific information or details you need updated (e.g. phone number, address, preferred class slot). Administration will review your note and contact you.
             </p>
 
@@ -1140,7 +1141,7 @@ export function StudentProfile() {
                   value={updateReason}
                   onChange={(e) => setUpdateReason(e.target.value)}
                   placeholder="e.g. Please update my contact number to +92 331 1234567 and change my preferred time slot to Evening..."
-                  style={{ width: '100%', padding: '0.75rem', borderRadius: '8px', border: '1px solid rgba(255, 255, 255, 0.15)', background: 'rgba(0,0,0,0.5)', color: '#fff', fontSize: '0.9rem', resize: 'vertical', boxSizing: 'border-box' }}
+                  style={{ width: '100%', padding: '0.75rem', borderRadius: '8px', border: '1px solid rgba(241, 163, 42, 0.18)', background: 'rgba(0,0,0,0.5)', color: '#fff', fontSize: '0.9rem', resize: 'vertical', boxSizing: 'border-box' }}
                 />
               </div>
 
@@ -1148,7 +1149,7 @@ export function StudentProfile() {
                 <button type="submit" disabled={sendingRequest} className="btn-primary" style={{ flex: 1, padding: '10px', background: 'linear-gradient(135deg, #690e1f, #f1a32a)', border: 'none', cursor: sendingRequest ? 'not-allowed' : 'pointer' }}>
                   {sendingRequest ? 'Sending Request...' : 'Send Request'}
                 </button>
-                <button type="button" onClick={() => setShowUpdateRequestModal(false)} className="glass-panel" style={{ flex: 1, padding: '10px', border: 'none', color: '#cbd5e1', cursor: 'pointer' }}>
+                <button type="button" onClick={() => setShowUpdateRequestModal(false)} className="glass-panel" style={{ flex: 1, padding: '10px', border: 'none', color: '#f0ceb3', cursor: 'pointer' }}>
                   Cancel
                 </button>
               </div>

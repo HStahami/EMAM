@@ -74,7 +74,7 @@ export function StudentSettings() {
         <h1 style={{ fontSize: '1.8rem', fontWeight: 800, margin: '0 0 0.5rem 0', color: '#f8fafc' }}>
           Account Settings
         </h1>
-        <p style={{ margin: 0, color: '#94a3b8', fontSize: '0.95rem' }}>
+        <p style={{ margin: 0, color: '#f0ceb3', fontSize: '0.95rem' }}>
           Manage your account security and password credentials.
         </p>
       </div>
@@ -85,8 +85,8 @@ export function StudentSettings() {
         style={{
           padding: '1.5rem',
           borderRadius: '14px',
-          background: 'rgba(15, 23, 42, 0.4)',
-          border: '1px solid rgba(255, 255, 255, 0.08)',
+          background: 'rgba(44, 5, 13, 0.65)',
+          border: '1px solid rgba(241, 163, 42, 0.2)',
         }}
       >
         <h2 style={{ fontSize: '1.1rem', fontWeight: 700, margin: '0 0 1rem 0', color: '#f1f5f9' }}>
@@ -94,29 +94,29 @@ export function StudentSettings() {
         </h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
           <div>
-            <span style={{ display: 'block', fontSize: '0.75rem', color: '#64748b' }}>Account Username</span>
+            <span style={{ display: 'block', fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)' }}>Account Username</span>
             <span style={{ fontSize: '0.95rem', fontWeight: 600, color: '#e2e8f0' }}>{user?.username || 'N/A'}</span>
           </div>
           <div>
-            <span style={{ display: 'block', fontSize: '0.75rem', color: '#64748b' }}>Email Address</span>
+            <span style={{ display: 'block', fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)' }}>Email Address</span>
             <span style={{ fontSize: '0.95rem', fontWeight: 600, color: '#e2e8f0' }}>{user?.email || 'N/A'}</span>
           </div>
           <div>
-            <span style={{ display: 'block', fontSize: '0.75rem', color: '#64748b' }}>Student ID Code</span>
+            <span style={{ display: 'block', fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)' }}>Student ID Code</span>
             <span
               style={{
                 fontFamily: 'monospace',
                 fontSize: '0.9rem',
                 fontWeight: 700,
-                color: '#34d399',
+                color: 'var(--color-primary)',
               }}
             >
               {user?.student_code || 'Pending'}
             </span>
           </div>
           <div>
-            <span style={{ display: 'block', fontSize: '0.75rem', color: '#64748b' }}>Account Type</span>
-            <span style={{ fontSize: '0.95rem', fontWeight: 600, color: '#a78bfa', textTransform: 'capitalize' }}>
+            <span style={{ display: 'block', fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)' }}>Account Type</span>
+            <span style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--color-primary)', textTransform: 'capitalize' }}>
               {user?.role || 'Student'}
             </span>
           </div>
@@ -151,7 +151,7 @@ export function StudentSettings() {
             <h2 style={{ fontSize: '1.2rem', fontWeight: 700, margin: 0, color: '#f8fafc' }}>
               Change Password
             </h2>
-            <p style={{ margin: 0, fontSize: '0.85rem', color: '#94a3b8' }}>
+            <p style={{ margin: 0, fontSize: '0.85rem', color: '#f0ceb3' }}>
               Ensure your account is using a strong, unique password.
             </p>
           </div>
@@ -164,7 +164,7 @@ export function StudentSettings() {
               borderRadius: '10px',
               background: 'rgba(241, 163, 42, 0.15)',
               border: '1px solid rgba(241, 163, 42, 0.15)',
-              color: '#34d399',
+              color: 'var(--color-primary)',
               fontSize: '0.9rem',
               marginBottom: '1.5rem',
               display: 'flex',
@@ -197,7 +197,7 @@ export function StudentSettings() {
 
         <form onSubmit={handlePasswordChange} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
           <div>
-            <label htmlFor="student-curr-password" style={{ display: 'block', fontSize: '0.85rem', color: '#cbd5e1', marginBottom: '0.4rem', fontWeight: 500 }}>
+            <label htmlFor="student-curr-password" style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', marginBottom: '0.4rem', fontWeight: 500 }}>
               Current Password
             </label>
             <div style={{ position: 'relative' }}>
@@ -213,8 +213,8 @@ export function StudentSettings() {
                   width: '100%',
                   padding: '0.75rem 2.8rem 0.75rem 1rem',
                   borderRadius: '8px',
-                  border: '1px solid rgba(255, 255, 255, 0.15)',
-                  background: 'rgba(15, 23, 42, 0.5)',
+                  border: '1px solid rgba(241, 163, 42, 0.18)',
+                  background: 'rgba(44, 5, 13, 0.65)',
                   color: '#f8fafc',
                   outline: 'none',
                   boxSizing: 'border-box',
@@ -234,7 +234,7 @@ export function StudentSettings() {
           </div>
 
           <div>
-            <label htmlFor="student-new-password" style={{ display: 'block', fontSize: '0.85rem', color: '#cbd5e1', marginBottom: '0.4rem', fontWeight: 500 }}>
+            <label htmlFor="student-new-password" style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', marginBottom: '0.4rem', fontWeight: 500 }}>
               New Password (minimum 8 characters)
             </label>
             <div style={{ position: 'relative' }}>
@@ -251,8 +251,8 @@ export function StudentSettings() {
                   width: '100%',
                   padding: '0.75rem 2.8rem 0.75rem 1rem',
                   borderRadius: '8px',
-                  border: '1px solid rgba(255, 255, 255, 0.15)',
-                  background: 'rgba(15, 23, 42, 0.5)',
+                  border: '1px solid rgba(241, 163, 42, 0.18)',
+                  background: 'rgba(44, 5, 13, 0.65)',
                   color: '#f8fafc',
                   outline: 'none',
                   boxSizing: 'border-box',
@@ -272,7 +272,7 @@ export function StudentSettings() {
           </div>
 
           <div>
-            <label htmlFor="student-confirm-password" style={{ display: 'block', fontSize: '0.85rem', color: '#cbd5e1', marginBottom: '0.4rem', fontWeight: 500 }}>
+            <label htmlFor="student-confirm-password" style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', marginBottom: '0.4rem', fontWeight: 500 }}>
               Confirm New Password
             </label>
             <div style={{ position: 'relative' }}>
@@ -289,8 +289,8 @@ export function StudentSettings() {
                   width: '100%',
                   padding: '0.75rem 2.8rem 0.75rem 1rem',
                   borderRadius: '8px',
-                  border: '1px solid rgba(255, 255, 255, 0.15)',
-                  background: 'rgba(15, 23, 42, 0.5)',
+                  border: '1px solid rgba(241, 163, 42, 0.18)',
+                  background: 'rgba(44, 5, 13, 0.65)',
                   color: '#f8fafc',
                   outline: 'none',
                   boxSizing: 'border-box',

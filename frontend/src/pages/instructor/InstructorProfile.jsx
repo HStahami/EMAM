@@ -207,8 +207,8 @@ export function InstructorProfile() {
                 borderRadius: '999px',
                 fontSize: '0.75rem',
                 fontWeight: 600,
-                backgroundColor: 'rgba(52, 211, 153, 0.15)',
-                color: '#34d399',
+                backgroundColor: 'rgba(241, 163, 42, 0.15)',
+                color: 'var(--color-primary)',
                 textTransform: 'uppercase',
               }}
             >
@@ -256,7 +256,7 @@ export function InstructorProfile() {
                   padding: '1rem 1.25rem',
                   borderRadius: '8px',
                   backgroundColor: 'rgba(241, 163, 42, 0.15)',
-                  color: '#34d399',
+                  color: 'var(--color-primary)',
                   marginBottom: '1.5rem',
                   borderLeft: '4px solid rgba(241,163,42,0.6)',
                 }}
@@ -293,8 +293,8 @@ export function InstructorProfile() {
                   style={{
                     width: '100%',
                     padding: '0.7rem 1rem',
-                    backgroundColor: 'rgba(15, 23, 42, 0.8)',
-                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    backgroundColor: 'rgba(44, 5, 13, 0.65)',
+                    border: '1px solid rgba(241, 163, 42, 0.18)',
                     borderRadius: '8px',
                     color: '#fff',
                     fontSize: '0.9rem',
@@ -316,8 +316,8 @@ export function InstructorProfile() {
                   style={{
                     width: '100%',
                     padding: '0.7rem 1rem',
-                    backgroundColor: 'rgba(15, 23, 42, 0.8)',
-                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    backgroundColor: 'rgba(44, 5, 13, 0.65)',
+                    border: '1px solid rgba(241, 163, 42, 0.18)',
                     borderRadius: '8px',
                     color: '#fff',
                     fontSize: '0.9rem',
@@ -339,8 +339,8 @@ export function InstructorProfile() {
                   style={{
                     width: '100%',
                     padding: '0.7rem 1rem',
-                    backgroundColor: 'rgba(15, 23, 42, 0.8)',
-                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    backgroundColor: 'rgba(44, 5, 13, 0.65)',
+                    border: '1px solid rgba(241, 163, 42, 0.18)',
                     borderRadius: '8px',
                     color: '#fff',
                     fontSize: '0.9rem',
@@ -384,7 +384,7 @@ export function InstructorProfile() {
                 padding: '1rem 1.25rem',
                 borderRadius: '8px',
                 backgroundColor: 'rgba(241, 163, 42, 0.15)',
-                color: '#34d399',
+                color: 'var(--color-primary)',
                 marginBottom: '1.5rem',
                 borderLeft: '4px solid rgba(241,163,42,0.6)',
               }}
@@ -421,8 +421,8 @@ export function InstructorProfile() {
                 style={{
                   width: '100%',
                   padding: '0.7rem 1rem',
-                  backgroundColor: 'rgba(15, 23, 42, 0.8)',
-                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  backgroundColor: 'rgba(44, 5, 13, 0.65)',
+                  border: '1px solid rgba(241, 163, 42, 0.18)',
                   borderRadius: '8px',
                   color: '#fff',
                   fontSize: '0.9rem',
@@ -445,8 +445,8 @@ export function InstructorProfile() {
                 style={{
                   width: '100%',
                   padding: '0.7rem 1rem',
-                  backgroundColor: 'rgba(15, 23, 42, 0.8)',
-                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  backgroundColor: 'rgba(44, 5, 13, 0.65)',
+                  border: '1px solid rgba(241, 163, 42, 0.18)',
                   borderRadius: '8px',
                   color: '#fff',
                   fontSize: '0.9rem',
@@ -469,8 +469,8 @@ export function InstructorProfile() {
                 style={{
                   width: '100%',
                   padding: '0.7rem 1rem',
-                  backgroundColor: 'rgba(15, 23, 42, 0.8)',
-                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  backgroundColor: 'rgba(44, 5, 13, 0.65)',
+                  border: '1px solid rgba(241, 163, 42, 0.18)',
                   borderRadius: '8px',
                   color: '#fff',
                   fontSize: '0.9rem',

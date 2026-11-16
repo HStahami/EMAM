@@ -128,7 +128,7 @@ export function InstructorClasses() {
                   style={{
                     padding: "10px 14px",
                     backgroundColor: "rgba(255,255,255,0.08)",
-                    border: "1px solid rgba(255,255,255,0.15)",
+                    border: "1px solid rgba(241, 163, 42, 0.18)",
                     color: "#fff",
                     borderRadius: "8px",
                     textDecoration: "none",

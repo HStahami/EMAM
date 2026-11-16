@@ -96,7 +96,7 @@ export function InstructorNotifications() {
             style={{
               padding: '0.6rem 1.25rem',
               color: 'var(--color-primary)',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
+              border: '1px solid rgba(241, 163, 42, 0.18)',
               cursor: 'pointer',
               fontWeight: 600,
               fontSize: '0.85rem',
@@ -113,7 +113,7 @@ export function InstructorNotifications() {
           style={{
             padding: '1rem 1.5rem',
             borderLeft: '4px solid rgba(241,163,42,0.6)',
-            color: '#34d399',
+            color: 'var(--color-primary)',
             backgroundColor: 'rgba(241, 163, 42, 0.15)',
           }}
         >
@@ -195,7 +195,7 @@ export function InstructorNotifications() {
                 justifyContent: 'space-between',
                 gap: '1.25rem',
                 borderLeft: notif.is_read ? '4px solid transparent' : '4px solid var(--color-primary)',
-                backgroundColor: notif.is_read ? 'rgba(15, 23, 42, 0.4)' : 'rgba(15, 23, 42, 0.7)',
+                backgroundColor: notif.is_read ? 'rgba(44, 5, 13, 0.65)' : 'rgba(44, 5, 13, 0.65)',
                 transition: 'all 0.2s',
               }}
             >
@@ -256,7 +256,7 @@ export function InstructorNotifications() {
                   onClick={() => handleMarkRead(notif.id)}
                   style={{
                     background: 'none',
-                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    border: '1px solid rgba(241, 163, 42, 0.18)',
                     borderRadius: '6px',
                     color: 'rgba(241,163,42,0.55)',
                     fontSize: '0.75rem',

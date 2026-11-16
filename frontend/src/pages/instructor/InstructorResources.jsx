@@ -153,7 +153,7 @@ export function InstructorResources() {
           style={{
             padding: '1rem 1.5rem',
             borderLeft: '4px solid rgba(241,163,42,0.6)',
-            color: '#34d399',
+            color: 'var(--color-primary)',
             backgroundColor: 'rgba(241, 163, 42, 0.15)',
           }}
         >
@@ -195,9 +195,9 @@ export function InstructorResources() {
             style={{
               flex: 1,
               minWidth: '220px',
-              backgroundColor: 'rgba(15, 23, 42, 0.8)',
+              backgroundColor: 'rgba(44, 5, 13, 0.65)',
               color: '#fff',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
+              border: '1px solid rgba(241, 163, 42, 0.18)',
               padding: '0.6rem 1rem',
               borderRadius: '8px',
               fontSize: '0.9rem',
@@ -208,9 +208,9 @@ export function InstructorResources() {
             value={selectedModule}
             onChange={(e) => setSelectedModule(e.target.value)}
             style={{
-              backgroundColor: 'rgba(15, 23, 42, 0.8)',
+              backgroundColor: 'rgba(44, 5, 13, 0.65)',
               color: '#fff',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
+              border: '1px solid rgba(241, 163, 42, 0.18)',
               padding: '0.6rem 1rem',
               borderRadius: '8px',
               fontSize: '0.9rem',
@@ -390,8 +390,8 @@ export function InstructorResources() {
               width: '100%',
               maxWidth: '540px',
               padding: '2rem',
-              backgroundColor: 'rgba(15, 23, 42, 0.95)',
-              border: '1px solid rgba(255, 255, 255, 0.15)',
+              backgroundColor: 'rgba(44, 5, 13, 0.65)',
+              border: '1px solid rgba(241, 163, 42, 0.18)',
             }}
           >
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
@@ -421,8 +421,8 @@ export function InstructorResources() {
                   style={{
                     width: '100%',
                     padding: '0.65rem 1rem',
-                    backgroundColor: 'rgba(15, 23, 42, 0.8)',
-                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    backgroundColor: 'rgba(44, 5, 13, 0.65)',
+                    border: '1px solid rgba(241, 163, 42, 0.18)',
                     borderRadius: '8px',
                     color: '#fff',
                     fontSize: '0.9rem',
@@ -443,8 +443,8 @@ export function InstructorResources() {
                     style={{
                       width: '100%',
                       padding: '0.65rem 1rem',
-                      backgroundColor: 'rgba(15, 23, 42, 0.8)',
-                      border: '1px solid rgba(255, 255, 255, 0.1)',
+                      backgroundColor: 'rgba(44, 5, 13, 0.65)',
+                      border: '1px solid rgba(241, 163, 42, 0.18)',
                       borderRadius: '8px',
                       color: '#fff',
                       fontSize: '0.9rem',
@@ -470,8 +470,8 @@ export function InstructorResources() {
                     style={{
                       width: '100%',
                       padding: '0.65rem 1rem',
-                      backgroundColor: 'rgba(15, 23, 42, 0.8)',
-                      border: '1px solid rgba(255, 255, 255, 0.1)',
+                      backgroundColor: 'rgba(44, 5, 13, 0.65)',
+                      border: '1px solid rgba(241, 163, 42, 0.18)',
                       borderRadius: '8px',
                       color: '#fff',
                       fontSize: '0.9rem',
@@ -502,8 +502,8 @@ export function InstructorResources() {
                   style={{
                     width: '100%',
                     padding: '0.65rem 1rem',
-                    backgroundColor: 'rgba(15, 23, 42, 0.8)',
-                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    backgroundColor: 'rgba(44, 5, 13, 0.65)',
+                    border: '1px solid rgba(241, 163, 42, 0.18)',
                     borderRadius: '8px',
                     color: '#fff',
                     fontSize: '0.9rem',
@@ -525,8 +525,8 @@ export function InstructorResources() {
                   style={{
                     width: '100%',
                     padding: '0.65rem 1rem',
-                    backgroundColor: 'rgba(15, 23, 42, 0.8)',
-                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    backgroundColor: 'rgba(44, 5, 13, 0.65)',
+                    border: '1px solid rgba(241, 163, 42, 0.18)',
                     borderRadius: '8px',
                     color: '#fff',
                     fontSize: '0.9rem',
@@ -543,7 +543,7 @@ export function InstructorResources() {
                   className="glass-panel"
                   style={{
                     padding: '0.65rem 1.25rem',
-                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    border: '1px solid rgba(241, 163, 42, 0.18)',
                     color: 'rgba(241,163,42,0.55)',
                     cursor: 'pointer',
                   }}

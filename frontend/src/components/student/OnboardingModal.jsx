@@ -269,7 +269,7 @@ export function OnboardingModal({ user, onComplete }) {
       style={{
         position: 'fixed',
         inset: 0,
-        backgroundColor: 'rgba(7, 34, 36, 0.94)',
+        backgroundColor: 'rgba(44, 5, 13, 0.85)',
         backdropFilter: 'blur(12px)',
         zIndex: 2000,
         display: 'flex',
@@ -287,7 +287,7 @@ export function OnboardingModal({ user, onComplete }) {
           maxHeight: '90vh',
           overflowY: 'auto',
           padding: '2.25rem',
-          backgroundColor: 'rgba(15, 23, 42, 0.98)',
+          backgroundColor: 'rgba(44, 5, 13, 0.65)',
           border: '1px solid rgba(241, 163, 42, 0.25)',
           boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.75)',
           borderRadius: '16px',
@@ -376,7 +376,7 @@ export function OnboardingModal({ user, onComplete }) {
                   style={{
                     width: '100%',
                     padding: '0.75rem 2.8rem 0.75rem 1rem',
-                    backgroundColor: 'rgba(15, 23, 42, 0.8)',
+                    backgroundColor: 'rgba(44, 5, 13, 0.65)',
                     border: '1px solid rgba(255, 255, 255, 0.15)',
                     borderRadius: '8px',
                     color: '#fff',
@@ -413,7 +413,7 @@ export function OnboardingModal({ user, onComplete }) {
                   style={{
                     width: '100%',
                     padding: '0.75rem 2.8rem 0.75rem 1rem',
-                    backgroundColor: 'rgba(15, 23, 42, 0.8)',
+                    backgroundColor: 'rgba(44, 5, 13, 0.65)',
                     border: '1px solid rgba(255, 255, 255, 0.15)',
                     borderRadius: '8px',
                     color: '#fff',
@@ -450,7 +450,7 @@ export function OnboardingModal({ user, onComplete }) {
                   style={{
                     width: '100%',
                     padding: '0.75rem 2.8rem 0.75rem 1rem',
-                    backgroundColor: 'rgba(15, 23, 42, 0.8)',
+                    backgroundColor: 'rgba(44, 5, 13, 0.65)',
                     border: '1px solid rgba(255, 255, 255, 0.15)',
                     borderRadius: '8px',
                     color: '#fff',
@@ -531,7 +531,7 @@ export function OnboardingModal({ user, onComplete }) {
                     style={{
                       width: '100%',
                       padding: '0.65rem 0.85rem',
-                      backgroundColor: 'rgba(15, 23, 42, 0.5)',
+                      backgroundColor: 'rgba(44, 5, 13, 0.65)',
                       border: '1px solid rgba(255, 255, 255, 0.08)',
                       borderRadius: '8px',
                       color: '#94a3b8',
@@ -557,7 +557,7 @@ export function OnboardingModal({ user, onComplete }) {
                     style={{
                       width: '100%',
                       padding: '0.65rem 0.85rem',
-                      backgroundColor: 'rgba(15, 23, 42, 0.8)',
+                      backgroundColor: 'rgba(44, 5, 13, 0.65)',
                       border: '1px solid rgba(255, 255, 255, 0.15)',
                       borderRadius: '8px',
                       color: '#fff',
@@ -580,7 +580,7 @@ export function OnboardingModal({ user, onComplete }) {
                     style={{
                       width: '100%',
                       padding: '0.65rem 0.85rem',
-                      backgroundColor: 'rgba(15, 23, 42, 0.5)',
+                      backgroundColor: 'rgba(44, 5, 13, 0.65)',
                       border: '1px solid rgba(255, 255, 255, 0.08)',
                       borderRadius: '8px',
                       color: '#94a3b8',
@@ -606,7 +606,7 @@ export function OnboardingModal({ user, onComplete }) {
                     style={{
                       width: '100%',
                       padding: '0.65rem 0.85rem',
-                      backgroundColor: 'rgba(15, 23, 42, 0.8)',
+                      backgroundColor: 'rgba(44, 5, 13, 0.65)',
                       border: '1px solid rgba(255, 255, 255, 0.15)',
                       borderRadius: '8px',
                       color: '#fff',
@@ -631,7 +631,7 @@ export function OnboardingModal({ user, onComplete }) {
                     style={{
                       width: '100%',
                       padding: '0.65rem 0.85rem',
-                      backgroundColor: 'rgba(15, 23, 42, 0.8)',
+                      backgroundColor: 'rgba(44, 5, 13, 0.65)',
                       border: '1px solid rgba(255, 255, 255, 0.15)',
                       borderRadius: '8px',
                       color: '#fff',
@@ -655,7 +655,7 @@ export function OnboardingModal({ user, onComplete }) {
                     style={{
                       width: '100%',
                       padding: '0.6rem 0.85rem',
-                      backgroundColor: 'rgba(15, 23, 42, 0.8)',
+                      backgroundColor: 'rgba(44, 5, 13, 0.65)',
                       border: '1px solid rgba(255, 255, 255, 0.15)',
                       borderRadius: '8px',
                       color: '#fff',
@@ -680,7 +680,7 @@ export function OnboardingModal({ user, onComplete }) {
                     style={{
                       width: '100%',
                       padding: '0.65rem 0.85rem',
-                      backgroundColor: 'rgba(15, 23, 42, 0.8)',
+                      backgroundColor: 'rgba(44, 5, 13, 0.65)',
                       border: '1px solid rgba(255, 255, 255, 0.15)',
                       borderRadius: '8px',
                       color: '#fff',
@@ -705,7 +705,7 @@ export function OnboardingModal({ user, onComplete }) {
                     style={{
                       width: '100%',
                       padding: '0.65rem 0.85rem',
-                      backgroundColor: 'rgba(15, 23, 42, 0.8)',
+                      backgroundColor: 'rgba(44, 5, 13, 0.65)',
                       border: '1px solid rgba(255, 255, 255, 0.15)',
                       borderRadius: '8px',
                       color: '#fff',
@@ -730,7 +730,7 @@ export function OnboardingModal({ user, onComplete }) {
                     style={{
                       width: '100%',
                       padding: '0.65rem 0.85rem',
-                      backgroundColor: 'rgba(15, 23, 42, 0.8)',
+                      backgroundColor: 'rgba(44, 5, 13, 0.65)',
                       border: '1px solid rgba(255, 255, 255, 0.15)',
                       borderRadius: '8px',
                       color: '#fff',
@@ -762,7 +762,7 @@ export function OnboardingModal({ user, onComplete }) {
                     style={{
                       width: '100%',
                       padding: '0.65rem 0.85rem',
-                      backgroundColor: 'rgba(15, 23, 42, 0.8)',
+                      backgroundColor: 'rgba(44, 5, 13, 0.65)',
                       border: '1px solid rgba(255, 255, 255, 0.15)',
                       borderRadius: '8px',
                       color: '#fff',
@@ -794,7 +794,7 @@ export function OnboardingModal({ user, onComplete }) {
                     style={{
                       width: '100%',
                       padding: '0.65rem 0.85rem',
-                      backgroundColor: 'rgba(15, 23, 42, 0.8)',
+                      backgroundColor: 'rgba(44, 5, 13, 0.65)',
                       border: '1px solid rgba(255, 255, 255, 0.15)',
                       borderRadius: '8px',
                       color: '#fff',
@@ -834,7 +834,7 @@ export function OnboardingModal({ user, onComplete }) {
                     style={{
                       width: '100%',
                       padding: '0.65rem 0.85rem',
-                      backgroundColor: 'rgba(15, 23, 42, 0.8)',
+                      backgroundColor: 'rgba(44, 5, 13, 0.65)',
                       border: '1px solid rgba(255, 255, 255, 0.15)',
                       borderRadius: '8px',
                       color: '#fff',
@@ -862,7 +862,7 @@ export function OnboardingModal({ user, onComplete }) {
                       style={{
                         width: '100%',
                         padding: '0.65rem 0.85rem',
-                        backgroundColor: 'rgba(15, 23, 42, 0.8)',
+                        backgroundColor: 'rgba(44, 5, 13, 0.65)',
                         border: '1px solid rgba(255, 255, 255, 0.15)',
                         borderRadius: '8px',
                         color: '#fff',
@@ -891,7 +891,7 @@ export function OnboardingModal({ user, onComplete }) {
                       style={{
                         width: '100%',
                         padding: '0.65rem 0.85rem',
-                        backgroundColor: 'rgba(15, 23, 42, 0.5)',
+                        backgroundColor: 'rgba(44, 5, 13, 0.65)',
                         border: '1px solid rgba(255, 255, 255, 0.1)',
                         borderRadius: '8px',
                         color: 'var(--color-primary)',
@@ -919,7 +919,7 @@ export function OnboardingModal({ user, onComplete }) {
                     style={{
                       width: '100%',
                       padding: '0.65rem 0.85rem',
-                      backgroundColor: 'rgba(15, 23, 42, 0.8)',
+                      backgroundColor: 'rgba(44, 5, 13, 0.65)',
                       border: '1px solid rgba(255, 255, 255, 0.15)',
                       borderRadius: '8px',
                       color: '#fff',
@@ -948,7 +948,7 @@ export function OnboardingModal({ user, onComplete }) {
                       style={{
                         width: '100%',
                         padding: '0.65rem 0.85rem',
-                        backgroundColor: 'rgba(15, 23, 42, 0.5)',
+                        backgroundColor: 'rgba(44, 5, 13, 0.65)',
                         border: '1px solid rgba(255, 255, 255, 0.1)',
                         borderRadius: '8px',
                         color: 'var(--color-primary)',
@@ -968,7 +968,7 @@ export function OnboardingModal({ user, onComplete }) {
                       style={{
                         width: '100%',
                         padding: '0.65rem 0.85rem',
-                        backgroundColor: 'rgba(15, 23, 42, 0.5)',
+                        backgroundColor: 'rgba(44, 5, 13, 0.65)',
                         border: '1px solid rgba(255, 255, 255, 0.1)',
                         borderRadius: '8px',
                         color: 'var(--color-primary)',
@@ -988,7 +988,7 @@ export function OnboardingModal({ user, onComplete }) {
                       style={{
                         width: '100%',
                         padding: '0.65rem 0.85rem',
-                        backgroundColor: 'rgba(15, 23, 42, 0.8)',
+                        backgroundColor: 'rgba(44, 5, 13, 0.65)',
                         border: '1px solid rgba(255, 255, 255, 0.15)',
                         borderRadius: '8px',
                         color: '#fff',
@@ -1017,7 +1017,7 @@ export function OnboardingModal({ user, onComplete }) {
                     style={{
                       width: '100%',
                       padding: '0.65rem 0.85rem',
-                      backgroundColor: 'rgba(15, 23, 42, 0.8)',
+                      backgroundColor: 'rgba(44, 5, 13, 0.65)',
                       border: '1px solid rgba(255, 255, 255, 0.15)',
                       borderRadius: '8px',
                       color: '#fff',

@@ -86,8 +86,9 @@ export function StudentReports() {
         className="glass-panel"
         style={{
           padding: '2rem',
-          background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(7, 34, 36, 0.85) 100%)',
-          borderLeft: '4px solid #34d399',
+          background: 'linear-gradient(135deg, rgba(105, 14, 31, 0.45) 0%, rgba(44, 5, 13, 0.85) 100%)',
+          borderLeft: '4px solid var(--color-primary)',
+          border: '1px solid rgba(241, 163, 42, 0.22)',
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
@@ -99,7 +100,7 @@ export function StudentReports() {
           <div style={{ fontSize: '0.8rem', color: 'rgba(241,163,42,0.55)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
             Overall Academic Progress Score
           </div>
-          <div style={{ fontSize: '2.5rem', fontWeight: 800, color: '#34d399', margin: '0.25rem 0 0.75rem 0' }}>
+          <div style={{ fontSize: '2.5rem', fontWeight: 800, color: 'var(--color-primary)', margin: '0.25rem 0 0.75rem 0' }}>
             {overallProgress}%
           </div>
 
@@ -108,7 +109,7 @@ export function StudentReports() {
               style={{
                 width: `${overallProgress}%`,
                 height: '100%',
-                background: 'linear-gradient(90deg, #38bdf8 0%, #34d399 100%)',
+                background: 'linear-gradient(90deg, #690e1f 0%, #f1a32a 100%)',
               }}
             />
           </div>
@@ -119,7 +120,7 @@ export function StudentReports() {
         </div>
 
         {/* Student Dossier Badge */}
-        <div style={{ padding: '1rem 1.5rem', borderRadius: '8px', background: 'rgba(255, 255, 255, 0.05)', border: '1px solid rgba(255, 255, 255, 0.1)', textAlign: 'right' }}>
+        <div style={{ padding: '1rem 1.5rem', borderRadius: '8px', background: 'rgba(255, 255, 255, 0.05)', border: '1px solid rgba(241, 163, 42, 0.18)', textAlign: 'right' }}>
           <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)' }}>Student ID</div>
           <div style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--color-primary)' }}>
             {user?.student_code || 'N/A'}
@@ -133,12 +134,12 @@ export function StudentReports() {
       {/* 3 Analytics Pillar Cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem' }}>
         {/* 1. Tasks Completion */}
-        <div className="glass-panel" style={{ padding: '1.75rem', borderLeft: '4px solid #fbbf24' }}>
+        <div className="glass-panel" style={{ padding: '1.75rem', borderLeft: '4px solid var(--color-primary)' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem' }}>
             <h3 style={{ margin: 0, fontSize: '1.15rem', color: '#fff', fontWeight: 600 }}>
               Coursework Completion
             </h3>
-            <span style={{ fontSize: '1.1rem', fontWeight: 700, color: '#fbbf24' }}>
+            <span style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--color-primary)' }}>
               {tasks.completion_rate || 0}%
             </span>
           </div>
@@ -150,11 +151,11 @@ export function StudentReports() {
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between', color: '#f0ceb3' }}>
               <span>Submitted by You:</span>
-              <strong style={{ color: '#34d399' }}>{tasks.total_submitted || 0}</strong>
+              <strong style={{ color: 'var(--color-primary)' }}>{tasks.total_submitted || 0}</strong>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between', color: '#f0ceb3' }}>
               <span>Pending Tasks:</span>
-              <strong style={{ color: '#fbbf24' }}>
+              <strong style={{ color: 'var(--color-primary)' }}>
                 {(tasks.total_assigned || 0) - (tasks.total_submitted || 0)}
               </strong>
             </div>
@@ -162,12 +163,12 @@ export function StudentReports() {
         </div>
 
         {/* 2. Attendance Standing */}
-        <div className="glass-panel" style={{ padding: '1.75rem', borderLeft: '4px solid #34d399' }}>
+        <div className="glass-panel" style={{ padding: '1.75rem', borderLeft: '4px solid var(--color-primary)' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem' }}>
             <h3 style={{ margin: 0, fontSize: '1.15rem', color: '#fff', fontWeight: 600 }}>
               Attendance Punctuality
             </h3>
-            <span style={{ fontSize: '1.1rem', fontWeight: 700, color: '#34d399' }}>
+            <span style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--color-primary)' }}>
               {attendance.attendance_rate ?? 100}%
             </span>
           </div>
@@ -179,11 +180,11 @@ export function StudentReports() {
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between', color: '#f0ceb3' }}>
               <span>Present:</span>
-              <strong style={{ color: '#34d399' }}>{attendance.present || 0}</strong>
+              <strong style={{ color: 'var(--color-primary)' }}>{attendance.present || 0}</strong>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between', color: '#f0ceb3' }}>
               <span>Late / Excused:</span>
-              <strong style={{ color: '#fbbf24' }}>
+              <strong style={{ color: 'var(--color-primary)' }}>
                 {(attendance.late || 0) + (attendance.excused || 0)}
               </strong>
             </div>
@@ -195,12 +196,12 @@ export function StudentReports() {
         </div>
 
         {/* 3. Academic Assessments */}
-        <div className="glass-panel" style={{ padding: '1.75rem', borderLeft: '4px solid #c084fc' }}>
+        <div className="glass-panel" style={{ padding: '1.75rem', borderLeft: '4px solid var(--color-primary)' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem' }}>
             <h3 style={{ margin: 0, fontSize: '1.15rem', color: '#fff', fontWeight: 600 }}>
               Assessment Grades
             </h3>
-            <span style={{ fontSize: '1.1rem', fontWeight: 700, color: '#c084fc' }}>
+            <span style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--color-primary)' }}>
               {assessments.average_score != null ? `${assessments.average_score}%` : 'N/A'}
             </span>
           </div>
@@ -212,7 +213,7 @@ export function StudentReports() {
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between', color: '#f0ceb3' }}>
               <span>Average Grade Score:</span>
-              <strong style={{ color: '#c084fc' }}>
+              <strong style={{ color: 'var(--color-primary)' }}>
                 {assessments.average_score != null ? `${assessments.average_score}%` : 'No scores yet'}
               </strong>
             </div>

@@ -66,37 +66,37 @@ export function StudentAttendance() {
           <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
             Attendance Rate
           </div>
-          <div style={{ fontSize: '2rem', fontWeight: 700, color: '#34d399', margin: '0.3rem 0' }}>
+          <div style={{ fontSize: '2rem', fontWeight: 700, color: 'var(--color-primary)', margin: '0.3rem 0' }}>
             {attendanceRate}%
           </div>
           <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)' }}>{totalSessions} Total Sessions</div>
         </div>
 
-        <div className="glass-panel" style={{ padding: '1.5rem', borderLeft: '4px solid #34d399' }}>
+        <div className="glass-panel" style={{ padding: '1.5rem', borderLeft: '4px solid var(--color-primary)' }}>
           <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
             Present
           </div>
-          <div style={{ fontSize: '2rem', fontWeight: 700, color: '#34d399', margin: '0.3rem 0' }}>
+          <div style={{ fontSize: '2rem', fontWeight: 700, color: 'var(--color-primary)', margin: '0.3rem 0' }}>
             {presentCount}
           </div>
           <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)' }}>Full participation</div>
         </div>
 
-        <div className="glass-panel" style={{ padding: '1.5rem', borderLeft: '4px solid #fbbf24' }}>
+        <div className="glass-panel" style={{ padding: '1.5rem', borderLeft: '4px solid var(--color-primary)' }}>
           <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
             Late
           </div>
-          <div style={{ fontSize: '2rem', fontWeight: 700, color: '#fbbf24', margin: '0.3rem 0' }}>
+          <div style={{ fontSize: '2rem', fontWeight: 700, color: 'var(--color-primary)', margin: '0.3rem 0' }}>
             {lateCount}
           </div>
           <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)' }}>Tardy entries</div>
         </div>
 
-        <div className="glass-panel" style={{ padding: '1.5rem', borderLeft: '4px solid #60a5fa' }}>
+        <div className="glass-panel" style={{ padding: '1.5rem', borderLeft: '4px solid rgba(241,163,42,0.6)' }}>
           <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
             Excused
           </div>
-          <div style={{ fontSize: '2rem', fontWeight: 700, color: '#60a5fa', margin: '0.3rem 0' }}>
+          <div style={{ fontSize: '2rem', fontWeight: 700, color: 'var(--color-primary)', margin: '0.3rem 0' }}>
             {excusedCount}
           </div>
           <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)' }}>Authorized leaves</div>
@@ -156,7 +156,7 @@ export function StudentAttendance() {
                         textTransform: 'uppercase',
                         backgroundColor:
                           rec.status === 'present'
-                            ? 'rgba(52, 211, 153, 0.15)'
+                            ? 'rgba(241, 163, 42, 0.15)'
                             : rec.status === 'late'
                             ? 'rgba(251, 191, 36, 0.15)'
                             : rec.status === 'excused'
@@ -164,7 +164,7 @@ export function StudentAttendance() {
                             : 'rgba(248, 113, 113, 0.15)',
                         color:
                           rec.status === 'present'
-                            ? '#34d399'
+                            ? 'var(--color-primary)'
                             : rec.status === 'late'
                             ? '#fbbf24'
                             : rec.status === 'excused'

@@ -129,8 +129,8 @@ export function SmartNotebook({ slotId, slotName, initialNoteId = null, isInstru
         display: 'flex',
         flexDirection: 'column',
         height: '100%',
-        backgroundColor: '#072224',
-        border: '1px solid rgba(0, 168, 150, 0.25)',
+        backgroundColor: 'rgba(44, 5, 13, 0.85)',
+        border: '1px solid rgba(241, 163, 42, 0.15)',
         borderRadius: '12px',
         overflow: 'hidden',
         boxShadow: '0 8px 24px rgba(0,0,0,0.35)'
@@ -140,7 +140,7 @@ export function SmartNotebook({ slotId, slotName, initialNoteId = null, isInstru
       <div
         style={{
           padding: '1rem 1.25rem',
-          backgroundColor: '#092528',
+          backgroundColor: 'rgba(35, 4, 10, 0.92)',
           borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
           display: 'flex',
           justifyContent: 'space-between',
@@ -155,7 +155,7 @@ export function SmartNotebook({ slotId, slotName, initialNoteId = null, isInstru
               width: '32px',
               height: '32px',
               borderRadius: '8px',
-              background: 'rgba(0, 168, 150, 0.15)',
+              background: 'rgba(241, 163, 42, 0.15)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -168,7 +168,7 @@ export function SmartNotebook({ slotId, slotName, initialNoteId = null, isInstru
             <h3 style={{ margin: 0, fontSize: '0.95rem', color: '#fff', fontWeight: 600 }}>
               {activeView === 'notes' ? 'Smart Class Notebook' : 'Emam Digital Whiteboard'}
             </h3>
-            <span style={{ fontSize: '0.75rem', color: '#94a3b8' }}>
+            <span style={{ fontSize: '0.75rem', color: '#f0ceb3' }}>
               {activeView === 'notes' ? 'Digital Notebook (Auto-Saved)' : 'Interactive Digital Canvas'}
             </span>
           </div>
@@ -184,7 +184,7 @@ export function SmartNotebook({ slotId, slotName, initialNoteId = null, isInstru
                 borderRadius: '5px',
                 border: 'none',
                 background: activeView === 'notes' ? 'var(--color-primary)' : 'transparent',
-                color: activeView === 'notes' ? '#041416' : '#cbd5e1',
+                color: activeView === 'notes' ? '#2c050d' : '#f0ceb3',
                 fontWeight: 700,
                 fontSize: '0.75rem',
                 cursor: 'pointer',
@@ -202,7 +202,7 @@ export function SmartNotebook({ slotId, slotName, initialNoteId = null, isInstru
                 borderRadius: '5px',
                 border: 'none',
                 background: activeView === 'whiteboard' ? 'var(--color-primary)' : 'transparent',
-                color: activeView === 'whiteboard' ? '#041416' : '#cbd5e1',
+                color: activeView === 'whiteboard' ? '#2c050d' : '#f0ceb3',
                 fontWeight: 700,
                 fontSize: '0.75rem',
                 cursor: 'pointer',
@@ -225,7 +225,7 @@ export function SmartNotebook({ slotId, slotName, initialNoteId = null, isInstru
                 alignItems: 'center',
                 gap: '4px',
                 fontSize: '0.75rem',
-                color: saveStatus === 'saved' ? '#10b981' : saveStatus === 'saving' ? '#38bdf8' : '#f59e0b',
+                color: saveStatus === 'saved' ? 'var(--color-primary)' : saveStatus === 'saving' ? 'var(--color-primary)' : '#f59e0b',
                 background: 'rgba(255, 255, 255, 0.04)',
                 padding: '3px 8px',
                 borderRadius: '6px'
@@ -241,9 +241,9 @@ export function SmartNotebook({ slotId, slotName, initialNoteId = null, isInstru
               title="Copy Notes"
               style={{
                 background: 'transparent',
-                border: '1px solid rgba(255,255,255,0.1)',
+                border: '1px solid rgba(241, 163, 42, 0.18)',
                 borderRadius: '6px',
-                color: copied ? '#10b981' : '#cbd5e1',
+                color: copied ? 'var(--color-primary)' : '#f0ceb3',
                 padding: '5px 8px',
                 cursor: 'pointer',
                 display: 'flex',
@@ -260,9 +260,9 @@ export function SmartNotebook({ slotId, slotName, initialNoteId = null, isInstru
               title="Download Notes as Text File"
               style={{
                 background: 'transparent',
-                border: '1px solid rgba(255,255,255,0.1)',
+                border: '1px solid rgba(241, 163, 42, 0.18)',
                 borderRadius: '6px',
-                color: '#cbd5e1',
+                color: '#f0ceb3',
                 padding: '5px 8px',
                 cursor: 'pointer',
                 display: 'flex',
@@ -335,14 +335,14 @@ export function SmartNotebook({ slotId, slotName, initialNoteId = null, isInstru
       <div
         style={{
           padding: '0.6rem 1.25rem',
-          backgroundColor: '#092528',
+          backgroundColor: 'rgba(35, 4, 10, 0.92)',
           borderTop: '1px solid rgba(255,255,255,0.06)',
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center'
         }}
       >
-        <span style={{ fontSize: '0.75rem', color: '#64748b' }}>
+        <span style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)' }}>
           Notes remain permanently in your student library for revision.
         </span>
         <button

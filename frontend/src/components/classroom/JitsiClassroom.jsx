@@ -118,7 +118,7 @@ export function JitsiClassroom({
           interfaceConfigOverwrite: {
             SHOW_JITSI_WATERMARK: false,
             SHOW_WATERMARK_FOR_GUESTS: false,
-            DEFAULT_BACKGROUND: '#072224',
+            DEFAULT_BACKGROUND: 'rgba(44, 5, 13, 0.85)',
             TOOLBAR_BUTTONS: toolbarButtons
           }
         };
@@ -193,10 +193,10 @@ export function JitsiClassroom({
         width: '100%',
         height: height,
         minHeight: '520px',
-        backgroundColor: '#041416',
+        backgroundColor: '#2c050d',
         borderRadius: '12px',
         overflow: 'hidden',
-        border: '1px solid rgba(0, 168, 150, 0.25)',
+        border: '1px solid rgba(241, 163, 42, 0.15)',
         display: 'flex',
         flexDirection: 'column'
       }}
@@ -220,7 +220,7 @@ export function JitsiClassroom({
             width: '56px',
             height: '56px',
             borderRadius: '50%',
-            background: 'rgba(0, 168, 150, 0.15)',
+            background: 'rgba(241, 163, 42, 0.15)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -232,7 +232,7 @@ export function JitsiClassroom({
             <h4 style={{ margin: '0 0 4px 0', color: '#fff', fontSize: '1.1rem' }}>
               Connecting to Emam Virtual Classroom...
             </h4>
-            <p style={{ margin: 0, color: '#94a3b8', fontSize: '0.85rem' }}>
+            <p style={{ margin: 0, color: '#f0ceb3', fontSize: '0.85rem' }}>
               Setting up audio, video, whiteboard & tools.
             </p>
           </div>
@@ -248,7 +248,7 @@ export function JitsiClassroom({
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            backgroundColor: '#041416',
+            backgroundColor: '#2c050d',
             zIndex: 10,
             gap: '1rem',
             padding: '2rem',
@@ -257,7 +257,7 @@ export function JitsiClassroom({
         >
           <AlertCircle size={44} style={{ color: '#ef4444' }} />
           <h4 style={{ color: '#fff', margin: 0 }}>Classroom Connection Issue</h4>
-          <p style={{ color: '#94a3b8', margin: 0, maxWidth: '400px', fontSize: '0.9rem' }}>{error}</p>
+          <p style={{ color: '#f0ceb3', margin: 0, maxWidth: '400px', fontSize: '0.9rem' }}>{error}</p>
           <button
             onClick={() => window.location.reload()}
             className="btn-primary"
@@ -277,7 +277,7 @@ export function JitsiClassroom({
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            backgroundColor: '#041416',
+            backgroundColor: '#2c050d',
             zIndex: 20,
             gap: '1.25rem',
             padding: '2rem',
@@ -288,7 +288,7 @@ export function JitsiClassroom({
             width: '64px',
             height: '64px',
             borderRadius: '50%',
-            background: 'rgba(0, 168, 150, 0.15)',
+            background: 'rgba(241, 163, 42, 0.15)',
             border: '2px solid var(--color-primary)',
             display: 'flex',
             alignItems: 'center',
@@ -301,7 +301,7 @@ export function JitsiClassroom({
             <h3 style={{ color: '#fff', fontSize: '1.35rem', margin: '0 0 8px 0', fontWeight: 700 }}>
               Class Session Ended
             </h3>
-            <p style={{ color: '#94a3b8', fontSize: '0.9rem', margin: 0, maxWidth: '440px', lineHeight: 1.5 }}>
+            <p style={{ color: '#f0ceb3', fontSize: '0.9rem', margin: 0, maxWidth: '440px', lineHeight: 1.5 }}>
               You have cleanly left the live virtual classroom session. You can rejoin the live room at any time or navigate back to your dashboard.
             </p>
           </div>
@@ -342,7 +342,7 @@ export function JitsiClassroom({
                 cursor: 'pointer',
                 backgroundColor: 'rgba(255, 255, 255, 0.08)',
                 color: '#fff',
-                border: '1px solid rgba(255, 255, 255, 0.2)'
+                border: '1px solid rgba(241, 163, 42, 0.18)'
               }}
             >
               <ArrowLeft size={16} /> Return to Dashboard

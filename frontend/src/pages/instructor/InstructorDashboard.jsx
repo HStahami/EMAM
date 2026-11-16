@@ -107,7 +107,7 @@ export function InstructorDashboard() {
           >
             <Video size={18} /> Launch Live Classroom
           </Link>
-          <Link to="/instructor/tasks" className="glass-panel" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "0.5rem", padding: "10px 18px", color: "#fff", fontSize: "0.9rem", border: "1px solid rgba(255,255,255,0.15)" }}>
+          <Link to="/instructor/tasks" className="glass-panel" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "0.5rem", padding: "10px 18px", color: "#fff", fontSize: "0.9rem", border: "1px solid rgba(241, 163, 42, 0.18)" }}>
             <Plus size={18} /> New Task
           </Link>
           <Link
@@ -115,7 +115,7 @@ export function InstructorDashboard() {
             style={{
               padding: "10px 18px",
               backgroundColor: "rgba(255,255,255,0.08)",
-              border: "1px solid rgba(255,255,255,0.15)",
+              border: "1px solid rgba(241, 163, 42, 0.18)",
               color: "#fff",
               borderRadius: "8px",
               textDecoration: "none",
@@ -255,7 +255,7 @@ export function InstructorDashboard() {
                         textDecoration: "none",
                         borderRadius: "6px",
                         fontWeight: 600,
-                        border: "1px solid rgba(255,255,255,0.15)"
+                        border: "1px solid rgba(241, 163, 42, 0.18)"
                       }}
                     >
                       {c.is_live ? "Join Live" : "Launch Class"}

@@ -238,7 +238,7 @@ export function InstructorMessages() {
                     flex: 1,
                     padding: "12px 16px",
                     borderRadius: "8px",
-                    border: "1px solid rgba(255, 255, 255, 0.15)",
+                    border: "1px solid rgba(241, 163, 42, 0.18)",
                     background: "rgba(0, 0, 0, 0.3)",
                     color: "#fff",
                     fontSize: "0.95rem"

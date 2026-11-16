@@ -4,8 +4,8 @@ import { PenTool, Eraser, RotateCcw, Trash2, Download, Check } from 'lucide-reac
 const COLORS = [
   { label: 'White', value: '#ffffff' },
   { label: 'Teal', value: '#00a896' },
-  { label: 'Emerald', value: '#10b981' },
-  { label: 'Sky Blue', value: '#38bdf8' },
+  { label: 'Emerald', value: 'var(--color-primary)' },
+  { label: 'Sky Blue', value: 'var(--color-primary)' },
   { label: 'Amber', value: '#f59e0b' },
   { label: 'Coral Red', value: '#ef4444' }
 ];
@@ -164,9 +164,9 @@ export function ArabicWhiteboard({ slotName = "Classroom" }) {
           flexWrap: 'wrap',
           gap: '8px',
           padding: '6px 10px',
-          backgroundColor: '#092528',
+          backgroundColor: 'rgba(35, 4, 10, 0.92)',
           borderRadius: '8px',
-          border: '1px solid rgba(255,255,255,0.08)'
+          border: '1px solid rgba(241, 163, 42, 0.18)'
         }}
       >
         {/* Tool & Colors */}
@@ -176,7 +176,7 @@ export function ArabicWhiteboard({ slotName = "Classroom" }) {
               onClick={() => setTool('pen')}
               style={{
                 background: tool === 'pen' ? 'var(--color-primary)' : 'transparent',
-                color: tool === 'pen' ? '#041416' : '#cbd5e1',
+                color: tool === 'pen' ? '#2c050d' : '#f0ceb3',
                 border: 'none',
                 padding: '4px 8px',
                 borderRadius: '4px',
@@ -195,7 +195,7 @@ export function ArabicWhiteboard({ slotName = "Classroom" }) {
               onClick={() => setTool('eraser')}
               style={{
                 background: tool === 'eraser' ? 'var(--color-primary)' : 'transparent',
-                color: tool === 'eraser' ? '#041416' : '#cbd5e1',
+                color: tool === 'eraser' ? '#2c050d' : '#f0ceb3',
                 border: 'none',
                 padding: '4px 8px',
                 borderRadius: '4px',
@@ -242,8 +242,8 @@ export function ArabicWhiteboard({ slotName = "Classroom" }) {
                 key={b.size}
                 onClick={() => setBrushSize(b.size)}
                 style={{
-                  background: brushSize === b.size ? 'rgba(0, 168, 150, 0.3)' : 'transparent',
-                  color: brushSize === b.size ? 'var(--color-primary)' : '#94a3b8',
+                  background: brushSize === b.size ? 'rgba(241, 163, 42, 0.15)' : 'transparent',
+                  color: brushSize === b.size ? 'var(--color-primary)' : '#f0ceb3',
                   border: brushSize === b.size ? '1px solid var(--color-primary)' : '1px solid transparent',
                   padding: '3px 7px',
                   borderRadius: '4px',
@@ -266,7 +266,7 @@ export function ArabicWhiteboard({ slotName = "Classroom" }) {
             style={{
               background: 'none',
               border: 'none',
-              color: history.length <= 1 ? '#64748b' : '#cbd5e1',
+              color: history.length <= 1 ? 'rgba(241,163,42,0.55)' : '#f0ceb3',
               cursor: history.length <= 1 ? 'not-allowed' : 'pointer',
               padding: '4px',
               borderRadius: '4px',
@@ -298,7 +298,7 @@ export function ArabicWhiteboard({ slotName = "Classroom" }) {
             style={{
               background: 'rgba(56, 189, 248, 0.15)',
               border: '1px solid rgba(56, 189, 248, 0.3)',
-              color: '#38bdf8',
+              color: 'var(--color-primary)',
               cursor: 'pointer',
               padding: '4px 8px',
               borderRadius: '5px',
@@ -325,7 +325,7 @@ export function ArabicWhiteboard({ slotName = "Classroom" }) {
           borderRadius: '8px',
           overflow: 'hidden',
           backgroundColor: '#05191b',
-          border: '1px solid rgba(0, 168, 150, 0.2)',
+          border: '1px solid rgba(241, 163, 42, 0.15)',
           position: 'relative',
           touchAction: 'none'
         }}

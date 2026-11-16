@@ -98,20 +98,20 @@ export function StudentNotes() {
           alignItems: 'center',
           flexWrap: 'wrap',
           gap: '1rem',
-          backgroundColor: '#072224',
+          backgroundColor: 'rgba(44, 5, 13, 0.85)',
           borderLeft: '4px solid var(--color-primary)'
         }}
       >
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.3rem' }}>
-            <span style={{ fontSize: '0.8rem', background: 'rgba(0, 168, 150, 0.15)', color: 'var(--color-primary)', padding: '2px 8px', borderRadius: '4px', fontWeight: 600 }}>
+            <span style={{ fontSize: '0.8rem', background: 'rgba(241, 163, 42, 0.15)', color: 'var(--color-primary)', padding: '2px 8px', borderRadius: '4px', fontWeight: 600 }}>
               ACADEMIC REVISION
             </span>
           </div>
           <h1 style={{ fontSize: '1.6rem', color: '#fff', margin: 0, fontWeight: 700 }}>
             My Class Notes & Vocabulary Archive
           </h1>
-          <p style={{ color: '#94a3b8', fontSize: '0.9rem', margin: '4px 0 0 0' }}>
+          <p style={{ color: '#f0ceb3', fontSize: '0.9rem', margin: '4px 0 0 0' }}>
             Permanent repository of your live lecture notes, Arabic grammar rules, and exam revisions.
           </p>
         </div>
@@ -136,7 +136,7 @@ export function StudentNotes() {
       {/* Search and Filter Bar */}
       <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap' }}>
         <div style={{ position: 'relative', flex: 1, minWidth: '240px' }}>
-          <Search size={16} style={{ position: 'absolute', left: '14px', top: '50%', transform: 'translateY(-50%)', color: '#94a3b8' }} />
+          <Search size={16} style={{ position: 'absolute', left: '14px', top: '50%', transform: 'translateY(-50%)', color: '#f0ceb3' }} />
           <input
             type="text"
             value={searchTerm}
@@ -145,8 +145,8 @@ export function StudentNotes() {
             style={{
               width: '100%',
               padding: '10px 14px 10px 40px',
-              backgroundColor: '#072224',
-              border: '1px solid rgba(255,255,255,0.1)',
+              backgroundColor: 'rgba(44, 5, 13, 0.85)',
+              border: '1px solid rgba(241, 163, 42, 0.18)',
               borderRadius: '8px',
               color: '#fff',
               fontSize: '0.9rem',
@@ -158,7 +158,7 @@ export function StudentNotes() {
 
       {/* Notes Grid */}
       {loading ? (
-        <div style={{ textAlign: 'center', padding: '3rem', color: '#94a3b8' }}>
+        <div style={{ textAlign: 'center', padding: '3rem', color: '#f0ceb3' }}>
           Loading your saved notes...
         </div>
       ) : filteredNotes.length === 0 ? (
@@ -167,9 +167,9 @@ export function StudentNotes() {
           style={{
             padding: '3rem 2rem',
             textAlign: 'center',
-            backgroundColor: '#072224',
+            backgroundColor: 'rgba(44, 5, 13, 0.85)',
             borderRadius: '12px',
-            color: '#94a3b8'
+            color: '#f0ceb3'
           }}
         >
           <BookOpen size={48} style={{ color: 'var(--color-primary)', margin: '0 auto 1rem auto', opacity: 0.8 }} />
@@ -194,9 +194,9 @@ export function StudentNotes() {
                 className="glass-panel"
                 style={{
                   padding: '1.4rem',
-                  backgroundColor: '#072224',
+                  backgroundColor: 'rgba(44, 5, 13, 0.85)',
                   borderRadius: '12px',
-                  border: '1px solid rgba(255,255,255,0.08)',
+                  border: '1px solid rgba(241, 163, 42, 0.18)',
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between',
@@ -210,7 +210,7 @@ export function StudentNotes() {
                       <Calendar size={12} /> {dateStr}
                     </span>
                     {n.slot_name && (
-                      <span style={{ fontSize: '0.72rem', color: '#94a3b8', background: 'rgba(255,255,255,0.05)', padding: '2px 6px', borderRadius: '4px' }}>
+                      <span style={{ fontSize: '0.72rem', color: '#f0ceb3', background: 'rgba(255,255,255,0.05)', padding: '2px 6px', borderRadius: '4px' }}>
                         {n.slot_name}
                       </span>
                     )}
@@ -234,7 +234,7 @@ export function StudentNotes() {
                   </button>
                   <p
                     style={{
-                      color: '#94a3b8',
+                      color: '#f0ceb3',
                       fontSize: '0.85rem',
                       lineHeight: '1.5',
                       margin: 0,
@@ -278,7 +278,7 @@ export function StudentNotes() {
                       onClick={() => handleCopy(n)}
                       title="Copy"
                       className="glass-panel"
-                      style={{ padding: '5px 8px', border: '1px solid rgba(255,255,255,0.08)', color: copiedId === (n.id || n._id) ? 'var(--color-primary)' : '#cbd5e1' }}
+                      style={{ padding: '5px 8px', border: '1px solid rgba(241, 163, 42, 0.18)', color: copiedId === (n.id || n._id) ? 'var(--color-primary)' : '#f0ceb3' }}
                     >
                       {copiedId === (n.id || n._id) ? <Check size={13} /> : <Copy size={13} />}
                     </button>
@@ -286,7 +286,7 @@ export function StudentNotes() {
                       onClick={() => handleDownload(n)}
                       title="Export Text"
                       className="glass-panel"
-                      style={{ padding: '5px 8px', border: '1px solid rgba(255,255,255,0.08)', color: '#cbd5e1' }}
+                      style={{ padding: '5px 8px', border: '1px solid rgba(241, 163, 42, 0.18)', color: '#f0ceb3' }}
                     >
                       <Download size={13} />
                     </button>
@@ -329,8 +329,8 @@ export function StudentNotes() {
           <div
             role="presentation"
             style={{
-              backgroundColor: '#072224',
-              border: '1px solid rgba(0, 168, 150, 0.3)',
+              backgroundColor: 'rgba(44, 5, 13, 0.85)',
+              border: '1px solid rgba(241, 163, 42, 0.15)',
               borderRadius: '14px',
               maxWidth: '720px',
               width: '100%',
@@ -347,7 +347,7 @@ export function StudentNotes() {
             <div
               style={{
                 padding: '1.25rem 1.5rem',
-                backgroundColor: '#092528',
+                backgroundColor: 'rgba(35, 4, 10, 0.92)',
                 borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
                 display: 'flex',
                 justifyContent: 'space-between',
@@ -369,7 +369,7 @@ export function StudentNotes() {
                     outline: 'none'
                   }}
                 />
-                <span style={{ fontSize: '0.75rem', color: '#94a3b8' }}>
+                <span style={{ fontSize: '0.75rem', color: '#f0ceb3' }}>
                   Last updated: {new Date(selectedNote.updated_at || Date.now()).toLocaleString()}
                 </span>
               </div>
@@ -379,7 +379,7 @@ export function StudentNotes() {
                 style={{
                   background: 'none',
                   border: 'none',
-                  color: '#94a3b8',
+                  color: '#f0ceb3',
                   cursor: 'pointer',
                   padding: '4px'
                 }}
@@ -397,7 +397,7 @@ export function StudentNotes() {
                 style={{
                   width: '100%',
                   backgroundColor: 'rgba(0,0,0,0.25)',
-                  border: '1px solid rgba(255,255,255,0.08)',
+                  border: '1px solid rgba(241, 163, 42, 0.18)',
                   borderRadius: '8px',
                   color: '#e2e8f0',
                   fontSize: '0.95rem',
@@ -414,7 +414,7 @@ export function StudentNotes() {
             <div
               style={{
                 padding: '1rem 1.5rem',
-                backgroundColor: '#092528',
+                backgroundColor: 'rgba(35, 4, 10, 0.92)',
                 borderTop: '1px solid rgba(255, 255, 255, 0.08)',
                 display: 'flex',
                 justifyContent: 'space-between',
@@ -424,7 +424,7 @@ export function StudentNotes() {
               <button
                 onClick={() => handleDownload({ title: editTitle, content: editContent })}
                 className="glass-panel"
-                style={{ padding: '8px 14px', fontSize: '0.85rem', color: '#cbd5e1', display: 'flex', alignItems: 'center', gap: '6px' }}
+                style={{ padding: '8px 14px', fontSize: '0.85rem', color: '#f0ceb3', display: 'flex', alignItems: 'center', gap: '6px' }}
               >
                 <Download size={14} /> Download (.txt)
               </button>
@@ -433,7 +433,7 @@ export function StudentNotes() {
                 <button
                   onClick={() => setSelectedNote(null)}
                   className="glass-panel"
-                  style={{ padding: '8px 16px', fontSize: '0.85rem', color: '#94a3b8', border: 'none' }}
+                  style={{ padding: '8px 16px', fontSize: '0.85rem', color: '#f0ceb3', border: 'none' }}
                 >
                   Close
                 </button>

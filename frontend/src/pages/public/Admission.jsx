@@ -99,7 +99,7 @@ export function Admission() {
             <h3 style={{ color: 'var(--color-white)', fontSize: '1.5rem', marginBottom: '0.75rem' }}>Application Submitted!</h3>
             
             <div className="glass-panel" style={{ padding: '1.5rem', textAlign: 'left', margin: '1.5rem 0', background: 'rgba(56, 189, 248, 0.08)', borderLeft: '4px solid #38bdf8' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.6rem', color: '#38bdf8', fontWeight: '600' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.6rem', color: 'var(--color-primary)', fontWeight: '600' }}>
                 <Mail size={18} /> Fee Payment Instructions Emailed
               </div>
               <p style={{ color: '#cbd5e1', fontSize: '0.92rem', margin: 0, lineHeight: '1.5' }}>

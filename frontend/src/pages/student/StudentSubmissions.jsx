@@ -127,9 +127,9 @@ export function StudentSubmissions() {
                         textTransform: 'uppercase',
                         backgroundColor:
                           sub.status === 'reviewed'
-                            ? 'rgba(52, 211, 153, 0.15)'
+                            ? 'rgba(241, 163, 42, 0.15)'
                             : 'rgba(251, 191, 36, 0.15)',
-                        color: sub.status === 'reviewed' ? '#34d399' : '#fbbf24',
+                        color: sub.status === 'reviewed' ? 'var(--color-primary)' : '#fbbf24',
                       }}
                     >
                       {sub.status === 'reviewed' ? 'Reviewed' : 'Submitted'}
@@ -137,7 +137,7 @@ export function StudentSubmissions() {
                   </td>
                   <td style={{ padding: '1rem' }}>
                     {sub.grade ? (
-                      <span style={{ fontWeight: 700, color: '#c084fc', fontSize: '0.9rem' }}>
+                      <span style={{ fontWeight: 700, color: 'var(--color-primary)', fontSize: '0.9rem' }}>
                         Grade: {sub.grade} ({sub.score}%)
                       </span>
                     ) : (
@@ -153,7 +153,7 @@ export function StudentSubmissions() {
                         fontSize: '0.8rem',
                         cursor: 'pointer',
                         color: 'var(--color-primary)',
-                        border: '1px solid rgba(255, 255, 255, 0.1)',
+                        border: '1px solid rgba(241, 163, 42, 0.18)',
                         fontWeight: 600,
                       }}
                     >
@@ -188,8 +188,8 @@ export function StudentSubmissions() {
               width: '100%',
               maxWidth: '560px',
               padding: '2rem',
-              backgroundColor: 'rgba(15, 23, 42, 0.98)',
-              border: '1px solid rgba(255, 255, 255, 0.15)',
+              backgroundColor: 'rgba(44, 5, 13, 0.65)',
+              border: '1px solid rgba(241, 163, 42, 0.18)',
             }}
           >
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.25rem' }}>
@@ -240,12 +240,12 @@ export function StudentSubmissions() {
 
             {/* Assessment Feedback */}
             {selectedSub.status === 'reviewed' ? (
-              <div style={{ padding: '1.25rem', borderRadius: '8px', backgroundColor: 'rgba(168, 85, 247, 0.1)', border: '1px solid rgba(168, 85, 247, 0.3)', marginBottom: '1.5rem' }}>
+              <div style={{ padding: '1.25rem', borderRadius: '8px', backgroundColor: 'rgba(241, 163, 42, 0.15)', border: '1px solid rgba(241, 163, 42, 0.15)', marginBottom: '1.5rem' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
-                  <span style={{ fontSize: '0.85rem', color: '#c084fc', fontWeight: 700 }}>
+                  <span style={{ fontSize: '0.85rem', color: 'var(--color-primary)', fontWeight: 700 }}>
                     Instructor Feedback
                   </span>
-                  <span style={{ fontSize: '1.1rem', fontWeight: 800, color: '#c084fc' }}>
+                  <span style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--color-primary)' }}>
                     Grade: {selectedSub.grade} ({selectedSub.score}%)
                   </span>
                 </div>

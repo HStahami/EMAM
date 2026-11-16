@@ -92,8 +92,8 @@ export function StudentCourses() {
                         textTransform: 'uppercase',
                         padding: '3px 8px',
                         borderRadius: '4px',
-                        background: 'rgba(52, 211, 153, 0.15)',
-                        color: '#34d399',
+                        background: 'rgba(241, 163, 42, 0.15)',
+                        color: 'var(--color-primary)',
                         display: 'inline-block',
                         marginBottom: '0.5rem',
                       }}
@@ -128,8 +128,8 @@ export function StudentCourses() {
                     gap: '1.25rem',
                     padding: '1.25rem',
                     borderRadius: '8px',
-                    backgroundColor: 'rgba(15, 23, 42, 0.5)',
-                    border: '1px solid rgba(255, 255, 255, 0.06)',
+                    backgroundColor: 'rgba(44, 5, 13, 0.65)',
+                    border: '1px solid rgba(241, 163, 42, 0.18)',
                   }}
                 >
                   {/* Instructor */}
@@ -191,7 +191,7 @@ export function StudentCourses() {
                   <Link
                     to="/student/resources"
                     className="glass-panel"
-                    style={{ textDecoration: 'none', padding: '0.6rem 1.25rem', fontSize: '0.85rem', color: '#fff', border: '1px solid rgba(255, 255, 255, 0.1)' }}
+                    style={{ textDecoration: 'none', padding: '0.6rem 1.25rem', fontSize: '0.85rem', color: '#fff', border: '1px solid rgba(241, 163, 42, 0.18)' }}
                   >
                     View Course Resources →
                   </Link>

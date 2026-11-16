@@ -115,7 +115,7 @@ export function StudentTasks() {
           style={{
             padding: '1rem 1.5rem',
             borderLeft: '4px solid rgba(241,163,42,0.6)',
-            color: '#34d399',
+            color: 'var(--color-primary)',
             backgroundColor: 'rgba(241, 163, 42, 0.15)',
           }}
         >
@@ -204,9 +204,9 @@ export function StudentTasks() {
                 justifyContent: 'space-between',
                 borderLeft: task.is_submitted
                   ? task.submission_status === 'reviewed'
-                    ? '4px solid #a855f7'
-                    : '4px solid #10b981'
-                  : '4px solid #fbbf24',
+                    ? '4px solid var(--color-primary)'
+                    : '4px solid var(--color-primary)'
+                  : '4px solid rgba(241, 163, 42, 0.5)',
               }}
             >
               <div>
@@ -215,7 +215,8 @@ export function StudentTasks() {
                     style={{
                       fontSize: '0.75rem',
                       color: 'var(--color-primary)',
-                      backgroundColor: 'rgba(197, 229, 232, 0.1)',
+                      backgroundColor: 'rgba(241, 163, 42, 0.12)',
+                      border: '1px solid rgba(241, 163, 42, 0.25)',
                       padding: '2px 8px',
                       borderRadius: '4px',
                       fontWeight: 600,
@@ -233,10 +234,10 @@ export function StudentTasks() {
                         borderRadius: '4px',
                         backgroundColor:
                           task.submission_status === 'reviewed'
-                            ? 'rgba(168, 85, 247, 0.15)'
-                            : 'rgba(52, 211, 153, 0.15)',
+                            ? 'rgba(241, 163, 42, 0.15)'
+                            : 'rgba(241, 163, 42, 0.15)',
                         color:
-                          task.submission_status === 'reviewed' ? '#c084fc' : '#34d399',
+                          task.submission_status === 'reviewed' ? 'var(--color-primary)' : 'var(--color-primary)',
                       }}
                     >
                       {task.submission_status === 'reviewed'
@@ -336,8 +337,8 @@ export function StudentTasks() {
               width: '100%',
               maxWidth: '620px',
               padding: '2.5rem',
-              backgroundColor: 'rgba(15, 23, 42, 0.98)',
-              border: '1px solid rgba(255, 255, 255, 0.15)',
+              backgroundColor: 'rgba(44, 5, 13, 0.65)',
+              border: '1px solid rgba(241, 163, 42, 0.18)',
               maxHeight: '90vh',
               overflowY: 'auto',
             }}
@@ -407,9 +408,9 @@ export function StudentTasks() {
             {/* If Already Submitted: Show Submission & Grade */}
             {activeTask.is_submitted ? (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-                <div style={{ padding: '1.25rem', borderRadius: '8px', backgroundColor: 'rgba(52, 211, 153, 0.08)', border: '1px solid rgba(52, 211, 153, 0.2)' }}>
+                <div style={{ padding: '1.25rem', borderRadius: '8px', backgroundColor: 'rgba(241, 163, 42, 0.15)', border: '1px solid rgba(241, 163, 42, 0.15)' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
-                    <span style={{ fontSize: '0.8rem', color: '#34d399', fontWeight: 700, textTransform: 'uppercase' }}>
+                    <span style={{ fontSize: '0.8rem', color: 'var(--color-primary)', fontWeight: 700, textTransform: 'uppercase' }}>
                       Your Submission
                     </span>
                     <span style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)' }}>
@@ -423,12 +424,12 @@ export function StudentTasks() {
 
                 {/* Grade & Feedback if Reviewed */}
                 {activeTask.submission_status === 'reviewed' ? (
-                  <div style={{ padding: '1.25rem', borderRadius: '8px', backgroundColor: 'rgba(168, 85, 247, 0.1)', border: '1px solid rgba(168, 85, 247, 0.3)' }}>
+                  <div style={{ padding: '1.25rem', borderRadius: '8px', backgroundColor: 'rgba(241, 163, 42, 0.15)', border: '1px solid rgba(241, 163, 42, 0.15)' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
-                      <span style={{ fontSize: '0.85rem', color: '#c084fc', fontWeight: 700 }}>
+                      <span style={{ fontSize: '0.85rem', color: 'var(--color-primary)', fontWeight: 700 }}>
                         Instructor Assessment
                       </span>
-                      <span style={{ fontSize: '1rem', fontWeight: 800, color: '#c084fc' }}>
+                      <span style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--color-primary)' }}>
                         Grade: {activeTask.grade} ({activeTask.score}%)
                       </span>
                     </div>
@@ -467,8 +468,8 @@ export function StudentTasks() {
                     style={{
                       width: '100%',
                       padding: '0.75rem 1rem',
-                      backgroundColor: 'rgba(15, 23, 42, 0.8)',
-                      border: '1px solid rgba(255, 255, 255, 0.12)',
+                      backgroundColor: 'rgba(44, 5, 13, 0.65)',
+                      border: '1px solid rgba(241, 163, 42, 0.18)',
                       borderRadius: '8px',
                       color: '#fff',
                       fontSize: '0.9rem',
@@ -489,8 +490,8 @@ export function StudentTasks() {
                     style={{
                       width: '100%',
                       padding: '0.5rem',
-                      backgroundColor: 'rgba(15, 23, 42, 0.8)',
-                      border: '1px solid rgba(255, 255, 255, 0.12)',
+                      backgroundColor: 'rgba(44, 5, 13, 0.65)',
+                      border: '1px solid rgba(241, 163, 42, 0.18)',
                       borderRadius: '8px',
                       color: '#f0ceb3',
                       fontSize: '0.85rem',
@@ -504,7 +505,7 @@ export function StudentTasks() {
                     type="button"
                     onClick={closeTaskModal}
                     className="glass-panel"
-                    style={{ padding: '0.65rem 1.25rem', border: '1px solid rgba(255, 255, 255, 0.1)', color: 'rgba(241,163,42,0.55)', cursor: 'pointer' }}
+                    style={{ padding: '0.65rem 1.25rem', border: '1px solid rgba(241, 163, 42, 0.18)', color: 'rgba(241,163,42,0.55)', cursor: 'pointer' }}
                   >
                     Cancel
                   </button>

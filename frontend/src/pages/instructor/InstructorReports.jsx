@@ -121,7 +121,7 @@ export function InstructorReports() {
             style={{
               padding: '0.6rem 1.2rem',
               color: '#f0ceb3',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
+              border: '1px solid rgba(241, 163, 42, 0.18)',
               cursor: 'pointer',
               fontWeight: 600,
               fontSize: '0.85rem',
@@ -183,9 +183,9 @@ export function InstructorReports() {
             value={selectedSlotId}
             onChange={(e) => setSelectedSlotId(e.target.value)}
             style={{
-              backgroundColor: 'rgba(15, 23, 42, 0.8)',
+              backgroundColor: 'rgba(44, 5, 13, 0.65)',
               color: '#fff',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
+              border: '1px solid rgba(241, 163, 42, 0.18)',
               padding: '0.6rem 1.2rem',
               borderRadius: '8px',
               fontSize: '0.9rem',
@@ -228,7 +228,7 @@ export function InstructorReports() {
           <div style={{ fontSize: '0.8rem', color: 'rgba(241,163,42,0.55)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
             Avg Attendance Rate
           </div>
-          <div style={{ fontSize: '2rem', fontWeight: 700, color: '#34d399', margin: '0.4rem 0' }}>
+          <div style={{ fontSize: '2rem', fontWeight: 700, color: 'var(--color-primary)', margin: '0.4rem 0' }}>
             {avgAttendance}%
           </div>
           <div style={{ fontSize: '0.8rem', color: 'rgba(241,163,42,0.55)' }}>Across recorded sessions</div>
@@ -248,7 +248,7 @@ export function InstructorReports() {
           <div style={{ fontSize: '0.8rem', color: 'rgba(241,163,42,0.55)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
             Avg Assessment Score
           </div>
-          <div style={{ fontSize: '2rem', fontWeight: 700, color: '#c084fc', margin: '0.4rem 0' }}>
+          <div style={{ fontSize: '2rem', fontWeight: 700, color: 'var(--color-primary)', margin: '0.4rem 0' }}>
             {avgScore !== null ? `${avgScore}%` : 'N/A'}
           </div>
           <div style={{ fontSize: '0.8rem', color: 'rgba(241,163,42,0.55)' }}>Based on graded submissions</div>
@@ -314,7 +314,7 @@ export function InstructorReports() {
                           style={{
                             width: `${st.attendance_rate || 0}%`,
                             height: '100%',
-                            backgroundColor: (st.attendance_rate || 0) >= 80 ? '#34d399' : '#f87171',
+                            backgroundColor: (st.attendance_rate || 0) >= 80 ? 'var(--color-primary)' : '#f87171',
                           }}
                         />
                       </div>
@@ -348,7 +348,7 @@ export function InstructorReports() {
                       </span>
                     </div>
                   </td>
-                  <td style={{ padding: '1rem', color: '#c084fc', fontWeight: 600 }}>
+                  <td style={{ padding: '1rem', color: 'var(--color-primary)', fontWeight: 600 }}>
                     {st.average_score != null ? `${st.average_score}%` : '�'}
                   </td>
                   <td style={{ padding: '1rem' }}>
@@ -360,9 +360,9 @@ export function InstructorReports() {
                         fontWeight: 700,
                         backgroundColor:
                           (st.overall_progress || 0) >= 70
-                            ? 'rgba(52, 211, 153, 0.15)'
+                            ? 'rgba(241, 163, 42, 0.15)'
                             : 'rgba(251, 191, 36, 0.15)',
-                        color: (st.overall_progress || 0) >= 70 ? '#34d399' : '#fbbf24',
+                        color: (st.overall_progress || 0) >= 70 ? 'var(--color-primary)' : '#fbbf24',
                       }}
                     >
                       {st.overall_progress || 0}%
@@ -374,7 +374,7 @@ export function InstructorReports() {
                       className="glass-panel"
                       style={{
                         padding: '0.35rem 0.75rem',
-                        border: '1px solid rgba(255, 255, 255, 0.1)',
+                        border: '1px solid rgba(241, 163, 42, 0.18)',
                         color: 'var(--color-primary)',
                         cursor: 'pointer',
                         fontSize: '0.8rem',
@@ -412,8 +412,8 @@ export function InstructorReports() {
               width: '100%',
               maxWidth: '640px',
               padding: '2rem',
-              backgroundColor: 'rgba(15, 23, 42, 0.95)',
-              border: '1px solid rgba(255, 255, 255, 0.15)',
+              backgroundColor: 'rgba(44, 5, 13, 0.65)',
+              border: '1px solid rgba(241, 163, 42, 0.18)',
               maxHeight: '90vh',
               overflowY: 'auto',
             }}
@@ -453,12 +453,12 @@ export function InstructorReports() {
                     padding: '1rem 1.5rem',
                     borderRadius: '8px',
                     background: 'rgba(255, 255, 255, 0.05)',
-                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    border: '1px solid rgba(241, 163, 42, 0.18)',
                   }}
                 >
                   <div>
                     <div style={{ fontSize: '0.8rem', color: 'rgba(241,163,42,0.55)', textTransform: 'uppercase' }}>Overall Progress Score</div>
-                    <div style={{ fontSize: '1.5rem', fontWeight: 700, color: '#34d399' }}>
+                    <div style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--color-primary)' }}>
                       {studentReport.overall_progress_score}%
                     </div>
                   </div>
@@ -476,8 +476,8 @@ export function InstructorReports() {
                     Attendance Analytics ({studentReport.attendance?.attendance_rate}%)
                   </h4>
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0.75rem', textAlign: 'center' }}>
-                    <div style={{ padding: '0.75rem', borderRadius: '6px', background: 'rgba(52, 211, 153, 0.1)' }}>
-                      <div style={{ fontSize: '1.2rem', fontWeight: 700, color: '#34d399' }}>
+                    <div style={{ padding: '0.75rem', borderRadius: '6px', background: 'rgba(241, 163, 42, 0.15)' }}>
+                      <div style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--color-primary)' }}>
                         {studentReport.attendance?.present || 0}
                       </div>
                       <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)' }}>Present</div>
@@ -524,7 +524,7 @@ export function InstructorReports() {
                       <div style={{ fontSize: '1.3rem', fontWeight: 700, color: '#fff', margin: '0.2rem 0' }}>
                         {studentReport.assessments?.total_graded} Graded
                       </div>
-                      <div style={{ fontSize: '0.8rem', color: '#c084fc' }}>
+                      <div style={{ fontSize: '0.8rem', color: 'var(--color-primary)' }}>
                         Average Score: {studentReport.assessments?.average_score != null ? `${studentReport.assessments.average_score}%` : 'N/A'}
                       </div>
                     </div>

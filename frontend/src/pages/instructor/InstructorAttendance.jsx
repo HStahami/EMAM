@@ -171,8 +171,8 @@ export function InstructorAttendance() {
             className="glass-panel"
             style={{
               padding: '0.6rem 1.2rem',
-              color: '#34d399',
-              border: '1px solid rgba(52, 211, 153, 0.3)',
+              color: 'var(--color-primary)',
+              border: '1px solid rgba(241, 163, 42, 0.15)',
               cursor: 'pointer',
               fontWeight: 600,
               fontSize: '0.85rem',
@@ -206,7 +206,7 @@ export function InstructorAttendance() {
           style={{
             padding: '1rem 1.5rem',
             borderLeft: '4px solid rgba(241,163,42,0.6)',
-            color: '#34d399',
+            color: 'var(--color-primary)',
             backgroundColor: 'rgba(241, 163, 42, 0.15)',
           }}
         >
@@ -249,9 +249,9 @@ export function InstructorAttendance() {
               value={selectedSlotId}
               onChange={(e) => setSelectedSlotId(e.target.value)}
               style={{
-                backgroundColor: 'rgba(15, 23, 42, 0.8)',
+                backgroundColor: 'rgba(44, 5, 13, 0.65)',
                 color: '#fff',
-                border: '1px solid rgba(255, 255, 255, 0.1)',
+                border: '1px solid rgba(241, 163, 42, 0.18)',
                 padding: '0.6rem 1rem',
                 borderRadius: '8px',
                 fontSize: '0.9rem',
@@ -277,9 +277,9 @@ export function InstructorAttendance() {
               value={selectedDate}
               onChange={(e) => setSelectedDate(e.target.value)}
               style={{
-                backgroundColor: 'rgba(15, 23, 42, 0.8)',
+                backgroundColor: 'rgba(44, 5, 13, 0.65)',
                 color: '#fff',
-                border: '1px solid rgba(255, 255, 255, 0.1)',
+                border: '1px solid rgba(241, 163, 42, 0.18)',
                 padding: '0.55rem 0.9rem',
                 borderRadius: '8px',
                 fontSize: '0.9rem',
@@ -290,7 +290,7 @@ export function InstructorAttendance() {
 
         {/* Counter Pills */}
         <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-          <div style={{ padding: '0.4rem 0.8rem', borderRadius: '6px', background: 'rgba(52, 211, 153, 0.15)', color: '#34d399', fontSize: '0.85rem', fontWeight: 600 }}>
+          <div style={{ padding: '0.4rem 0.8rem', borderRadius: '6px', background: 'rgba(241, 163, 42, 0.15)', color: 'var(--color-primary)', fontSize: '0.85rem', fontWeight: 600 }}>
             {counts.present} Present
           </div>
           <div style={{ padding: '0.4rem 0.8rem', borderRadius: '6px', background: 'rgba(248, 113, 113, 0.15)', color: '#f87171', fontSize: '0.85rem', fontWeight: 600 }}>
@@ -353,7 +353,7 @@ export function InstructorAttendance() {
                     <td style={{ padding: '1rem' }}>
                       <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
                         {[
-                          { key: 'present', label: 'Present', bg: 'rgba(52, 211, 153, 0.2)', activeBg: 'var(--color-primary)', color: '#34d399' },
+                          { key: 'present', label: 'Present', bg: 'rgba(241, 163, 42, 0.15)', activeBg: 'var(--color-primary)', color: 'var(--color-primary)' },
                           { key: 'absent', label: 'Absent', bg: 'rgba(239, 68, 68, 0.2)', activeBg: '#ef4444', color: '#f87171' },
                           { key: 'late', label: 'Late', bg: 'rgba(245, 158, 11, 0.2)', activeBg: '#f59e0b', color: '#fbbf24' },
                           { key: 'excused', label: 'Excused', bg: 'rgba(59, 130, 246, 0.2)', activeBg: '#3b82f6', color: '#60a5fa' },
@@ -389,9 +389,9 @@ export function InstructorAttendance() {
                         placeholder="Optional remarks..."
                         onChange={(e) => handleRemarksChange(st.id, e.target.value)}
                         style={{
-                          backgroundColor: 'rgba(15, 23, 42, 0.6)',
+                          backgroundColor: 'rgba(44, 5, 13, 0.65)',
                           color: '#fff',
-                          border: '1px solid rgba(255, 255, 255, 0.1)',
+                          border: '1px solid rgba(241, 163, 42, 0.18)',
                           padding: '0.4rem 0.8rem',
                           borderRadius: '6px',
                           fontSize: '0.85rem',
@@ -445,7 +445,7 @@ export function InstructorAttendance() {
                         textTransform: 'uppercase',
                         backgroundColor:
                           rec.status === 'present'
-                            ? 'rgba(52, 211, 153, 0.2)'
+                            ? 'rgba(241, 163, 42, 0.15)'
                             : rec.status === 'late'
                             ? 'rgba(251, 191, 36, 0.2)'
                             : rec.status === 'excused'
@@ -453,7 +453,7 @@ export function InstructorAttendance() {
                             : 'rgba(248, 113, 113, 0.2)',
                         color:
                           rec.status === 'present'
-                            ? '#34d399'
+                            ? 'var(--color-primary)'
                             : rec.status === 'late'
                             ? '#fbbf24'
                             : rec.status === 'excused'

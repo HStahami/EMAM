@@ -32,7 +32,7 @@ export function StudentCourses() {
         <h1 style={{ fontSize: '1.8rem', fontWeight: 700, color: 'var(--color-primary)', margin: 0 }}>
           My Enrolled Courses
         </h1>
-        <p style={{ color: '#8892b0', fontSize: '0.95rem', marginTop: '0.4rem', marginBottom: 0 }}>
+        <p style={{ color: 'rgba(241,163,42,0.55)', fontSize: '0.95rem', marginTop: '0.4rem', marginBottom: 0 }}>
           Modules, academic curriculum, faculty instructor, and live class schedule.
         </p>
       </div>
@@ -52,14 +52,14 @@ export function StudentCourses() {
       )}
 
       {loading ? (
-        <div className="glass-panel" style={{ textAlign: 'center', padding: '3rem', color: '#8892b0' }}>
+        <div className="glass-panel" style={{ textAlign: 'center', padding: '3rem', color: 'rgba(241,163,42,0.55)' }}>
           Loading your active courses...
         </div>
       ) : courses.length === 0 ? (
         <div className="glass-panel" style={{ textAlign: 'center', padding: '3.5rem' }}>
-          <div style={{ fontSize: '1.2rem', marginBottom: '0.8rem', color: '#8892b0' }}>No Enrollments</div>
+          <div style={{ fontSize: '1.2rem', marginBottom: '0.8rem', color: 'rgba(241,163,42,0.55)' }}>No Enrollments</div>
           <h3 style={{ color: '#fff', marginBottom: '0.5rem' }}>No Active Enrollments</h3>
-          <p style={{ color: '#8892b0', margin: 0 }}>
+          <p style={{ color: 'rgba(241,163,42,0.55)', margin: 0 }}>
             You are not currently enrolled in any module. Please contact the administrator.
           </p>
         </div>
@@ -106,17 +106,17 @@ export function StudentCourses() {
                   </div>
 
                   <div style={{ display: 'flex', gap: '0.75rem' }}>
-                    <div style={{ padding: '0.4rem 0.8rem', borderRadius: '6px', background: 'rgba(255, 255, 255, 0.05)', fontSize: '0.8rem', color: '#b0c4c6' }}>
+                    <div style={{ padding: '0.4rem 0.8rem', borderRadius: '6px', background: 'rgba(255, 255, 255, 0.05)', fontSize: '0.8rem', color: '#f0ceb3' }}>
                       {item.tasks_count || 0} Tasks Assigned
                     </div>
-                    <div style={{ padding: '0.4rem 0.8rem', borderRadius: '6px', background: 'rgba(255, 255, 255, 0.05)', fontSize: '0.8rem', color: '#b0c4c6' }}>
+                    <div style={{ padding: '0.4rem 0.8rem', borderRadius: '6px', background: 'rgba(255, 255, 255, 0.05)', fontSize: '0.8rem', color: '#f0ceb3' }}>
                       {item.resources_count || 0} Learning Materials
                     </div>
                   </div>
                 </div>
 
                 {/* Description */}
-                <p style={{ color: '#b0c4c6', fontSize: '0.9rem', lineHeight: '1.5', margin: 0 }}>
+                <p style={{ color: '#f0ceb3', fontSize: '0.9rem', lineHeight: '1.5', margin: 0 }}>
                   {mod.description || 'Comprehensive Arabic program covering foundational grammar, morphology, and reading skills.'}
                 </p>
 
@@ -139,7 +139,7 @@ export function StudentCourses() {
                         width: '48px',
                         height: '48px',
                         borderRadius: '50%',
-                        backgroundColor: 'rgba(56, 189, 248, 0.15)',
+                        backgroundColor: 'rgba(241, 163, 42, 0.15)',
                         border: '1px solid var(--color-primary)',
                         display: 'flex',
                         alignItems: 'center',
@@ -153,7 +153,7 @@ export function StudentCourses() {
                       {inst.name?.[0] || 'I'}
                     </div>
                     <div>
-                      <div style={{ fontSize: '0.75rem', color: '#8892b0', textTransform: 'uppercase' }}>
+                      <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)', textTransform: 'uppercase' }}>
                         Course Instructor
                       </div>
                       <div style={{ fontWeight: 600, color: '#fff', fontSize: '0.95rem' }}>
@@ -167,13 +167,13 @@ export function StudentCourses() {
 
                   {/* Schedule */}
                   <div>
-                    <div style={{ fontSize: '0.75rem', color: '#8892b0', textTransform: 'uppercase' }}>
+                    <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)', textTransform: 'uppercase' }}>
                       Class Days & Timetable
                     </div>
                     <div style={{ fontWeight: 600, color: '#fff', fontSize: '0.95rem', marginTop: '0.2rem' }}>
                       {slot.days || 'Weekly Schedule'}
                     </div>
-                    <div style={{ fontSize: '0.8rem', color: '#b0c4c6', marginTop: '0.1rem' }}>
+                    <div style={{ fontSize: '0.8rem', color: '#f0ceb3', marginTop: '0.1rem' }}>
                       {slot.time || 'Check schedule calendar'}
                     </div>
                   </div>

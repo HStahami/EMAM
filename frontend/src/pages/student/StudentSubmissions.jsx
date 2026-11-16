@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { submissionsApi } from '../../api';
 
 export function StudentSubmissions() {
@@ -39,7 +39,7 @@ export function StudentSubmissions() {
         <h1 style={{ fontSize: '1.8rem', fontWeight: 700, color: 'var(--color-primary)', margin: 0 }}>
           My Submissions & Feedback
         </h1>
-        <p style={{ color: '#8892b0', fontSize: '0.95rem', marginTop: '0.4rem', marginBottom: 0 }}>
+        <p style={{ color: 'rgba(241,163,42,0.55)', fontSize: '0.95rem', marginTop: '0.4rem', marginBottom: 0 }}>
           Complete history of your submitted assignments, instructor reviews, and academic grades.
         </p>
       </div>
@@ -64,7 +64,7 @@ export function StudentSubmissions() {
               background: 'none',
               border: 'none',
               padding: '0.5rem 1rem',
-              color: filter === tab.key ? 'var(--color-primary)' : '#8892b0',
+              color: filter === tab.key ? 'var(--color-primary)' : 'rgba(241,163,42,0.55)',
               fontWeight: filter === tab.key ? 700 : 500,
               fontSize: '0.9rem',
               borderBottom: filter === tab.key ? '2px solid var(--color-primary)' : '2px solid transparent',
@@ -78,14 +78,14 @@ export function StudentSubmissions() {
 
       {/* Submissions Table / Cards */}
       {loading ? (
-        <div className="glass-panel" style={{ textAlign: 'center', padding: '3rem', color: '#8892b0' }}>
+        <div className="glass-panel" style={{ textAlign: 'center', padding: '3rem', color: 'rgba(241,163,42,0.55)' }}>
           Loading your submission history...
         </div>
       ) : filtered.length === 0 ? (
         <div className="glass-panel" style={{ textAlign: 'center', padding: '3.5rem' }}>
-          <div style={{ fontSize: '1.1rem', marginBottom: '0.5rem', color: '#8892b0' }}>No Submissions Found</div>
+          <div style={{ fontSize: '1.1rem', marginBottom: '0.5rem', color: 'rgba(241,163,42,0.55)' }}>No Submissions Found</div>
           <h3 style={{ color: '#fff', marginBottom: '0.5rem' }}>No Submissions Found</h3>
-          <p style={{ color: '#8892b0', margin: 0 }}>
+          <p style={{ color: 'rgba(241,163,42,0.55)', margin: 0 }}>
             {filter === 'reviewed'
               ? 'No reviewed submissions yet. Your instructor will grade your work soon.'
               : 'You have not submitted any coursework assignments yet.'}
@@ -95,7 +95,7 @@ export function StudentSubmissions() {
         <div className="glass-panel" style={{ padding: '1.5rem', overflowX: 'auto' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
             <thead>
-              <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)', color: '#8892b0', fontSize: '0.85rem' }}>
+              <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)', color: 'rgba(241,163,42,0.55)', fontSize: '0.85rem' }}>
                 <th style={{ padding: '0.75rem 1rem' }}>Task</th>
                 <th style={{ padding: '0.75rem 1rem' }}>Date Submitted</th>
                 <th style={{ padding: '0.75rem 1rem' }}>Status</th>
@@ -109,12 +109,12 @@ export function StudentSubmissions() {
                   <td style={{ padding: '1rem', color: '#fff', fontWeight: 600 }}>
                     {sub.task_title}
                     {sub.module_title && (
-                      <div style={{ fontSize: '0.75rem', color: '#8892b0', fontWeight: 400 }}>
+                      <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)', fontWeight: 400 }}>
                         {sub.module_title}
                       </div>
                     )}
                   </td>
-                  <td style={{ padding: '1rem', color: '#b0c4c6', fontSize: '0.85rem' }}>
+                  <td style={{ padding: '1rem', color: '#f0ceb3', fontSize: '0.85rem' }}>
                     {sub.submitted_at ? new Date(sub.submitted_at).toLocaleDateString() : 'Recent'}
                   </td>
                   <td style={{ padding: '1rem' }}>
@@ -141,7 +141,7 @@ export function StudentSubmissions() {
                         Grade: {sub.grade} ({sub.score}%)
                       </span>
                     ) : (
-                      <span style={{ color: '#8892b0', fontSize: '0.85rem' }}>Awaiting Review</span>
+                      <span style={{ color: 'rgba(241,163,42,0.55)', fontSize: '0.85rem' }}>Awaiting Review</span>
                     )}
                   </td>
                   <td style={{ padding: '1rem', textAlign: 'right' }}>
@@ -157,7 +157,7 @@ export function StudentSubmissions() {
                         fontWeight: 600,
                       }}
                     >
-                      View Feedback ↗
+                      View Feedback ?
                     </button>
                   </td>
                 </tr>
@@ -194,7 +194,7 @@ export function StudentSubmissions() {
           >
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.25rem' }}>
               <div>
-                <span style={{ fontSize: '0.75rem', color: '#8892b0', textTransform: 'uppercase' }}>
+                <span style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)', textTransform: 'uppercase' }}>
                   Submission Details
                 </span>
                 <h2 style={{ fontSize: '1.3rem', color: '#fff', margin: '0.2rem 0 0 0', fontWeight: 700 }}>
@@ -203,7 +203,7 @@ export function StudentSubmissions() {
               </div>
               <button
                 onClick={() => setSelectedSub(null)}
-                style={{ background: 'none', border: 'none', color: '#8892b0', fontSize: '1.2rem', cursor: 'pointer' }}
+                style={{ background: 'none', border: 'none', color: 'rgba(241,163,42,0.55)', fontSize: '1.2rem', cursor: 'pointer' }}
               >
                 Close
               </button>
@@ -211,7 +211,7 @@ export function StudentSubmissions() {
 
             {/* Content Submitted */}
             <div style={{ marginBottom: '1.25rem', backgroundColor: 'rgba(255, 255, 255, 0.03)', padding: '1rem', borderRadius: '8px' }}>
-              <div style={{ fontSize: '0.75rem', color: '#8892b0', textTransform: 'uppercase', marginBottom: '0.3rem' }}>
+              <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)', textTransform: 'uppercase', marginBottom: '0.3rem' }}>
                 Your Submitted Text
               </div>
               <p style={{ color: '#e2e8f0', fontSize: '0.9rem', lineHeight: '1.5', whiteSpace: 'pre-wrap', margin: 0 }}>
@@ -220,7 +220,7 @@ export function StudentSubmissions() {
 
               {selectedSub.attachment_urls && selectedSub.attachment_urls.length > 0 && (
                 <div style={{ marginTop: '0.75rem' }}>
-                  <div style={{ fontSize: '0.75rem', color: '#8892b0' }}>Your Attachments:</div>
+                  <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)' }}>Your Attachments:</div>
                   <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginTop: '0.3rem' }}>
                     {selectedSub.attachment_urls.map((url, i) => (
                       <a
@@ -230,7 +230,7 @@ export function StudentSubmissions() {
                         rel="noopener noreferrer"
                         style={{ color: 'var(--color-primary)', fontSize: '0.8rem', textDecoration: 'none' }}
                       >
-                        File {i + 1} ↗
+                        File {i + 1} ?
                       </a>
                     ))}
                   </div>
@@ -254,7 +254,7 @@ export function StudentSubmissions() {
                     "{selectedSub.feedback}"
                   </p>
                 ) : (
-                  <p style={{ color: '#8892b0', fontSize: '0.85rem', margin: 0 }}>
+                  <p style={{ color: 'rgba(241,163,42,0.55)', fontSize: '0.85rem', margin: 0 }}>
                     No written notes provided.
                   </p>
                 )}

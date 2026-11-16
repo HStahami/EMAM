@@ -45,7 +45,7 @@ export function InstructorLayout({ children }) {
       <div style={{ minHeight: "80vh", display: "flex", alignItems: "center", justifyContent: "center", padding: "2rem" }}>
         <div className="glass-panel" style={{ padding: "3rem", maxWidth: "450px", textAlign: "center" }}>
           <h2 style={{ color: "#ff6b6b", marginBottom: "1rem" }}>Access Denied</h2>
-          <p style={{ color: "#b0c4c6", marginBottom: "1.5rem" }}>
+          <p style={{ color: "#f0ceb3", marginBottom: "1.5rem" }}>
             This portal is exclusively reserved for Instructors. Your account ({user.role}) is not authorized.
           </p>
           <button onClick={logout} className="btn-primary" style={{ border: "none", cursor: "pointer" }}>
@@ -153,7 +153,7 @@ export function InstructorLayout({ children }) {
             className="portal-header-badge"
             style={{
               fontSize: "0.75rem",
-              background: "rgba(197, 229, 232, 0.15)",
+              background: "rgba(241, 163, 42, 0.12)",
               color: "var(--color-primary)",
               padding: "3px 8px",
               borderRadius: "12px",
@@ -169,7 +169,7 @@ export function InstructorLayout({ children }) {
             to="/instructor/notifications"
             style={{
               position: "relative",
-              color: "#b0c4c6",
+              color: "#f0ceb3",
               textDecoration: "none",
               display: "flex",
               alignItems: "center",
@@ -253,8 +253,8 @@ export function InstructorLayout({ children }) {
                   padding: "9px 12px",
                   borderRadius: "8px",
                   textDecoration: "none",
-                  color: isActive ? "var(--color-primary)" : "#b0c4c6",
-                  backgroundColor: isActive ? "rgba(197, 229, 232, 0.12)" : "transparent",
+                  color: isActive ? "var(--color-primary)" : "#f0ceb3",
+                  backgroundColor: isActive ? "rgba(241, 163, 42, 0.12)" : "transparent",
                   fontWeight: isActive ? "600" : "400",
                   fontSize: "0.9rem",
                   transition: "all 0.15s ease"
@@ -284,7 +284,7 @@ export function InstructorLayout({ children }) {
         </div>
 
         <div style={{ borderTop: "1px solid rgba(255, 255, 255, 0.08)", paddingTop: "1rem", marginTop: "1rem" }}>
-          <div style={{ fontSize: "0.75rem", color: "#8892b0", textAlign: "center" }}>
+          <div style={{ fontSize: "0.75rem", color: "rgba(241, 163, 42, 0.45)", textAlign: "center" }}>
             Emam LMS Instructor Portal
           </div>
         </div>
@@ -337,9 +337,9 @@ export function InstructorLayout({ children }) {
               style={{
                 margin: "1rem 0",
                 padding: "0.85rem",
-                backgroundColor: "rgba(255, 255, 255, 0.04)",
+                backgroundColor: "rgba(105, 14, 31, 0.35)",
                 borderRadius: "10px",
-                border: "1px solid rgba(255, 255, 255, 0.08)",
+                border: "1px solid rgba(241, 163, 42, 0.18)",
                 display: "flex",
                 alignItems: "center",
                 gap: "0.75rem",
@@ -376,8 +376,8 @@ export function InstructorLayout({ children }) {
                       padding: "10px 12px",
                       borderRadius: "8px",
                       textDecoration: "none",
-                      color: isActive ? "var(--color-primary)" : "#cbd5e1",
-                      backgroundColor: isActive ? "rgba(197, 229, 232, 0.12)" : "transparent",
+                      color: isActive ? "var(--color-primary)" : "#f0ceb3",
+                      backgroundColor: isActive ? "rgba(241, 163, 42, 0.12)" : "transparent",
                       fontWeight: isActive ? "600" : "400",
                       fontSize: "0.9rem",
                     }}
@@ -460,7 +460,7 @@ export function InstructorLayout({ children }) {
               <h2 style={{ fontSize: "1.35rem", fontWeight: "700" }} className="gradient-text">
                 Password Change Required
               </h2>
-              <p style={{ color: "#b0c4c6", fontSize: "0.85rem", marginTop: "0.4rem" }}>
+              <p style={{ color: "#f0ceb3", fontSize: "0.85rem", marginTop: "0.4rem" }}>
                 You are currently logged in with a temporary password. Please set a strong password to activate your instructor account.
               </p>
             </div>
@@ -502,7 +502,7 @@ export function InstructorLayout({ children }) {
 
             <form onSubmit={handlePasswordChange} style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
               <div>
-                <label htmlFor="inst_old_password" style={{ display: "block", fontSize: "0.8rem", marginBottom: "0.35rem", color: "#b0c4c6" }}>
+                <label htmlFor="inst_old_password" style={{ display: "block", fontSize: "0.8rem", marginBottom: "0.35rem", color: "#f0ceb3" }}>
                   Current Temporary Password
                 </label>
                 <input
@@ -517,7 +517,7 @@ export function InstructorLayout({ children }) {
               </div>
 
               <div>
-                <label htmlFor="inst_new_password" style={{ display: "block", fontSize: "0.8rem", marginBottom: "0.35rem", color: "#b0c4c6" }}>
+                <label htmlFor="inst_new_password" style={{ display: "block", fontSize: "0.8rem", marginBottom: "0.35rem", color: "#f0ceb3" }}>
                   New Secure Password
                 </label>
                 <input
@@ -532,7 +532,7 @@ export function InstructorLayout({ children }) {
               </div>
 
               <div>
-                <label htmlFor="inst_confirm_password" style={{ display: "block", fontSize: "0.8rem", marginBottom: "0.35rem", color: "#b0c4c6" }}>
+                <label htmlFor="inst_confirm_password" style={{ display: "block", fontSize: "0.8rem", marginBottom: "0.35rem", color: "#f0ceb3" }}>
                   Confirm New Password
                 </label>
                 <input

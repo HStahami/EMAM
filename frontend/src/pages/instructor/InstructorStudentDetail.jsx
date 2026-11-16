@@ -60,7 +60,7 @@ export function InstructorStudentDetail() {
       <div className="glass-panel" style={{ padding: "2.5rem", textAlign: "center" }}>
         <AlertCircle size={40} color="#ff6b6b" style={{ margin: "0 auto 1rem" }} />
         <h2 style={{ fontSize: "1.3rem", color: "#ff6b6b" }}>Unable to View Student</h2>
-        <p style={{ color: "#b0c4c6", margin: "0.8rem 0 1.5rem" }}>
+        <p style={{ color: "#f0ceb3", margin: "0.8rem 0 1.5rem" }}>
           {error || "This student was not found or is not assigned to your classes."}
         </p>
         <Link to="/instructor/students" className="btn-primary" style={{ textDecoration: "none", display: "inline-block" }}>
@@ -113,7 +113,7 @@ export function InstructorStudentDetail() {
               <div style={{ display: "flex", gap: "0.6rem", alignItems: "center" }}>
                 <span
                   style={{
-                    background: "rgba(197, 229, 232, 0.15)",
+                    background: "rgba(241, 163, 42, 0.12)",
                     color: "var(--color-primary)",
                     padding: "3px 10px",
                     borderRadius: "12px",
@@ -124,7 +124,7 @@ export function InstructorStudentDetail() {
                   {student.student_code}
                 </span>
                 <span style={{ color: "#888", fontSize: "0.85rem" }}>•</span>
-                <span style={{ color: "#b0c4c6", fontSize: "0.85rem" }}>{student.slot || "Flexible Schedule"}</span>
+                <span style={{ color: "#f0ceb3", fontSize: "0.85rem" }}>{student.slot || "Flexible Schedule"}</span>
               </div>
             </div>
           </div>
@@ -147,7 +147,7 @@ export function InstructorStudentDetail() {
               </div>
               <div style={{ textAlign: "center" }}>
                 <div style={{ fontSize: "0.75rem", color: "#888" }}>Tasks Done</div>
-                <div style={{ fontSize: "1.2rem", fontWeight: "700", color: "#4ecdc4" }}>
+                <div style={{ fontSize: "1.2rem", fontWeight: "700", color: "var(--color-primary)" }}>
                   {report.tasks?.completion_rate}%
                 </div>
               </div>
@@ -177,7 +177,7 @@ export function InstructorStudentDetail() {
               border: "none",
               cursor: "pointer",
               padding: "8px 16px",
-              color: activeTab === t.id ? "var(--color-primary)" : "#b0c4c6",
+              color: activeTab === t.id ? "var(--color-primary)" : "#f0ceb3",
               borderBottom: activeTab === t.id ? "2px solid var(--color-primary)" : "2px solid transparent",
               fontWeight: activeTab === t.id ? "600" : "400",
               fontSize: "0.95rem"
@@ -195,7 +195,7 @@ export function InstructorStudentDetail() {
             <h3 style={{ fontSize: "1.1rem", fontWeight: "600", marginBottom: "1.2rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
                Academic & Enrollment Details
             </h3>
-            <div style={{ display: "flex", flexDirection: "column", gap: "1rem", fontSize: "0.92rem", color: "#b0c4c6" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "1rem", fontSize: "0.92rem", color: "#f0ceb3" }}>
               <div>
                 <span style={{ color: "#888", display: "block", fontSize: "0.8rem", marginBottom: "2px" }}>Student Name</span>
                 <strong style={{ color: "#fff", fontSize: "1.05rem" }}>{studentName}</strong>
@@ -221,7 +221,7 @@ export function InstructorStudentDetail() {
             <h3 style={{ fontSize: "1.1rem", fontWeight: "600", marginBottom: "1.2rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
                Academic Progress Summary
             </h3>
-            <div style={{ display: "flex", flexDirection: "column", gap: "1rem", fontSize: "0.92rem", color: "#b0c4c6" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "1rem", fontSize: "0.92rem", color: "#f0ceb3" }}>
               <div>
                 <span style={{ color: "#888", display: "block", fontSize: "0.8rem", marginBottom: "2px" }}>Total Recorded Submissions</span>
                 <strong style={{ color: "#fff", fontSize: "1.1rem" }}>{submissions.length}</strong>
@@ -230,7 +230,7 @@ export function InstructorStudentDetail() {
                 <span style={{ color: "#888", display: "block", fontSize: "0.8rem", marginBottom: "2px" }}>Attendance Records</span>
                 <strong style={{ color: "#fff", fontSize: "1.1rem" }}>{attendanceRecords.length} Classes</strong>
               </div>
-              <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: "0.8rem", fontSize: "0.85rem", color: "#8892b0" }}>
+              <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: "0.8rem", fontSize: "0.85rem", color: "rgba(241,163,42,0.55)" }}>
                 Switch to the Submissions or Attendance History tabs above to grade assignments and record session feedback.
               </div>
             </div>
@@ -278,7 +278,7 @@ export function InstructorStudentDetail() {
                     </span>
                   </div>
 
-                  <p style={{ fontSize: "0.85rem", color: "#b0c4c6" }}>{sub.content}</p>
+                  <p style={{ fontSize: "0.85rem", color: "#f0ceb3" }}>{sub.content}</p>
 
                   {sub.feedback && (
                     <div style={{ marginTop: "0.4rem", padding: "0.6rem", backgroundColor: "rgba(197, 229, 232, 0.08)", borderRadius: "6px", fontSize: "0.85rem" }}>
@@ -309,9 +309,9 @@ export function InstructorStudentDetail() {
               <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.9rem" }}>
                 <thead>
                   <tr style={{ borderBottom: "1px solid rgba(255,255,255,0.1)", textAlign: "left" }}>
-                    <th style={{ padding: "10px 14px", color: "#b0c4c6" }}>Date</th>
-                    <th style={{ padding: "10px 14px", color: "#b0c4c6" }}>Status</th>
-                    <th style={{ padding: "10px 14px", color: "#b0c4c6" }}>Remarks</th>
+                    <th style={{ padding: "10px 14px", color: "#f0ceb3" }}>Date</th>
+                    <th style={{ padding: "10px 14px", color: "#f0ceb3" }}>Status</th>
+                    <th style={{ padding: "10px 14px", color: "#f0ceb3" }}>Remarks</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -336,7 +336,7 @@ export function InstructorStudentDetail() {
                           {att.status}
                         </span>
                       </td>
-                      <td style={{ padding: "12px 14px", color: "#b0c4c6" }}>{att.remarks || "—"}</td>
+                      <td style={{ padding: "12px 14px", color: "#f0ceb3" }}>{att.remarks || "—"}</td>
                     </tr>
                   ))}
                 </tbody>

@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { reportsApi } from '../../api';
 import { useAuth } from '../../context/AuthContext';
 
@@ -28,8 +28,8 @@ export function StudentReports() {
 
   if (loading) {
     return (
-      <div className="glass-panel" style={{ textAlign: 'center', padding: '4rem 1rem', color: '#8892b0' }}>
-        <div style={{ fontSize: '1.1rem', marginBottom: '0.5rem', color: '#8892b0' }}>Progress Report</div>
+      <div className="glass-panel" style={{ textAlign: 'center', padding: '4rem 1rem', color: 'rgba(241,163,42,0.55)' }}>
+        <div style={{ fontSize: '1.1rem', marginBottom: '0.5rem', color: 'rgba(241,163,42,0.55)' }}>Progress Report</div>
         <p style={{ color: 'var(--color-primary)', fontSize: '1.1rem' }}>Computing your dynamic progress report...</p>
       </div>
     );
@@ -59,7 +59,7 @@ export function StudentReports() {
           <h1 style={{ fontSize: '1.8rem', fontWeight: 700, color: 'var(--color-primary)', margin: 0 }}>
             Academic Progress & Evaluation
           </h1>
-          <p style={{ color: '#8892b0', fontSize: '0.95rem', marginTop: '0.4rem', marginBottom: 0 }}>
+          <p style={{ color: 'rgba(241,163,42,0.55)', fontSize: '0.95rem', marginTop: '0.4rem', marginBottom: 0 }}>
             Real-time analytics across coursework completion, session attendance, and assessment grades.
           </p>
         </div>
@@ -96,7 +96,7 @@ export function StudentReports() {
         }}
       >
         <div style={{ flex: 1, minWidth: '260px' }}>
-          <div style={{ fontSize: '0.8rem', color: '#8892b0', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+          <div style={{ fontSize: '0.8rem', color: 'rgba(241,163,42,0.55)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
             Overall Academic Progress Score
           </div>
           <div style={{ fontSize: '2.5rem', fontWeight: 800, color: '#34d399', margin: '0.25rem 0 0.75rem 0' }}>
@@ -113,14 +113,14 @@ export function StudentReports() {
             />
           </div>
 
-          <p style={{ color: '#b0c4c6', fontSize: '0.85rem', marginTop: '0.75rem', marginBottom: 0 }}>
+          <p style={{ color: '#f0ceb3', fontSize: '0.85rem', marginTop: '0.75rem', marginBottom: 0 }}>
             Calculated dynamically based on 50% task completion, 30% attendance punctuality, and 20% assessment scores.
           </p>
         </div>
 
         {/* Student Dossier Badge */}
         <div style={{ padding: '1rem 1.5rem', borderRadius: '8px', background: 'rgba(255, 255, 255, 0.05)', border: '1px solid rgba(255, 255, 255, 0.1)', textAlign: 'right' }}>
-          <div style={{ fontSize: '0.75rem', color: '#8892b0' }}>Student ID</div>
+          <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)' }}>Student ID</div>
           <div style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--color-primary)' }}>
             {user?.student_code || 'N/A'}
           </div>
@@ -144,15 +144,15 @@ export function StudentReports() {
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', fontSize: '0.9rem' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', color: '#b0c4c6' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', color: '#f0ceb3' }}>
               <span>Total Tasks Assigned:</span>
               <strong style={{ color: '#fff' }}>{tasks.total_assigned || 0}</strong>
             </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', color: '#b0c4c6' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', color: '#f0ceb3' }}>
               <span>Submitted by You:</span>
               <strong style={{ color: '#34d399' }}>{tasks.total_submitted || 0}</strong>
             </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', color: '#b0c4c6' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', color: '#f0ceb3' }}>
               <span>Pending Tasks:</span>
               <strong style={{ color: '#fbbf24' }}>
                 {(tasks.total_assigned || 0) - (tasks.total_submitted || 0)}
@@ -173,21 +173,21 @@ export function StudentReports() {
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', fontSize: '0.9rem' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', color: '#b0c4c6' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', color: '#f0ceb3' }}>
               <span>Total Sessions Logged:</span>
               <strong style={{ color: '#fff' }}>{attendance.total_sessions || 0}</strong>
             </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', color: '#b0c4c6' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', color: '#f0ceb3' }}>
               <span>Present:</span>
               <strong style={{ color: '#34d399' }}>{attendance.present || 0}</strong>
             </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', color: '#b0c4c6' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', color: '#f0ceb3' }}>
               <span>Late / Excused:</span>
               <strong style={{ color: '#fbbf24' }}>
                 {(attendance.late || 0) + (attendance.excused || 0)}
               </strong>
             </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', color: '#b0c4c6' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', color: '#f0ceb3' }}>
               <span>Absent:</span>
               <strong style={{ color: '#f87171' }}>{attendance.absent || 0}</strong>
             </div>
@@ -206,18 +206,18 @@ export function StudentReports() {
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', fontSize: '0.9rem' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', color: '#b0c4c6' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', color: '#f0ceb3' }}>
               <span>Graded Submissions:</span>
               <strong style={{ color: '#fff' }}>{assessments.total_graded || 0}</strong>
             </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', color: '#b0c4c6' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', color: '#f0ceb3' }}>
               <span>Average Grade Score:</span>
               <strong style={{ color: '#c084fc' }}>
                 {assessments.average_score != null ? `${assessments.average_score}%` : 'No scores yet'}
               </strong>
             </div>
             {assessments.grades_recorded && assessments.grades_recorded.length > 0 && (
-              <div style={{ display: 'flex', justifyContent: 'space-between', color: '#b0c4c6' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', color: '#f0ceb3' }}>
                 <span>Grades Earned:</span>
                 <span style={{ color: '#fff' }}>
                   {assessments.grades_recorded.join(', ')}

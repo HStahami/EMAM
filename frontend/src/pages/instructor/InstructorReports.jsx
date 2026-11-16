@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { instructorsApi, reportsApi } from '../../api';
 
 export function InstructorReports() {
@@ -109,7 +109,7 @@ export function InstructorReports() {
           <h1 style={{ fontSize: '1.8rem', fontWeight: 700, color: 'var(--color-primary)', margin: 0 }}>
             Academic Performance Reports
           </h1>
-          <p style={{ color: '#8892b0', fontSize: '0.95rem', marginTop: '0.4rem', marginBottom: 0 }}>
+          <p style={{ color: 'rgba(241,163,42,0.55)', fontSize: '0.95rem', marginTop: '0.4rem', marginBottom: 0 }}>
             Dynamic analytics across your classes, student submissions, and attendance milestones.
           </p>
         </div>
@@ -120,7 +120,7 @@ export function InstructorReports() {
             className="glass-panel"
             style={{
               padding: '0.6rem 1.2rem',
-              color: '#b0c4c6',
+              color: '#f0ceb3',
               border: '1px solid rgba(255, 255, 255, 0.1)',
               cursor: 'pointer',
               fontWeight: 600,
@@ -175,7 +175,7 @@ export function InstructorReports() {
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-          <label htmlFor="instructor-scope-filter" style={{ fontSize: '0.85rem', color: '#8892b0', fontWeight: 600 }}>
+          <label htmlFor="instructor-scope-filter" style={{ fontSize: '0.85rem', color: 'rgba(241,163,42,0.55)', fontWeight: 600 }}>
             Scope Filter:
           </label>
           <select
@@ -201,7 +201,7 @@ export function InstructorReports() {
           </select>
         </div>
 
-        <div style={{ color: '#8892b0', fontSize: '0.85rem' }}>
+        <div style={{ color: 'rgba(241,163,42,0.55)', fontSize: '0.85rem' }}>
           Metrics computed in real-time from active LMS logs
         </div>
       </div>
@@ -214,44 +214,44 @@ export function InstructorReports() {
           gap: '1.25rem',
         }}
       >
-        <div className="glass-panel" style={{ padding: '1.5rem', borderLeft: '4px solid #38bdf8' }}>
-          <div style={{ fontSize: '0.8rem', color: '#8892b0', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+        <div className="glass-panel" style={{ padding: '1.5rem', borderLeft: '4px solid var(--color-primary)' }}>
+          <div style={{ fontSize: '0.8rem', color: 'rgba(241,163,42,0.55)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
             Active Students
           </div>
           <div style={{ fontSize: '2rem', fontWeight: 700, color: '#fff', margin: '0.4rem 0' }}>
             {totalStudents}
           </div>
-          <div style={{ fontSize: '0.8rem', color: '#38bdf8' }}>Currently enrolled in scope</div>
+          <div style={{ fontSize: '0.8rem', color: 'var(--color-primary)' }}>Currently enrolled in scope</div>
         </div>
 
-        <div className="glass-panel" style={{ padding: '1.5rem', borderLeft: '4px solid #10b981' }}>
-          <div style={{ fontSize: '0.8rem', color: '#8892b0', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+        <div className="glass-panel" style={{ padding: '1.5rem', borderLeft: '4px solid rgba(241,163,42,0.6)' }}>
+          <div style={{ fontSize: '0.8rem', color: 'rgba(241,163,42,0.55)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
             Avg Attendance Rate
           </div>
           <div style={{ fontSize: '2rem', fontWeight: 700, color: '#34d399', margin: '0.4rem 0' }}>
             {avgAttendance}%
           </div>
-          <div style={{ fontSize: '0.8rem', color: '#8892b0' }}>Across recorded sessions</div>
+          <div style={{ fontSize: '0.8rem', color: 'rgba(241,163,42,0.55)' }}>Across recorded sessions</div>
         </div>
 
         <div className="glass-panel" style={{ padding: '1.5rem', borderLeft: '4px solid #f59e0b' }}>
-          <div style={{ fontSize: '0.8rem', color: '#8892b0', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+          <div style={{ fontSize: '0.8rem', color: 'rgba(241,163,42,0.55)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
             Avg Task Completion
           </div>
           <div style={{ fontSize: '2rem', fontWeight: 700, color: '#fbbf24', margin: '0.4rem 0' }}>
             {avgCompletion}%
           </div>
-          <div style={{ fontSize: '0.8rem', color: '#8892b0' }}>Assigned homework & quizzes</div>
+          <div style={{ fontSize: '0.8rem', color: 'rgba(241,163,42,0.55)' }}>Assigned homework & quizzes</div>
         </div>
 
         <div className="glass-panel" style={{ padding: '1.5rem', borderLeft: '4px solid #a855f7' }}>
-          <div style={{ fontSize: '0.8rem', color: '#8892b0', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+          <div style={{ fontSize: '0.8rem', color: 'rgba(241,163,42,0.55)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
             Avg Assessment Score
           </div>
           <div style={{ fontSize: '2rem', fontWeight: 700, color: '#c084fc', margin: '0.4rem 0' }}>
             {avgScore !== null ? `${avgScore}%` : 'N/A'}
           </div>
-          <div style={{ fontSize: '0.8rem', color: '#8892b0' }}>Based on graded submissions</div>
+          <div style={{ fontSize: '0.8rem', color: 'rgba(241,163,42,0.55)' }}>Based on graded submissions</div>
         </div>
       </div>
 
@@ -262,15 +262,15 @@ export function InstructorReports() {
         </h2>
 
         {loading ? (
-          <div style={{ textAlign: 'center', padding: '3rem', color: '#8892b0' }}>Computing student metrics...</div>
+          <div style={{ textAlign: 'center', padding: '3rem', color: 'rgba(241,163,42,0.55)' }}>Computing student metrics...</div>
         ) : filteredStudents.length === 0 ? (
-          <div style={{ textAlign: 'center', padding: '3rem', color: '#8892b0' }}>
+          <div style={{ textAlign: 'center', padding: '3rem', color: 'rgba(241,163,42,0.55)' }}>
             No students found in this selection.
           </div>
         ) : (
           <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
             <thead>
-              <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)', color: '#8892b0', fontSize: '0.85rem' }}>
+              <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)', color: 'rgba(241,163,42,0.55)', fontSize: '0.85rem' }}>
                 <th style={{ padding: '0.75rem 1rem' }}>Student Name</th>
                 <th style={{ padding: '0.75rem 1rem' }}>Slot</th>
                 <th style={{ padding: '0.75rem 1rem' }}>Attendance</th>
@@ -291,11 +291,11 @@ export function InstructorReports() {
                 >
                   <td style={{ padding: '1rem', color: '#fff', fontWeight: 600 }}>
                     {st.name}
-                    <div style={{ fontSize: '0.75rem', color: '#8892b0', fontWeight: 400 }}>
+                    <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)', fontWeight: 400 }}>
                       <code>{st.student_code || 'N/A'}</code>
                     </div>
                   </td>
-                  <td style={{ padding: '1rem', color: '#b0c4c6', fontSize: '0.85rem' }}>
+                  <td style={{ padding: '1rem', color: '#f0ceb3', fontSize: '0.85rem' }}>
                     {st.slot_name || 'Standard'}
                   </td>
                   <td style={{ padding: '1rem' }}>
@@ -349,7 +349,7 @@ export function InstructorReports() {
                     </div>
                   </td>
                   <td style={{ padding: '1rem', color: '#c084fc', fontWeight: 600 }}>
-                    {st.average_score != null ? `${st.average_score}%` : '—'}
+                    {st.average_score != null ? `${st.average_score}%` : '�'}
                   </td>
                   <td style={{ padding: '1rem' }}>
                     <span
@@ -381,7 +381,7 @@ export function InstructorReports() {
                         fontWeight: 600,
                       }}
                     >
-                      View Report ↗
+                      View Report ?
                     </button>
                   </td>
                 </tr>
@@ -423,7 +423,7 @@ export function InstructorReports() {
                 <h2 style={{ fontSize: '1.3rem', color: '#fff', margin: 0, fontWeight: 700 }}>
                   Academic Progress Report: {detailedStudent.name}
                 </h2>
-                <div style={{ color: '#8892b0', fontSize: '0.85rem', marginTop: '0.25rem' }}>
+                <div style={{ color: 'rgba(241,163,42,0.55)', fontSize: '0.85rem', marginTop: '0.25rem' }}>
                   Code: <code>{detailedStudent.student_code}</code> | Email: {detailedStudent.email}
                 </div>
               </div>
@@ -432,14 +432,14 @@ export function InstructorReports() {
                   setDetailedStudent(null);
                   setStudentReport(null);
                 }}
-                style={{ background: 'none', border: 'none', color: '#8892b0', fontSize: '1.2rem', cursor: 'pointer' }}
+                style={{ background: 'none', border: 'none', color: 'rgba(241,163,42,0.55)', fontSize: '1.2rem', cursor: 'pointer' }}
               >
                 Close
               </button>
             </div>
 
             {reportLoading ? (
-              <div style={{ textAlign: 'center', padding: '3rem', color: '#8892b0' }}>
+              <div style={{ textAlign: 'center', padding: '3rem', color: 'rgba(241,163,42,0.55)' }}>
                 Fetching real-time academic records...
               </div>
             ) : studentReport ? (
@@ -457,13 +457,13 @@ export function InstructorReports() {
                   }}
                 >
                   <div>
-                    <div style={{ fontSize: '0.8rem', color: '#8892b0', textTransform: 'uppercase' }}>Overall Progress Score</div>
+                    <div style={{ fontSize: '0.8rem', color: 'rgba(241,163,42,0.55)', textTransform: 'uppercase' }}>Overall Progress Score</div>
                     <div style={{ fontSize: '1.5rem', fontWeight: 700, color: '#34d399' }}>
                       {studentReport.overall_progress_score}%
                     </div>
                   </div>
                   <div style={{ textAlign: 'right' }}>
-                    <div style={{ fontSize: '0.8rem', color: '#8892b0' }}>Active Enrollments</div>
+                    <div style={{ fontSize: '0.8rem', color: 'rgba(241,163,42,0.55)' }}>Active Enrollments</div>
                     <div style={{ fontSize: '1.2rem', fontWeight: 600, color: '#fff' }}>
                       {studentReport.enrollments_count}
                     </div>
@@ -480,25 +480,25 @@ export function InstructorReports() {
                       <div style={{ fontSize: '1.2rem', fontWeight: 700, color: '#34d399' }}>
                         {studentReport.attendance?.present || 0}
                       </div>
-                      <div style={{ fontSize: '0.75rem', color: '#8892b0' }}>Present</div>
+                      <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)' }}>Present</div>
                     </div>
                     <div style={{ padding: '0.75rem', borderRadius: '6px', background: 'rgba(251, 191, 36, 0.1)' }}>
                       <div style={{ fontSize: '1.2rem', fontWeight: 700, color: '#fbbf24' }}>
                         {studentReport.attendance?.late || 0}
                       </div>
-                      <div style={{ fontSize: '0.75rem', color: '#8892b0' }}>Late</div>
+                      <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)' }}>Late</div>
                     </div>
                     <div style={{ padding: '0.75rem', borderRadius: '6px', background: 'rgba(96, 165, 250, 0.1)' }}>
                       <div style={{ fontSize: '1.2rem', fontWeight: 700, color: '#60a5fa' }}>
                         {studentReport.attendance?.excused || 0}
                       </div>
-                      <div style={{ fontSize: '0.75rem', color: '#8892b0' }}>Excused</div>
+                      <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)' }}>Excused</div>
                     </div>
                     <div style={{ padding: '0.75rem', borderRadius: '6px', background: 'rgba(248, 113, 113, 0.1)' }}>
                       <div style={{ fontSize: '1.2rem', fontWeight: 700, color: '#f87171' }}>
                         {studentReport.attendance?.absent || 0}
                       </div>
-                      <div style={{ fontSize: '0.75rem', color: '#8892b0' }}>Absent</div>
+                      <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)' }}>Absent</div>
                     </div>
                   </div>
                 </div>
@@ -510,7 +510,7 @@ export function InstructorReports() {
                   </h4>
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                     <div style={{ padding: '1rem', borderRadius: '8px', background: 'rgba(255, 255, 255, 0.05)' }}>
-                      <div style={{ fontSize: '0.8rem', color: '#8892b0' }}>Tasks Submitted</div>
+                      <div style={{ fontSize: '0.8rem', color: 'rgba(241,163,42,0.55)' }}>Tasks Submitted</div>
                       <div style={{ fontSize: '1.3rem', fontWeight: 700, color: '#fff', margin: '0.2rem 0' }}>
                         {studentReport.tasks?.total_submitted} / {studentReport.tasks?.total_assigned}
                       </div>
@@ -520,7 +520,7 @@ export function InstructorReports() {
                     </div>
 
                     <div style={{ padding: '1rem', borderRadius: '8px', background: 'rgba(255, 255, 255, 0.05)' }}>
-                      <div style={{ fontSize: '0.8rem', color: '#8892b0' }}>Graded Assessments</div>
+                      <div style={{ fontSize: '0.8rem', color: 'rgba(241,163,42,0.55)' }}>Graded Assessments</div>
                       <div style={{ fontSize: '1.3rem', fontWeight: 700, color: '#fff', margin: '0.2rem 0' }}>
                         {studentReport.assessments?.total_graded} Graded
                       </div>
@@ -545,7 +545,7 @@ export function InstructorReports() {
                 </div>
               </div>
             ) : (
-              <div style={{ textAlign: 'center', padding: '2rem', color: '#8892b0' }}>
+              <div style={{ textAlign: 'center', padding: '2rem', color: 'rgba(241,163,42,0.55)' }}>
                 Unable to load report for this student.
               </div>
             )}

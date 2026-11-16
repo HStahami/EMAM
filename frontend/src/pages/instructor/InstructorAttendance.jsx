@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { instructorsApi, attendanceApi } from '../../api';
 
 export function InstructorAttendance() {
@@ -160,7 +160,7 @@ export function InstructorAttendance() {
           <h1 style={{ fontSize: '1.8rem', fontWeight: 700, color: 'var(--color-primary)', margin: 0 }}>
             Class Attendance
           </h1>
-          <p style={{ color: '#8892b0', fontSize: '0.95rem', marginTop: '0.4rem', marginBottom: 0 }}>
+          <p style={{ color: 'rgba(241,163,42,0.55)', fontSize: '0.95rem', marginTop: '0.4rem', marginBottom: 0 }}>
             Record and manage daily session attendance for your assigned students.
           </p>
         </div>
@@ -205,9 +205,9 @@ export function InstructorAttendance() {
           className="glass-panel"
           style={{
             padding: '1rem 1.5rem',
-            borderLeft: '4px solid #10b981',
+            borderLeft: '4px solid rgba(241,163,42,0.6)',
             color: '#34d399',
-            backgroundColor: 'rgba(16, 185, 129, 0.08)',
+            backgroundColor: 'rgba(241, 163, 42, 0.15)',
           }}
         >
           {message}
@@ -241,7 +241,7 @@ export function InstructorAttendance() {
       >
         <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
           <div>
-            <label htmlFor="inst_att_slot" style={{ display: 'block', fontSize: '0.75rem', color: '#8892b0', marginBottom: '0.3rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+            <label htmlFor="inst_att_slot" style={{ display: 'block', fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)', marginBottom: '0.3rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
               Select Class / Slot
             </label>
             <select
@@ -268,7 +268,7 @@ export function InstructorAttendance() {
           </div>
 
           <div>
-            <label htmlFor="inst_att_date" style={{ display: 'block', fontSize: '0.75rem', color: '#8892b0', marginBottom: '0.3rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+            <label htmlFor="inst_att_date" style={{ display: 'block', fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)', marginBottom: '0.3rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
               Session Date
             </label>
             <input
@@ -312,15 +312,15 @@ export function InstructorAttendance() {
         </h2>
 
         {loading ? (
-          <div style={{ textAlign: 'center', padding: '2rem', color: '#8892b0' }}>Loading students...</div>
+          <div style={{ textAlign: 'center', padding: '2rem', color: 'rgba(241,163,42,0.55)' }}>Loading students...</div>
         ) : enrolledStudents.length === 0 ? (
-          <div style={{ textAlign: 'center', padding: '2.5rem', color: '#8892b0' }}>
+          <div style={{ textAlign: 'center', padding: '2.5rem', color: 'rgba(241,163,42,0.55)' }}>
             No students found enrolled in this slot.
           </div>
         ) : (
           <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
             <thead>
-              <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)', color: '#8892b0', fontSize: '0.85rem' }}>
+              <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)', color: 'rgba(241,163,42,0.55)', fontSize: '0.85rem' }}>
                 <th style={{ padding: '0.75rem 1rem' }}>Student</th>
                 <th style={{ padding: '0.75rem 1rem' }}>Code / Contact</th>
                 <th style={{ padding: '0.75rem 1rem' }}>Status</th>
@@ -342,18 +342,18 @@ export function InstructorAttendance() {
                   >
                     <td style={{ padding: '1rem', fontWeight: 600, color: '#fff' }}>
                       {st.name}
-                      <div style={{ fontSize: '0.75rem', color: '#8892b0', fontWeight: 400 }}>
+                      <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)', fontWeight: 400 }}>
                         {st.slot_name || 'Standard Slot'}
                       </div>
                     </td>
-                    <td style={{ padding: '1rem', color: '#b0c4c6', fontSize: '0.85rem' }}>
+                    <td style={{ padding: '1rem', color: '#f0ceb3', fontSize: '0.85rem' }}>
                       <code>{st.student_code || 'N/A'}</code>
-                      <div style={{ fontSize: '0.75rem', color: '#8892b0' }}>{st.email}</div>
+                      <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)' }}>{st.email}</div>
                     </td>
                     <td style={{ padding: '1rem' }}>
                       <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
                         {[
-                          { key: 'present', label: 'Present', bg: 'rgba(52, 211, 153, 0.2)', activeBg: '#10b981', color: '#34d399' },
+                          { key: 'present', label: 'Present', bg: 'rgba(52, 211, 153, 0.2)', activeBg: 'var(--color-primary)', color: '#34d399' },
                           { key: 'absent', label: 'Absent', bg: 'rgba(239, 68, 68, 0.2)', activeBg: '#ef4444', color: '#f87171' },
                           { key: 'late', label: 'Late', bg: 'rgba(245, 158, 11, 0.2)', activeBg: '#f59e0b', color: '#fbbf24' },
                           { key: 'excused', label: 'Excused', bg: 'rgba(59, 130, 246, 0.2)', activeBg: '#3b82f6', color: '#60a5fa' },
@@ -414,15 +414,15 @@ export function InstructorAttendance() {
           Recorded Sessions for {selectedDate}
         </h2>
         {historyLoading ? (
-          <div style={{ textAlign: 'center', padding: '1.5rem', color: '#8892b0' }}>Loading session history...</div>
+          <div style={{ textAlign: 'center', padding: '1.5rem', color: 'rgba(241,163,42,0.55)' }}>Loading session history...</div>
         ) : pastRecords.length === 0 ? (
-          <div style={{ textAlign: 'center', padding: '1.5rem', color: '#8892b0' }}>
+          <div style={{ textAlign: 'center', padding: '1.5rem', color: 'rgba(241,163,42,0.55)' }}>
             No saved attendance records found for this date.
           </div>
         ) : (
           <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
             <thead>
-              <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)', color: '#8892b0', fontSize: '0.85rem' }}>
+              <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)', color: 'rgba(241,163,42,0.55)', fontSize: '0.85rem' }}>
                 <th style={{ padding: '0.75rem 1rem' }}>Student Name</th>
                 <th style={{ padding: '0.75rem 1rem' }}>Status</th>
                 <th style={{ padding: '0.75rem 1rem' }}>Remarks</th>
@@ -464,10 +464,10 @@ export function InstructorAttendance() {
                       {rec.status}
                     </span>
                   </td>
-                  <td style={{ padding: '0.75rem 1rem', color: '#b0c4c6', fontSize: '0.85rem' }}>
-                    {rec.remarks || '—'}
+                  <td style={{ padding: '0.75rem 1rem', color: '#f0ceb3', fontSize: '0.85rem' }}>
+                    {rec.remarks || '�'}
                   </td>
-                  <td style={{ padding: '0.75rem 1rem', color: '#8892b0', fontSize: '0.85rem' }}>
+                  <td style={{ padding: '0.75rem 1rem', color: 'rgba(241,163,42,0.55)', fontSize: '0.85rem' }}>
                     {rec.date}
                   </td>
                 </tr>

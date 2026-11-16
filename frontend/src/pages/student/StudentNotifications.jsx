@@ -86,7 +86,7 @@ export function StudentNotifications() {
           <h1 style={{ fontSize: '1.8rem', fontWeight: 700, color: 'var(--color-primary)', margin: 0 }}>
             Notifications & Alerts
           </h1>
-          <p style={{ color: '#8892b0', fontSize: '0.95rem', marginTop: '0.4rem', marginBottom: 0 }}>
+          <p style={{ color: 'rgba(241,163,42,0.55)', fontSize: '0.95rem', marginTop: '0.4rem', marginBottom: 0 }}>
             Updates on newly published coursework, instructor grading, and class announcements.
           </p>
         </div>
@@ -115,9 +115,9 @@ export function StudentNotifications() {
           className="glass-panel"
           style={{
             padding: '1rem 1.5rem',
-            borderLeft: '4px solid #10b981',
+            borderLeft: '4px solid rgba(241,163,42,0.6)',
             color: '#34d399',
-            backgroundColor: 'rgba(16, 185, 129, 0.08)',
+            backgroundColor: 'rgba(241, 163, 42, 0.15)',
           }}
         >
           {message}
@@ -151,7 +151,7 @@ export function StudentNotifications() {
               background: 'none',
               border: 'none',
               padding: '0.5rem 1rem',
-              color: filter === tab.key ? 'var(--color-primary)' : '#8892b0',
+              color: filter === tab.key ? 'var(--color-primary)' : 'rgba(241,163,42,0.55)',
               fontWeight: filter === tab.key ? 700 : 500,
               fontSize: '0.9rem',
               borderBottom: filter === tab.key ? '2px solid var(--color-primary)' : '2px solid transparent',
@@ -165,14 +165,14 @@ export function StudentNotifications() {
 
       {/* Notifications List */}
       {loading ? (
-        <div className="glass-panel" style={{ textAlign: 'center', padding: '3rem', color: '#8892b0' }}>
+        <div className="glass-panel" style={{ textAlign: 'center', padding: '3rem', color: 'rgba(241,163,42,0.55)' }}>
           Loading notifications...
         </div>
       ) : filtered.length === 0 ? (
         <div className="glass-panel" style={{ textAlign: 'center', padding: '3.5rem' }}>
-          <div style={{ fontSize: '1.1rem', marginBottom: '0.5rem', color: '#8892b0' }}>All Caught Up</div>
+          <div style={{ fontSize: '1.1rem', marginBottom: '0.5rem', color: 'rgba(241,163,42,0.55)' }}>All Caught Up</div>
           <h3 style={{ color: '#fff', marginBottom: '0.5rem' }}>All Caught Up</h3>
-          <p style={{ color: '#8892b0', margin: 0 }}>
+          <p style={{ color: 'rgba(241,163,42,0.55)', margin: 0 }}>
             {filter === 'unread'
               ? 'You have no unread notifications.'
               : 'Your notification inbox is currently clear.'}
@@ -200,7 +200,7 @@ export function StudentNotifications() {
                     width: '38px',
                     height: '38px',
                     borderRadius: '50%',
-                    backgroundColor: notif.is_read ? 'rgba(255, 255, 255, 0.05)' : 'rgba(56, 189, 248, 0.15)',
+                    backgroundColor: notif.is_read ? 'rgba(255, 255, 255, 0.05)' : 'rgba(241, 163, 42, 0.15)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -236,7 +236,7 @@ export function StudentNotifications() {
                     )}
                   </div>
 
-                  <p style={{ margin: 0, color: '#b0c4c6', fontSize: '0.85rem', lineHeight: '1.4' }}>
+                  <p style={{ margin: 0, color: '#f0ceb3', fontSize: '0.85rem', lineHeight: '1.4' }}>
                     {notif.message}
                   </p>
 
@@ -251,12 +251,12 @@ export function StudentNotifications() {
                           gap: '6px',
                           padding: '5px 12px',
                           borderRadius: '6px',
-                          backgroundColor: '#10b981',
+                          backgroundColor: 'var(--color-primary)',
                           color: '#fff',
                           fontSize: '0.8rem',
                           fontWeight: 700,
                           textDecoration: 'none',
-                          boxShadow: '0 0 10px rgba(16, 185, 129, 0.3)'
+                          boxShadow: '0 0 10px rgba(241, 163, 42, 0.15)'
                         }}
                       >
                         Join Live Class Now →
@@ -264,7 +264,7 @@ export function StudentNotifications() {
                     </div>
                   )}
 
-                  <div style={{ marginTop: '0.4rem', fontSize: '0.75rem', color: '#8892b0' }}>
+                  <div style={{ marginTop: '0.4rem', fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)' }}>
                     {notif.created_at ? new Date(notif.created_at).toLocaleString() : ''}
                   </div>
                 </div>
@@ -277,7 +277,7 @@ export function StudentNotifications() {
                     background: 'none',
                     border: '1px solid rgba(255, 255, 255, 0.1)',
                     borderRadius: '6px',
-                    color: '#8892b0',
+                    color: 'rgba(241,163,42,0.55)',
                     fontSize: '0.75rem',
                     padding: '0.35rem 0.65rem',
                     cursor: 'pointer',

@@ -167,21 +167,21 @@ export function StudentClassroom() {
           </Link>
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-              <span style={{ fontSize: '0.75rem', background: 'rgba(56, 189, 248, 0.15)', color: '#38bdf8', padding: '2px 8px', borderRadius: '4px', fontWeight: 600 }}>
+              <span style={{ fontSize: '0.75rem', background: 'rgba(241, 163, 42, 0.15)', color: 'var(--color-primary)', padding: '2px 8px', borderRadius: '4px', fontWeight: 600 }}>
                 LIVE CLASSROOM
               </span>
               {isLive ? (
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flexWrap: 'wrap' }}>
-                  <span style={{ fontSize: '0.85rem', color: '#10b981', display: 'flex', alignItems: 'center', gap: '5px', fontWeight: 600 }}>
-                    <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#10b981', display: 'inline-block' }} />
+                  <span style={{ fontSize: '0.85rem', color: 'var(--color-primary)', display: 'flex', alignItems: 'center', gap: '5px', fontWeight: 600 }}>
+                    <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: 'var(--color-primary)', display: 'inline-block' }} />
                     Instructor is Live Now
                   </span>
                   {attendanceMarked ? (
                     <span style={{
                       fontSize: '0.78rem',
                       color: '#34d399',
-                      background: 'rgba(16, 185, 129, 0.15)',
-                      border: '1px solid rgba(16, 185, 129, 0.3)',
+                      background: 'rgba(241, 163, 42, 0.15)',
+                      border: '1px solid rgba(241, 163, 42, 0.15)',
                       padding: '2px 8px',
                       borderRadius: '12px',
                       display: 'inline-flex',
@@ -252,7 +252,7 @@ export function StudentClassroom() {
                 gap: '6px',
                 padding: '6px 12px',
                 fontSize: '0.8rem',
-                color: '#38bdf8',
+                color: 'var(--color-primary)',
                 border: '1px solid #38bdf8',
                 cursor: 'pointer',
                 borderRadius: '6px',
@@ -360,8 +360,8 @@ export function StudentClassroom() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                backgroundColor: 'rgba(56, 189, 248, 0.1)',
-                border: '1px solid rgba(56, 189, 248, 0.25)',
+                backgroundColor: 'rgba(241, 163, 42, 0.15)',
+                border: '1px solid rgba(241, 163, 42, 0.15)',
                 padding: '6px 12px',
                 borderRadius: '8px',
                 fontSize: '0.82rem',
@@ -370,13 +370,13 @@ export function StudentClassroom() {
                 gap: '8px'
               }}>
                 <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                  <Sparkles size={14} style={{ color: '#38bdf8' }} />
+                  <Sparkles size={14} style={{ color: 'var(--color-primary)' }} />
                   <strong>Tip for Extended Classes:</strong> If you see an embedded 5-minute demo notice, click "Dedicated HD Window" for full unlimited duration!
                 </span>
                 <button
                   onClick={openUnlimitedWindow}
                   style={{
-                    backgroundColor: '#38bdf8',
+                    backgroundColor: 'var(--color-primary)',
                     color: '#041416',
                     border: 'none',
                     padding: '4px 10px',

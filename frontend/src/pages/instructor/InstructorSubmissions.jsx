@@ -89,7 +89,7 @@ export function InstructorSubmissions() {
         <h1 style={{ fontSize: "1.8rem", fontWeight: "700", marginBottom: "0.3rem" }} className="gradient-text">
           Student Submissions & Grading
         </h1>
-        <p style={{ color: "#b0c4c6", fontSize: "0.95rem" }}>
+        <p style={{ color: "#f0ceb3", fontSize: "0.95rem" }}>
           Review homework answers, grade deliverables, and provide student feedback.
         </p>
       </div>
@@ -122,8 +122,8 @@ export function InstructorSubmissions() {
                 cursor: "pointer",
                 fontSize: "0.85rem",
                 fontWeight: "600",
-                backgroundColor: statusFilter === tab.id ? "rgba(197, 229, 232, 0.2)" : "transparent",
-                color: statusFilter === tab.id ? "var(--color-primary)" : "#b0c4c6"
+                backgroundColor: statusFilter === tab.id ? "rgba(241, 163, 42, 0.18)" : "transparent",
+                color: statusFilter === tab.id ? "var(--color-primary)" : "#f0ceb3"
               }}
             >
               {tab.label}
@@ -161,11 +161,11 @@ export function InstructorSubmissions() {
           <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.9rem" }}>
             <thead>
               <tr style={{ borderBottom: "1px solid rgba(255,255,255,0.1)", textAlign: "left" }}>
-                <th style={{ padding: "12px 14px", color: "#b0c4c6" }}>Student</th>
-                <th style={{ padding: "12px 14px", color: "#b0c4c6" }}>Task Title</th>
-                <th style={{ padding: "12px 14px", color: "#b0c4c6" }}>Submitted Date</th>
-                <th style={{ padding: "12px 14px", color: "#b0c4c6" }}>Status</th>
-                <th style={{ padding: "12px 14px", color: "#b0c4c6", textAlign: "right" }}>Action</th>
+                <th style={{ padding: "12px 14px", color: "#f0ceb3" }}>Student</th>
+                <th style={{ padding: "12px 14px", color: "#f0ceb3" }}>Task Title</th>
+                <th style={{ padding: "12px 14px", color: "#f0ceb3" }}>Submitted Date</th>
+                <th style={{ padding: "12px 14px", color: "#f0ceb3" }}>Status</th>
+                <th style={{ padding: "12px 14px", color: "#f0ceb3", textAlign: "right" }}>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -177,7 +177,7 @@ export function InstructorSubmissions() {
                       <span style={{ fontSize: "0.75rem", color: "var(--color-primary)" }}>{sub.student_code}</span>
                     )}
                   </td>
-                  <td style={{ padding: "14px", color: "#b0c4c6" }}>{sub.task_title || "Assignment"}</td>
+                  <td style={{ padding: "14px", color: "#f0ceb3" }}>{sub.task_title || "Assignment"}</td>
                   <td style={{ padding: "14px", color: "#888" }}>{new Date(sub.submitted_at).toLocaleDateString()}</td>
                   <td style={{ padding: "14px" }}>
                     <span
@@ -233,7 +233,7 @@ export function InstructorSubmissions() {
                 <h2 style={{ fontSize: "1.3rem", fontWeight: "700" }} className="gradient-text">
                   Grade Submission
                 </h2>
-                <p style={{ color: "#b0c4c6", fontSize: "0.85rem" }}>
+                <p style={{ color: "#f0ceb3", fontSize: "0.85rem" }}>
                   {selectedSubmission.student_name} • {selectedSubmission.task_title}
                 </p>
               </div>
@@ -285,7 +285,7 @@ export function InstructorSubmissions() {
             <form onSubmit={handleGradeSubmit} style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
                 <div>
-                  <label htmlFor="submission-score" style={{ display: "block", fontSize: "0.85rem", marginBottom: "0.3rem", color: "#b0c4c6" }}>
+                  <label htmlFor="submission-score" style={{ display: "block", fontSize: "0.85rem", marginBottom: "0.3rem", color: "#f0ceb3" }}>
                     Numeric Score (e.g. 95)
                   </label>
                   <input
@@ -302,7 +302,7 @@ export function InstructorSubmissions() {
                 </div>
 
                 <div>
-                  <label htmlFor="submission-grade" style={{ display: "block", fontSize: "0.85rem", marginBottom: "0.3rem", color: "#b0c4c6" }}>
+                  <label htmlFor="submission-grade" style={{ display: "block", fontSize: "0.85rem", marginBottom: "0.3rem", color: "#f0ceb3" }}>
                     Letter Grade / Status
                   </label>
                   <input
@@ -317,7 +317,7 @@ export function InstructorSubmissions() {
               </div>
 
               <div>
-                <label htmlFor="submission-feedback" style={{ display: "block", fontSize: "0.85rem", marginBottom: "0.3rem", color: "#b0c4c6" }}>
+                <label htmlFor="submission-feedback" style={{ display: "block", fontSize: "0.85rem", marginBottom: "0.3rem", color: "#f0ceb3" }}>
                   Feedback & Recommendations
                 </label>
                 <textarea

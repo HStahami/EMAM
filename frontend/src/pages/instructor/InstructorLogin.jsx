@@ -49,7 +49,7 @@ export function InstructorLogin() {
             width: 60,
             height: 60,
             borderRadius: "50%",
-            backgroundColor: "rgba(197, 229, 232, 0.12)",
+            backgroundColor: "rgba(241, 163, 42, 0.12)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -62,7 +62,7 @@ export function InstructorLogin() {
         <h2 style={{ fontSize: "1.8rem", fontWeight: "700", marginBottom: "0.5rem" }} className="gradient-text">
           Instructor Portal
         </h2>
-        <p style={{ color: "#b0c4c6", fontSize: "0.9rem", marginBottom: "1.5rem" }}>
+        <p style={{ color: "#f0ceb3", fontSize: "0.9rem", marginBottom: "1.5rem" }}>
           Sign in to manage your classes, tasks, and student evaluations.
         </p>
 
@@ -87,7 +87,7 @@ export function InstructorLogin() {
 
         <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1.2rem" }}>
           <div style={{ textAlign: "left" }}>
-            <label htmlFor="inst_login_username" style={{ display: "block", fontSize: "0.85rem", marginBottom: "0.4rem", color: "#b0c4c6" }}>
+            <label htmlFor="inst_login_username" style={{ display: "block", fontSize: "0.85rem", marginBottom: "0.4rem", color: "#f0ceb3" }}>
               Username or Email
             </label>
             <input
@@ -102,7 +102,7 @@ export function InstructorLogin() {
           </div>
 
           <div style={{ textAlign: "left" }}>
-            <label htmlFor="inst_login_password" style={{ display: "block", fontSize: "0.85rem", marginBottom: "0.4rem", color: "#b0c4c6" }}>
+            <label htmlFor="inst_login_password" style={{ display: "block", fontSize: "0.85rem", marginBottom: "0.4rem", color: "#f0ceb3" }}>
               Password
             </label>
             <input
@@ -127,7 +127,7 @@ export function InstructorLogin() {
         </form>
 
         <div style={{ marginTop: "2rem", borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: "1rem" }}>
-          <Link to="/" style={{ color: "#b0c4c6", fontSize: "0.85rem", textDecoration: "none" }}>
+          <Link to="/" style={{ color: "#f0ceb3", fontSize: "0.85rem", textDecoration: "none" }}>
             ← Return to Home
           </Link>
         </div>

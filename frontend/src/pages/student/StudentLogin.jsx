@@ -59,7 +59,7 @@ export function StudentLogin() {
           padding: '2.5rem',
           textAlign: 'center',
           backgroundColor: 'rgba(15, 23, 42, 0.95)',
-          border: '1px solid rgba(197, 229, 232, 0.2)',
+          border: '1px solid rgba(241, 163, 42, 0.18)',
           boxShadow: '0 20px 40px rgba(0,0,0,0.5)',
         }}
       >
@@ -71,7 +71,7 @@ export function StudentLogin() {
           Student Portal Login
         </h1>
 
-        <p style={{ color: '#8892b0', fontSize: '0.85rem', marginBottom: '1.75rem' }}>
+        <p style={{ color: 'rgba(241,163,42,0.55)', fontSize: '0.85rem', marginBottom: '1.75rem' }}>
           Access your courses, tasks, attendance, and academic feedback.
         </p>
 
@@ -94,7 +94,7 @@ export function StudentLogin() {
 
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', textAlign: 'left' }}>
           <div>
-            <label htmlFor="student-login-identifier" style={{ display: 'block', fontSize: '0.8rem', color: '#8892b0', marginBottom: '0.4rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+            <label htmlFor="student-login-identifier" style={{ display: 'block', fontSize: '0.8rem', color: 'rgba(241,163,42,0.55)', marginBottom: '0.4rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
               Student Code or Email
             </label>
             <input
@@ -118,7 +118,7 @@ export function StudentLogin() {
           </div>
 
           <div>
-            <label htmlFor="student-login-password" style={{ display: 'block', fontSize: '0.8rem', color: '#8892b0', marginBottom: '0.4rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+            <label htmlFor="student-login-password" style={{ display: 'block', fontSize: '0.8rem', color: 'rgba(241,163,42,0.55)', marginBottom: '0.4rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
               Password
             </label>
             <div style={{ position: 'relative' }}>
@@ -181,13 +181,13 @@ export function StudentLogin() {
           </button>
         </form>
 
-        <div style={{ marginTop: '2rem', borderTop: '1px solid rgba(255, 255, 255, 0.08)', paddingTop: '1.25rem', fontSize: '0.8rem', color: '#8892b0' }}>
+        <div style={{ marginTop: '2rem', borderTop: '1px solid rgba(241, 163, 42, 0.12)', paddingTop: '1.25rem', fontSize: '0.8rem', color: 'rgba(241,163,42,0.55)' }}>
           <span>Need help? </span>
           <Link to="/contact" style={{ color: 'var(--color-primary)', textDecoration: 'none', fontWeight: 600 }}>
             Contact Administration
           </Link>
           <div style={{ marginTop: '0.5rem' }}>
-            <Link to="/" style={{ color: '#8892b0', textDecoration: 'none' }}>
+            <Link to="/" style={{ color: 'rgba(241,163,42,0.55)', textDecoration: 'none' }}>
               ← Return to Main Website
             </Link>
           </div>

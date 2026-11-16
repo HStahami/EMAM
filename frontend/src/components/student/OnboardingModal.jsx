@@ -288,7 +288,7 @@ export function OnboardingModal({ user, onComplete }) {
           overflowY: 'auto',
           padding: '2.25rem',
           backgroundColor: 'rgba(15, 23, 42, 0.98)',
-          border: '1px solid rgba(197, 229, 232, 0.25)',
+          border: '1px solid rgba(241, 163, 42, 0.25)',
           boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.75)',
           borderRadius: '16px',
         }}
@@ -303,9 +303,9 @@ export function OnboardingModal({ user, onComplete }) {
               width: '54px',
               height: '54px',
               borderRadius: '50%',
-              backgroundColor: 'rgba(56, 189, 248, 0.15)',
+              backgroundColor: 'rgba(241, 163, 42, 0.15)',
               color: 'var(--color-primary)',
-              border: '1px solid rgba(56, 189, 248, 0.3)',
+              border: '1px solid rgba(241, 163, 42, 0.15)',
               fontWeight: '700',
             }}
           >
@@ -316,7 +316,7 @@ export function OnboardingModal({ user, onComplete }) {
             {step === 1 ? 'Mandatory Password Setup' : 'Complete Your Student Profile'}
           </h2>
 
-          <p style={{ color: '#8892b0', fontSize: '0.88rem', marginTop: '0.4rem', marginBottom: 0 }}>
+          <p style={{ color: 'rgba(241,163,42,0.55)', fontSize: '0.88rem', marginTop: '0.4rem', marginBottom: 0 }}>
             {step === 1
               ? 'As a newly provisioned student, you must set a private, secure password before accessing the LMS portal.'
               : 'Please finalize your profile, academic background, and class preferences to complete enrollment.'}
@@ -483,7 +483,7 @@ export function OnboardingModal({ user, onComplete }) {
                 fontWeight: 600,
                 fontSize: '0.95rem',
                 marginTop: '0.5rem',
-                background: 'linear-gradient(135deg, #10b981, #059669)',
+                background: 'linear-gradient(135deg, #690e1f, #f1a32a)',
                 color: '#fff',
                 borderRadius: '8px',
               }}
@@ -1042,7 +1042,7 @@ export function OnboardingModal({ user, onComplete }) {
                           fontSize: '0.72rem',
                           padding: '3px 9px',
                           borderRadius: '12px',
-                          background: profileData.preferred_time_slot === sug ? 'rgba(197, 229, 232, 0.25)' : 'rgba(255, 255, 255, 0.05)',
+                          background: profileData.preferred_time_slot === sug ? 'rgba(241, 163, 42, 0.25)' : 'rgba(255, 255, 255, 0.05)',
                           color: profileData.preferred_time_slot === sug ? 'var(--color-primary)' : '#cbd5e1',
                           border: profileData.preferred_time_slot === sug ? '1px solid var(--color-primary)' : '1px solid rgba(255, 255, 255, 0.1)',
                           cursor: 'pointer',
@@ -1069,10 +1069,10 @@ export function OnboardingModal({ user, onComplete }) {
                 fontWeight: 700,
                 fontSize: '0.95rem',
                 marginTop: '0.5rem',
-                background: 'linear-gradient(135deg, #10b981, #059669)',
+                background: 'linear-gradient(135deg, #690e1f, #f1a32a)',
                 color: '#fff',
                 borderRadius: '8px',
-                boxShadow: '0 4px 14px rgba(16, 185, 129, 0.35)',
+                boxShadow: '0 4px 14px rgba(241, 163, 42, 0.15)',
               }}
             >
               {profileLoading ? 'Finalizing Profile...' : 'Complete Profile & Open Portal'}

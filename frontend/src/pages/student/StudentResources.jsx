@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { resourcesApi } from '../../api';
 
 export function StudentResources() {
@@ -56,7 +56,7 @@ export function StudentResources() {
         <h1 style={{ fontSize: '1.8rem', fontWeight: 700, color: 'var(--color-primary)', margin: 0 }}>
           Learning Resources & Materials
         </h1>
-        <p style={{ color: '#8892b0', fontSize: '0.95rem', marginTop: '0.4rem', marginBottom: 0 }}>
+        <p style={{ color: 'rgba(241,163,42,0.55)', fontSize: '0.95rem', marginTop: '0.4rem', marginBottom: 0 }}>
           Reference worksheets, audio recordings, study guides, and readings provided for your course.
         </p>
       </div>
@@ -119,21 +119,21 @@ export function StudentResources() {
           </select>
         </div>
 
-        <div style={{ color: '#8892b0', fontSize: '0.85rem' }}>
+        <div style={{ color: 'rgba(241,163,42,0.55)', fontSize: '0.85rem' }}>
           Showing {filtered.length} of {resources.length} materials
         </div>
       </div>
 
       {/* Resources Grid */}
       {loading ? (
-        <div className="glass-panel" style={{ textAlign: 'center', padding: '3rem', color: '#8892b0' }}>
+        <div className="glass-panel" style={{ textAlign: 'center', padding: '3rem', color: 'rgba(241,163,42,0.55)' }}>
           Loading course materials...
         </div>
       ) : filtered.length === 0 ? (
         <div className="glass-panel" style={{ textAlign: 'center', padding: '3.5rem' }}>
-          <div style={{ fontSize: '1.1rem', marginBottom: '0.5rem', color: '#8892b0' }}>No Resources Available</div>
+          <div style={{ fontSize: '1.1rem', marginBottom: '0.5rem', color: 'rgba(241,163,42,0.55)' }}>No Resources Available</div>
           <h3 style={{ color: '#fff', marginBottom: '0.5rem' }}>No Resources Available</h3>
-          <p style={{ color: '#8892b0', margin: 0 }}>
+          <p style={{ color: 'rgba(241,163,42,0.55)', margin: 0 }}>
             No study materials have been published for your enrolled courses yet.
           </p>
         </div>
@@ -170,8 +170,8 @@ export function StudentResources() {
                         fontSize: '0.75rem',
                         fontWeight: 600,
                         textTransform: 'uppercase',
-                        backgroundColor: 'rgba(56, 189, 248, 0.15)',
-                        color: '#38bdf8',
+                        backgroundColor: 'rgba(241, 163, 42, 0.15)',
+                        color: 'var(--color-primary)',
                       }}
                     >
                       <span>{getTypeIcon(resType)}</span>
@@ -181,7 +181,7 @@ export function StudentResources() {
                     <span
                       style={{
                         fontSize: '0.75rem',
-                        color: '#8892b0',
+                        color: 'rgba(241,163,42,0.55)',
                         backgroundColor: 'rgba(255, 255, 255, 0.05)',
                         padding: '2px 8px',
                         borderRadius: '4px',
@@ -197,7 +197,7 @@ export function StudentResources() {
 
                   <p
                     style={{
-                      color: '#b0c4c6',
+                      color: '#f0ceb3',
                       fontSize: '0.85rem',
                       lineHeight: '1.45',
                       marginBottom: '1.25rem',
@@ -235,10 +235,10 @@ export function StudentResources() {
                       gap: '0.4rem',
                     }}
                   >
-                    Open Material ↗
+                    Open Material ?
                   </a>
 
-                  <span style={{ fontSize: '0.75rem', color: '#8892b0' }}>
+                  <span style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)' }}>
                     {res.created_at ? new Date(res.created_at).toLocaleDateString() : ''}
                   </span>
                 </div>

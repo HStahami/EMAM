@@ -249,7 +249,7 @@ export function StudentProfile() {
 
   if (loading) {
     return (
-      <div style={{ textAlign: 'center', padding: '4rem 1rem', color: '#8892b0' }}>
+      <div style={{ textAlign: 'center', padding: '4rem 1rem', color: 'rgba(241,163,42,0.55)' }}>
         <p style={{ fontSize: '1.1rem', color: 'var(--color-primary)' }}>Loading student profile...</p>
       </div>
     );
@@ -274,8 +274,8 @@ export function StudentProfile() {
           flexWrap: 'wrap',
           alignItems: 'center',
           gap: '1.5rem',
-          background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(15, 23, 42, 0.4) 100%)',
-          border: '1px solid rgba(16, 185, 129, 0.2)',
+          background: 'linear-gradient(135deg, rgba(241, 163, 42, 0.15) 0%, rgba(15, 23, 42, 0.4) 100%)',
+          border: '1px solid rgba(241, 163, 42, 0.15)',
         }}
       >
         <div
@@ -283,14 +283,14 @@ export function StudentProfile() {
             width: '80px',
             height: '80px',
             borderRadius: '50%',
-            background: 'linear-gradient(135deg, #10b981, #059669)',
+            background: 'linear-gradient(135deg, #690e1f, #f1a32a)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             fontSize: '2.2rem',
             color: '#fff',
             fontWeight: 700,
-            boxShadow: '0 8px 24px rgba(16, 185, 129, 0.3)',
+            boxShadow: '0 8px 24px rgba(241, 163, 42, 0.15)',
             flexShrink: 0,
           }}
         >
@@ -307,11 +307,11 @@ export function StudentProfile() {
                 fontFamily: 'monospace',
                 fontSize: '0.85rem',
                 fontWeight: 700,
-                background: 'rgba(16, 185, 129, 0.2)',
+                background: 'rgba(241, 163, 42, 0.15)',
                 color: '#34d399',
                 padding: '0.25rem 0.65rem',
                 borderRadius: '6px',
-                border: '1px solid rgba(16, 185, 129, 0.3)',
+                border: '1px solid rgba(241, 163, 42, 0.15)',
               }}
             >
               ID: {studentCode}
@@ -354,8 +354,8 @@ export function StudentProfile() {
           style={{
             padding: '1.25rem',
             borderRadius: '12px',
-            background: 'rgba(16, 185, 129, 0.12)',
-            border: '1px solid rgba(16, 185, 129, 0.3)',
+            background: 'rgba(241, 163, 42, 0.15)',
+            border: '1px solid rgba(241, 163, 42, 0.15)',
             color: '#e2e8f0',
             display: 'flex',
             flexDirection: 'column',
@@ -398,8 +398,8 @@ export function StudentProfile() {
           style={{
             padding: '1rem 1.25rem',
             borderRadius: '10px',
-            background: 'rgba(16, 185, 129, 0.15)',
-            border: '1px solid rgba(16, 185, 129, 0.3)',
+            background: 'rgba(241, 163, 42, 0.15)',
+            border: '1px solid rgba(241, 163, 42, 0.15)',
             color: '#34d399',
             fontSize: '0.95rem',
           }}
@@ -413,8 +413,8 @@ export function StudentProfile() {
           style={{
             padding: '1rem 1.25rem',
             borderRadius: '10px',
-            background: 'rgba(16, 185, 129, 0.15)',
-            border: '1px solid rgba(16, 185, 129, 0.3)',
+            background: 'rgba(241, 163, 42, 0.15)',
+            border: '1px solid rgba(241, 163, 42, 0.15)',
             color: '#34d399',
             fontSize: '0.95rem',
             display: 'flex',
@@ -999,7 +999,7 @@ export function StudentProfile() {
                       fontSize: '0.72rem',
                       padding: '3px 9px',
                       borderRadius: '12px',
-                      background: formData.preferred_time_slot === sug ? 'rgba(197, 229, 232, 0.25)' : 'rgba(255, 255, 255, 0.05)',
+                      background: formData.preferred_time_slot === sug ? 'rgba(241, 163, 42, 0.25)' : 'rgba(255, 255, 255, 0.05)',
                       color: formData.preferred_time_slot === sug ? 'var(--color-primary)' : '#cbd5e1',
                       border: formData.preferred_time_slot === sug ? '1px solid var(--color-primary)' : '1px solid rgba(255, 255, 255, 0.1)',
                       cursor: isCompleted ? 'not-allowed' : 'pointer', opacity: isCompleted ? 0.6 : 1,
@@ -1099,7 +1099,7 @@ export function StudentProfile() {
                   border: 'none',
                   cursor: saving ? 'not-allowed' : 'pointer',
                   fontWeight: 700,
-                  background: 'linear-gradient(135deg, #10b981, #059669)',
+                  background: 'linear-gradient(135deg, #690e1f, #f1a32a)',
                   color: '#fff',
                   display: 'flex',
                   alignItems: 'center',
@@ -1116,7 +1116,7 @@ export function StudentProfile() {
       {/* Request Profile Update Modal */}
       {showUpdateRequestModal && (
         <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(3, 14, 15, 0.88)', backdropFilter: 'blur(10px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 999, padding: '1rem' }}>
-          <div style={{ padding: '2rem', maxWidth: '500px', width: '100%', borderRadius: '16px', backgroundColor: '#092528', border: '1px solid rgba(197, 229, 232, 0.25)', boxShadow: '0 25px 60px rgba(0, 0, 0, 0.95)' }}>
+          <div style={{ padding: '2rem', maxWidth: '500px', width: '100%', borderRadius: '16px', backgroundColor: '#092528', border: '1px solid rgba(241, 163, 42, 0.25)', boxShadow: '0 25px 60px rgba(0, 0, 0, 0.95)' }}>
             <h3 style={{ color: 'var(--color-white)', marginBottom: '0.5rem', fontSize: '1.25rem', fontWeight: 700 }}>Request Profile Update</h3>
             <p style={{ color: '#94a3b8', fontSize: '0.88rem', marginBottom: '1.25rem', lineHeight: '1.4' }}>
               Describe the specific information or details you need updated (e.g. phone number, address, preferred class slot). Administration will review your note and contact you.
@@ -1145,7 +1145,7 @@ export function StudentProfile() {
               </div>
 
               <div style={{ display: 'flex', gap: '1rem', marginTop: '0.5rem' }}>
-                <button type="submit" disabled={sendingRequest} className="btn-primary" style={{ flex: 1, padding: '10px', background: 'linear-gradient(135deg, #10b981, #059669)', border: 'none', cursor: sendingRequest ? 'not-allowed' : 'pointer' }}>
+                <button type="submit" disabled={sendingRequest} className="btn-primary" style={{ flex: 1, padding: '10px', background: 'linear-gradient(135deg, #690e1f, #f1a32a)', border: 'none', cursor: sendingRequest ? 'not-allowed' : 'pointer' }}>
                   {sendingRequest ? 'Sending Request...' : 'Send Request'}
                 </button>
                 <button type="button" onClick={() => setShowUpdateRequestModal(false)} className="glass-panel" style={{ flex: 1, padding: '10px', border: 'none', color: '#cbd5e1', cursor: 'pointer' }}>

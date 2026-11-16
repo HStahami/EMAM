@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { instructorsApi, authApi } from '../../api';
 import { useAuth } from '../../context/AuthContext';
 
@@ -110,7 +110,7 @@ export function InstructorProfile() {
         <h1 style={{ fontSize: '1.8rem', fontWeight: 700, color: 'var(--color-primary)', margin: 0 }}>
           Instructor Account & Settings
         </h1>
-        <p style={{ color: '#8892b0', fontSize: '0.95rem', marginTop: '0.4rem', marginBottom: 0 }}>
+        <p style={{ color: 'rgba(241,163,42,0.55)', fontSize: '0.95rem', marginTop: '0.4rem', marginBottom: 0 }}>
           Manage your instructor identity, biographical summary, and account security.
         </p>
       </div>
@@ -129,7 +129,7 @@ export function InstructorProfile() {
             background: 'none',
             border: 'none',
             padding: '0.75rem 1.25rem',
-            color: activeTab === 'profile' ? 'var(--color-primary)' : '#8892b0',
+            color: activeTab === 'profile' ? 'var(--color-primary)' : 'rgba(241,163,42,0.55)',
             fontWeight: activeTab === 'profile' ? 700 : 500,
             fontSize: '0.95rem',
             borderBottom: activeTab === 'profile' ? '2px solid var(--color-primary)' : '2px solid transparent',
@@ -144,7 +144,7 @@ export function InstructorProfile() {
             background: 'none',
             border: 'none',
             padding: '0.75rem 1.25rem',
-            color: activeTab === 'security' ? 'var(--color-primary)' : '#8892b0',
+            color: activeTab === 'security' ? 'var(--color-primary)' : 'rgba(241,163,42,0.55)',
             fontWeight: activeTab === 'security' ? 700 : 500,
             fontSize: '0.95rem',
             borderBottom: activeTab === 'security' ? '2px solid var(--color-primary)' : '2px solid transparent',
@@ -156,7 +156,7 @@ export function InstructorProfile() {
       </div>
 
       {loading ? (
-        <div className="glass-panel" style={{ textAlign: 'center', padding: '3rem', color: '#8892b0' }}>
+        <div className="glass-panel" style={{ textAlign: 'center', padding: '3rem', color: 'rgba(241,163,42,0.55)' }}>
           Loading profile...
         </div>
       ) : activeTab === 'profile' ? (
@@ -169,7 +169,7 @@ export function InstructorProfile() {
                 height: '90px',
                 borderRadius: '50%',
                 margin: '0 auto 1.25rem auto',
-                backgroundColor: 'rgba(56, 189, 248, 0.15)',
+                backgroundColor: 'rgba(241, 163, 42, 0.15)',
                 border: '2px solid var(--color-primary)',
                 display: 'flex',
                 alignItems: 'center',
@@ -228,17 +228,17 @@ export function InstructorProfile() {
               }}
             >
               <div>
-                <div style={{ color: '#8892b0', fontSize: '0.75rem' }}>Email Address</div>
+                <div style={{ color: 'rgba(241,163,42,0.55)', fontSize: '0.75rem' }}>Email Address</div>
                 <div style={{ color: '#fff' }}>{profile?.email}</div>
               </div>
               {profile?.phone && (
                 <div>
-                  <div style={{ color: '#8892b0', fontSize: '0.75rem' }}>Phone Number</div>
+                  <div style={{ color: 'rgba(241,163,42,0.55)', fontSize: '0.75rem' }}>Phone Number</div>
                   <div style={{ color: '#fff' }}>{profile.phone}</div>
                 </div>
               )}
               <div>
-                <div style={{ color: '#8892b0', fontSize: '0.75rem' }}>Assigned Slot</div>
+                <div style={{ color: 'rgba(241,163,42,0.55)', fontSize: '0.75rem' }}>Assigned Slot</div>
                 <div style={{ color: '#fff' }}>{profile?.slot_name || 'Standard Slot'}</div>
               </div>
             </div>
@@ -255,10 +255,10 @@ export function InstructorProfile() {
                 style={{
                   padding: '1rem 1.25rem',
                   borderRadius: '8px',
-                  backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                  backgroundColor: 'rgba(241, 163, 42, 0.15)',
                   color: '#34d399',
                   marginBottom: '1.5rem',
-                  borderLeft: '4px solid #10b981',
+                  borderLeft: '4px solid rgba(241,163,42,0.6)',
                 }}
               >
                 {profileSuccess}
@@ -281,7 +281,7 @@ export function InstructorProfile() {
 
             <form onSubmit={handleProfileSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
               <div>
-                <label htmlFor="instructor-specialization" style={{ display: 'block', fontSize: '0.85rem', color: '#8892b0', marginBottom: '0.4rem' }}>
+                <label htmlFor="instructor-specialization" style={{ display: 'block', fontSize: '0.85rem', color: 'rgba(241,163,42,0.55)', marginBottom: '0.4rem' }}>
                   Professional Specialization / Title
                 </label>
                 <input
@@ -304,7 +304,7 @@ export function InstructorProfile() {
               </div>
 
               <div>
-                <label htmlFor="instructor-avatar-url" style={{ display: 'block', fontSize: '0.85rem', color: '#8892b0', marginBottom: '0.4rem' }}>
+                <label htmlFor="instructor-avatar-url" style={{ display: 'block', fontSize: '0.85rem', color: 'rgba(241,163,42,0.55)', marginBottom: '0.4rem' }}>
                   Avatar Image URL
                 </label>
                 <input
@@ -327,7 +327,7 @@ export function InstructorProfile() {
               </div>
 
               <div>
-                <label htmlFor="instructor-bio" style={{ display: 'block', fontSize: '0.85rem', color: '#8892b0', marginBottom: '0.4rem' }}>
+                <label htmlFor="instructor-bio" style={{ display: 'block', fontSize: '0.85rem', color: 'rgba(241,163,42,0.55)', marginBottom: '0.4rem' }}>
                   Biographical Summary
                 </label>
                 <textarea
@@ -374,7 +374,7 @@ export function InstructorProfile() {
           <h2 style={{ fontSize: '1.25rem', color: '#fff', marginBottom: '0.5rem', fontWeight: 600 }}>
             Change Password
           </h2>
-          <p style={{ color: '#8892b0', fontSize: '0.85rem', marginBottom: '1.5rem' }}>
+          <p style={{ color: 'rgba(241,163,42,0.55)', fontSize: '0.85rem', marginBottom: '1.5rem' }}>
             Ensure your account is protected with a strong, unique password of at least 8 characters.
           </p>
 
@@ -383,10 +383,10 @@ export function InstructorProfile() {
               style={{
                 padding: '1rem 1.25rem',
                 borderRadius: '8px',
-                backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                backgroundColor: 'rgba(241, 163, 42, 0.15)',
                 color: '#34d399',
                 marginBottom: '1.5rem',
-                borderLeft: '4px solid #10b981',
+                borderLeft: '4px solid rgba(241,163,42,0.6)',
               }}
             >
               {passwordSuccess}
@@ -409,7 +409,7 @@ export function InstructorProfile() {
 
           <form onSubmit={handlePasswordSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
             <div>
-              <label htmlFor="instructor-curr-pwd" style={{ display: 'block', fontSize: '0.85rem', color: '#8892b0', marginBottom: '0.4rem' }}>
+              <label htmlFor="instructor-curr-pwd" style={{ display: 'block', fontSize: '0.85rem', color: 'rgba(241,163,42,0.55)', marginBottom: '0.4rem' }}>
                 Current Password *
               </label>
               <input
@@ -432,7 +432,7 @@ export function InstructorProfile() {
             </div>
 
             <div>
-              <label htmlFor="instructor-new-pwd" style={{ display: 'block', fontSize: '0.85rem', color: '#8892b0', marginBottom: '0.4rem' }}>
+              <label htmlFor="instructor-new-pwd" style={{ display: 'block', fontSize: '0.85rem', color: 'rgba(241,163,42,0.55)', marginBottom: '0.4rem' }}>
                 New Password * (Min 8 chars)
               </label>
               <input
@@ -456,7 +456,7 @@ export function InstructorProfile() {
             </div>
 
             <div>
-              <label htmlFor="instructor-conf-pwd" style={{ display: 'block', fontSize: '0.85rem', color: '#8892b0', marginBottom: '0.4rem' }}>
+              <label htmlFor="instructor-conf-pwd" style={{ display: 'block', fontSize: '0.85rem', color: 'rgba(241,163,42,0.55)', marginBottom: '0.4rem' }}>
                 Confirm New Password *
               </label>
               <input

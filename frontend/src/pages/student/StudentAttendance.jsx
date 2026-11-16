@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { attendanceApi, reportsApi } from '../../api';
 
 export function StudentAttendance() {
@@ -43,7 +43,7 @@ export function StudentAttendance() {
         <h1 style={{ fontSize: '1.8rem', fontWeight: 700, color: 'var(--color-primary)', margin: 0 }}>
           My Attendance Records
         </h1>
-        <p style={{ color: '#8892b0', fontSize: '0.95rem', marginTop: '0.4rem', marginBottom: 0 }}>
+        <p style={{ color: 'rgba(241,163,42,0.55)', fontSize: '0.95rem', marginTop: '0.4rem', marginBottom: 0 }}>
           Official session attendance logs and punctuality records maintained by your instructor.
         </p>
       </div>
@@ -62,54 +62,54 @@ export function StudentAttendance() {
           gap: '1.25rem',
         }}
       >
-        <div className="glass-panel" style={{ padding: '1.5rem', borderLeft: '4px solid #10b981' }}>
-          <div style={{ fontSize: '0.75rem', color: '#8892b0', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+        <div className="glass-panel" style={{ padding: '1.5rem', borderLeft: '4px solid rgba(241,163,42,0.6)' }}>
+          <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
             Attendance Rate
           </div>
           <div style={{ fontSize: '2rem', fontWeight: 700, color: '#34d399', margin: '0.3rem 0' }}>
             {attendanceRate}%
           </div>
-          <div style={{ fontSize: '0.75rem', color: '#8892b0' }}>{totalSessions} Total Sessions</div>
+          <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)' }}>{totalSessions} Total Sessions</div>
         </div>
 
         <div className="glass-panel" style={{ padding: '1.5rem', borderLeft: '4px solid #34d399' }}>
-          <div style={{ fontSize: '0.75rem', color: '#8892b0', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+          <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
             Present
           </div>
           <div style={{ fontSize: '2rem', fontWeight: 700, color: '#34d399', margin: '0.3rem 0' }}>
             {presentCount}
           </div>
-          <div style={{ fontSize: '0.75rem', color: '#8892b0' }}>Full participation</div>
+          <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)' }}>Full participation</div>
         </div>
 
         <div className="glass-panel" style={{ padding: '1.5rem', borderLeft: '4px solid #fbbf24' }}>
-          <div style={{ fontSize: '0.75rem', color: '#8892b0', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+          <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
             Late
           </div>
           <div style={{ fontSize: '2rem', fontWeight: 700, color: '#fbbf24', margin: '0.3rem 0' }}>
             {lateCount}
           </div>
-          <div style={{ fontSize: '0.75rem', color: '#8892b0' }}>Tardy entries</div>
+          <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)' }}>Tardy entries</div>
         </div>
 
         <div className="glass-panel" style={{ padding: '1.5rem', borderLeft: '4px solid #60a5fa' }}>
-          <div style={{ fontSize: '0.75rem', color: '#8892b0', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+          <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
             Excused
           </div>
           <div style={{ fontSize: '2rem', fontWeight: 700, color: '#60a5fa', margin: '0.3rem 0' }}>
             {excusedCount}
           </div>
-          <div style={{ fontSize: '0.75rem', color: '#8892b0' }}>Authorized leaves</div>
+          <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)' }}>Authorized leaves</div>
         </div>
 
         <div className="glass-panel" style={{ padding: '1.5rem', borderLeft: '4px solid #f87171' }}>
-          <div style={{ fontSize: '0.75rem', color: '#8892b0', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+          <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
             Absent
           </div>
           <div style={{ fontSize: '2rem', fontWeight: 700, color: '#f87171', margin: '0.3rem 0' }}>
             {absentCount}
           </div>
-          <div style={{ fontSize: '0.75rem', color: '#8892b0' }}>Missed sessions</div>
+          <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)' }}>Missed sessions</div>
         </div>
       </div>
 
@@ -120,21 +120,21 @@ export function StudentAttendance() {
         </h2>
 
         {loading ? (
-          <div style={{ textAlign: 'center', padding: '3rem', color: '#8892b0' }}>
+          <div style={{ textAlign: 'center', padding: '3rem', color: 'rgba(241,163,42,0.55)' }}>
             Loading attendance records...
           </div>
         ) : records.length === 0 ? (
           <div style={{ textAlign: 'center', padding: '3rem' }}>
-            <div style={{ fontSize: '1.1rem', marginBottom: '0.5rem', color: '#8892b0' }}>No Attendance Logged</div>
+            <div style={{ fontSize: '1.1rem', marginBottom: '0.5rem', color: 'rgba(241,163,42,0.55)' }}>No Attendance Logged</div>
             <h3 style={{ color: '#fff', marginBottom: '0.4rem' }}>No Attendance Logged Yet</h3>
-            <p style={{ color: '#8892b0', margin: 0 }}>
+            <p style={{ color: 'rgba(241,163,42,0.55)', margin: 0 }}>
               Your teacher will mark attendance during your live class sessions.
             </p>
           </div>
         ) : (
           <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
             <thead>
-              <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)', color: '#8892b0', fontSize: '0.85rem' }}>
+              <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)', color: 'rgba(241,163,42,0.55)', fontSize: '0.85rem' }}>
                 <th style={{ padding: '0.75rem 1rem' }}>Session Date</th>
                 <th style={{ padding: '0.75rem 1rem' }}>Status</th>
                 <th style={{ padding: '0.75rem 1rem' }}>Instructor Notes / Remarks</th>
@@ -175,8 +175,8 @@ export function StudentAttendance() {
                       {rec.status}
                     </span>
                   </td>
-                  <td style={{ padding: '1rem', color: '#b0c4c6', fontSize: '0.85rem' }}>
-                    {rec.remarks || '—'}
+                  <td style={{ padding: '1rem', color: '#f0ceb3', fontSize: '0.85rem' }}>
+                    {rec.remarks || '�'}
                   </td>
                 </tr>
               ))}

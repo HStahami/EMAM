@@ -62,7 +62,7 @@ export function InstructorDashboard() {
 
   const statCards = [
     { title: "My Students", value: stats.total_students, icon: <Users size={22} color="var(--color-primary)" />, link: "/instructor/students" },
-    { title: "Active Classes", value: stats.active_classes, icon: <Calendar size={22} color="#4ecdc4" />, link: "/instructor/classes" },
+    { title: "Active Classes", value: stats.active_classes, icon: <Calendar size={22} color="var(--color-primary)" />, link: "/instructor/classes" },
     { title: "Pending Grading", value: stats.pending_submissions, icon: <FileText size={22} color="#ffb86c" />, link: "/instructor/submissions" },
     { title: "Tasks Assigned", value: stats.tasks_assigned, icon: <CheckSquare size={22} color="#a29bfe" />, link: "/instructor/tasks" },
     { title: "Attendance Today", value: stats.attendance_today, icon: <ClipboardCheck size={22} color="#55efc4" />, link: "/instructor/attendance" },
@@ -95,7 +95,7 @@ export function InstructorDashboard() {
           <h1 style={{ fontSize: "1.8rem", fontWeight: "700", marginBottom: "0.4rem" }} className="gradient-text">
             Welcome, {user?.username || "Instructor"}!
           </h1>
-          <p style={{ color: "#b0c4c6", fontSize: "0.95rem" }}>
+          <p style={{ color: "#f0ceb3", fontSize: "0.95rem" }}>
             Here is your daily operational summary for Emam.
           </p>
         </div>
@@ -171,7 +171,7 @@ export function InstructorDashboard() {
             }}
           >
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-              <span style={{ fontSize: "0.9rem", color: "#b0c4c6" }}>{card.title}</span>
+              <span style={{ fontSize: "0.9rem", color: "#f0ceb3" }}>{card.title}</span>
               {card.icon}
             </div>
             <div style={{ fontSize: "2rem", fontWeight: "700", color: "#fff" }}>{card.value}</div>
@@ -217,14 +217,14 @@ export function InstructorDashboard() {
                 >
                   <div>
                     <div style={{ fontWeight: "600", fontSize: "0.95rem" }}>{c.days}</div>
-                    <div style={{ fontSize: "0.85rem", color: "#b0c4c6" }}>{c.time}</div>
+                    <div style={{ fontSize: "0.85rem", color: "#f0ceb3" }}>{c.time}</div>
                   </div>
                   <div style={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap", justifyContent: "flex-end" }}>
                     {c.is_live && (
                       <span
                         style={{
-                          background: "rgba(16, 185, 129, 0.2)",
-                          color: "#10b981",
+                          background: "rgba(241, 163, 42, 0.15)",
+                          color: "var(--color-primary)",
                           padding: "3px 8px",
                           borderRadius: "6px",
                           fontSize: "0.75rem",
@@ -236,7 +236,7 @@ export function InstructorDashboard() {
                     )}
                     <span
                       style={{
-                        background: "rgba(197, 229, 232, 0.15)",
+                        background: "rgba(241, 163, 42, 0.12)",
                         color: "var(--color-primary)",
                         padding: "3px 10px",
                         borderRadius: "12px",
@@ -297,7 +297,7 @@ export function InstructorDashboard() {
                 >
                   <div>
                     <div style={{ fontWeight: "600", fontSize: "0.95rem" }}>{sub.student_name || "Student"}</div>
-                    <div style={{ fontSize: "0.8rem", color: "#b0c4c6" }}>{sub.task_title || "Assignment"}</div>
+                    <div style={{ fontSize: "0.8rem", color: "#f0ceb3" }}>{sub.task_title || "Assignment"}</div>
                   </div>
                   <Link
                     to="/instructor/submissions"

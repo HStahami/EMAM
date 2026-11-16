@@ -91,7 +91,7 @@ export function InstructorTasks() {
           <h1 style={{ fontSize: "1.8rem", fontWeight: "700", marginBottom: "0.3rem" }} className="gradient-text">
             Task & Assignment Management
           </h1>
-          <p style={{ color: "#b0c4c6", fontSize: "0.95rem" }}>
+          <p style={{ color: "#f0ceb3", fontSize: "0.95rem" }}>
             Create homework, assignments, and tests for your enrolled students.
           </p>
         </div>
@@ -142,7 +142,7 @@ export function InstructorTasks() {
                 </span>
               </div>
 
-              <p style={{ fontSize: "0.9rem", color: "#b0c4c6", lineHeight: "1.5" }}>{task.description}</p>
+              <p style={{ fontSize: "0.9rem", color: "#f0ceb3", lineHeight: "1.5" }}>{task.description}</p>
 
               {task.instructions && (
                 <div style={{ fontSize: "0.8rem", backgroundColor: "rgba(255,255,255,0.03)", padding: "0.6rem", borderRadius: "6px", color: "#ddd" }}>
@@ -224,7 +224,7 @@ export function InstructorTasks() {
 
             <form onSubmit={handleCreateTask} style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
               <div>
-                <label htmlFor="task-module" style={{ display: "block", fontSize: "0.85rem", marginBottom: "0.3rem", color: "#b0c4c6" }}>
+                <label htmlFor="task-module" style={{ display: "block", fontSize: "0.85rem", marginBottom: "0.3rem", color: "#f0ceb3" }}>
                   Learning Module
                 </label>
                 <select id="task-module" value={moduleId} onChange={(e) => setModuleId(e.target.value)} required style={inputStyle}>
@@ -237,7 +237,7 @@ export function InstructorTasks() {
               </div>
 
               <div>
-                <label htmlFor="task-title" style={{ display: "block", fontSize: "0.85rem", marginBottom: "0.3rem", color: "#b0c4c6" }}>
+                <label htmlFor="task-title" style={{ display: "block", fontSize: "0.85rem", marginBottom: "0.3rem", color: "#f0ceb3" }}>
                   Task Title
                 </label>
                 <input
@@ -252,7 +252,7 @@ export function InstructorTasks() {
               </div>
 
               <div>
-                <label htmlFor="task-description" style={{ display: "block", fontSize: "0.85rem", marginBottom: "0.3rem", color: "#b0c4c6" }}>
+                <label htmlFor="task-description" style={{ display: "block", fontSize: "0.85rem", marginBottom: "0.3rem", color: "#f0ceb3" }}>
                   Description / Prompt
                 </label>
                 <textarea
@@ -267,7 +267,7 @@ export function InstructorTasks() {
               </div>
 
               <div>
-                <label htmlFor="task-instructions" style={{ display: "block", fontSize: "0.85rem", marginBottom: "0.3rem", color: "#b0c4c6" }}>
+                <label htmlFor="task-instructions" style={{ display: "block", fontSize: "0.85rem", marginBottom: "0.3rem", color: "#f0ceb3" }}>
                   Detailed Instructions (Optional)
                 </label>
                 <textarea
@@ -282,7 +282,7 @@ export function InstructorTasks() {
 
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
                 <div>
-                  <label htmlFor="task-due-date" style={{ display: "block", fontSize: "0.85rem", marginBottom: "0.3rem", color: "#b0c4c6" }}>
+                  <label htmlFor="task-due-date" style={{ display: "block", fontSize: "0.85rem", marginBottom: "0.3rem", color: "#f0ceb3" }}>
                     Due Date
                   </label>
                   <input
@@ -295,7 +295,7 @@ export function InstructorTasks() {
                 </div>
 
                 <div>
-                  <label htmlFor="task-status" style={{ display: "block", fontSize: "0.85rem", marginBottom: "0.3rem", color: "#b0c4c6" }}>
+                  <label htmlFor="task-status" style={{ display: "block", fontSize: "0.85rem", marginBottom: "0.3rem", color: "#f0ceb3" }}>
                     Status
                   </label>
                   <select id="task-status" value={taskStatus} onChange={(e) => setTaskStatus(e.target.value)} style={inputStyle}>
@@ -306,7 +306,7 @@ export function InstructorTasks() {
               </div>
 
               <div>
-                <label htmlFor="task-attachment" style={{ display: "block", fontSize: "0.85rem", marginBottom: "0.3rem", color: "#b0c4c6" }}>
+                <label htmlFor="task-attachment" style={{ display: "block", fontSize: "0.85rem", marginBottom: "0.3rem", color: "#f0ceb3" }}>
                   Attachment / Resource Link (Optional)
                 </label>
                 <input

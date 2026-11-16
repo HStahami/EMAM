@@ -38,7 +38,7 @@ export function StudentCourseDetail() {
 
   if (loading) {
     return (
-      <div className="glass-panel" style={{ textAlign: 'center', padding: '3rem', color: '#8892b0' }}>
+      <div className="glass-panel" style={{ textAlign: 'center', padding: '3rem', color: 'rgba(241,163,42,0.55)' }}>
         Loading course curriculum...
       </div>
     );
@@ -64,12 +64,12 @@ export function StudentCourseDetail() {
           <h1 style={{ fontSize: '1.8rem', fontWeight: 700, color: '#fff', margin: '0 0 0.5rem 0' }}>
             {module.title}
           </h1>
-          <p style={{ color: '#b0c4c6', fontSize: '0.95rem', lineHeight: '1.5', margin: '0 0 1.5rem 0' }}>
+          <p style={{ color: '#f0ceb3', fontSize: '0.95rem', lineHeight: '1.5', margin: '0 0 1.5rem 0' }}>
             {module.description || 'Comprehensive curriculum designed for Arabic language students.'}
           </p>
 
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-            <div style={{ padding: '0.5rem 1rem', borderRadius: '6px', background: 'rgba(56, 189, 248, 0.1)', color: '#38bdf8', fontSize: '0.85rem' }}>
+            <div style={{ padding: '0.5rem 1rem', borderRadius: '6px', background: 'rgba(241, 163, 42, 0.15)', color: 'var(--color-primary)', fontSize: '0.85rem' }}>
               {tasks.length} Assigned Tasks
             </div>
             <div style={{ padding: '0.5rem 1rem', borderRadius: '6px', background: 'rgba(52, 211, 153, 0.1)', color: '#34d399', fontSize: '0.85rem' }}>
@@ -87,7 +87,7 @@ export function StudentCourseDetail() {
             Module Tasks ({tasks.length})
           </h2>
           {tasks.length === 0 ? (
-            <div style={{ color: '#8892b0', fontSize: '0.85rem' }}>No tasks assigned for this module yet.</div>
+            <div style={{ color: 'rgba(241,163,42,0.55)', fontSize: '0.85rem' }}>No tasks assigned for this module yet.</div>
           ) : (
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
               {tasks.map((t) => (
@@ -101,7 +101,7 @@ export function StudentCourseDetail() {
                   }}
                 >
                   <div style={{ fontWeight: 600, color: '#fff', fontSize: '0.9rem' }}>{t.title}</div>
-                  <div style={{ fontSize: '0.75rem', color: '#8892b0', marginTop: '0.2rem' }}>
+                  <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)', marginTop: '0.2rem' }}>
                     {t.due_date ? `Due: ${new Date(t.due_date).toLocaleDateString()}` : 'No deadline'}
                   </div>
                 </div>
@@ -116,7 +116,7 @@ export function StudentCourseDetail() {
             Course Materials ({resources.length})
           </h2>
           {resources.length === 0 ? (
-            <div style={{ color: '#8892b0', fontSize: '0.85rem' }}>No learning materials uploaded yet.</div>
+            <div style={{ color: 'rgba(241,163,42,0.55)', fontSize: '0.85rem' }}>No learning materials uploaded yet.</div>
           ) : (
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
               {resources.map((r) => (
@@ -134,7 +134,7 @@ export function StudentCourseDetail() {
                 >
                   <div>
                     <div style={{ fontWeight: 600, color: '#fff', fontSize: '0.9rem' }}>{r.title}</div>
-                    <div style={{ fontSize: '0.75rem', color: '#8892b0' }}>{r.type || 'Document'}</div>
+                    <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)' }}>{r.type || 'Document'}</div>
                   </div>
                   <a
                     href={r.url}

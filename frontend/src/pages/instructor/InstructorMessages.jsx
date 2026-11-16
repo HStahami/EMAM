@@ -96,7 +96,7 @@ export function InstructorMessages() {
           <h1 style={{ fontSize: "1.8rem", fontWeight: "700", color: "#fff" }} className="gradient-text">
             Student Communications & Messages
           </h1>
-          <p style={{ color: "#8892b0", fontSize: "0.95rem" }}>
+          <p style={{ color: "rgba(241,163,42,0.55)", fontSize: "0.95rem" }}>
             Respond to student questions, homework queries, and lesson feedback
           </p>
         </div>
@@ -119,9 +119,9 @@ export function InstructorMessages() {
           </h3>
 
           {loadingThreads ? (
-            <p style={{ color: "#8892b0", textAlign: "center", margin: "auto" }}>Loading student chats...</p>
+            <p style={{ color: "rgba(241,163,42,0.55)", textAlign: "center", margin: "auto" }}>Loading student chats...</p>
           ) : threads.length === 0 ? (
-            <p style={{ color: "#8892b0", textAlign: "center", margin: "auto", fontSize: "0.9rem" }}>
+            <p style={{ color: "rgba(241,163,42,0.55)", textAlign: "center", margin: "auto", fontSize: "0.9rem" }}>
               No active student conversations found.
             </p>
           ) : (
@@ -137,7 +137,7 @@ export function InstructorMessages() {
                       padding: "12px",
                       borderRadius: "10px",
                       cursor: "pointer",
-                      background: isSelected ? "rgba(197, 229, 232, 0.15)" : "rgba(255, 255, 255, 0.03)",
+                      background: isSelected ? "rgba(241, 163, 42, 0.12)" : "rgba(255, 255, 255, 0.03)",
                       border: isSelected ? "1px solid var(--color-primary)" : "1px solid rgba(255, 255, 255, 0.05)",
                       transition: "all 0.2s",
                       width: "100%",
@@ -160,7 +160,7 @@ export function InstructorMessages() {
                         {t.student_code}
                       </div>
                     )}
-                    <p style={{ color: "#8892b0", fontSize: "0.82rem", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                    <p style={{ color: "rgba(241,163,42,0.55)", fontSize: "0.82rem", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
                       {t.last_message || "No messages yet."}
                     </p>
                   </button>
@@ -192,9 +192,9 @@ export function InstructorMessages() {
               {/* Chat Stream */}
               <div style={{ flex: 1, overflowY: "auto", paddingRight: "8px", display: "flex", flexDirection: "column", gap: "12px" }}>
                 {loadingHistory ? (
-                  <p style={{ color: "#8892b0", textAlign: "center", margin: "auto" }}>Loading conversation history...</p>
+                  <p style={{ color: "rgba(241,163,42,0.55)", textAlign: "center", margin: "auto" }}>Loading conversation history...</p>
                 ) : messages.length === 0 ? (
-                  <div style={{ textAlign: "center", margin: "auto", color: "#8892b0" }}>
+                  <div style={{ textAlign: "center", margin: "auto", color: "rgba(241,163,42,0.55)" }}>
                     <MessageCircle size={36} style={{ marginBottom: "8px", opacity: 0.5 }} />
                     <p>No chat history with this student yet.</p>
                     <p style={{ fontSize: "0.85rem" }}>Send a message below to reach out to the student.</p>
@@ -255,7 +255,7 @@ export function InstructorMessages() {
               </form>
             </>
           ) : (
-            <div style={{ margin: "auto", textAlign: "center", color: "#8892b0" }}>
+            <div style={{ margin: "auto", textAlign: "center", color: "rgba(241,163,42,0.55)" }}>
               <MessageCircle size={48} style={{ marginBottom: "1rem", opacity: 0.4 }} />
               <p>Select a student thread from the left to view and respond.</p>
             </div>

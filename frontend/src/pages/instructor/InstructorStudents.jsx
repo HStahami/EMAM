@@ -47,7 +47,7 @@ export function InstructorStudents() {
           <h1 style={{ fontSize: "1.8rem", fontWeight: "700", marginBottom: "0.3rem" }} className="gradient-text">
             My Students
           </h1>
-          <p style={{ color: "#b0c4c6", fontSize: "0.95rem" }}>
+          <p style={{ color: "#f0ceb3", fontSize: "0.95rem" }}>
             Viewing all students assigned to your classes and slots.
           </p>
         </div>
@@ -135,7 +135,7 @@ export function InstructorStudents() {
                   <h3 style={{ fontSize: "1.1rem", fontWeight: "600", marginBottom: "2px" }}>{student.name}</h3>
                   <span
                     style={{
-                      background: "rgba(197, 229, 232, 0.15)",
+                      background: "rgba(241, 163, 42, 0.12)",
                       color: "var(--color-primary)",
                       padding: "2px 8px",
                       borderRadius: "10px",
@@ -148,7 +148,7 @@ export function InstructorStudents() {
                 </div>
               </div>
 
-              <div style={{ fontSize: "0.88rem", color: "#b0c4c6", display: "flex", flexDirection: "column", gap: "0.6rem" }}>
+              <div style={{ fontSize: "0.88rem", color: "#f0ceb3", display: "flex", flexDirection: "column", gap: "0.6rem" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
                   
                   <span style={{ color: "#fff", fontWeight: "500" }}>{student.course || "Modern Standard Arabic"}</span>

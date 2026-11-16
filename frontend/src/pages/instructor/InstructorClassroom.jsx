@@ -259,8 +259,8 @@ export function InstructorClassroom() {
                 INSTRUCTOR VIRTUAL ROOM
               </span>
               {isLive ? (
-                <span style={{ fontSize: '0.85rem', color: '#10b981', display: 'flex', alignItems: 'center', gap: '5px', fontWeight: 700 }}>
-                  <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#10b981', display: 'inline-block' }} />
+                <span style={{ fontSize: '0.85rem', color: 'var(--color-primary)', display: 'flex', alignItems: 'center', gap: '5px', fontWeight: 700 }}>
+                  <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: 'var(--color-primary)', display: 'inline-block' }} />
                   ● YOU ARE LIVE (Students Notified)
                 </span>
               ) : (
@@ -316,10 +316,10 @@ export function InstructorClassroom() {
                 {slotTitle}
               </span>
               <span style={{ display: 'flex', alignItems: 'center', gap: '5px', background: 'rgba(255,255,255,0.06)', padding: '3px 8px', borderRadius: '4px' }}>
-                <Users size={13} style={{ color: '#38bdf8' }} />
+                <Users size={13} style={{ color: 'var(--color-primary)' }} />
                 {selectedSlot.students_count || 0} Enrolled
               </span>
-              <span style={{ display: 'flex', alignItems: 'center', gap: '5px', background: 'rgba(16, 185, 129, 0.12)', border: '1px solid rgba(16, 185, 129, 0.3)', color: '#34d399', padding: '3px 8px', borderRadius: '4px' }} title="Automated real-time attendance count for today">
+              <span style={{ display: 'flex', alignItems: 'center', gap: '5px', background: 'rgba(241, 163, 42, 0.15)', border: '1px solid rgba(241, 163, 42, 0.15)', color: '#34d399', padding: '3px 8px', borderRadius: '4px' }} title="Automated real-time attendance count for today">
                 <CheckCircle2 size={13} />
                 {attendeesCount} Present Today
               </span>
@@ -338,7 +338,7 @@ export function InstructorClassroom() {
                   gap: '6px',
                   padding: '7px 12px',
                   fontSize: '0.82rem',
-                  color: '#38bdf8',
+                  color: 'var(--color-primary)',
                   border: '1px solid #38bdf8',
                   cursor: 'pointer',
                   borderRadius: '6px',
@@ -384,12 +384,12 @@ export function InstructorClassroom() {
                   padding: '7px 16px',
                   borderRadius: '6px',
                   border: 'none',
-                  backgroundColor: '#10b981',
+                  backgroundColor: 'var(--color-primary)',
                   color: '#fff',
                   fontWeight: 700,
                   fontSize: '0.85rem',
                   cursor: 'pointer',
-                  boxShadow: '0 0 12px rgba(16, 185, 129, 0.4)'
+                  boxShadow: '0 0 12px rgba(241, 163, 42, 0.15)'
                 }}
                 title="Start live class and send in-app notification to all enrolled students"
               >
@@ -467,21 +467,21 @@ export function InstructorClassroom() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                backgroundColor: 'rgba(56, 189, 248, 0.1)',
-                border: '1px solid rgba(56, 189, 248, 0.25)',
+                backgroundColor: 'rgba(241, 163, 42, 0.15)',
+                border: '1px solid rgba(241, 163, 42, 0.15)',
                 padding: '6px 12px',
                 borderRadius: '8px',
                 fontSize: '0.82rem',
                 color: '#e2e8f0'
               }}>
                 <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                  <Sparkles size={14} style={{ color: '#38bdf8' }} />
+                  <Sparkles size={14} style={{ color: 'var(--color-primary)' }} />
                   <strong>Tip for Extended Classes:</strong> If you prefer no 5-minute embedded demo popup, click "Dedicated HD Window" to run in full unlimited mode!
                 </span>
                 <button
                   onClick={openUnlimitedWindow}
                   style={{
-                    backgroundColor: '#38bdf8',
+                    backgroundColor: 'var(--color-primary)',
                     color: '#041416',
                     border: 'none',
                     padding: '4px 10px',
@@ -506,7 +506,7 @@ export function InstructorClassroom() {
                       minHeight: '480px',
                       backgroundColor: '#041416',
                       borderRadius: '12px',
-                      border: '1px solid rgba(56, 189, 248, 0.3)',
+                      border: '1px solid rgba(241, 163, 42, 0.15)',
                       display: 'flex',
                       flexDirection: 'column',
                       alignItems: 'center',
@@ -520,12 +520,12 @@ export function InstructorClassroom() {
                       width: '60px',
                       height: '60px',
                       borderRadius: '50%',
-                      background: 'rgba(56, 189, 248, 0.15)',
+                      background: 'rgba(241, 163, 42, 0.15)',
                       border: '2px solid #38bdf8',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      color: '#38bdf8'
+                      color: 'var(--color-primary)'
                     }}>
                       <ExternalLink size={28} />
                     </div>
@@ -544,7 +544,7 @@ export function InstructorClassroom() {
                       <button
                         onClick={openUnlimitedWindow}
                         className="glass-panel"
-                        style={{ padding: '8px 16px', fontSize: '0.85rem', color: '#38bdf8', border: '1px solid #38bdf8' }}
+                        style={{ padding: '8px 16px', fontSize: '0.85rem', color: 'var(--color-primary)', border: '1px solid #38bdf8' }}
                       >
                         Re-open Dedicated Window
                       </button>
@@ -632,7 +632,7 @@ export function InstructorClassroom() {
                     fontWeight: 700,
                     borderRadius: '8px',
                     cursor: 'pointer',
-                    boxShadow: '0 0 16px rgba(16, 185, 129, 0.45)'
+                    boxShadow: '0 0 16px rgba(241, 163, 42, 0.15)'
                   }}
                 >
                   {actionLoading ? <Loader2 size={16} className="spin-animation" /> : <Radio size={16} />}
@@ -703,13 +703,13 @@ export function InstructorClassroom() {
             width: '100%',
             maxWidth: '520px',
             backgroundColor: '#072224',
-            border: '1px solid rgba(197, 229, 232, 0.25)',
+            border: '1px solid rgba(241, 163, 42, 0.25)',
             borderRadius: '16px',
             padding: '2rem',
             boxShadow: '0 20px 50px rgba(0,0,0,0.8)',
             position: 'relative'
           }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem', borderBottom: '1px solid rgba(197, 229, 232, 0.15)', paddingBottom: '0.75rem' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem', borderBottom: '1px solid rgba(241, 163, 42, 0.12)', paddingBottom: '0.75rem' }}>
               <div>
                 <h3 style={{ color: 'var(--color-white)', margin: 0, fontSize: '1.25rem', fontWeight: 700 }} className="gradient-text">
                   Request Class Reschedule
@@ -729,7 +729,7 @@ export function InstructorClassroom() {
             </div>
 
             {rescheduleSuccess && (
-              <div style={{ padding: '10px 14px', borderRadius: '8px', background: 'rgba(16, 185, 129, 0.15)', border: '1px solid #10b981', color: '#10b981', fontSize: '0.85rem', marginBottom: '1rem' }}>
+              <div style={{ padding: '10px 14px', borderRadius: '8px', background: 'rgba(241, 163, 42, 0.15)', border: '1px solid #10b981', color: 'var(--color-primary)', fontSize: '0.85rem', marginBottom: '1rem' }}>
                 {rescheduleSuccess}
               </div>
             )}
@@ -754,7 +754,7 @@ export function InstructorClassroom() {
                     padding: '10px 14px',
                     borderRadius: '8px',
                     background: 'rgba(0, 0, 0, 0.35)',
-                    border: '1px solid rgba(197, 229, 232, 0.25)',
+                    border: '1px solid rgba(241, 163, 42, 0.25)',
                     color: '#fff',
                     fontSize: '0.9rem',
                     outline: 'none'
@@ -784,7 +784,7 @@ export function InstructorClassroom() {
                       padding: '9px 12px',
                       borderRadius: '8px',
                       background: 'rgba(0, 0, 0, 0.35)',
-                      border: '1px solid rgba(197, 229, 232, 0.25)',
+                      border: '1px solid rgba(241, 163, 42, 0.25)',
                       color: '#fff',
                       fontSize: '0.88rem',
                       outline: 'none'
@@ -831,7 +831,7 @@ export function InstructorClassroom() {
                     padding: '10px 14px',
                     borderRadius: '8px',
                     background: 'rgba(0, 0, 0, 0.35)',
-                    border: '1px solid rgba(197, 229, 232, 0.25)',
+                    border: '1px solid rgba(241, 163, 42, 0.25)',
                     color: '#fff',
                     fontSize: '0.88rem',
                     outline: 'none',
@@ -869,7 +869,7 @@ export function InstructorClassroom() {
                     fontSize: '0.88rem',
                     fontWeight: 700,
                     cursor: rescheduleLoading ? 'not-allowed' : 'pointer',
-                    boxShadow: '0 0 12px rgba(197, 229, 232, 0.3)'
+                    boxShadow: '0 0 12px rgba(241, 163, 42, 0.30)'
                   }}
                 >
                   {rescheduleLoading ? 'Submitting...' : 'Send Request to Admin'}

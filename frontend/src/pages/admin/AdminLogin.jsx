@@ -37,7 +37,7 @@ export function AdminLogin({ onLogin }) {
         {error && <p style={{ color: '#ff6b6b', marginBottom: '1rem', fontSize: '0.9rem' }}>{error}</p>}
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem', textAlign: 'left' }}>
           <div>
-            <label htmlFor="admin_username" style={{ display: 'block', fontSize: '0.85rem', marginBottom: '0.4rem', color: '#b0c4c6' }}>
+            <label htmlFor="admin_username" style={{ display: 'block', fontSize: '0.85rem', marginBottom: '0.4rem', color: '#f0ceb3' }}>
               Username or Email
             </label>
             <input
@@ -51,7 +51,7 @@ export function AdminLogin({ onLogin }) {
             />
           </div>
           <div>
-            <label htmlFor="admin_password" style={{ display: 'block', fontSize: '0.85rem', marginBottom: '0.4rem', color: '#b0c4c6' }}>
+            <label htmlFor="admin_password" style={{ display: 'block', fontSize: '0.85rem', marginBottom: '0.4rem', color: '#f0ceb3' }}>
               Password
             </label>
             <input

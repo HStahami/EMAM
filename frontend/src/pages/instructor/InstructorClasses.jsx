@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Calendar, Users, ClipboardCheck, CheckSquare, Clock } from "lucide-react";
 import { instructorsApi } from "../../api";
@@ -29,7 +29,7 @@ export function InstructorClasses() {
         <h1 style={{ fontSize: "1.8rem", fontWeight: "700", marginBottom: "0.3rem" }} className="gradient-text">
           My Classes & Schedules
         </h1>
-        <p style={{ color: "#b0c4c6", fontSize: "0.95rem" }}>
+        <p style={{ color: "#f0ceb3", fontSize: "0.95rem" }}>
           Active slots and course groups assigned to you.
         </p>
       </div>
@@ -70,13 +70,13 @@ export function InstructorClasses() {
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
                 <div>
                   <h3 style={{ fontSize: "1.2rem", fontWeight: "600", marginBottom: "0.3rem" }}>{c.days}</h3>
-                  <div style={{ display: "flex", alignItems: "center", gap: "0.4rem", color: "#b0c4c6", fontSize: "0.9rem" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "0.4rem", color: "#f0ceb3", fontSize: "0.9rem" }}>
                     <Clock size={16} color="var(--color-primary)" /> {c.time}
                   </div>
                 </div>
                 <span
                   style={{
-                    backgroundColor: "rgba(197, 229, 232, 0.15)",
+                    backgroundColor: "rgba(241, 163, 42, 0.12)",
                     color: "var(--color-primary)",
                     padding: "4px 10px",
                     borderRadius: "12px",

@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { tasksApi, submissionsApi, uploadApi } from '../../api';
 
 export function StudentTasks() {
@@ -102,7 +102,7 @@ export function StudentTasks() {
           <h1 style={{ fontSize: '1.8rem', fontWeight: 700, color: 'var(--color-primary)', margin: 0 }}>
             Coursework & Assignments
           </h1>
-          <p style={{ color: '#8892b0', fontSize: '0.95rem', marginTop: '0.4rem', marginBottom: 0 }}>
+          <p style={{ color: 'rgba(241,163,42,0.55)', fontSize: '0.95rem', marginTop: '0.4rem', marginBottom: 0 }}>
             Review tasks assigned by your instructor, submit your homework, and track your grades.
           </p>
         </div>
@@ -114,9 +114,9 @@ export function StudentTasks() {
           className="glass-panel"
           style={{
             padding: '1rem 1.5rem',
-            borderLeft: '4px solid #10b981',
+            borderLeft: '4px solid rgba(241,163,42,0.6)',
             color: '#34d399',
-            backgroundColor: 'rgba(16, 185, 129, 0.08)',
+            backgroundColor: 'rgba(241, 163, 42, 0.15)',
           }}
         >
           {success}
@@ -158,7 +158,7 @@ export function StudentTasks() {
               background: 'none',
               border: 'none',
               padding: '0.5rem 1rem',
-              color: filter === tab.key ? 'var(--color-primary)' : '#8892b0',
+              color: filter === tab.key ? 'var(--color-primary)' : 'rgba(241,163,42,0.55)',
               fontWeight: filter === tab.key ? 700 : 500,
               fontSize: '0.9rem',
               borderBottom: filter === tab.key ? '2px solid var(--color-primary)' : '2px solid transparent',
@@ -172,14 +172,14 @@ export function StudentTasks() {
 
       {/* Tasks Grid */}
       {loading ? (
-        <div className="glass-panel" style={{ textAlign: 'center', padding: '3rem', color: '#8892b0' }}>
+        <div className="glass-panel" style={{ textAlign: 'center', padding: '3rem', color: 'rgba(241,163,42,0.55)' }}>
           Loading coursework assignments...
         </div>
       ) : filteredTasks.length === 0 ? (
         <div className="glass-panel" style={{ textAlign: 'center', padding: '3.5rem' }}>
-          <div style={{ fontSize: '1.1rem', marginBottom: '0.5rem', color: '#8892b0' }}>No Tasks Found</div>
+          <div style={{ fontSize: '1.1rem', marginBottom: '0.5rem', color: 'rgba(241,163,42,0.55)' }}>No Tasks Found</div>
           <h3 style={{ color: '#fff', marginBottom: '0.5rem' }}>No Tasks Found</h3>
-          <p style={{ color: '#8892b0', margin: 0 }}>
+          <p style={{ color: 'rgba(241,163,42,0.55)', margin: 0 }}>
             {filter === 'pending'
               ? 'You have no pending assignments! Great job.'
               : 'There are no coursework assignments matching this category.'}
@@ -265,7 +265,7 @@ export function StudentTasks() {
 
                 <p
                   style={{
-                    color: '#b0c4c6',
+                    color: '#f0ceb3',
                     fontSize: '0.85rem',
                     lineHeight: '1.45',
                     marginBottom: '1rem',
@@ -279,7 +279,7 @@ export function StudentTasks() {
                 </p>
 
                 {task.due_date && (
-                  <div style={{ fontSize: '0.75rem', color: '#8892b0', marginBottom: '1rem' }}>
+                  <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)', marginBottom: '1rem' }}>
                     Due: <strong>{new Date(task.due_date).toLocaleDateString()}</strong>
                   </div>
                 )}
@@ -306,7 +306,7 @@ export function StudentTasks() {
                     color: task.is_submitted ? '#fff' : undefined,
                   }}
                 >
-                  {task.is_submitted ? 'View Submission & Grade ↗' : 'Open & Submit Task →'}
+                  {task.is_submitted ? 'View Submission & Grade ?' : 'Open & Submit Task ?'}
                 </button>
               </div>
             </div>
@@ -354,7 +354,7 @@ export function StudentTasks() {
               </div>
               <button
                 onClick={closeTaskModal}
-                style={{ background: 'none', border: 'none', color: '#8892b0', fontSize: '1.25rem', cursor: 'pointer' }}
+                style={{ background: 'none', border: 'none', color: 'rgba(241,163,42,0.55)', fontSize: '1.25rem', cursor: 'pointer' }}
               >
                 Close
               </button>
@@ -377,7 +377,7 @@ export function StudentTasks() {
 
             {/* Task Description & Instructions */}
             <div style={{ marginBottom: '1.5rem', backgroundColor: 'rgba(255, 255, 255, 0.03)', padding: '1rem', borderRadius: '8px' }}>
-              <div style={{ fontSize: '0.8rem', color: '#8892b0', textTransform: 'uppercase', marginBottom: '0.3rem' }}>
+              <div style={{ fontSize: '0.8rem', color: 'rgba(241,163,42,0.55)', textTransform: 'uppercase', marginBottom: '0.3rem' }}>
                 Instructions
               </div>
               <p style={{ color: '#e2e8f0', fontSize: '0.9rem', lineHeight: '1.5', margin: 0 }}>
@@ -386,7 +386,7 @@ export function StudentTasks() {
 
               {activeTask.attachments && activeTask.attachments.length > 0 && (
                 <div style={{ marginTop: '0.75rem' }}>
-                  <div style={{ fontSize: '0.75rem', color: '#8892b0' }}>Teacher Attachments:</div>
+                  <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)' }}>Teacher Attachments:</div>
                   <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginTop: '0.3rem' }}>
                     {activeTask.attachments.map((att, i) => (
                       <a
@@ -396,7 +396,7 @@ export function StudentTasks() {
                         rel="noopener noreferrer"
                         style={{ color: 'var(--color-primary)', fontSize: '0.8rem', textDecoration: 'none', background: 'rgba(255,255,255,0.05)', padding: '2px 8px', borderRadius: '4px' }}
                       >
-                        Attachment {i + 1} ↗
+                        Attachment {i + 1} ?
                       </a>
                     ))}
                   </div>
@@ -412,7 +412,7 @@ export function StudentTasks() {
                     <span style={{ fontSize: '0.8rem', color: '#34d399', fontWeight: 700, textTransform: 'uppercase' }}>
                       Your Submission
                     </span>
-                    <span style={{ fontSize: '0.75rem', color: '#8892b0' }}>
+                    <span style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)' }}>
                       {activeTask.submitted_at ? new Date(activeTask.submitted_at).toLocaleDateString() : ''}
                     </span>
                   </div>
@@ -454,7 +454,7 @@ export function StudentTasks() {
               /* Submission Form */
               <form onSubmit={handleSubmitTask} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
                 <div>
-                  <label htmlFor="submission-content" style={{ display: 'block', fontSize: '0.85rem', color: '#8892b0', marginBottom: '0.4rem' }}>
+                  <label htmlFor="submission-content" style={{ display: 'block', fontSize: '0.85rem', color: 'rgba(241,163,42,0.55)', marginBottom: '0.4rem' }}>
                     Your Solution / Homework Content *
                   </label>
                   <textarea
@@ -479,7 +479,7 @@ export function StudentTasks() {
                 </div>
 
                 <div>
-                  <label htmlFor="submission-file" style={{ display: 'block', fontSize: '0.85rem', color: '#8892b0', marginBottom: '0.4rem' }}>
+                  <label htmlFor="submission-file" style={{ display: 'block', fontSize: '0.85rem', color: 'rgba(241,163,42,0.55)', marginBottom: '0.4rem' }}>
                     Attach Homework File (Optional PDF / Image / Document)
                   </label>
                   <input
@@ -492,7 +492,7 @@ export function StudentTasks() {
                       backgroundColor: 'rgba(15, 23, 42, 0.8)',
                       border: '1px solid rgba(255, 255, 255, 0.12)',
                       borderRadius: '8px',
-                      color: '#b0c4c6',
+                      color: '#f0ceb3',
                       fontSize: '0.85rem',
                       boxSizing: 'border-box',
                     }}
@@ -504,7 +504,7 @@ export function StudentTasks() {
                     type="button"
                     onClick={closeTaskModal}
                     className="glass-panel"
-                    style={{ padding: '0.65rem 1.25rem', border: '1px solid rgba(255, 255, 255, 0.1)', color: '#8892b0', cursor: 'pointer' }}
+                    style={{ padding: '0.65rem 1.25rem', border: '1px solid rgba(255, 255, 255, 0.1)', color: 'rgba(241,163,42,0.55)', cursor: 'pointer' }}
                   >
                     Cancel
                   </button>

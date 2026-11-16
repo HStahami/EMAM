@@ -101,9 +101,9 @@ export function StudentLayout({ children }) {
             onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
             className="hide-mobile"
             style={{
-              background: 'rgba(255, 255, 255, 0.06)',
-              border: '1px solid rgba(255, 255, 255, 0.12)',
-              color: '#C5E5E8',
+              background: 'rgba(105, 14, 31, 0.5)',
+              border: '1px solid rgba(241, 163, 42, 0.25)',
+              color: 'var(--color-primary)',
               borderRadius: '6px',
               cursor: 'pointer',
               display: 'flex',
@@ -124,12 +124,12 @@ export function StudentLayout({ children }) {
             className="portal-header-badge"
             style={{
               fontSize: '0.75rem',
-              background: 'rgba(56, 189, 248, 0.15)',
-              color: '#38bdf8',
+              background: 'rgba(241, 163, 42, 0.12)',
+              color: 'var(--color-primary)',
               padding: '3px 8px',
               borderRadius: '12px',
               fontWeight: '600',
-              border: '1px solid rgba(56, 189, 248, 0.3)',
+              border: '1px solid rgba(241, 163, 42, 0.35)',
             }}
           >
             Student Portal
@@ -144,17 +144,17 @@ export function StudentLayout({ children }) {
               className="portal-header-id"
               style={{
                 fontSize: '0.8rem',
-                color: '#b0c4c6',
+                color: '#f0ceb3',
                 background: 'rgba(255, 255, 255, 0.05)',
                 padding: '4px 8px',
                 borderRadius: '6px',
-                border: '1px solid rgba(255, 255, 255, 0.08)',
+                border: '1px solid rgba(241, 163, 42, 0.18)',
                 display: 'flex',
                 alignItems: 'center',
                 gap: '0.3rem',
               }}
             >
-              <span style={{ color: '#8892b0' }}>ID:</span>
+              <span style={{ color: 'rgba(241, 163, 42, 0.45)' }}>ID:</span>
               <strong style={{ color: 'var(--color-primary)' }}>{user.student_code}</strong>
             </div>
           )}
@@ -164,7 +164,7 @@ export function StudentLayout({ children }) {
             to="/student/notifications"
             style={{
               position: 'relative',
-              color: '#b0c4c6',
+              color: '#f0ceb3',
               display: 'flex',
               alignItems: 'center',
               textDecoration: 'none',
@@ -204,7 +204,7 @@ export function StudentLayout({ children }) {
                 width: '34px',
                 height: '34px',
                 borderRadius: '50%',
-                backgroundColor: 'rgba(197, 229, 232, 0.15)',
+                backgroundColor: 'rgba(105, 14, 31, 0.5)',
                 border: '1px solid var(--color-primary)',
                 display: 'flex',
                 alignItems: 'center',
@@ -291,8 +291,8 @@ export function StudentLayout({ children }) {
                   padding: '9px 12px',
                   borderRadius: '8px',
                   textDecoration: 'none',
-                  color: isLocked ? '#64748b' : (isActive ? 'var(--color-primary)' : '#b0c4c6'),
-                  backgroundColor: isActive && !isLocked ? 'rgba(197, 229, 232, 0.12)' : 'transparent',
+                  color: isLocked ? '#64748b' : (isActive ? 'var(--color-primary)' : '#f0ceb3'),
+                  backgroundColor: isActive && !isLocked ? 'rgba(241, 163, 42, 0.12)' : 'transparent',
                   fontWeight: isActive && !isLocked ? 600 : 400,
                   fontSize: '0.9rem',
                   opacity: isLocked ? 0.45 : 1,
@@ -326,7 +326,7 @@ export function StudentLayout({ children }) {
         </div>
 
         <div style={{ borderTop: '1px solid rgba(255, 255, 255, 0.08)', paddingTop: '1rem', marginTop: '1rem' }}>
-          <div style={{ fontSize: '0.75rem', color: '#8892b0', textAlign: 'center' }}>
+          <div style={{ fontSize: '0.75rem', color: 'rgba(241, 163, 42, 0.45)', textAlign: 'center' }}>
             Emam LMS Student Portal
           </div>
         </div>
@@ -379,9 +379,9 @@ export function StudentLayout({ children }) {
               style={{
                 margin: '1rem 0',
                 padding: '0.85rem',
-                backgroundColor: 'rgba(255, 255, 255, 0.04)',
+                backgroundColor: 'rgba(105, 14, 31, 0.35)',
                 borderRadius: '10px',
-                border: '1px solid rgba(255, 255, 255, 0.08)',
+                border: '1px solid rgba(241, 163, 42, 0.18)',
                 display: 'flex',
                 alignItems: 'center',
                 gap: '0.75rem',
@@ -392,7 +392,7 @@ export function StudentLayout({ children }) {
                   width: '40px',
                   height: '40px',
                   borderRadius: '50%',
-                  background: 'linear-gradient(135deg, #10b981, #059669)',
+                  background: 'linear-gradient(135deg, #690e1f, #f1a32a)',
                   color: '#fff',
                   display: 'flex',
                   alignItems: 'center',
@@ -457,8 +457,8 @@ export function StudentLayout({ children }) {
                       padding: '10px 12px',
                       borderRadius: '8px',
                       textDecoration: 'none',
-                      color: isLocked ? '#64748b' : (isActive ? 'var(--color-primary)' : '#cbd5e1'),
-                      backgroundColor: isActive && !isLocked ? 'rgba(197, 229, 232, 0.12)' : 'transparent',
+                      color: isLocked ? '#64748b' : (isActive ? 'var(--color-primary)' : '#f0ceb3'),
+                      backgroundColor: isActive && !isLocked ? 'rgba(241, 163, 42, 0.12)' : 'transparent',
                       fontWeight: isActive && !isLocked ? 600 : 400,
                       fontSize: '0.9rem',
                       opacity: isLocked ? 0.45 : 1,

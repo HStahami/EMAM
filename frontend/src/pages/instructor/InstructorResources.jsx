@@ -124,7 +124,7 @@ export function InstructorResources() {
           <h1 style={{ fontSize: '1.8rem', fontWeight: 700, color: 'var(--color-primary)', margin: 0 }}>
             Learning Resources
           </h1>
-          <p style={{ color: '#8892b0', fontSize: '0.95rem', marginTop: '0.4rem', marginBottom: 0 }}>
+          <p style={{ color: 'rgba(241,163,42,0.55)', fontSize: '0.95rem', marginTop: '0.4rem', marginBottom: 0 }}>
             Manage course materials, readings, audio recordings, and guides for your classes.
           </p>
         </div>
@@ -152,9 +152,9 @@ export function InstructorResources() {
           className="glass-panel"
           style={{
             padding: '1rem 1.5rem',
-            borderLeft: '4px solid #10b981',
+            borderLeft: '4px solid rgba(241,163,42,0.6)',
             color: '#34d399',
-            backgroundColor: 'rgba(16, 185, 129, 0.08)',
+            backgroundColor: 'rgba(241, 163, 42, 0.15)',
           }}
         >
           {success}
@@ -226,21 +226,21 @@ export function InstructorResources() {
           </select>
         </div>
 
-        <div style={{ color: '#8892b0', fontSize: '0.85rem' }}>
+        <div style={{ color: 'rgba(241,163,42,0.55)', fontSize: '0.85rem' }}>
           Showing {filteredResources.length} of {resources.length} resources
         </div>
       </div>
 
       {/* Resources Grid */}
       {loading ? (
-        <div className="glass-panel" style={{ textAlign: 'center', padding: '3rem', color: '#8892b0' }}>
+        <div className="glass-panel" style={{ textAlign: 'center', padding: '3rem', color: 'rgba(241,163,42,0.55)' }}>
           Loading resources...
         </div>
       ) : filteredResources.length === 0 ? (
         <div className="glass-panel" style={{ textAlign: 'center', padding: '3.5rem' }}>
-          <div style={{ fontSize: '1.1rem', marginBottom: '0.5rem', color: '#8892b0' }}>No Resources Found</div>
+          <div style={{ fontSize: '1.1rem', marginBottom: '0.5rem', color: 'rgba(241,163,42,0.55)' }}>No Resources Found</div>
           <h3 style={{ color: '#fff', marginBottom: '0.5rem' }}>No Resources Found</h3>
-          <p style={{ color: '#8892b0', maxWidth: '400px', margin: '0 auto 1.5rem auto' }}>
+          <p style={{ color: 'rgba(241,163,42,0.55)', maxWidth: '400px', margin: '0 auto 1.5rem auto' }}>
             You haven't uploaded any resources matching this query yet. Share reference materials, study guides, and recordings with your students.
           </p>
           <button
@@ -283,8 +283,8 @@ export function InstructorResources() {
                       fontSize: '0.75rem',
                       fontWeight: 600,
                       textTransform: 'uppercase',
-                      backgroundColor: 'rgba(56, 189, 248, 0.15)',
-                      color: '#38bdf8',
+                      backgroundColor: 'rgba(241, 163, 42, 0.15)',
+                      color: 'var(--color-primary)',
                     }}
                   >
                     <span>{getTypeIcon(res.resource_type)}</span>
@@ -294,7 +294,7 @@ export function InstructorResources() {
                   <span
                     style={{
                       fontSize: '0.75rem',
-                      color: '#8892b0',
+                      color: 'rgba(241,163,42,0.55)',
                       backgroundColor: 'rgba(255, 255, 255, 0.05)',
                       padding: '0.2rem 0.5rem',
                       borderRadius: '4px',
@@ -310,7 +310,7 @@ export function InstructorResources() {
 
                 <p
                   style={{
-                    color: '#b0c4c6',
+                    color: '#f0ceb3',
                     fontSize: '0.85rem',
                     lineHeight: '1.45',
                     marginBottom: '1.25rem',
@@ -400,7 +400,7 @@ export function InstructorResources() {
               </h2>
               <button
                 onClick={() => setModalOpen(false)}
-                style={{ background: 'none', border: 'none', color: '#8892b0', fontSize: '1.2rem', cursor: 'pointer' }}
+                style={{ background: 'none', border: 'none', color: 'rgba(241,163,42,0.55)', fontSize: '1.2rem', cursor: 'pointer' }}
               >
                 Close
               </button>
@@ -408,7 +408,7 @@ export function InstructorResources() {
 
             <form onSubmit={handleCreateResource} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
               <div>
-                <label htmlFor="resource-title" style={{ display: 'block', fontSize: '0.85rem', color: '#8892b0', marginBottom: '0.4rem' }}>
+                <label htmlFor="resource-title" style={{ display: 'block', fontSize: '0.85rem', color: 'rgba(241,163,42,0.55)', marginBottom: '0.4rem' }}>
                   Resource Title *
                 </label>
                 <input
@@ -433,7 +433,7 @@ export function InstructorResources() {
 
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                 <div>
-                  <label htmlFor="resource-type" style={{ display: 'block', fontSize: '0.85rem', color: '#8892b0', marginBottom: '0.4rem' }}>
+                  <label htmlFor="resource-type" style={{ display: 'block', fontSize: '0.85rem', color: 'rgba(241,163,42,0.55)', marginBottom: '0.4rem' }}>
                     Resource Type *
                   </label>
                   <select
@@ -460,7 +460,7 @@ export function InstructorResources() {
                 </div>
 
                 <div>
-                  <label htmlFor="resource-module" style={{ display: 'block', fontSize: '0.85rem', color: '#8892b0', marginBottom: '0.4rem' }}>
+                  <label htmlFor="resource-module" style={{ display: 'block', fontSize: '0.85rem', color: 'rgba(241,163,42,0.55)', marginBottom: '0.4rem' }}>
                     Associated Module
                   </label>
                   <select
@@ -489,7 +489,7 @@ export function InstructorResources() {
               </div>
 
               <div>
-                <label htmlFor="resource-url" style={{ display: 'block', fontSize: '0.85rem', color: '#8892b0', marginBottom: '0.4rem' }}>
+                <label htmlFor="resource-url" style={{ display: 'block', fontSize: '0.85rem', color: 'rgba(241,163,42,0.55)', marginBottom: '0.4rem' }}>
                   Resource URL / Cloudinary Link *
                 </label>
                 <input
@@ -513,7 +513,7 @@ export function InstructorResources() {
               </div>
 
               <div>
-                <label htmlFor="resource-description" style={{ display: 'block', fontSize: '0.85rem', color: '#8892b0', marginBottom: '0.4rem' }}>
+                <label htmlFor="resource-description" style={{ display: 'block', fontSize: '0.85rem', color: 'rgba(241,163,42,0.55)', marginBottom: '0.4rem' }}>
                   Description / Study Guidelines
                 </label>
                 <textarea
@@ -544,7 +544,7 @@ export function InstructorResources() {
                   style={{
                     padding: '0.65rem 1.25rem',
                     border: '1px solid rgba(255, 255, 255, 0.1)',
-                    color: '#8892b0',
+                    color: 'rgba(241,163,42,0.55)',
                     cursor: 'pointer',
                   }}
                 >

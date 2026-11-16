@@ -32,7 +32,7 @@ export function StudentDashboard() {
 
   if (loading) {
     return (
-      <div style={{ textAlign: 'center', padding: '4rem 1rem', color: '#8892b0' }}>
+      <div style={{ textAlign: 'center', padding: '4rem 1rem', color: 'rgba(241,163,42,0.55)' }}>
         <p style={{ fontSize: '1.1rem', color: 'var(--color-primary)' }}>Loading your learning dashboard...</p>
       </div>
     );
@@ -77,7 +77,7 @@ export function StudentDashboard() {
       >
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.5rem' }}>
-            <span style={{ fontSize: '0.8rem', background: 'rgba(56, 189, 248, 0.15)', color: '#38bdf8', padding: '2px 8px', borderRadius: '4px', fontWeight: 600 }}>
+            <span style={{ fontSize: '0.8rem', background: 'rgba(241, 163, 42, 0.12)', color: 'var(--color-primary)', padding: '2px 8px', borderRadius: '4px', fontWeight: 600 }}>
               {data?.student?.student_code || 'STUDENT'}
             </span>
             <span style={{ fontSize: '0.8rem', background: 'rgba(52, 211, 153, 0.15)', color: '#34d399', padding: '2px 8px', borderRadius: '4px', fontWeight: 600 }}>
@@ -89,7 +89,7 @@ export function StudentDashboard() {
             Ahlan wa Sahlan, {data?.student?.name || user?.username}!
           </h1>
 
-          <p style={{ color: '#b0c4c6', fontSize: '0.95rem', margin: 0, maxWidth: '600px', lineHeight: '1.45' }}>
+          <p style={{ color: '#f0ceb3', fontSize: '0.95rem', margin: 0, maxWidth: '600px', lineHeight: '1.45' }}>
             Welcome to your Emam learning portal. Track assignments, attend live sessions, and view your academic achievements.
           </p>
         </div>
@@ -105,7 +105,7 @@ export function StudentDashboard() {
               minWidth: '220px',
             }}
           >
-            <div style={{ fontSize: '0.75rem', color: '#8892b0', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+            <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
               Your Class Timetable
             </div>
             <div style={{ fontSize: '1rem', fontWeight: 700, color: '#fff', marginTop: '0.25rem' }}>
@@ -131,9 +131,9 @@ export function StudentDashboard() {
                     textDecoration: 'none',
                     fontWeight: 700,
                     borderRadius: '6px',
-                    backgroundColor: '#10b981',
+                    backgroundColor: 'var(--color-primary)',
                     color: '#fff',
-                    boxShadow: '0 0 12px rgba(16, 185, 129, 0.4)'
+                    boxShadow: '0 0 12px rgba(241, 163, 42, 0.15)'
                   }}
                 >
                   <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#fff' }} />
@@ -167,7 +167,7 @@ export function StudentDashboard() {
                       textDecoration: 'none',
                       fontWeight: 600,
                       borderRadius: '6px',
-                      backgroundColor: 'rgba(255, 255, 255, 0.08)',
+                      backgroundColor: 'rgba(241, 163, 42, 0.12)',
                       color: '#cbd5e1',
                       border: '1px solid rgba(255, 255, 255, 0.15)'
                     }}
@@ -214,7 +214,7 @@ export function StudentDashboard() {
           </div>
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
-              <span style={{ fontSize: '0.75rem', fontWeight: 700, padding: '2px 8px', borderRadius: '4px', backgroundColor: 'rgba(197, 229, 232, 0.15)', color: '#C5E5E8', border: '1px solid rgba(197, 229, 232, 0.25)' }}>
+              <span style={{ fontSize: '0.75rem', fontWeight: 700, padding: '2px 8px', borderRadius: '4px', backgroundColor: 'rgba(241, 163, 42, 0.12)', color: '#f0ceb3', border: '1px solid rgba(241, 163, 42, 0.25)' }}>
                 200 Practice Levels
               </span>
               <span style={{ fontSize: '0.75rem', fontWeight: 700, padding: '2px 8px', borderRadius: '4px', backgroundColor: 'rgba(223, 178, 89, 0.15)', color: '#dfb259', border: '1px solid rgba(223, 178, 89, 0.3)' }}>
@@ -224,7 +224,7 @@ export function StudentDashboard() {
             <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: '#fff', margin: 0 }}>
               Arabic Touch-Typing Lab
             </h3>
-            <p style={{ color: '#b0c4c6', fontSize: '0.85rem', margin: '0.25rem 0 0 0' }}>
+            <p style={{ color: '#f0ceb3', fontSize: '0.85rem', margin: '0.25rem 0 0 0' }}>
               Master touch typing on the Arabic keyboard across 200 progressive levels to earn your official certificate.
             </p>
           </div>
@@ -260,50 +260,50 @@ export function StudentDashboard() {
           gap: '1.25rem',
         }}
       >
-        <div className="glass-panel" style={{ padding: '1.4rem', borderLeft: '4px solid #38bdf8' }}>
-          <div style={{ fontSize: '0.75rem', color: '#8892b0', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+        <div className="glass-panel" style={{ padding: '1.4rem', borderLeft: '4px solid var(--color-primary)' }}>
+          <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
             Overall Progress
           </div>
           <div style={{ fontSize: '1.8rem', fontWeight: 700, color: '#fff', margin: '0.3rem 0' }}>
             {overallProgress}%
           </div>
           <div style={{ height: '6px', backgroundColor: 'rgba(255, 255, 255, 0.1)', borderRadius: '3px', overflow: 'hidden' }}>
-            <div style={{ width: `${overallProgress}%`, height: '100%', backgroundColor: '#38bdf8' }} />
+            <div style={{ width: `${overallProgress}%`, height: '100%', backgroundColor: 'var(--color-primary)' }} />
           </div>
         </div>
 
-        <div className="glass-panel" style={{ padding: '1.4rem', borderLeft: '4px solid #10b981' }}>
-          <div style={{ fontSize: '0.75rem', color: '#8892b0', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+        <div className="glass-panel" style={{ padding: '1.4rem', borderLeft: '4px solid rgba(241,163,42,0.6)' }}>
+          <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
             Attendance Rate
           </div>
           <div style={{ fontSize: '1.8rem', fontWeight: 700, color: '#34d399', margin: '0.3rem 0' }}>
             {attendanceRate}%
           </div>
-          <div style={{ fontSize: '0.75rem', color: '#8892b0' }}>
+          <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)' }}>
             {progress?.attendance?.present || 0} sessions attended
           </div>
         </div>
 
         <div className="glass-panel" style={{ padding: '1.4rem', borderLeft: '4px solid #f59e0b' }}>
-          <div style={{ fontSize: '0.75rem', color: '#8892b0', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+          <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
             Tasks Completed
           </div>
           <div style={{ fontSize: '1.8rem', fontWeight: 700, color: '#fbbf24', margin: '0.3rem 0' }}>
             {progress?.tasks?.total_submitted || 0} / {progress?.tasks?.total_assigned || 0}
           </div>
-          <div style={{ fontSize: '0.75rem', color: '#8892b0' }}>
+          <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)' }}>
             {progress?.tasks?.completion_rate || 0}% completion
           </div>
         </div>
 
         <div className="glass-panel" style={{ padding: '1.4rem', borderLeft: '4px solid #a855f7' }}>
-          <div style={{ fontSize: '0.75rem', color: '#8892b0', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+          <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
             Average Grade
           </div>
           <div style={{ fontSize: '1.8rem', fontWeight: 700, color: '#c084fc', margin: '0.3rem 0' }}>
             {avgScore !== null && avgScore !== undefined ? `${avgScore}%` : 'N/A'}
           </div>
-          <div style={{ fontSize: '0.75rem', color: '#8892b0' }}>
+          <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)' }}>
             {progress?.assessments?.total_graded || 0} graded tasks
           </div>
         </div>
@@ -352,7 +352,7 @@ export function StudentDashboard() {
           </div>
 
           {upcomingTasks.length === 0 ? (
-            <div style={{ textAlign: 'center', padding: '2rem 1rem', color: '#8892b0', fontSize: '0.85rem' }}>
+            <div style={{ textAlign: 'center', padding: '2rem 1rem', color: 'rgba(241,163,42,0.55)', fontSize: '0.85rem' }}>
               No tasks currently assigned for your course.
             </div>
           ) : (
@@ -375,7 +375,7 @@ export function StudentDashboard() {
                     <h4 style={{ margin: '0 0 0.25rem 0', color: '#fff', fontSize: '0.9rem', fontWeight: 600 }}>
                       {t.title}
                     </h4>
-                    <div style={{ fontSize: '0.75rem', color: '#8892b0' }}>
+                    <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)' }}>
                       {t.due_date ? `Due: ${new Date(t.due_date).toLocaleDateString()}` : 'No deadline'}
                     </div>
                   </div>
@@ -413,7 +413,7 @@ export function StudentDashboard() {
           </div>
 
           {recentSubmissions.length === 0 ? (
-            <div style={{ textAlign: 'center', padding: '2rem 1rem', color: '#8892b0', fontSize: '0.85rem' }}>
+            <div style={{ textAlign: 'center', padding: '2rem 1rem', color: 'rgba(241,163,42,0.55)', fontSize: '0.85rem' }}>
               You have not submitted any coursework yet.
             </div>
           ) : (
@@ -444,7 +444,7 @@ export function StudentDashboard() {
                   </div>
 
                   {sub.feedback && (
-                    <p style={{ margin: '0.4rem 0 0 0', fontSize: '0.8rem', color: '#34d399', fontStyle: 'italic', background: 'rgba(16, 185, 129, 0.08)', padding: '0.4rem 0.6rem', borderRadius: '4px' }}>
+                    <p style={{ margin: '0.4rem 0 0 0', fontSize: '0.8rem', color: '#34d399', fontStyle: 'italic', background: 'rgba(241, 163, 42, 0.15)', padding: '0.4rem 0.6rem', borderRadius: '4px' }}>
                       "{sub.feedback}"
                     </p>
                   )}
@@ -464,27 +464,27 @@ export function StudentDashboard() {
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
             {/* Course Card */}
-            <div style={{ padding: '1.25rem', borderRadius: '8px', backgroundColor: 'rgba(255, 255, 255, 0.03)', border: '1px solid rgba(255, 255, 255, 0.08)' }}>
+            <div style={{ padding: '1.25rem', borderRadius: '8px', backgroundColor: 'rgba(255, 255, 255, 0.03)', border: '1px solid rgba(241, 163, 42, 0.12)' }}>
               <div style={{ fontSize: '0.75rem', color: 'var(--color-primary)', textTransform: 'uppercase', fontWeight: 600, marginBottom: '0.4rem' }}>
                 Enrolled Course
               </div>
               <h3 style={{ margin: '0 0 0.5rem 0', color: '#fff', fontSize: '1.15rem', fontWeight: 700 }}>
                 {course.title}
               </h3>
-              <p style={{ color: '#b0c4c6', fontSize: '0.85rem', lineHeight: '1.45', margin: 0 }}>
+              <p style={{ color: '#f0ceb3', fontSize: '0.85rem', lineHeight: '1.45', margin: 0 }}>
                 {course.description || 'Comprehensive curriculum designed for mastery in Arabic syntax, morphology, and reading.'}
               </p>
             </div>
 
             {/* Instructor Card */}
             {instructor && (
-              <div style={{ padding: '1.25rem', borderRadius: '8px', backgroundColor: 'rgba(255, 255, 255, 0.03)', border: '1px solid rgba(255, 255, 255, 0.08)', display: 'flex', gap: '1rem', alignItems: 'center' }}>
+              <div style={{ padding: '1.25rem', borderRadius: '8px', backgroundColor: 'rgba(255, 255, 255, 0.03)', border: '1px solid rgba(241, 163, 42, 0.12)', display: 'flex', gap: '1rem', alignItems: 'center' }}>
                 <div
                   style={{
                     width: '60px',
                     height: '60px',
                     borderRadius: '50%',
-                    backgroundColor: 'rgba(56, 189, 248, 0.15)',
+                    backgroundColor: 'rgba(241, 163, 42, 0.12)',
                     border: '2px solid var(--color-primary)',
                     display: 'flex',
                     alignItems: 'center',
@@ -497,7 +497,7 @@ export function StudentDashboard() {
                   {instructor.name?.[0] || 'I'}
                 </div>
                 <div>
-                  <div style={{ fontSize: '0.75rem', color: '#8892b0', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                  <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                     Assigned Instructor
                   </div>
                   <h4 style={{ margin: '0.1rem 0 0.2rem 0', color: '#fff', fontSize: '1.05rem', fontWeight: 700 }}>

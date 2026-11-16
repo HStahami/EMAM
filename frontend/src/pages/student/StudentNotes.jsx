@@ -206,7 +206,7 @@ export function StudentNotes() {
               >
                 <div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.5rem' }}>
-                    <span style={{ fontSize: '0.75rem', color: '#38bdf8', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                    <span style={{ fontSize: '0.75rem', color: 'var(--color-primary)', display: 'flex', alignItems: 'center', gap: '4px' }}>
                       <Calendar size={12} /> {dateStr}
                     </span>
                     {n.slot_name && (
@@ -278,7 +278,7 @@ export function StudentNotes() {
                       onClick={() => handleCopy(n)}
                       title="Copy"
                       className="glass-panel"
-                      style={{ padding: '5px 8px', border: '1px solid rgba(255,255,255,0.08)', color: copiedId === (n.id || n._id) ? '#10b981' : '#cbd5e1' }}
+                      style={{ padding: '5px 8px', border: '1px solid rgba(255,255,255,0.08)', color: copiedId === (n.id || n._id) ? 'var(--color-primary)' : '#cbd5e1' }}
                     >
                       {copiedId === (n.id || n._id) ? <Check size={13} /> : <Copy size={13} />}
                     </button>

@@ -459,7 +459,7 @@ export function Home() {
             style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(190px, 1fr))', gap: '1rem', width: '100%', maxWidth: '940px', margin: '0 auto' }}
           >
             {/* Card 1 — CEFR Curriculum */}
-            <div className="glass-panel" style={{ padding: '1.1rem 0.9rem 0.9rem', textAlign: 'center', borderRadius: '14px', position: 'relative', overflow: 'hidden' }}>
+            <div className="glass-panel trust-card" style={{ padding: '1.1rem 0.9rem 0.9rem', textAlign: 'center', borderRadius: '14px', position: 'relative', overflow: 'hidden' }}>
               <div style={{ marginBottom: '0.55rem', display: 'flex', justifyContent: 'center' }}>
                 <svg width="52" height="38" viewBox="0 0 52 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                   {/* Open book pages */}
@@ -486,7 +486,7 @@ export function Home() {
             </div>
 
             {/* Card 2 — Typing Lab */}
-            <div className="glass-panel" style={{ padding: '1.1rem 0.9rem 0.9rem', textAlign: 'center', borderRadius: '14px', position: 'relative', overflow: 'hidden' }}>
+            <div className="glass-panel trust-card" style={{ padding: '1.1rem 0.9rem 0.9rem', textAlign: 'center', borderRadius: '14px', position: 'relative', overflow: 'hidden' }}>
               <div style={{ marginBottom: '0.55rem', display: 'flex', justifyContent: 'center' }}>
                 <svg width="52" height="38" viewBox="0 0 52 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                   {/* Keyboard base */}
@@ -513,7 +513,7 @@ export function Home() {
             </div>
 
             {/* Card 3 — Virtual Classroom */}
-            <div className="glass-panel" style={{ padding: '1.1rem 0.9rem 0.9rem', textAlign: 'center', borderRadius: '14px', position: 'relative', overflow: 'hidden' }}>
+            <div className="glass-panel trust-card" style={{ padding: '1.1rem 0.9rem 0.9rem', textAlign: 'center', borderRadius: '14px', position: 'relative', overflow: 'hidden' }}>
               <div style={{ marginBottom: '0.55rem', display: 'flex', justifyContent: 'center' }}>
                 <svg width="52" height="38" viewBox="0 0 52 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                   {/* Monitor screen */}
@@ -539,7 +539,7 @@ export function Home() {
             </div>
 
             {/* Card 4 — Multi-Tenant */}
-            <div className="glass-panel" style={{ padding: '1.1rem 0.9rem 0.9rem', textAlign: 'center', borderRadius: '14px', position: 'relative', overflow: 'hidden' }}>
+            <div className="glass-panel trust-card" style={{ padding: '1.1rem 0.9rem 0.9rem', textAlign: 'center', borderRadius: '14px', position: 'relative', overflow: 'hidden' }}>
               <div style={{ marginBottom: '0.55rem', display: 'flex', justifyContent: 'center' }}>
                 <svg width="52" height="38" viewBox="0 0 52 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                   {/* Three layered building shapes = multi-tenant spaces */}
@@ -598,6 +598,7 @@ export function Home() {
               <button
                 key={p.id}
                 onClick={() => setActiveAudience(p.id)}
+                className={`emam-tab-pill ${active ? 'active' : ''}`}
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
@@ -966,9 +967,10 @@ export function Home() {
           </p>
 
           {/* Billing Cycle Switcher */}
-          <div style={{ display: 'inline-flex', alignItems: 'center', padding: '4px', borderRadius: '30px', background: 'rgba(105, 14, 31, 0.35)', border: '1px solid rgba(241, 163, 42, 0.25)' }}>
+          <div className="billing-cycle-container" style={{ display: 'inline-flex', alignItems: 'center', padding: '4px', borderRadius: '30px', background: 'rgba(105, 14, 31, 0.35)', border: '1px solid rgba(241, 163, 42, 0.25)' }}>
             <button
               onClick={() => setBillingCycle('monthly')}
+              className={`billing-cycle-btn ${billingCycle === 'monthly' ? 'active' : ''}`}
               style={{
                 padding: '8px 20px',
                 borderRadius: '24px',
@@ -986,6 +988,7 @@ export function Home() {
             </button>
             <button
               onClick={() => setBillingCycle('annual')}
+              className={`billing-cycle-btn ${billingCycle === 'annual' ? 'active' : ''}`}
               style={{
                 padding: '8px 20px',
                 borderRadius: '24px',
@@ -1245,6 +1248,7 @@ export function Home() {
                 <AnimatePresence>
                   {isOpen && (
                     <motion.div
+                      className="faq-answer-content"
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}

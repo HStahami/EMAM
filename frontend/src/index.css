@@ -783,27 +783,29 @@ body {
   --theme-bg-canvas: #fbf8f3;
   --theme-bg-card: #ffffff;
   --theme-text-main: #220d12;
-  --theme-text-muted: #5c4d51;
+  --theme-text-muted: #3d2e32;
   --theme-border: rgba(105, 14, 31, 0.14);
   --theme-border-gold: rgba(184, 128, 30, 0.35);
   --theme-accent-gold: #b8801e;
 }
 
 [data-theme='light'] body {
-  background-color: #fbf8f3;
-  color: #220d12;
+  background-color: #fbf8f3 !important;
+  color: #220d12 !important;
 }
 
+/* Glass Panels & Content Cards */
 [data-theme='light'] .glass-panel {
   background: #ffffff !important;
   border: 1px solid rgba(105, 14, 31, 0.14) !important;
-  box-shadow: 0 10px 30px rgba(105, 14, 31, 0.06) !important;
+  box-shadow: 0 10px 32px rgba(105, 14, 31, 0.05) !important;
 }
 
+/* Navbar in Light Mode */
 [data-theme='light'] .navbar-glass {
-  background: rgba(255, 255, 255, 0.94) !important;
+  background: rgba(255, 255, 255, 0.96) !important;
   border: 1px solid rgba(105, 14, 31, 0.14) !important;
-  box-shadow: 0 10px 30px rgba(105, 14, 31, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+  box-shadow: 0 10px 30px rgba(105, 14, 31, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.95) !important;
 }
 
 [data-theme='light'] .navbar-glass a {
@@ -815,17 +817,19 @@ body {
 }
 
 [data-theme='light'] .home-nav-link {
-  background: rgba(105, 14, 31, 0.06) !important;
-  border: 1px solid rgba(105, 14, 31, 0.2) !important;
+  background: #ffffff !important;
+  border: 1px solid rgba(105, 14, 31, 0.22) !important;
   color: #690e1f !important;
+  box-shadow: 0 2px 8px rgba(105, 14, 31, 0.05) !important;
 }
 
 [data-theme='light'] .home-nav-link:hover {
-  background: rgba(105, 14, 31, 0.12) !important;
+  background: rgba(105, 14, 31, 0.08) !important;
 }
 
+/* Gradient and Glow Text: High contrast saturated crimson-burgundy */
 [data-theme='light'] .gradient-text {
-  background: linear-gradient(135deg, #690e1f 0%, #b8801e 100%) !important;
+  background: linear-gradient(135deg, #500a17 0%, #8b152b 55%, #a8203d 100%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
 }
@@ -834,6 +838,7 @@ body {
   text-shadow: none !important;
 }
 
+/* Primary Button in Light Mode */
 [data-theme='light'] .btn-primary {
   background: linear-gradient(135deg, #690e1f, #8b152b) !important;
   border: 1px solid #690e1f !important;
@@ -845,55 +850,156 @@ body {
   background: #500a17 !important;
   color: #ffffff !important;
   box-shadow: 0 6px 22px rgba(105, 14, 31, 0.35) !important;
+  transform: translateY(-2px);
 }
 
-/* Light Mode Overrides for Home Page Hero & Public Cards */
-[data-theme='light'] section p,
-[data-theme='light'] .glass-panel p,
-[data-theme='light'] .glass-panel li {
-  color: #5c4d51 !important;
+[data-theme='light'] .btn-primary * {
+  color: #ffffff !important;
 }
 
+/* Comprehensive Text Contrast Rules: Override all inline pale peach, slate, grey */
+[data-theme='light'] p,
+[data-theme='light'] li,
+[data-theme='light'] [style*="#f0ceb3"],
+[data-theme='light'] [style*="#e0d0c8"],
+[data-theme='light'] [style*="#cbd5e1"],
+[data-theme='light'] [style*="#94a3b8"],
+[data-theme='light'] [style*="#aaa"],
+[data-theme='light'] [style*="#b0c4c6"],
+[data-theme='light'] [style*="#64748b"] {
+  color: #2c1e21 !important;
+}
+
+/* Headings and Bold Text */
 [data-theme='light'] h1, 
 [data-theme='light'] h2, 
 [data-theme='light'] h3, 
 [data-theme='light'] h4,
+[data-theme='light'] strong,
 [data-theme='light'] .glass-panel h1,
 [data-theme='light'] .glass-panel h2,
 [data-theme='light'] .glass-panel h3,
 [data-theme='light'] .glass-panel h4,
 [data-theme='light'] .glass-panel strong {
-  color: #220d12 !important;
+  color: #1a0a0e !important;
 }
 
-[data-theme='light'] .ambient-glow-1 {
-  background: rgba(184, 128, 30, 0.12) !important;
+/* Card body text (including FAQ motion.div answers and Audience specifications) */
+[data-theme='light'] .glass-panel p,
+[data-theme='light'] .glass-panel li,
+[data-theme='light'] .glass-panel div:not([style*="background"]):not(.glass-panel) {
+  color: #2c1e21 !important;
 }
 
-[data-theme='light'] .ambient-glow-2 {
-  background: rgba(105, 14, 31, 0.08) !important;
+/* Specifically for FAQ Accordion answer motion.div */
+[data-theme='light'] .glass-panel div[style*="lineHeight"],
+[data-theme='light'] .glass-panel div[style*="line-height"],
+[data-theme='light'] .glass-panel [style*="0 1.5rem 1.35rem 1.5rem"] {
+  color: #2c1e21 !important;
 }
 
-/* Secondary outline button (e.g. Request Institute Onboarding) */
+/* FAQ Question Buttons */
+[data-theme='light'] .glass-panel button {
+  color: #1a0a0e !important;
+}
+
+/* Hero Secondary Button ("Request Institute Onboarding") */
 [data-theme='light'] button[style*="rgba(105, 14, 31, 0.45)"] {
-  background: rgba(105, 14, 31, 0.08) !important;
-  border-color: rgba(105, 14, 31, 0.25) !important;
+  background: #ffffff !important;
+  border: 1.5px solid #690e1f !important;
   color: #690e1f !important;
+  box-shadow: 0 2px 10px rgba(105, 14, 31, 0.08) !important;
 }
 
 [data-theme='light'] button[style*="rgba(105, 14, 31, 0.45)"]:hover {
-  background: rgba(105, 14, 31, 0.15) !important;
+  background: rgba(105, 14, 31, 0.06) !important;
+  border-color: #500a17 !important;
+  color: #500a17 !important;
+}
+
+/* Audience Tab Buttons in Light Mode */
+[data-theme='light'] .emam-tab-pill.active {
+  background: #690e1f !important;
+  border: 1.5px solid #690e1f !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(105, 14, 31, 0.25) !important;
+}
+
+[data-theme='light'] .emam-tab-pill.active span {
+  color: #ffffff !important;
+}
+
+[data-theme='light'] .emam-tab-pill:not(.active) {
+  background: #ffffff !important;
+  border: 1.5px solid rgba(105, 14, 31, 0.22) !important;
+  color: #690e1f !important;
+  box-shadow: 0 2px 8px rgba(105, 14, 31, 0.05) !important;
+}
+
+[data-theme='light'] .emam-tab-pill:not(.active) span {
+  color: #690e1f !important;
+}
+
+[data-theme='light'] .emam-tab-pill:not(.active):hover {
+  background: rgba(105, 14, 31, 0.06) !important;
   border-color: #690e1f !important;
 }
 
-/* Accordion Buttons in FAQ */
-[data-theme='light'] .glass-panel button {
-  color: #220d12 !important;
+/* Billing Cycle Toggle in Light Mode */
+[data-theme='light'] .billing-cycle-container {
+  background: #ffffff !important;
+  border: 1.5px solid rgba(105, 14, 31, 0.2) !important;
+  box-shadow: 0 2px 8px rgba(105, 14, 31, 0.06) !important;
+}
+
+[data-theme='light'] .billing-cycle-btn.active {
+  background: #690e1f !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(105, 14, 31, 0.25) !important;
+}
+
+[data-theme='light'] .billing-cycle-btn:not(.active) {
+  background: transparent !important;
+  color: #5c4d51 !important;
+}
+
+/* FAQ Answer Content in Light Mode */
+[data-theme='light'] .faq-answer-content,
+[data-theme='light'] .faq-answer-content * {
+  color: #2c1e21 !important;
+  font-weight: 500 !important;
+}
+
+/* Trust Cards in Light Mode */
+[data-theme='light'] .trust-card svg rect[fill*="rgba(105,14,31"] {
+  fill: rgba(105, 14, 31, 0.08) !important;
+  stroke: #8b152b !important;
+}
+
+[data-theme='light'] .trust-card svg line[stroke="#f1a32a"] {
+  stroke: #8b152b !important;
+}
+
+[data-theme='light'] .trust-card svg rect[fill*="rgba(241,163,42"] {
+  fill: rgba(139, 21, 43, 0.12) !important;
+  stroke: rgba(139, 21, 43, 0.35) !important;
+}
+
+[data-theme='light'] .trust-card svg text {
+  fill: #8b152b !important;
+}
+
+/* Ambient Radial Glows in Light Mode */
+[data-theme='light'] .ambient-glow-1 {
+  background: rgba(184, 128, 30, 0.1) !important;
+}
+
+[data-theme='light'] .ambient-glow-2 {
+  background: rgba(105, 14, 31, 0.06) !important;
 }
 
 /* Footer in Light Mode */
 [data-theme='light'] footer {
-  border-top: 1px solid rgba(105, 14, 31, 0.12) !important;
-  color: #5c4d51 !important;
+  border-top: 1px solid rgba(105, 14, 31, 0.14) !important;
+  color: #38292c !important;
 }
-

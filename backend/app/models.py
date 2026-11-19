@@ -1,5 +1,5 @@
 from pydantic import BaseModel, EmailStr, Field
-from typing import Optional, List, Any
+from typing import Optional, List, Any, Union
 from datetime import datetime
 
 
@@ -36,7 +36,7 @@ class FacultyApplicationCreate(BaseModel):
     phone: str
     specialization: Optional[str] = "Classical Arabic & Syntax"
     qualification: Optional[str] = "Alimiyyah / Ijazah in Arabic"
-    experience_years: Optional[str] = "3+ Years"
+    experience_years: Optional[Union[str, int]] = "3+ Years"
     about: Optional[str] = ""
     preferred_schedule: Optional[str] = "Flexible (Weekdays & Weekends)"
     cv_url: Optional[str] = None

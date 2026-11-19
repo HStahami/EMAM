@@ -1,4 +1,4 @@
-﻿import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Plus, Trash2, LogOut, Bell, CheckCircle2, Megaphone, Shield, MessageSquare, Send, RefreshCw, Mail, Award, Search, Key, Hourglass, Users, Trophy, BookOpen, AlertTriangle, Calendar, ArrowRight } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { API_BASE, getAvatarUrl } from '../../api/client';
@@ -1245,7 +1245,7 @@ export function AdminDashboard({ onLogout }) {
             title={sidebarOpen ? "Close Navigation Menu" : "Open Navigation Menu"}
             aria-label={sidebarOpen ? "Close Navigation Menu" : "Open Navigation Menu"}
           >
-            <span style={{ fontSize: '1.2rem', lineHeight: 1 }}>{sidebarOpen ? 'âœ•' : 'â˜°'}</span>
+            <span style={{ fontSize: '1.2rem', lineHeight: 1 }}>{sidebarOpen ? '✕' : '☰'}</span>
             <span>{sidebarOpen ? 'Close Menu' : 'Menu'}</span>
           </button>
 
@@ -1288,7 +1288,7 @@ export function AdminDashboard({ onLogout }) {
             >
               Admin Portal
             </span>
-            <span style={{ color: 'rgba(241, 163, 42, 0.4)', fontSize: '0.9rem' }} className="hide-on-mobile">â€¢</span>
+            <span style={{ color: 'rgba(241, 163, 42, 0.4)', fontSize: '0.9rem' }} className="hide-on-mobile">•</span>
             <span style={{ color: 'var(--color-primary)', fontSize: '0.9rem', fontWeight: 600, textTransform: 'capitalize' }} className="hide-on-mobile">
               {activeTab === 'chataudit' ? 'Chat Audit' : (activeTab === 'classes' ? 'Class Tracking' : activeTab)}
             </span>
@@ -1447,7 +1447,7 @@ export function AdminDashboard({ onLogout }) {
                 className="glass-panel"
                 style={{ padding: '4px 10px', fontSize: '0.85rem', border: 'none', color: '#aaa', cursor: 'pointer' }}
               >
-                âœ•
+                ✕
               </button>
             </div>
 
@@ -1816,7 +1816,7 @@ export function AdminDashboard({ onLogout }) {
                       cursor: 'pointer'
                     }}
                   >
-                    View All â†’
+                    View All →
                   </button>
                 </div>
 
@@ -1879,7 +1879,7 @@ export function AdminDashboard({ onLogout }) {
                                 {adm.name}
                               </div>
                               <div style={{ color: '#94a3b8', fontSize: '0.76rem' }}>
-                                Applied for {adm.course} â€¢ {formatTimeAgo(adm.created_at)}
+                                Applied for {adm.course} • {formatTimeAgo(adm.created_at)}
                               </div>
                             </div>
                           </div>
@@ -1941,7 +1941,7 @@ export function AdminDashboard({ onLogout }) {
                       cursor: 'pointer'
                     }}
                   >
-                    View All â†’
+                    View All →
                   </button>
                 </div>
 
@@ -2041,7 +2041,7 @@ export function AdminDashboard({ onLogout }) {
                       cursor: 'pointer'
                     }}
                   >
-                    View All â†’
+                    View All →
                   </button>
                 </div>
 
@@ -2084,7 +2084,7 @@ export function AdminDashboard({ onLogout }) {
                                 {st.name}
                               </div>
                               <div style={{ color: 'var(--color-primary)', fontSize: '0.76rem', fontWeight: 600 }}>
-                                {st.academic_score}% â€¢ {st.grade}
+                                {st.academic_score}% • {st.grade}
                               </div>
                             </div>
                           </div>
@@ -2150,7 +2150,7 @@ export function AdminDashboard({ onLogout }) {
                       cursor: 'pointer'
                     }}
                   >
-                    View All â†’
+                    View All →
                   </button>
                 </div>
 
@@ -2248,7 +2248,7 @@ export function AdminDashboard({ onLogout }) {
                       cursor: 'pointer'
                     }}
                   >
-                    View All â†’
+                    View All →
                   </button>
                 </div>
 
@@ -2258,7 +2258,7 @@ export function AdminDashboard({ onLogout }) {
                     <div style={{ textAlign: 'center', padding: '1.75rem 1rem' }}>
                       <CheckCircle2 size={24} style={{ color: 'var(--color-primary)', margin: '0 auto 6px auto' }} />
                       <div style={{ color: '#cbd5e1', fontSize: '0.86rem', fontWeight: 600 }}>Zero Students at Risk</div>
-                      <div style={{ color: '#94a3b8', fontSize: '0.78rem', marginTop: '2px' }}>All students maintain attendance â‰¥ 80% & timely tasks.</div>
+                      <div style={{ color: '#94a3b8', fontSize: '0.78rem', marginTop: '2px' }}>All students maintain attendance ≥ 80% & timely tasks.</div>
                     </div>
                   ) : (
                     overviewAnalytics.students_at_risk.slice(0, 3).map((st) => (
@@ -2344,7 +2344,7 @@ export function AdminDashboard({ onLogout }) {
                       cursor: 'pointer'
                     }}
                   >
-                    View All â†’
+                    View All →
                   </button>
                 </div>
 
@@ -2531,7 +2531,7 @@ export function AdminDashboard({ onLogout }) {
                         </td>
                         <td style={tableCellStyle}>
                           <span style={{ fontSize: '0.82rem', color: '#888' }}>
-                            {adm.created_at ? new Date(adm.created_at).toLocaleDateString() : 'â€”'}
+                            {adm.created_at ? new Date(adm.created_at).toLocaleDateString() : '—'}
                           </span>
                         </td>
                         <td style={tableCellStyle}>
@@ -2703,7 +2703,7 @@ export function AdminDashboard({ onLogout }) {
                             </div>
                           )}
                           <div style={{ fontSize: '0.75rem', color: '#94a3b8' }}>
-                            {std.preferred_days || 'Weekdays'} â€¢ {std.preferred_class_type || '1 on 1'}
+                            {std.preferred_days || 'Weekdays'} • {std.preferred_class_type || '1 on 1'}
                           </div>
                           {std.preferred_time_slot && (
                             <div style={{ fontSize: '0.72rem', color: '#f39c12' }} title="Suggested Slot">
@@ -2824,12 +2824,12 @@ export function AdminDashboard({ onLogout }) {
                   {/* Student's Saved Preferences Notice for Admin */}
                   <div style={{ backgroundColor: 'rgba(0, 0, 0, 0.4)', border: '1px solid rgba(241, 163, 42, 0.18)', borderRadius: '8px', padding: '0.85rem', marginBottom: '1.25rem', fontSize: '0.82rem', color: '#f0ceb3' }}>
                     <div style={{ fontWeight: '700', color: 'var(--color-primary)', marginBottom: '0.35rem' }}>Student's Saved Preferences:</div>
-                    <div>â€¢ <strong>Course:</strong> {selectedStudent.course || selectedStudent.preferred_course || 'Modern Standard Arabic'}</div>
+                    <div>• <strong>Course:</strong> {selectedStudent.course || selectedStudent.preferred_course || 'Modern Standard Arabic'}</div>
                     {(selectedStudent.selected_module || selectedStudent.module) && (
-                      <div>â€¢ <strong>Module / Track:</strong> {selectedStudent.selected_module || selectedStudent.module}</div>
+                      <div>• <strong>Module / Track:</strong> {selectedStudent.selected_module || selectedStudent.module}</div>
                     )}
-                    <div>â€¢ <strong>Format:</strong> {selectedStudent.preferred_days || 'Weekdays'} ({selectedStudent.preferred_class_type || '1 on 1'})</div>
-                    <div>â€¢ <strong>Suggested Time:</strong> <span style={{ color: '#f39c12', fontWeight: '600' }}>{selectedStudent.preferred_time_slot || 'Not specified'}</span></div>
+                    <div>• <strong>Format:</strong> {selectedStudent.preferred_days || 'Weekdays'} ({selectedStudent.preferred_class_type || '1 on 1'})</div>
+                    <div>• <strong>Suggested Time:</strong> <span style={{ color: '#f39c12', fontWeight: '600' }}>{selectedStudent.preferred_time_slot || 'Not specified'}</span></div>
                   </div>
 
                   <form onSubmit={handleAssignSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
@@ -2837,11 +2837,11 @@ export function AdminDashboard({ onLogout }) {
                       <label htmlFor="admin_assign_slot" style={{ display: 'block', color: 'var(--color-primary)', marginBottom: '0.4rem', fontSize: '0.85rem' }}>Assign Class Slot *</label>
                       <select id="admin_assign_slot" required value={assignSlot} onChange={e => setAssignSlot(e.target.value)} style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.15)', background: 'rgba(0,0,0,0.5)', color: 'white', fontSize: '0.9rem' }}>
                         <option value="" disabled>Choose Slot...</option>
-                        {slots.filter(s => s.status === 'Active' || (selectedStudent && selectedStudent.slot && (selectedStudent.slot === `${s.days} â€” ${s.time}` || selectedStudent.slot === `${s.days} ${s.time}`))).map(s => {
-                          const val = `${s.days} â€” ${s.time}`;
+                        {slots.filter(s => s.status === 'Active' || (selectedStudent && selectedStudent.slot && (selectedStudent.slot === `${s.days} — ${s.time}` || selectedStudent.slot === `${s.days} ${s.time}`))).map(s => {
+                          const val = `${s.days} — ${s.time}`;
                           return <option key={s._id || s.id} value={val}>{val}</option>;
                         })}
-                        {selectedStudent && selectedStudent.slot && !slots.some(s => `${s.days} â€” ${s.time}` === selectedStudent.slot || `${s.days} ${s.time}` === selectedStudent.slot) && (
+                        {selectedStudent && selectedStudent.slot && !slots.some(s => `${s.days} — ${s.time}` === selectedStudent.slot || `${s.days} ${s.time}` === selectedStudent.slot) && (
                           <option value={selectedStudent.slot}>{selectedStudent.slot} (Current)</option>
                         )}
                       </select>
@@ -3075,7 +3075,7 @@ export function AdminDashboard({ onLogout }) {
                         {viewingStudent.first_name} {viewingStudent.last_name || viewingStudent.name || ''}
                       </h3>
                       <div style={{ fontSize: '0.85rem', color: 'var(--color-primary)', fontWeight: 600 }}>
-                        Student ID: {viewingStudent.student_code || 'PENDING'} â€¢ Status: <span style={{ color: viewingStudent.status === 'Cancelled' ? '#e74c3c' : '#2ecc71', fontWeight: 'bold' }}>{viewingStudent.status || 'Active'}</span>
+                        Student ID: {viewingStudent.student_code || 'PENDING'} • Status: <span style={{ color: viewingStudent.status === 'Cancelled' ? '#e74c3c' : '#2ecc71', fontWeight: 'bold' }}>{viewingStudent.status || 'Active'}</span>
                       </div>
                     </div>
                     <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
@@ -3702,7 +3702,7 @@ export function AdminDashboard({ onLogout }) {
                           {inst.students && inst.students.length > 0 ? (
                             inst.students.map((s, idx) => (
                               <span key={idx} style={{ color: '#f0ceb3' }}>
-                                â€¢ {s.slot ? `${s.slot}: ` : ''}{s.name}{!s.slot ? ' (Unassigned)' : ''}
+                                • {s.slot ? `${s.slot}: ` : ''}{s.name}{!s.slot ? ' (Unassigned)' : ''}
                               </span>
                             ))
                           ) : (
@@ -3886,7 +3886,7 @@ export function AdminDashboard({ onLogout }) {
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '1rem' }}>
               <div>
                 <h2 style={{ color: 'var(--color-white)', margin: 0, fontSize: '1.6rem' }}>
-                  {classViewMode === 'reschedules' ? 'Class Reschedule Management' : (classViewMode === 'detail' ? `Class History â€” ${selectedInstructorForDetail?.name || 'Instructor'}` : 'Instructor Class Tracking & Scorecards')}
+                  {classViewMode === 'reschedules' ? 'Class Reschedule Management' : (classViewMode === 'detail' ? `Class History — ${selectedInstructorForDetail?.name || 'Instructor'}` : 'Instructor Class Tracking & Scorecards')}
                 </h2>
                 <p style={{ color: '#aaa', margin: '4px 0 0 0', fontSize: '0.9rem' }}>
                   {classViewMode === 'reschedules'
@@ -4024,7 +4024,7 @@ export function AdminDashboard({ onLogout }) {
                               </div>
                             ) : (
                               <div style={{ color: 'var(--color-primary)', fontSize: '0.86rem', fontWeight: 600 }}>
-                                {inst.assigned_slots[0]?.course_name || 'Arabic Program'} â€” {inst.assigned_slots[0]?.days || 'Schedule'} ({inst.assigned_slots[0]?.time || ''})
+                                {inst.assigned_slots[0]?.course_name || 'Arabic Program'} — {inst.assigned_slots[0]?.days || 'Schedule'} ({inst.assigned_slots[0]?.time || ''})
                               </div>
                             )}
                           </div>
@@ -4053,7 +4053,7 @@ export function AdminDashboard({ onLogout }) {
 
                           <div style={{ marginTop: '0.85rem', display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
                             <span style={{ color: 'var(--color-primary)', fontSize: '0.82rem', fontWeight: 600 }}>
-                              View Complete Details â†’
+                              View Complete Details →
                             </span>
                           </div>
                         </div>
@@ -4155,7 +4155,7 @@ export function AdminDashboard({ onLogout }) {
                           color: selectedCourseTab === s.slot_id ? 'var(--color-bg-dark)' : 'var(--color-primary)'
                         }}
                       >
-                        {s.course_name} â€” {s.days} {s.time}
+                        {s.course_name} — {s.days} {s.time}
                       </button>
                     ))}
                   </div>
@@ -4263,19 +4263,19 @@ export function AdminDashboard({ onLogout }) {
                                     </span>
                                     {sess.actual_end_at && (
                                       <span style={{ color: '#94a3b8', fontSize: '0.8rem' }}>
-                                        {' '}â€“ {new Date(sess.actual_end_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                                        {' '}– {new Date(sess.actual_end_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                                       </span>
                                     )}
                                   </div>
                                 ) : (
-                                  <span style={{ color: '#666' }}>â€”</span>
+                                  <span style={{ color: '#666' }}>—</span>
                                 )}
                               </td>
                               <td style={tableCellStyle}>
                                 {sess.duration_minutes ? (
                                   <span>{sess.duration_minutes} mins</span>
                                 ) : (
-                                  <span style={{ color: '#666' }}>â€”</span>
+                                  <span style={{ color: '#666' }}>—</span>
                                 )}
                               </td>
                               <td style={tableCellStyle}>
@@ -4511,7 +4511,7 @@ export function AdminDashboard({ onLogout }) {
                       className="glass-panel"
                       style={{ border: 'none', color: '#94a3b8', padding: '6px 10px', fontSize: '1rem', cursor: 'pointer', borderRadius: '6px' }}
                     >
-                      âœ•
+                      ✕
                     </button>
                   </div>
 
@@ -4771,7 +4771,7 @@ export function AdminDashboard({ onLogout }) {
                     <tr key={s._id || s.id}>
                       <td style={tableCellStyle}><strong>{s.days}</strong></td>
                       <td style={tableCellStyle}>{s.time}</td>
-                      <td style={tableCellStyle}><span style={{ color: 'var(--color-primary)' }}>{s.days} â€” {s.time}</span></td>
+                      <td style={tableCellStyle}><span style={{ color: 'var(--color-primary)' }}>{s.days} — {s.time}</span></td>
                       <td style={tableCellStyle}>
                         <span style={{
                           padding: '4px 10px',
@@ -5411,7 +5411,7 @@ export function AdminDashboard({ onLogout }) {
                           }}
                         >
                           <div style={{ color: '#fff', fontWeight: 'bold', fontSize: '0.9rem', marginBottom: '4px' }}>
-                             {th.student_name || 'Student'} â†”  {th.instructor_name || 'Instructor'}
+                             {th.student_name || 'Student'} ↔  {th.instructor_name || 'Instructor'}
                           </div>
                           <div style={{ color: '#aaa', fontSize: '0.78rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                             {th.last_message || 'No messages exchanged yet'}
@@ -5455,7 +5455,7 @@ export function AdminDashboard({ onLogout }) {
                               <div style={{ fontSize: '0.72rem', color: '#888', marginBottom: '3px' }}>
                                 <strong style={{ color: msg.sender_role === 'student' ? '#f0ceb3' : 'var(--color-primary)' }}>
                                   {senderDisplay} ({msg.sender_role})
-                                </strong> â€¢ {new Date(msg.timestamp || msg.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                                </strong> • {new Date(msg.timestamp || msg.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                               </div>
                               <div style={{
                                 maxWidth: '75%',
@@ -5965,7 +5965,7 @@ export function AdminDashboard({ onLogout }) {
                 onClick={() => setCancelingAdmission(null)}
                 style={{ background: 'transparent', border: 'none', color: '#94a3b8', fontSize: '1.2rem', cursor: 'pointer', padding: '4px 8px' }}
               >
-                âœ•
+                ✕
               </button>
             </div>
 

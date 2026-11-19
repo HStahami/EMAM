@@ -30,9 +30,6 @@ export function Home() {
     email: '',
     phone: '',
     plan: 'Institute Campus License',
-    brandingChoice: 'standard', // 'standard' | 'custom'
-    primaryColor: '#690e1f',
-    secondaryColor: '#f1a32a',
     requirements: ''
   });
   const [instituteSubmitting, setInstituteSubmitting] = useState(false);
@@ -120,17 +117,13 @@ export function Home() {
     }
     setInstituteSubmitting(true);
     try {
-      const brandingDetails = instituteForm.brandingChoice === 'custom'
-        ? `Custom Branding Selected:\n- Primary Color: ${instituteForm.primaryColor}\n- Secondary Color: ${instituteForm.secondaryColor}\n- Custom Logo & Styling Requested`
-        : 'Standard Emam Branding Selected (As-is)';
-
       await contactApi.submit({
         first_name: instituteForm.name.split(' ')[0] || instituteForm.name,
         last_name: instituteForm.name.split(' ').slice(1).join(' ') || (instituteForm.organization ? `(${instituteForm.organization})` : 'Institution Head'),
         email: instituteForm.email,
         phone: instituteForm.phone || '+44 0000 000000',
         subject: `Institutional SaaS Provisioning Request — ${instituteForm.organization || 'Academy / School'}`,
-        message: `Plan Selected: ${instituteForm.plan}\nOrganization: ${instituteForm.organization || 'Not specified'}\nPhone/WhatsApp: ${instituteForm.phone || 'Not specified'}\nBranding Choice: ${brandingDetails}\n\nRequirements & Deployment Notes:\n${instituteForm.requirements || 'Requested an isolated institutional tenant setup on Emam Arabic LMS.'}`
+        message: `Plan Selected: ${instituteForm.plan}\nOrganization: ${instituteForm.organization || 'Not specified'}\nPhone/WhatsApp: ${instituteForm.phone || 'Not specified'}\nRequirements & Deployment Notes:\n${instituteForm.requirements || 'Requested an isolated institutional tenant setup on Emam Arabic LMS.'}`
       });
       setInstituteSubmitted(true);
     } catch (err) {
@@ -1451,59 +1444,6 @@ export function Home() {
                         style={{ width: '100%', padding: '11px 14px', borderRadius: '10px', background: 'rgba(0, 0, 0, 0.3)', border: '1px solid rgba(241, 163, 42, 0.25)', color: '#fff', outline: 'none', boxSizing: 'border-box', resize: 'vertical' }}
                       />
                     </div>
-
-                    {/* Branding Choice */}
-                    <div>
-                      <label style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', fontWeight: '600', marginBottom: '0.6rem' }}>Branding Preference</label>
-                      <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
-                        {[
-                          { value: 'standard', label: 'As It Is', desc: 'Use Emam default branding' },
-                          { value: 'custom', label: 'Customize Branding', desc: 'Set your own colors & logo' }
-                        ].map(opt => (
-                          <button
-                            key={opt.value}
-                            type="button"
-                            onClick={() => setInstituteForm({ ...instituteForm, brandingChoice: opt.value })}
-                            style={{
-                              flex: 1,
-                              minWidth: '130px',
-                              padding: '10px 14px',
-                              borderRadius: '10px',
-                              border: `1px solid ${instituteForm.brandingChoice === opt.value ? 'rgba(241,163,42,0.7)' : 'rgba(241,163,42,0.2)'}`,
-                              background: instituteForm.brandingChoice === opt.value ? 'rgba(241,163,42,0.15)' : 'rgba(0,0,0,0.25)',
-                              color: '#fff',
-                              cursor: 'pointer',
-                              textAlign: 'left'
-                            }}
-                          >
-                            <div style={{ fontWeight: 700, fontSize: '0.88rem', color: instituteForm.brandingChoice === opt.value ? 'var(--color-primary)' : '#fff' }}>{opt.label}</div>
-                            <div style={{ fontSize: '0.75rem', color: '#94a3b8', marginTop: '2px' }}>{opt.desc}</div>
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-
-                    {instituteForm.brandingChoice === 'custom' && (
-                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', padding: '1rem', borderRadius: '10px', border: '1px solid rgba(241,163,42,0.2)', background: 'rgba(0,0,0,0.2)' }}>
-                        <div>
-                          <label style={{ display: 'block', fontSize: '0.82rem', color: '#f0ceb3', fontWeight: '600', marginBottom: '0.35rem' }}>Primary Color</label>
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                            <input type="color" value={instituteForm.primaryColor} onChange={(e) => setInstituteForm({ ...instituteForm, primaryColor: e.target.value })} style={{ width: '40px', height: '36px', border: 'none', borderRadius: '6px', background: 'none', cursor: 'pointer' }} />
-                            <input type="text" value={instituteForm.primaryColor} onChange={(e) => setInstituteForm({ ...instituteForm, primaryColor: e.target.value })} placeholder="#690e1f" style={{ flex: 1, padding: '8px 10px', borderRadius: '8px', background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(241,163,42,0.2)', color: '#fff', fontSize: '0.85rem', outline: 'none', boxSizing: 'border-box' }} />
-                          </div>
-                        </div>
-                        <div>
-                          <label style={{ display: 'block', fontSize: '0.82rem', color: '#f0ceb3', fontWeight: '600', marginBottom: '0.35rem' }}>Secondary / Accent Color</label>
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                            <input type="color" value={instituteForm.secondaryColor} onChange={(e) => setInstituteForm({ ...instituteForm, secondaryColor: e.target.value })} style={{ width: '40px', height: '36px', border: 'none', borderRadius: '6px', background: 'none', cursor: 'pointer' }} />
-                            <input type="text" value={instituteForm.secondaryColor} onChange={(e) => setInstituteForm({ ...instituteForm, secondaryColor: e.target.value })} placeholder="#f1a32a" style={{ flex: 1, padding: '8px 10px', borderRadius: '8px', background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(241,163,42,0.2)', color: '#fff', fontSize: '0.85rem', outline: 'none', boxSizing: 'border-box' }} />
-                          </div>
-                        </div>
-                        <div style={{ gridColumn: '1 / -1' }}>
-                          <div style={{ fontSize: '0.78rem', color: '#94a3b8' }}>Custom logo can be provided after provisioning. Emam Super Admin will configure your tenant during onboarding.</div>
-                        </div>
-                      </div>
-                    )}
                   </div>
 
                   <button

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
+import { ThemeToggle } from './ThemeToggle';
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,17 +22,20 @@ export function Navbar() {
           <h1 style={{ fontSize: isMobile ? '1.1rem' : '1.5rem', fontWeight: '700', whiteSpace: 'nowrap' }} className="gradient-text">Emam</h1>
         </Link>
 
-        {isMobile && (
-          <button onClick={() => setIsOpen(!isOpen)} style={{ background: 'transparent', border: 'none', cursor: 'pointer', color: 'var(--color-white)', display: 'flex', alignItems: 'center', padding: 0 }}>
-            {isOpen ? <X size={28} /> : <Menu size={28} />}
-          </button>
-        )}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+          {isMobile && <ThemeToggle />}
+          {isMobile && (
+            <button onClick={() => setIsOpen(!isOpen)} style={{ background: 'transparent', border: 'none', cursor: 'pointer', color: 'var(--color-white)', display: 'flex', alignItems: 'center', padding: 0 }}>
+              {isOpen ? <X size={28} /> : <Menu size={28} />}
+            </button>
+          )}
+        </div>
       </div>
 
       <div style={{
         display: isMobile ? (isOpen ? 'flex' : 'none') : 'flex',
         flexDirection: isMobile ? 'column' : 'row',
-        gap: isMobile ? '1.5rem' : '2rem',
+        gap: isMobile ? '1.5rem' : '1.5rem',
         alignItems: 'center',
         justifyContent: isMobile ? 'center' : 'flex-end',
         width: '100%',
@@ -47,6 +51,7 @@ export function Navbar() {
         <a href="/#pricing" onClick={() => setIsOpen(false)} style={{ color: 'var(--color-white)', textDecoration: 'none', fontWeight: '500' }}>Pricing</a>
         <Link to="/about" onClick={() => setIsOpen(false)} style={{ color: 'var(--color-white)', textDecoration: 'none', fontWeight: '500' }}>About Us</Link>
         <Link to="/contact" onClick={() => setIsOpen(false)} style={{ color: 'var(--color-white)', textDecoration: 'none', fontWeight: '500' }}>Contact Us</Link>
+        {!isMobile && <ThemeToggle />}
         <Link to="/admission" onClick={() => setIsOpen(false)} className="btn-primary" style={{ textDecoration: 'none', width: isMobile ? '100%' : 'auto', textAlign: 'center', boxSizing: 'border-box' }}>Get Started</Link>
       </div>
     </nav>

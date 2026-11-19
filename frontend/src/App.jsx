@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
+import { ThemeProvider } from './context/ThemeContext';
 import { ProtectedRoute } from './routes/ProtectedRoute';
 import { ErrorBoundary } from './components/common/ErrorBoundary';
 import { Navbar } from './components/common/Navbar';
@@ -201,11 +202,13 @@ function AppLayout() {
 
 function App() {
   return (
-    <AuthProvider>
-      <Router>
-        <AppLayout />
-      </Router>
-    </AuthProvider>
+    <ThemeProvider>
+      <AuthProvider>
+        <Router>
+          <AppLayout />
+        </Router>
+      </AuthProvider>
+    </ThemeProvider>
   );
 }
 

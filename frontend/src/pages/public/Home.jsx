@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { modulesApi, instructorsApi, contactApi } from '../../api';
 import { getAvatarUrl } from '../../api/client';
+import { ThemeToggle } from '../../components/common/ThemeToggle';
 
 export function Home() {
   const [modules, setModules] = useState([]);
@@ -331,8 +332,33 @@ export function Home() {
           </Link>
         </div>
 
+        {/* Top Right Quick Actions & Theme Toggle */}
+        <div style={{ position: 'absolute', top: '1.75rem', right: 'clamp(1.5rem, 4vw, 3rem)', display: 'flex', alignItems: 'center', gap: '0.75rem', zIndex: 10 }}>
+          <Link
+            to="/student/login"
+            style={{
+              textDecoration: 'none',
+              fontSize: '0.88rem',
+              fontWeight: 600,
+              color: 'var(--color-white)',
+              padding: '7px 16px',
+              borderRadius: '20px',
+              background: 'rgba(255, 255, 255, 0.06)',
+              border: '1px solid rgba(241, 163, 42, 0.25)',
+              transition: 'all 0.2s ease',
+              display: 'inline-flex',
+              alignItems: 'center'
+            }}
+            className="home-nav-link"
+          >
+            Portal Login
+          </Link>
+          <ThemeToggle />
+        </div>
+
         {/* Ambient Radial Glows (Burgundy & Gold) */}
         <motion.div
+          className="ambient-glow-1"
           animate={{
             scale: [1, 1.15, 1],
             opacity: [0.2, 0.4, 0.2],
@@ -343,6 +369,7 @@ export function Home() {
           style={{ position: 'absolute', top: '5%', left: '8%', width: '380px', height: '380px', background: 'var(--color-glow)', borderRadius: '50%', filter: 'blur(120px)', zIndex: 0 }}
         />
         <motion.div
+          className="ambient-glow-2"
           animate={{
             scale: [1, 1.25, 1],
             opacity: [0.25, 0.45, 0.25],

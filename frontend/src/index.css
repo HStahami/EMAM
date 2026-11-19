@@ -766,3 +766,134 @@ body {
     transform: translateX(0);
   }
 }
+
+/* ======================================================== */
+/* Emam Light Theme Tokens (Warm Parchment & Royal Burgundy)*/
+/* ======================================================== */
+[data-theme='light'] {
+  --color-primary: #8b152b;       /* Royal Deep Crimson */
+  --color-trust: #220d12;         /* Deep Charcoal Burgundy Text */
+  --color-white: #220d12;         /* High-contrast dark text */
+  --color-accent: #690e1f;        /* Deep Burgundy */
+  --color-surface: #ffffff;       /* Pure Elevated Surface */
+  --color-bg-dark: #fbf8f3;       /* Warm Ivory Canvas */
+  --color-glow: rgba(139, 21, 43, 0.16);
+
+  /* Semantic Theme Variables */
+  --theme-bg-canvas: #fbf8f3;
+  --theme-bg-card: #ffffff;
+  --theme-text-main: #220d12;
+  --theme-text-muted: #5c4d51;
+  --theme-border: rgba(105, 14, 31, 0.14);
+  --theme-border-gold: rgba(184, 128, 30, 0.35);
+  --theme-accent-gold: #b8801e;
+}
+
+[data-theme='light'] body {
+  background-color: #fbf8f3;
+  color: #220d12;
+}
+
+[data-theme='light'] .glass-panel {
+  background: #ffffff !important;
+  border: 1px solid rgba(105, 14, 31, 0.14) !important;
+  box-shadow: 0 10px 30px rgba(105, 14, 31, 0.06) !important;
+}
+
+[data-theme='light'] .navbar-glass {
+  background: rgba(255, 255, 255, 0.94) !important;
+  border: 1px solid rgba(105, 14, 31, 0.14) !important;
+  box-shadow: 0 10px 30px rgba(105, 14, 31, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+}
+
+[data-theme='light'] .navbar-glass a {
+  color: #220d12 !important;
+}
+
+[data-theme='light'] .navbar-glass a:hover {
+  color: #690e1f !important;
+}
+
+[data-theme='light'] .home-nav-link {
+  background: rgba(105, 14, 31, 0.06) !important;
+  border: 1px solid rgba(105, 14, 31, 0.2) !important;
+  color: #690e1f !important;
+}
+
+[data-theme='light'] .home-nav-link:hover {
+  background: rgba(105, 14, 31, 0.12) !important;
+}
+
+[data-theme='light'] .gradient-text {
+  background: linear-gradient(135deg, #690e1f 0%, #b8801e 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+[data-theme='light'] .glow-text {
+  text-shadow: none !important;
+}
+
+[data-theme='light'] .btn-primary {
+  background: linear-gradient(135deg, #690e1f, #8b152b) !important;
+  border: 1px solid #690e1f !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 16px rgba(105, 14, 31, 0.22) !important;
+}
+
+[data-theme='light'] .btn-primary:hover {
+  background: #500a17 !important;
+  color: #ffffff !important;
+  box-shadow: 0 6px 22px rgba(105, 14, 31, 0.35) !important;
+}
+
+/* Light Mode Overrides for Home Page Hero & Public Cards */
+[data-theme='light'] section p,
+[data-theme='light'] .glass-panel p,
+[data-theme='light'] .glass-panel li {
+  color: #5c4d51 !important;
+}
+
+[data-theme='light'] h1, 
+[data-theme='light'] h2, 
+[data-theme='light'] h3, 
+[data-theme='light'] h4,
+[data-theme='light'] .glass-panel h1,
+[data-theme='light'] .glass-panel h2,
+[data-theme='light'] .glass-panel h3,
+[data-theme='light'] .glass-panel h4,
+[data-theme='light'] .glass-panel strong {
+  color: #220d12 !important;
+}
+
+[data-theme='light'] .ambient-glow-1 {
+  background: rgba(184, 128, 30, 0.12) !important;
+}
+
+[data-theme='light'] .ambient-glow-2 {
+  background: rgba(105, 14, 31, 0.08) !important;
+}
+
+/* Secondary outline button (e.g. Request Institute Onboarding) */
+[data-theme='light'] button[style*="rgba(105, 14, 31, 0.45)"] {
+  background: rgba(105, 14, 31, 0.08) !important;
+  border-color: rgba(105, 14, 31, 0.25) !important;
+  color: #690e1f !important;
+}
+
+[data-theme='light'] button[style*="rgba(105, 14, 31, 0.45)"]:hover {
+  background: rgba(105, 14, 31, 0.15) !important;
+  border-color: #690e1f !important;
+}
+
+/* Accordion Buttons in FAQ */
+[data-theme='light'] .glass-panel button {
+  color: #220d12 !important;
+}
+
+/* Footer in Light Mode */
+[data-theme='light'] footer {
+  border-top: 1px solid rgba(105, 14, 31, 0.12) !important;
+  color: #5c4d51 !important;
+}
+

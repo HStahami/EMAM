@@ -320,41 +320,19 @@ export function Home() {
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} style={{ minWidth: 0, overflowX: 'hidden' }}>
+      {/* Dedicated Clean Top Header Bar (No Overlap with Hero) */}
+      <header style={{ width: '100%', maxWidth: '1200px', margin: '0 auto', padding: '1.25rem clamp(1rem, 4vw, 2.5rem)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'relative', zIndex: 20, boxSizing: 'border-box' }}>
+        <Link to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+          <img src="/emam_logo.png" alt="Emam Logo" style={{ height: '38px', width: '38px', objectFit: 'contain' }} />
+          <span style={{ fontSize: '1.45rem', fontWeight: '800', letterSpacing: '-0.5px' }} className="gradient-text">Emam</span>
+        </Link>
+        <ThemeToggle />
+      </header>
+
       {/* ======================================================== */}
       {/* 1. ENTERPRISE HERO SECTION                               */}
       {/* ======================================================== */}
-      <section style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '2rem 1.5rem', position: 'relative', overflow: 'hidden' }}>
-        {/* Top Left Brand Logo & Name */}
-        <div style={{ position: 'absolute', top: '1.75rem', left: 'clamp(1.5rem, 4vw, 3rem)', display: 'flex', alignItems: 'center', zIndex: 10 }}>
-          <Link to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-            <img src="/emam_logo.png" alt="Emam Logo" style={{ height: '42px', width: '42px', objectFit: 'contain' }} />
-            <span style={{ fontSize: '1.6rem', fontWeight: '800', letterSpacing: '-0.5px' }} className="gradient-text">Emam</span>
-          </Link>
-        </div>
-
-        {/* Top Right Quick Actions & Theme Toggle */}
-        <div style={{ position: 'absolute', top: '1.75rem', right: 'clamp(1.5rem, 4vw, 3rem)', display: 'flex', alignItems: 'center', gap: '0.75rem', zIndex: 10 }}>
-          <Link
-            to="/student/login"
-            style={{
-              textDecoration: 'none',
-              fontSize: '0.88rem',
-              fontWeight: 600,
-              color: 'var(--color-white)',
-              padding: '7px 16px',
-              borderRadius: '20px',
-              background: 'rgba(255, 255, 255, 0.06)',
-              border: '1px solid rgba(241, 163, 42, 0.25)',
-              transition: 'all 0.2s ease',
-              display: 'inline-flex',
-              alignItems: 'center'
-            }}
-            className="home-nav-link"
-          >
-            Portal Login
-          </Link>
-          <ThemeToggle />
-        </div>
+      <section style={{ minHeight: 'calc(100vh - 85px)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '1rem clamp(1rem, 4vw, 2rem) 3.5rem clamp(1rem, 4vw, 2rem)', position: 'relative', overflow: 'hidden' }}>
 
         {/* Ambient Radial Glows (Burgundy & Gold) */}
         <motion.div
@@ -381,39 +359,39 @@ export function Home() {
         />
 
         <div style={{ position: 'relative', zIndex: 1, maxWidth: '1000px', width: '100%', margin: '0 auto' }}>
-          {/* Main Headline */}
+          {/* Main Headline (Mobile Optimized) */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            style={{ fontSize: 'clamp(2.1rem, 3.4vw + 0.4rem, 3.4rem)', fontWeight: '800', lineHeight: '1.2', marginBottom: '1.1rem', color: 'var(--color-white)', letterSpacing: '-0.5px' }}
+            style={{ fontSize: 'clamp(1.75rem, 5.2vw, 3.2rem)', fontWeight: '800', lineHeight: '1.25', marginBottom: '1rem', color: 'var(--color-white)', letterSpacing: '-0.5px', padding: '0 0.5rem' }}
           >
             The Cloud Learning &amp;
             <br />
             <span className="gradient-text glow-text">Institutional Management Platform</span>
           </motion.h1>
 
-          {/* Subtitle */}
+          {/* Subtitle (Mobile Optimized) */}
           <motion.p
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            style={{ fontSize: 'clamp(0.95rem, 1.1vw + 0.15rem, 1.08rem)', color: '#f0ceb3', maxWidth: '760px', margin: '0 auto 1.8rem auto', lineHeight: '1.6' }}
+            style={{ fontSize: 'clamp(0.9rem, 2.6vw, 1.05rem)', color: '#f0ceb3', maxWidth: '740px', margin: '0 auto 1.8rem auto', lineHeight: '1.65', padding: '0 0.75rem' }}
           >
             A unified multi-tenant SaaS engineered for ambitious students, professional Arabic tutors, and language academies. Delivering CEFR-aligned curriculum, 200-level typing certification, virtual smart classrooms, and institutional management.
           </motion.p>
 
-          {/* Dual Action CTAs */}
+          {/* Dual Action CTAs (Mobile Responsive) */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.35 }}
-            style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '2rem' }}
+            style={{ display: 'flex', gap: '0.85rem', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '2.5rem', width: '100%', maxWidth: '520px', margin: '0 auto 2.5rem auto' }}
           >
             <a
               href="#pricing"
-              className="btn-primary"
-              style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', padding: '13px 28px', fontSize: '0.98rem', textDecoration: 'none' }}
+              className="btn-primary hero-cta-btn"
+              style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', padding: '13px 26px', fontSize: '0.96rem', textDecoration: 'none', flex: '1 1 200px', boxSizing: 'border-box' }}
             >
               Explore Pricing &amp; Plans
             </a>
@@ -423,12 +401,13 @@ export function Home() {
                 setInstituteSubmitted(false);
                 setInstituteModalOpen(true);
               }}
+              className="hero-outline-btn"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                padding: '13px 26px',
-                fontSize: '0.98rem',
+                padding: '13px 24px',
+                fontSize: '0.96rem',
                 borderRadius: '30px',
                 background: 'rgba(105, 14, 31, 0.45)',
                 border: '1px solid rgba(241, 163, 42, 0.35)',
@@ -436,7 +415,9 @@ export function Home() {
                 fontWeight: '600',
                 cursor: 'pointer',
                 transition: 'all 0.3s ease',
-                fontFamily: 'var(--font-sans)'
+                fontFamily: 'var(--font-sans)',
+                flex: '1 1 200px',
+                boxSizing: 'border-box'
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.background = 'rgba(241, 163, 42, 0.15)';
@@ -803,7 +784,7 @@ export function Home() {
           style={{ textAlign: 'center', marginBottom: '3.5rem' }}
         >
           <h2 style={{ fontSize: 'clamp(2rem, 3.5vw, 2.75rem)', fontWeight: '800', marginBottom: '1rem' }} className="gradient-text">
-            Arabic Language Curriculum Levels
+            Curriculum Levels
           </h2>
           <p style={{ color: '#f0ceb3', maxWidth: '650px', margin: '0 auto', fontSize: '1.05rem' }}>
             Progression paths built according to global language standards, guiding students from foundational literacy to advanced linguistic mastery.
@@ -839,7 +820,7 @@ export function Home() {
                       <img src={getAvatarUrl(mod.image, modTitle)} alt={modTitle} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                     </div>
                   ) : (
-                    <div style={{ width: '64px', height: '64px', borderRadius: '16px', background: 'linear-gradient(135deg, var(--color-primary), var(--color-accent))', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.2rem', color: '#2c050d', fontWeight: '800', fontSize: '1.4rem' }}>
+                    <div style={{ width: '64px', height: '64px', borderRadius: '16px', background: 'linear-gradient(135deg, #690e1f, #8b152b)', border: '1px solid rgba(241, 163, 42, 0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.2rem', color: '#ffffff', fontWeight: '800', fontSize: '1.4rem', boxShadow: '0 4px 14px rgba(105, 14, 31, 0.35)' }}>
                       {modTitle}
                     </div>
                   )}
@@ -914,10 +895,11 @@ export function Home() {
                     className="glass-panel"
                     style={{ padding: '2.25rem 1.75rem', textAlign: 'center', border: '1px solid rgba(241, 163, 42, 0.2)', background: 'rgba(105, 14, 31, 0.22)', borderRadius: '20px' }}
                   >
-                    <div style={{ display: 'inline-block', padding: '3px', borderRadius: '50%', background: 'linear-gradient(135deg, var(--color-primary), var(--color-accent))', marginBottom: '1rem' }}>
+                    <div className="faculty-avatar-ring" style={{ display: 'inline-block', padding: '3px', borderRadius: '50%', background: 'linear-gradient(135deg, var(--color-primary), var(--color-accent))', marginBottom: '1rem' }}>
                       <img
                         src={getAvatarUrl(instructor.avatar, instructor.name)}
                         alt={instructor.name}
+                        className="faculty-avatar-img"
                         style={{ width: '84px', height: '84px', borderRadius: '50%', display: 'block', background: 'var(--color-bg-dark)', objectFit: 'cover' }}
                       />
                     </div>
@@ -1086,7 +1068,7 @@ export function Home() {
                   ) : (
                     <Link
                       to={tier.ctaLink}
-                      className={tier.isPopular ? 'btn-primary' : ''}
+                      className="btn-primary"
                       style={{
                         width: '100%',
                         padding: '14px',
@@ -1094,12 +1076,7 @@ export function Home() {
                         display: 'inline-flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        borderRadius: '30px',
                         textDecoration: 'none',
-                        background: tier.isPopular ? undefined : 'rgba(241, 163, 42, 0.1)',
-                        border: tier.isPopular ? undefined : '1px solid rgba(241, 163, 42, 0.3)',
-                        color: tier.isPopular ? undefined : 'var(--color-primary)',
-                        fontWeight: '700',
                         boxSizing: 'border-box'
                       }}
                     >
@@ -1128,9 +1105,7 @@ export function Home() {
         >
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2.5rem', alignItems: 'center' }}>
             <div>
-              <div style={{ color: 'var(--color-primary)', fontSize: '0.82rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '0.75rem' }}>
-                Super Admin Governed • Complete Data Isolation
-              </div>
+
               <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.6rem)', fontWeight: '800', color: 'var(--color-white)', marginBottom: '1rem', lineHeight: '1.2' }}>
                 How Emam Multi-Tenant Architecture Protects Your Academy
               </h2>

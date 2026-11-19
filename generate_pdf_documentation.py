@@ -219,9 +219,9 @@ def build_pdf(filename="Emam_LMS_Comprehensive_Documentation.pdf"):
         "<b>Executive Whitepaper, Architecture Blueprint &amp; Strategic Scaling Roadmap</b><br/><br/>"
         "This official documentation outlines the business vision, pedagogical problem space, "
         "and technical architecture of Emam Arabic LMS. Engineered for both technical and non-technical stakeholders, "
-        "it covers four-tier multi-tenancy, digital Arabic literacy mechanics (such as the Touch-Typing Lab and Smart Notebook), "
-        "automated admissions pipelines, and future scaling milestones including payment gateway integrations, "
-        "enterprise white-labeling, AI speech analysis, and native mobile apps."
+        "it covers four-tier multi-tenancy, digital Arabic literacy mechanics (such as the live WebRTC Smart Classroom, "
+        "Touch-Typing Lab, and Smart Notebook), automated admissions pipelines, and future scaling milestones including "
+        "payment gateway integrations, enterprise white-labeling, AI speech analysis, and native mobile apps."
     )
     story.append(Paragraph(cover_desc, ParagraphStyle('CoverDesc', parent=body_style, alignment=1, fontSize=9.8, leading=14.5, textColor=c_muted)))
     
@@ -233,7 +233,7 @@ def build_pdf(filename="Emam_LMS_Comprehensive_Documentation.pdf"):
         [Paragraph("<b>Target Audience:</b>", table_cell_bold), Paragraph("Executive Directors, Academy Deans, Product Managers, Investors, Software Architects", table_cell_style)],
         [Paragraph("<b>Platform Version:</b>", table_cell_bold), Paragraph("v2.4 (Production Ready)", table_cell_style)],
         [Paragraph("<b>Architecture Model:</b>", table_cell_bold), Paragraph("Multi-Tenant Cloud SaaS (Partitioned Institutes &amp; Super Admin)", table_cell_style)],
-        [Paragraph("<b>Primary Tech Stack:</b>", table_cell_bold), Paragraph("React 18 + Vite, Node.js / Express, PostgreSQL / SQLite, REST APIs", table_cell_style)],
+        [Paragraph("<b>Primary Tech Stack:</b>", table_cell_bold), Paragraph("React 18 + Vite, WebRTC Live Video, Node.js / Express, PostgreSQL / SQLite", table_cell_style)],
         [Paragraph("<b>Release Date:</b>", table_cell_bold), Paragraph("November 2026", table_cell_style)],
     ]
     t_meta = Table(meta_data, colWidths=[150, 320])
@@ -265,8 +265,8 @@ def build_pdf(filename="Emam_LMS_Comprehensive_Documentation.pdf"):
     ))
     story.append(Paragraph(
         "Arabic education requires nuanced Right-to-Left (RTL) typography, native Arabic keyboard typing proficiency, "
-        "CEFR-aligned curriculum structures (A1 to B2), rigorous attendance verification, and dedicated administrative "
-        "mechanisms for language academies. Emam unites all these requirements into a modern, high-speed single platform.",
+        "an integrated live WebRTC smart classroom, CEFR-aligned curriculum structures (A1 to B2), rigorous attendance verification, "
+        "and dedicated administrative mechanisms for language academies. Emam unites all these requirements into a modern, high-speed single platform.",
         body_style
     ))
 
@@ -275,7 +275,7 @@ def build_pdf(filename="Emam_LMS_Comprehensive_Documentation.pdf"):
         Paragraph(
             "<b>The Core Premise:</b> Emam bridges the divide between <i>Pedagogical Depth</i> and <i>Institutional Automation</i>. "
             "Whether serving an individual independent tutor or a large Arabic language academy with hundreds of students, "
-            "Emam delivers data isolation, unified academic reporting, automated admissions, and an interactive digital classroom.",
+            "Emam delivers data isolation, unified academic reporting, automated admissions, and an interactive digital classroom with live video.",
             callout_style
         )
     ]]
@@ -308,9 +308,9 @@ def build_pdf(filename="Emam_LMS_Comprehensive_Documentation.pdf"):
          "<b>Current Reality:</b> In traditional remote classes, students listen to lectures passively or submit photos of handwritten notes. Students never develop rapid Arabic keyboard skills, severely hampering their career readiness and digital fluency.<br/>"
          "<b>Emam Solution:</b> Built-in <b>Arabic Touch-Typing Lab</b> with live virtual keyboard visualization, real-time WPM (Words Per Minute), Accuracy percentages, sequential difficulty tiers, and instant cryptographically verifiable certificates upon module completion."),
         
-        ("Problem 2: The Chaos of WhatsApp, Zoom Links & Spreadsheets",
-         "<b>Current Reality:</b> Independent academies operate across fragmented tools: Zoom links shared in WhatsApp groups, homework emailed as PDFs, student fee receipts stored in personal bank apps, and class attendance kept in messy Excel sheets.<br/>"
-         "<b>Emam Solution:</b> A consolidated <b>All-in-One Cloud Portal</b>. Timetables, smart classroom notes, homework submissions, attendance tracking, and reschedule requests all live within a single role-gated environment."),
+        ("Problem 2: The Chaos of WhatsApp, External Zoom Links & Spreadsheets",
+         "<b>Current Reality:</b> Independent academies operate across fragmented tools: external Zoom links shared in WhatsApp groups, homework emailed as PDFs, student fee receipts stored in personal bank apps, and class attendance kept in messy Excel sheets.<br/>"
+         "<b>Emam Solution:</b> A consolidated <b>All-in-One Cloud Portal with Integrated WebRTC Video</b>. Timetables, smart classroom notes, homework submissions, attendance tracking, and reschedule requests all live within a single role-gated environment without external software."),
 
         ("Problem 3: Multi-Tenancy & Data Leakage in Generic Platforms",
          "<b>Current Reality:</b> Generic platforms either force academies into expensive single-tenant installations (requiring dedicated DevOps staff) or mingle student and financial records across an insecure shared database.<br/>"
@@ -336,6 +336,7 @@ def build_pdf(filename="Emam_LMS_Comprehensive_Documentation.pdf"):
     matrix_data = [
         [Paragraph("Feature / Capability", table_header_style), Paragraph("Generic LMS (Moodle/Canvas)", table_header_style), Paragraph("Emam Arabic LMS", table_header_style)],
         [Paragraph("<b>Arabic Orthography &amp; RTL</b>", table_cell_bold), Paragraph("Basic RTL CSS flip, clunky fonts", table_cell_style), Paragraph("Native Arabic typography (Amiri/Cairo), full RTL", table_cell_style)],
+        [Paragraph("<b>Live Virtual Classroom</b>", table_cell_bold), Paragraph("External Zoom/Teams links required", table_cell_style), Paragraph("Built-in WebRTC smart classroom with split notebook", table_cell_style)],
         [Paragraph("<b>Arabic Touch-Typing Lab</b>", table_cell_bold), Paragraph("None (External 3rd-party required)", table_cell_style), Paragraph("Built-in with live keyboard, WPM &amp; Certificate", table_cell_style)],
         [Paragraph("<b>Multi-Tenant Academy ERP</b>", table_cell_bold), Paragraph("Requires separate server installs", table_cell_style), Paragraph("Native multi-tenant isolation out-of-the-box", table_cell_style)],
         [Paragraph("<b>Admission &amp; Fee Verification</b>", table_cell_bold), Paragraph("External plugins or manual workflows", table_cell_style), Paragraph("Integrated proof verification &amp; sequential ID engine", table_cell_style)],
@@ -377,10 +378,10 @@ def build_pdf(filename="Emam_LMS_Comprehensive_Documentation.pdf"):
          "Each subscribed academy operates within its own dedicated partition. The Institute Admin manages instructor onboarding, student admissions review, fee proof approvals, timetable creation, cohort assignments, and overall institutional revenue performance."),
 
         ("3. Instructor Portal (Academic Delivery & Classroom Management)",
-         "Designed for native Arabic tutors and grammar specialists. Instructors manage their assigned cohorts, launch live smart classrooms, track daily attendance, assign homework and quizzes, grade submissions with personalized feedback, and communicate directly with students."),
+         "Designed for native Arabic tutors and grammar specialists. Instructors manage their assigned cohorts, launch live smart classrooms with built-in WebRTC video, track daily attendance, assign homework and quizzes, grade submissions with personalized feedback, and communicate directly with students."),
 
         ("4. Student Portal (Interactive Learner Experience)",
-         "Students enjoy a modern, responsive learning environment. Features include curriculum progression tracking (A1 to B2), the Arabic Touch-Typing Lab, Smart Notebook with instant Arabic notes, homework submission portal, timetable calendar, and automated downloadable certificates.")
+         "Students enjoy a modern, responsive learning environment. Features include curriculum progression tracking (A1 to B2), the WebRTC Smart Classroom with split-view Smart Notebook, the Arabic Touch-Typing Lab, homework submission portal, timetable calendar, and automated downloadable certificates.")
     ]
 
     for r_title, r_desc in roles:
@@ -393,6 +394,7 @@ def build_pdf(filename="Emam_LMS_Comprehensive_Documentation.pdf"):
     tech_data = [
         [Paragraph("Tier", table_header_style), Paragraph("Technology Selection", table_header_style), Paragraph("Architectural Rationale", table_header_style)],
         [Paragraph("<b>Frontend Framework</b>", table_cell_bold), Paragraph("React 18 + Vite", table_cell_style), Paragraph("Blazing fast HMR, component modularity, instant responsive page transitions.", table_cell_style)],
+        [Paragraph("<b>Live Video &amp; Classroom</b>", table_cell_bold), Paragraph("WebRTC / Jitsi Video Bridge", table_cell_style), Paragraph("In-browser ultra-low latency interactive lectures with split notebook view.", table_cell_style)],
         [Paragraph("<b>Design &amp; Animations</b>", table_cell_bold), Paragraph("Framer Motion + Custom CSS", table_cell_style), Paragraph("Emam Royal Burgundy &amp; Gold palette, smooth micro-interactions, dark/light theme support.", table_cell_style)],
         [Paragraph("<b>API &amp; Backend</b>", table_cell_bold), Paragraph("Node.js + Express REST API", table_cell_style), Paragraph("Non-blocking asynchronous I/O, lightweight execution, scalable microservice-ready routes.", table_cell_style)],
         [Paragraph("<b>Authentication &amp; RBAC</b>", table_cell_bold), Paragraph("JWT + Role Guards", table_cell_style), Paragraph("Stateless session management, strict tenant isolation, encrypted password hashing.", table_cell_style)],
@@ -414,12 +416,15 @@ def build_pdf(filename="Emam_LMS_Comprehensive_Documentation.pdf"):
     story.append(Spacer(1, 10))
 
     # ========================================================
-    # SECTION 4: SIGNATURE FUNCTIONAL HIGHLIGHTS
+    # SECTION 4: SIGNATURE FUNCTIONAL HIGHLIGHTS (ACTIVE FEATURES)
     # ========================================================
-    story.append(Paragraph("4. Signature Functional Innovations &amp; Data Security", h1_style))
+    story.append(Paragraph("4. Core Active Innovations (Built &amp; Operational)", h1_style))
     story.append(HRFlowable(width="100%", thickness=1, color=c_primary, spaceBefore=2, spaceAfter=8))
 
     innovations = [
+        ("Integrated WebRTC Smart Classroom (Live in Production)",
+         "An active, browser-native virtual lecture hall built directly into the student and instructor portals. Features 70/30 split screen mode (live video lecture alongside digital notebook), automated attendance tracking upon joining, full-video expansion toggle, and direct instructor broadcast without third-party desktop app dependencies."),
+
         ("Arabic Touch-Typing Lab &amp; Real-Time Feedback",
          "Unlike standard English typing software, Emam features a specialized Arabic keyboard with Harakat (diacritics: Fatha, Damma, Kasra, Sukun). It calculates Net WPM, Raw WPM, Accuracy (%), and flags character-by-character errors in real-time. Students who complete the lab receive an automatic, tamper-proof certificate."),
         
@@ -440,9 +445,9 @@ def build_pdf(filename="Emam_LMS_Comprehensive_Documentation.pdf"):
     story.append(Paragraph("End-to-End Academic Lifecycle Workflow", h2_style))
     flow_data = [
         [Paragraph("Step", table_header_style), Paragraph("User Action", table_header_style), Paragraph("System Process", table_header_style), Paragraph("Outcome", table_header_style)],
-        [Paragraph("<b>1. Apply</b>", table_cell_bold), Paragraph("Prospective student fills admission form &amp; uploads receipt.", table_cell_style), Paragraph("Payload validated, stored in Pending Admissions ledger.", table_cell_style), Paragraph("Confirmation email sent.", table_cell_style)],
+        [Paragraph("<b>1. Apply</b>", table_cell_bold), Paragraph("Prospective student fills admission form &amp; uploads receipt.", table_cell_style), Paragraph("Payload validated, stored in Pending Admissions ledger.", table_cell_style), Paragraph("Instant confirmation email sent.", table_cell_style)],
         [Paragraph("<b>2. Verify</b>", table_cell_bold), Paragraph("Institute Admin reviews proof against bank statements.", table_cell_style), Paragraph("One-click approval triggers ID generation.", table_cell_style), Paragraph("Generates <code>EMAM-YYYY-XXXX</code> ID.", table_cell_style)],
-        [Paragraph("<b>3. Learn</b>", table_cell_bold), Paragraph("Student accesses Smart Classroom &amp; Typing Lab.", table_cell_style), Paragraph("Logs progress, attendance, and WPM scores.", table_cell_style), Paragraph("Active cohort enrollment.", table_cell_style)],
+        [Paragraph("<b>3. Learn</b>", table_cell_bold), Paragraph("Student joins WebRTC Classroom &amp; Typing Lab.", table_cell_style), Paragraph("Logs attendance automatically, tracks WPM &amp; notes.", table_cell_style), Paragraph("Active cohort engagement.", table_cell_style)],
         [Paragraph("<b>4. Certify</b>", table_cell_bold), Paragraph("Student completes CEFR modules or Typing tiers.", table_cell_style), Paragraph("Generates cryptographically signed certificate.", table_cell_style), Paragraph("Publicly verifiable credential.", table_cell_style)]
     ]
     t_flow = Table(flow_data, colWidths=[65, 140, 155, 120])
@@ -468,7 +473,7 @@ def build_pdf(filename="Emam_LMS_Comprehensive_Documentation.pdf"):
 
     story.append(Paragraph(
         "To scale Emam from an institutional LMS into a global Arabic educational infrastructure, "
-        "the engineering and product team has structured the following phased expansion roadmap:",
+        "the engineering and product team has structured the following phased expansion roadmap (focused on monetization, AI, and mobile):",
         body_style
     ))
 
@@ -486,21 +491,20 @@ def build_pdf(filename="Emam_LMS_Comprehensive_Documentation.pdf"):
          "• <b>White-Label Branding:</b> Institutions can customize their portal logo, brand colors, custom login screens, and digital certificate templates.<br/>"
          "• <b>Automated Subscription Tiers:</b> Self-service upgrade from Standard Tier to Enterprise Tier with automated per-seat billing."),
 
-        ("Phase 3: Native WebRTC Smart Classroom &amp; Calligraphy Whiteboard",
-         "Replacing external Zoom / Google Meet dependencies with a high-performance in-browser virtual classroom:<br/>"
-         "• <b>Embedded Audio/Video:</b> Ultra-low-latency WebRTC group video conferencing powered by Daily.co / LiveKit.<br/>"
-         "• <b>Collaborative Arabic Calligraphy Canvas:</b> Synchronized interactive whiteboard allowing instructors to draw Harakat and demonstrative letter connections in real-time.<br/>"
-         "• <b>Automatic Attendance Logging:</b> The classroom logs student join/leave timestamps automatically, eliminating manual attendance sheets."),
-
-        ("Phase 4: AI-Driven Arabic Pronunciation &amp; Phonetics Evaluation",
+        ("Phase 3: AI-Driven Arabic Pronunciation &amp; Phonetics Evaluation",
          "Leveraging cutting-edge Speech AI for self-paced student fluency training:<br/>"
          "• <b>Makharij &amp; Tajweed Assessment:</b> Speech-to-text acoustic models analyze audio recordings of student recitation, highlighting mispronounced letters (e.g. distinguishing between ح and ه, or ع and أ).<br/>"
          "• <b>AI Arabic Conversation Tutor:</b> An interactive voice chatbot where students can practice everyday spoken Arabic conversations with real-time grammatical corrections."),
 
-        ("Phase 5: Native Mobile Applications (iOS &amp; Android)",
+        ("Phase 4: Native Mobile Applications (iOS &amp; Android)",
          "Releasing cross-platform native apps built on React Native / Flutter:<br/>"
-         "• Push notifications for upcoming live lectures, homework deadlines, and instructor feedback.<br/>"
-         "• Offline lecture notes syncing and interactive Arabic flashcards for on-the-go learning.")
+         "• Push notifications for upcoming live WebRTC lectures, homework deadlines, and instructor feedback.<br/>"
+         "• Offline lecture notes syncing and interactive Arabic flashcards for on-the-go learning."),
+
+        ("Phase 5: Advanced Institutional Analytics &amp; Accreditation Exports",
+         "Comprehensive institutional reporting tools for academic accreditation bodies:<br/>"
+         "• Automated export of cohort attendance transcripts, grade distribution curves, and instructor performance metrics in standard CSV / PDF formats.<br/>"
+         "• Tamper-proof institutional blockchain or cryptographic verification for issued diplomas.")
     ]
 
     for rp_title, rp_desc in roadmap_phases:
@@ -516,8 +520,9 @@ def build_pdf(filename="Emam_LMS_Comprehensive_Documentation.pdf"):
         [Paragraph("Milestone", table_header_style), Paragraph("Target Window", table_header_style), Paragraph("Deliverables &amp; Business Impact", table_header_style)],
         [Paragraph("<b>Payment Gateway Integration</b>", table_cell_bold), Paragraph("Q1 2027", table_cell_style), Paragraph("Stripe, JazzCash, EasyPaisa, automated enrollment unlocking.", table_cell_style)],
         [Paragraph("<b>Enterprise White-Labeling</b>", table_cell_bold), Paragraph("Q2 2027", table_cell_style), Paragraph("Custom academy domains, custom logos, tenant self-service portal.", table_cell_style)],
-        [Paragraph("<b>Embedded Smart Classroom</b>", table_cell_bold), Paragraph("Q3 2027", table_cell_style), Paragraph("In-browser WebRTC video, live interactive Arabic whiteboard.", table_cell_style)],
-        [Paragraph("<b>AI Phonetics &amp; Mobile App</b>", table_cell_bold), Paragraph("Q4 2027", table_cell_style), Paragraph("Speech AI pronunciation scoring, iOS and Android native apps.", table_cell_style)]
+        [Paragraph("<b>AI Speech &amp; Makharij Grading</b>", table_cell_bold), Paragraph("Q3 2027", table_cell_style), Paragraph("Speech AI pronunciation scoring, Tajweed mispronunciation flags.", table_cell_style)],
+        [Paragraph("<b>Native Mobile Apps</b>", table_cell_bold), Paragraph("Q4 2027", table_cell_style), Paragraph("iOS and Android native apps with offline caching and push alerts.", table_cell_style)],
+        [Paragraph("<b>Accreditation &amp; Audit Engine</b>", table_cell_bold), Paragraph("Q1 2028", table_cell_style), Paragraph("Automated academic audit transcripts and verifiable credentials.", table_cell_style)]
     ]
     t_timeline = Table(timeline_data, colWidths=[140, 95, 245])
     t_timeline.setStyle(TableStyle([
@@ -542,13 +547,13 @@ def build_pdf(filename="Emam_LMS_Comprehensive_Documentation.pdf"):
 
     story.append(Paragraph(
         "Emam Arabic LMS is uniquely positioned at the convergence of specialized language pedagogy and modern enterprise SaaS. "
-        "By addressing the acute challenges of Arabic typography, touch-typing literacy, and institutional multi-tenancy, "
-        "the platform eliminates operational friction for academy administrators while elevating learning outcomes for students.",
+        "With active production capabilities including live WebRTC smart classrooms, touch-typing literacy labs, and multi-tenant academy isolation, "
+        "the platform already eliminates the friction of fragmented tools.",
         body_style
     ))
     story.append(Paragraph(
-        "With a clear and actionable scaling roadmap encompassing global payment gateways, native WebRTC smart classrooms, "
-        "and AI-assisted pronunciation grading, Emam represents a highly scalable, future-proof ecosystem ready for global adoption.",
+        "By focusing the future scaling roadmap on automated global and local payment processing, enterprise white-labeling, "
+        "and AI speech evaluation, Emam is primed for rapid commercial expansion across global Arabic learning institutes.",
         body_style
     ))
 

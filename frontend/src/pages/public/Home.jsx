@@ -1095,7 +1095,7 @@ export function Home() {
       {/* ======================================================== */}
       <section style={{ padding: '4.5rem 1.5rem', maxWidth: '1200px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
         <div
-          className="glass-panel"
+          className="glass-panel architecture-spotlight-panel"
           style={{
             padding: '3.5rem 2.5rem',
             borderRadius: '24px',
@@ -1140,7 +1140,17 @@ export function Home() {
               </div>
             </div>
 
-            <div style={{ textAlign: 'center', padding: '2.5rem 2rem', borderRadius: '20px', background: 'linear-gradient(135deg, #690e1f, #2c050d)', border: '1px solid rgba(241, 163, 42, 0.35)', boxShadow: '0 10px 30px rgba(0, 0, 0, 0.4)' }}>
+            <div
+              className="architecture-proposal-card"
+              style={{
+                textAlign: 'center',
+                padding: '2.5rem 2rem',
+                borderRadius: '20px',
+                background: 'linear-gradient(135deg, #690e1f, #2c050d)',
+                border: '1px solid rgba(241, 163, 42, 0.35)',
+                boxShadow: '0 10px 30px rgba(0, 0, 0, 0.4)'
+              }}
+            >
               <h3 style={{ fontSize: '1.5rem', color: '#ffffff', fontWeight: '700', marginBottom: '0.6rem' }}>
                 Deploy Emam for Your Academy
               </h3>
@@ -1153,7 +1163,7 @@ export function Home() {
                   setInstituteSubmitted(false);
                   setInstituteModalOpen(true);
                 }}
-                className="emam-reverse-btn"
+                className="btn-primary architecture-walkthrough-btn"
                 style={{
                   width: '100%',
                   padding: '14px',
@@ -1162,13 +1172,7 @@ export function Home() {
                   alignItems: 'center',
                   justifyContent: 'center',
                   borderRadius: '30px',
-                  background: 'var(--color-primary, #f1a32a)',
-                  color: '#2c050d',
-                  border: 'none',
-                  fontWeight: '700',
-                  cursor: 'pointer',
-                  transition: 'all 0.3s ease',
-                  boxShadow: '0 4px 14px rgba(241, 163, 42, 0.3)'
+                  cursor: 'pointer'
                 }}
               >
                 Schedule Institutional Walkthrough
@@ -1213,6 +1217,7 @@ export function Home() {
               >
                 <button
                   onClick={() => setOpenFaq(isOpen ? null : idx)}
+                  className="faq-question-btn"
                   style={{
                     width: '100%',
                     padding: '1.25rem 1.5rem',

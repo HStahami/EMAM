@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Plus, Trash2, LogOut, Bell, CheckCircle2, Megaphone, Shield, MessageSquare, Send, RefreshCw, Mail, Award, Search, Key, Hourglass, Users, Trophy, BookOpen, AlertTriangle, Calendar, ArrowRight } from 'lucide-react';
+import { Plus, Trash2, LogOut, Bell, CheckCircle2, Megaphone, Shield, MessageSquare, Send, RefreshCw, Mail, Award, Search, Key, Hourglass, Users, Trophy, BookOpen, AlertTriangle, Calendar, ArrowRight, X } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { API_BASE, getAvatarUrl } from '../../api/client';
 import { inputStyle } from '../../components/common/styles';
@@ -31,6 +31,7 @@ export function AdminDashboard({ onLogout }) {
   const [instFormSuccess, setInstFormSuccess] = useState('');
   const [instFormError, setInstFormError] = useState('');
   const [resendingInstId, setResendingInstId] = useState(null);
+  const [showInstructorModal, setShowInstructorModal] = useState(false);
   const fileInputRef = useRef(null);
 
   // Module Form State
@@ -978,6 +979,7 @@ export function AdminDashboard({ onLogout }) {
       setNewInstSpec('');
       setSelectedFile(null);
       setEditingInstId(null);
+      setShowInstructorModal(false);
       if (fileInputRef.current) fileInputRef.current.value = "";
       await fetchInstructors();
       await fetchStats();
@@ -985,6 +987,19 @@ export function AdminDashboard({ onLogout }) {
       console.error(e);
       setInstFormError(e.message || "Failed to save instructor. Please try again.");
     }
+  };
+
+  const handleOpenDirectOnboard = () => {
+    setEditingInstId(null);
+    setNewInstName('');
+    setNewInstEmail('');
+    setNewInstAbout('');
+    setNewInstSpec('');
+    setSelectedFile(null);
+    setInstFormSuccess('');
+    setInstFormError('');
+    if (fileInputRef.current) fileInputRef.current.value = "";
+    setShowInstructorModal(true);
   };
 
   const handleEditInstructorClick = (inst) => {
@@ -996,6 +1011,7 @@ export function AdminDashboard({ onLogout }) {
     setSelectedFile(null);
     setInstFormSuccess('');
     setInstFormError('');
+    setShowInstructorModal(true);
   };
 
   const handleCancelEditInstructor = () => {
@@ -1008,6 +1024,7 @@ export function AdminDashboard({ onLogout }) {
     setInstFormSuccess('');
     setInstFormError('');
     if (fileInputRef.current) fileInputRef.current.value = "";
+    setShowInstructorModal(false);
   };
 
   const handleResendInstructorCredentials = async (instId, instName, instEmail) => {
@@ -3584,87 +3601,59 @@ export function AdminDashboard({ onLogout }) {
 
         {activeTab === 'instructors' && (
           <div>
-            {/* Sub-view Switcher */}
+            {/* Sub-view Switcher & Action Toolbar */}
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '1rem' }}>
-              <h2 style={{ color: 'var(--color-white)', margin: 0 }}>
-                {instructorSubView === 'active' ? 'Active Certified Faculty' : 'Faculty Applications'}
-              </h2>
-              <div style={{ display: 'flex', gap: '0.5rem' }}>
-                {[
-                  { id: 'active', label: 'Active Faculty' },
-                  { id: 'applications', label: `Applications${facultyApplications.filter(a => a.status === 'pending').length > 0 ? ` (${facultyApplications.filter(a => a.status === 'pending').length} Pending)` : ''}` }
-                ].map(sv => (
-                  <button
-                    key={sv.id}
-                    type="button"
-                    onClick={() => { setInstructorSubView(sv.id); if (sv.id === 'applications') void fetchFacultyApplications(); }}
-                    style={{
-                      padding: '8px 16px', borderRadius: '20px', fontSize: '0.85rem', fontWeight: 600, cursor: 'pointer',
-                      background: instructorSubView === sv.id ? 'var(--color-primary)' : 'rgba(241,163,42,0.08)',
-                      color: instructorSubView === sv.id ? '#1a0008' : 'var(--color-primary)',
-                      border: `1px solid ${instructorSubView === sv.id ? 'var(--color-primary)' : 'rgba(241,163,42,0.3)'}`,
-                    }}
-                  >
-                    {sv.label}
-                  </button>
-                ))}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+                <h2 style={{ color: 'var(--color-white)', margin: 0 }}>
+                  {instructorSubView === 'active' ? 'Active Certified Faculty' : 'Faculty Applications'}
+                </h2>
+                <div style={{ display: 'flex', gap: '0.5rem' }}>
+                  {[
+                    { id: 'active', label: `Active Faculty (${instructors.length})` },
+                    { id: 'applications', label: `Applications${facultyApplications.filter(a => a.status === 'pending').length > 0 ? ` (${facultyApplications.filter(a => a.status === 'pending').length} Pending)` : ''}` }
+                  ].map(sv => (
+                    <button
+                      key={sv.id}
+                      type="button"
+                      onClick={() => { setInstructorSubView(sv.id); if (sv.id === 'applications') void fetchFacultyApplications(); }}
+                      style={{
+                        padding: '8px 16px', borderRadius: '20px', fontSize: '0.85rem', fontWeight: 600, cursor: 'pointer',
+                        background: instructorSubView === sv.id ? 'var(--color-primary)' : 'rgba(241,163,42,0.08)',
+                        color: instructorSubView === sv.id ? '#1a0008' : 'var(--color-primary)',
+                        border: `1px solid ${instructorSubView === sv.id ? 'var(--color-primary)' : 'rgba(241,163,42,0.3)'}`,
+                      }}
+                    >
+                      {sv.label}
+                    </button>
+                  ))}
+                </div>
               </div>
+
+              {instructorSubView === 'active' && (
+                <button
+                  type="button"
+                  onClick={handleOpenDirectOnboard}
+                  className="btn-primary"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.5rem',
+                    padding: '8px 18px',
+                    fontSize: '0.88rem',
+                    borderRadius: '8px',
+                    fontWeight: 600,
+                    cursor: 'pointer',
+                  }}
+                >
+                  <Plus size={16} />
+                  <span>Onboard Directly</span>
+                </button>
+              )}
             </div>
 
             {instructorSubView === 'active' && (
               <div>
-                {/* Instructor Form */}
-                <div className="glass-panel" style={{ padding: '2rem', marginBottom: '2.5rem' }}>
-                  <h3 style={{ color: 'var(--color-white)', marginBottom: '1.5rem', fontSize: '1.3rem' }}>
-                    {editingInstId ? 'Edit Instructor' : 'Add New Instructor'}
-                  </h3>
-                  {instFormSuccess && <p style={{ color: '#2ecc71', marginBottom: '1rem' }}>{instFormSuccess}</p>}
-                  {instFormError && <p style={{ color: '#ff6b6b', marginBottom: '1rem' }}>{instFormError}</p>}
-
-                  <form onSubmit={handleAddOrUpdateInstructor} style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
-                    <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-                      <div style={{ flex: 1, minWidth: '220px' }}>
-                        <label htmlFor="admin_inst_name" style={{ display: 'block', color: 'var(--color-primary)', marginBottom: '0.4rem', fontSize: '0.9rem' }}>Instructor Name *</label>
-                        <input id="admin_inst_name" type="text" placeholder="e.g. Instructor Ahmed" value={newInstName} onChange={e => setNewInstName(e.target.value)} required style={{ ...inputStyle, width: '100%' }} />
-                      </div>
-                      <div style={{ flex: 1, minWidth: '220px' }}>
-                        <label htmlFor="admin_inst_email" style={{ display: 'block', color: 'var(--color-primary)', marginBottom: '0.4rem', fontSize: '0.9rem' }}>Instructor Email * (for portal login & credentials)</label>
-                        <input id="admin_inst_email" type="email" placeholder="e.g. instructor.ahmed@example.com" value={newInstEmail} onChange={e => setNewInstEmail(e.target.value)} required style={{ ...inputStyle, width: '100%' }} />
-                      </div>
-                      <div style={{ flex: 1, minWidth: '220px' }}>
-                        <label htmlFor="admin_inst_spec" style={{ display: 'block', color: 'var(--color-primary)', marginBottom: '0.4rem', fontSize: '0.9rem' }}>Specialty / Role</label>
-                        <input id="admin_inst_spec" type="text" placeholder="e.g. Grammar & Morphology" value={newInstSpec} onChange={e => setNewInstSpec(e.target.value)} style={{ ...inputStyle, width: '100%' }} />
-                      </div>
-                    </div>
-
-                <div style={{ fontSize: '0.85rem', color: '#94a3b8', background: 'rgba(241, 163, 42, 0.15)', padding: '10px 14px', borderRadius: '8px', border: '1px solid rgba(241, 163, 42, 0.15)' }}>
-                  <strong>Automatic Credentials Dispatch:</strong> Saving this instructor creates a secure portal account and automatically emails their temporary login credentials and password.
-                </div>
-
-                <div>
-                  <label htmlFor="admin_inst_about" style={{ display: 'block', color: 'var(--color-primary)', marginBottom: '0.4rem', fontSize: '0.9rem' }}>About / Description</label>
-                  <textarea id="admin_inst_about" placeholder="Experienced Arabic language instructor specializing in grammar and morphology." value={newInstAbout} onChange={e => setNewInstAbout(e.target.value)} rows="3" style={{ ...inputStyle, width: '100%', resize: 'vertical' }} />
-                </div>
-
-                <div>
-                  <label htmlFor="admin_inst_file" style={{ display: 'block', color: 'var(--color-primary)', marginBottom: '0.4rem', fontSize: '0.9rem' }}>Profile Picture (File Upload)</label>
-                  <input id="admin_inst_file" ref={fileInputRef} type="file" accept="image/*" onChange={e => setSelectedFile(e.target.files[0])} style={{ color: '#e0e0e0', padding: '8px 0' }} />
-                </div>
-
-                <div style={{ display: 'flex', gap: '1rem', marginTop: '0.5rem' }}>
-                  <button type="submit" className="btn-primary" style={{ padding: '12px 28px', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    {editingInstId ? 'Update Instructor' : 'Add Instructor'}
-                  </button>
-                  {editingInstId && (
-                    <button type="button" onClick={handleCancelEditInstructor} className="glass-panel" style={{ padding: '12px 20px', border: 'none', color: '#e0e0e0' }}>
-                      Cancel Edit
-                    </button>
-                  )}
-                </div>
-              </form>
-            </div>
-
-            <div className="table-responsive-container">
+                <div className="table-responsive-container">
               <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                 <thead>
                   <tr>
@@ -3850,11 +3839,81 @@ export function AdminDashboard({ onLogout }) {
           </div>
         )}
 
+        {/* Direct Onboard / Edit Instructor Modal */}
+        {showInstructorModal && (
+          <div style={{ position: 'fixed', inset: 0, zIndex: 2000, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(8px)', padding: '1rem' }}>
+            <div style={{ width: '100%', maxWidth: '620px', maxHeight: '90vh', overflowY: 'auto', borderRadius: '20px', border: '1px solid rgba(241,163,42,0.3)', background: 'linear-gradient(135deg, rgba(44,5,13,0.98), rgba(26,0,8,0.99))', padding: '2rem', position: 'relative', boxShadow: '0 20px 40px rgba(0,0,0,0.6)' }}>
+              <button
+                type="button"
+                onClick={handleCancelEditInstructor}
+                style={{ position: 'absolute', top: '1rem', right: '1rem', background: 'rgba(255,255,255,0.1)', border: 'none', borderRadius: '50%', width: '32px', height: '32px', color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+              >
+                <X size={16} />
+              </button>
+
+              <h3 style={{ color: 'var(--color-white)', marginBottom: '0.4rem', fontSize: '1.35rem' }}>
+                {editingInstId ? 'Edit Instructor Profile' : 'Direct Faculty Onboarding'}
+              </h3>
+              <p style={{ color: '#f0ceb3', fontSize: '0.86rem', marginBottom: '1.3rem', lineHeight: 1.5 }}>
+                {editingInstId
+                  ? 'Update the selected instructor details, department/specialty, or profile image.'
+                  : 'Directly register a certified faculty member. Their secure portal account and login credentials will be generated and dispatched automatically.'}
+              </p>
+
+              {instFormSuccess && <p style={{ color: '#2ecc71', marginBottom: '1rem', background: 'rgba(46,204,113,0.1)', padding: '10px 14px', borderRadius: '8px', border: '1px solid rgba(46,204,113,0.3)' }}>{instFormSuccess}</p>}
+              {instFormError && <p style={{ color: '#ff6b6b', marginBottom: '1rem', background: 'rgba(255,107,107,0.1)', padding: '10px 14px', borderRadius: '8px', border: '1px solid rgba(255,107,107,0.3)' }}>{instFormError}</p>}
+
+              <form onSubmit={handleAddOrUpdateInstructor} style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
+                <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+                  <div style={{ flex: 1, minWidth: '220px' }}>
+                    <label htmlFor="admin_inst_modal_name" style={{ display: 'block', color: 'var(--color-primary)', marginBottom: '0.4rem', fontSize: '0.88rem' }}>Instructor Name *</label>
+                    <input id="admin_inst_modal_name" type="text" placeholder="e.g. Instructor Ahmed" value={newInstName} onChange={e => setNewInstName(e.target.value)} required style={{ ...inputStyle, width: '100%' }} />
+                  </div>
+                  <div style={{ flex: 1, minWidth: '220px' }}>
+                    <label htmlFor="admin_inst_modal_email" style={{ display: 'block', color: 'var(--color-primary)', marginBottom: '0.4rem', fontSize: '0.88rem' }}>Instructor Email *</label>
+                    <input id="admin_inst_modal_email" type="email" placeholder="e.g. instructor.ahmed@example.com" value={newInstEmail} onChange={e => setNewInstEmail(e.target.value)} required style={{ ...inputStyle, width: '100%' }} />
+                  </div>
+                </div>
+
+                <div>
+                  <label htmlFor="admin_inst_modal_spec" style={{ display: 'block', color: 'var(--color-primary)', marginBottom: '0.4rem', fontSize: '0.88rem' }}>Specialty / Department</label>
+                  <input id="admin_inst_modal_spec" type="text" placeholder="e.g. Classical Arabic & Grammar (Nahw / Sarf)" value={newInstSpec} onChange={e => setNewInstSpec(e.target.value)} style={{ ...inputStyle, width: '100%' }} />
+                </div>
+
+                {!editingInstId && (
+                  <div style={{ fontSize: '0.82rem', color: '#f0ceb3', background: 'rgba(241, 163, 42, 0.12)', padding: '10px 14px', borderRadius: '8px', border: '1px solid rgba(241, 163, 42, 0.25)' }}>
+                    <strong>Automatic Credentials Dispatch:</strong> Saving this instructor creates a portal account and immediately emails their temporary login credentials and password.
+                  </div>
+                )}
+
+                <div>
+                  <label htmlFor="admin_inst_modal_about" style={{ display: 'block', color: 'var(--color-primary)', marginBottom: '0.4rem', fontSize: '0.88rem' }}>About / Bio</label>
+                  <textarea id="admin_inst_modal_about" placeholder="Experienced Arabic language instructor specializing in classical Arabic..." value={newInstAbout} onChange={e => setNewInstAbout(e.target.value)} rows="3" style={{ ...inputStyle, width: '100%', resize: 'vertical' }} />
+                </div>
+
+                <div>
+                  <label htmlFor="admin_inst_modal_file" style={{ display: 'block', color: 'var(--color-primary)', marginBottom: '0.4rem', fontSize: '0.88rem' }}>Profile Picture (File Upload)</label>
+                  <input id="admin_inst_modal_file" ref={fileInputRef} type="file" accept="image/*" onChange={e => setSelectedFile(e.target.files[0])} style={{ color: '#e0e0e0', padding: '6px 0' }} />
+                </div>
+
+                <div style={{ display: 'flex', gap: '1rem', marginTop: '0.5rem', justifyContent: 'flex-end' }}>
+                  <button type="button" onClick={handleCancelEditInstructor} className="glass-panel" style={{ padding: '10px 20px', border: 'none', color: '#e0e0e0', cursor: 'pointer', borderRadius: '8px' }}>
+                    Cancel
+                  </button>
+                  <button type="submit" className="btn-primary" style={{ padding: '10px 24px', display: 'flex', alignItems: 'center', gap: '0.5rem', borderRadius: '8px', cursor: 'pointer', fontWeight: 600 }}>
+                    {editingInstId ? 'Update Instructor' : 'Confirm & Onboard'}
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        )}
+
         {/* Cancel Application Reason Modal */}
         {showCancelModal && cancelTargetApp && (
           <div style={{ position: 'fixed', inset: 0, zIndex: 2000, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(8px)', padding: '1rem' }}>
             <div style={{ width: '100%', maxWidth: '480px', borderRadius: '20px', border: '1px solid rgba(231,76,60,0.4)', background: 'linear-gradient(135deg, rgba(105,14,31,0.97), rgba(44,5,13,0.99))', padding: '2rem', position: 'relative' }}>
-              <button onClick={() => setShowCancelModal(false)} style={{ position: 'absolute', top: '1rem', right: '1rem', background: 'rgba(255,255,255,0.1)', border: 'none', borderRadius: '50%', width: '32px', height: '32px', color: '#fff', cursor: 'pointer', fontSize: '1.1rem' }}>Ã—</button>
+              <button onClick={() => setShowCancelModal(false)} style={{ position: 'absolute', top: '1rem', right: '1rem', background: 'rgba(255,255,255,0.1)', border: 'none', borderRadius: '50%', width: '32px', height: '32px', color: '#fff', cursor: 'pointer', fontSize: '1.1rem' }}><X size={16} /></button>
               <h3 style={{ color: '#fff', marginBottom: '0.5rem' }}>Cancel Faculty Application</h3>
               <p style={{ color: '#f0ceb3', fontSize: '0.88rem', marginBottom: '1.25rem' }}>
                 You are cancelling the application from <strong>{cancelTargetApp.first_name} {cancelTargetApp.last_name}</strong>. A cancellation notice will be emailed to <span style={{ color: 'var(--color-primary)' }}>{cancelTargetApp.email}</span>.
@@ -4083,7 +4142,7 @@ export function AdminDashboard({ onLogout }) {
                     cursor: 'pointer'
                   }}
                 >
-                  â† Back to All Instructors
+                  ← Back to All Instructors
                 </button>
 
                 {/* Instructor Top Profile Banner */}
@@ -5512,7 +5571,7 @@ export function AdminDashboard({ onLogout }) {
             left: 0,
             width: '100vw',
             height: '100vh',
-            background: 'rgba(3, 15, 16, 0.88)',
+            background: 'rgba(26, 0, 8, 0.92)',
             backdropFilter: 'blur(10px)',
             WebkitBackdropFilter: 'blur(10px)',
             display: 'flex',
@@ -5624,7 +5683,7 @@ export function AdminDashboard({ onLogout }) {
           left: 0,
           width: '100vw',
           height: '100vh',
-          background: 'rgba(3, 15, 16, 0.88)',
+          background: 'rgba(26, 0, 8, 0.92)',
           backdropFilter: 'blur(10px)',
           WebkitBackdropFilter: 'blur(10px)',
           display: 'flex',

@@ -1,15 +1,19 @@
 export const API_BASE = import.meta.env.VITE_API_BASE || "/api";
 export const BACKEND_URL = API_BASE.startsWith("http") ? API_BASE.replace(/\/api\/?$/, "") : "";
 
-export const getAvatarUrl = (avatarUrl, name) => {
+export const getAvatarUrl = (avatarUrl, name, theme) => {
+  const isLight = theme === 'light' || (typeof document !== 'undefined' && document.documentElement.getAttribute('data-theme') === 'light');
+  const bg = isLight ? "f5efeb" : "690e1f";
+  const fg = isLight ? "690e1f" : "f1a32a";
+
   if (!avatarUrl) {
     const encoded = encodeURIComponent(name || "Instructor");
-    return `https://ui-avatars.com/api/?name=${encoded}&background=690e1f&color=f1a32a&size=150&font-size=0.33&bold=true`;
+    return `https://ui-avatars.com/api/?name=${encoded}&background=${bg}&color=${fg}&size=150&font-size=0.33&bold=true`;
   }
   if (avatarUrl.includes("ui-avatars.com")) {
     return avatarUrl
-      .replace(/background=[A-Fa-f0-9]+/i, "background=690e1f")
-      .replace(/color=[A-Fa-f0-9]+/i, "color=f1a32a");
+      .replace(/background=[A-Fa-f0-9]+/i, `background=${bg}`)
+      .replace(/color=[A-Fa-f0-9]+/i, `color=${fg}`);
   }
   if (avatarUrl.startsWith("/uploads")) {
     return `${BACKEND_URL}${avatarUrl}`;

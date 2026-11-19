@@ -62,9 +62,9 @@ body {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #690e1f, #2c050d);
-  border: 1px solid var(--color-primary);
-  color: var(--color-primary);
+  background: linear-gradient(135deg, #690e1f, #2c050d) !important;
+  border: 1px solid var(--color-primary) !important;
+  color: #ffffff !important;
   padding: 12px 32px;
   border-radius: 30px;
   font-family: var(--font-sans);
@@ -75,12 +75,52 @@ body {
   position: relative;
   overflow: hidden;
   box-shadow: 0 0 12px rgba(241, 163, 42, 0.16);
+  text-decoration: none;
+}
+
+.btn-primary * {
+  color: #ffffff !important;
 }
 
 .btn-primary:hover {
-  background: var(--color-primary);
-  color: #2c050d;
-  box-shadow: 0 0 22px rgba(241, 163, 42, 0.45);
+  background: var(--color-primary, #f1a32a) !important;
+  border-color: var(--color-primary, #f1a32a) !important;
+  color: #2c050d !important;
+  box-shadow: 0 0 22px rgba(241, 163, 42, 0.45) !important;
+  transform: translateY(-2px);
+}
+
+.btn-primary:hover * {
+  color: #2c050d !important;
+}
+
+/* Emam Form Inputs (Dark Theme Base) */
+.emam-form-input {
+  width: 100%;
+  padding: 11px 14px;
+  border-radius: 10px;
+  background: rgba(44, 5, 13, 0.85);
+  border: 1px solid rgba(241, 163, 42, 0.3);
+  color: #ffffff;
+  outline: none;
+  box-sizing: border-box;
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  transition: all 0.2s ease;
+}
+
+.emam-form-input:focus {
+  border-color: var(--color-primary, #f1a32a);
+  box-shadow: 0 0 10px rgba(241, 163, 42, 0.25);
+}
+
+.emam-form-input::placeholder {
+  color: rgba(240, 206, 179, 0.6);
+}
+
+.emam-reverse-btn:hover {
+  background: #ffffff !important;
+  color: #690e1f !important;
   transform: translateY(-2px);
 }
 
@@ -841,20 +881,55 @@ body {
 /* Primary Button in Light Mode */
 [data-theme='light'] .btn-primary {
   background: linear-gradient(135deg, #690e1f, #8b152b) !important;
-  border: 1px solid #690e1f !important;
+  border: 1.5px solid #690e1f !important;
   color: #ffffff !important;
   box-shadow: 0 4px 16px rgba(105, 14, 31, 0.22) !important;
 }
 
-[data-theme='light'] .btn-primary:hover {
-  background: #500a17 !important;
+[data-theme='light'] .btn-primary * {
   color: #ffffff !important;
-  box-shadow: 0 6px 22px rgba(105, 14, 31, 0.35) !important;
+}
+
+[data-theme='light'] .btn-primary:hover {
+  background: #ffffff !important;
+  border-color: #690e1f !important;
+  color: #690e1f !important;
+  box-shadow: 0 6px 20px rgba(105, 14, 31, 0.18) !important;
   transform: translateY(-2px);
 }
 
-[data-theme='light'] .btn-primary * {
-  color: #ffffff !important;
+[data-theme='light'] .btn-primary:hover * {
+  color: #690e1f !important;
+}
+
+/* Light Mode Form Inputs & Modal overrides */
+[data-theme='light'] .emam-form-input {
+  background: #ffffff !important;
+  border: 1.5px solid rgba(105, 14, 31, 0.25) !important;
+  color: #220d12 !important;
+}
+
+[data-theme='light'] .emam-form-input:focus {
+  border-color: #690e1f !important;
+  box-shadow: 0 0 10px rgba(105, 14, 31, 0.18) !important;
+}
+
+[data-theme='light'] .emam-form-input::placeholder {
+  color: #7a6a6e !important;
+}
+
+[data-theme='light'] .modal-glass-container {
+  background: #ffffff !important;
+  border: 1.5px solid rgba(105, 14, 31, 0.2) !important;
+  box-shadow: 0 20px 60px rgba(105, 14, 31, 0.15) !important;
+}
+
+[data-theme='light'] .faculty-avatar-ring {
+  background: linear-gradient(135deg, #f0ceb3, #f1a32a) !important;
+}
+
+[data-theme='light'] .faculty-avatar-img {
+  background: #fbf8f3 !important;
 }
 
 /* Comprehensive Text Contrast Rules: Override all inline pale peach, slate, grey */

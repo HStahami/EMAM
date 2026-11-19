@@ -1165,8 +1165,8 @@ export function Home() {
               </div>
             </div>
 
-            <div style={{ textAlign: 'center', padding: '2.5rem 2rem', borderRadius: '20px', background: 'rgba(0, 0, 0, 0.35)', border: '1px solid rgba(241, 163, 42, 0.2)' }}>
-              <h3 style={{ fontSize: '1.5rem', color: '#fff', fontWeight: '700', marginBottom: '0.6rem' }}>
+            <div style={{ textAlign: 'center', padding: '2.5rem 2rem', borderRadius: '20px', background: 'linear-gradient(135deg, #690e1f, #2c050d)', border: '1px solid rgba(241, 163, 42, 0.35)', boxShadow: '0 10px 30px rgba(0, 0, 0, 0.4)' }}>
+              <h3 style={{ fontSize: '1.5rem', color: '#ffffff', fontWeight: '700', marginBottom: '0.6rem' }}>
                 Deploy Emam for Your Academy
               </h3>
               <p style={{ color: '#f0ceb3', fontSize: '0.92rem', lineHeight: '1.55', marginBottom: '1.75rem' }}>
@@ -1178,8 +1178,23 @@ export function Home() {
                   setInstituteSubmitted(false);
                   setInstituteModalOpen(true);
                 }}
-                className="btn-primary"
-                style={{ padding: '14px 32px', fontSize: '1rem', width: '100%', boxSizing: 'border-box' }}
+                className="emam-reverse-btn"
+                style={{
+                  width: '100%',
+                  padding: '14px',
+                  fontSize: '1rem',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  borderRadius: '30px',
+                  background: 'var(--color-primary, #f1a32a)',
+                  color: '#2c050d',
+                  border: 'none',
+                  fontWeight: '700',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  boxShadow: '0 4px 14px rgba(241, 163, 42, 0.3)'
+                }}
               >
                 Schedule Institutional Walkthrough
               </button>
@@ -1299,74 +1314,19 @@ export function Home() {
         </motion.div>
       </section>
 
-      {/* ======================================================== */}
-      {/* 9. GLOBAL CONVERSION BANNER                              */}
-      {/* ======================================================== */}
-      <section style={{ padding: '2rem 1.5rem 6rem', maxWidth: '1200px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
-        <div
-          className="glass-panel"
-          style={{
-            padding: '4rem 2rem',
-            textAlign: 'center',
-            borderRadius: '26px',
-            border: '1px solid rgba(241, 163, 42, 0.3)',
-            background: 'linear-gradient(135deg, rgba(105, 14, 31, 0.7), rgba(44, 5, 13, 0.9))'
-          }}
-        >
-          <h2 style={{ fontSize: 'clamp(2rem, 3.8vw, 3rem)', fontWeight: '800', color: 'var(--color-white)', marginBottom: '1rem' }}>
-            Elevate Your Arabic Learning or Academy Today
-          </h2>
-          <p style={{ color: '#f0ceb3', maxWidth: '650px', margin: '0 auto 2.5rem auto', fontSize: '1.1rem', lineHeight: '1.6' }}>
-            Join hundreds of learners and institutions leveraging Emam's cloud infrastructure for accredited language mastery and institutional governance.
-          </p>
-
-          <div style={{ display: 'flex', gap: '1.25rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link
-              to="/admission"
-              className="btn-primary"
-              style={{ padding: '16px 36px', fontSize: '1.05rem', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
-            >
-              Enroll as a Student
-            </Link>
-
-            <button
-              onClick={() => {
-                setInstituteSubmitted(false);
-                setInstituteModalOpen(true);
-              }}
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                padding: '16px 32px',
-                fontSize: '1.05rem',
-                borderRadius: '30px',
-                background: 'rgba(241, 163, 42, 0.1)',
-                border: '1px solid rgba(241, 163, 42, 0.35)',
-                color: 'var(--color-primary)',
-                fontWeight: '700',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease',
-                fontFamily: 'var(--font-sans)'
-              }}
-            >
-              Request Institute Tenant
-            </button>
-          </div>
-        </div>
-      </section>
+      
 
       {/* ======================================================== */}
       {/* 10. INSTITUTE ONBOARDING / PROVISIONING MODAL            */}
       {/* ======================================================== */}
       <AnimatePresence>
         {instituteModalOpen && (
-          <div style={{ position: 'fixed', inset: 0, zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem', background: 'rgba(0, 0, 0, 0.82)', backdropFilter: 'blur(8px)' }}>
+          <div style={{ position: 'fixed', inset: 0, zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem', background: 'rgba(26, 0, 8, 0.88)', backdropFilter: 'blur(8px)' }}>
             <motion.div
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="glass-panel"
+              className="glass-panel modal-glass-container"
               style={{
                 width: '100%',
                 maxWidth: '580px',
@@ -1426,7 +1386,7 @@ export function Home() {
                         value={instituteForm.name}
                         onChange={(e) => setInstituteForm({ ...instituteForm, name: e.target.value })}
                         placeholder="e.g. Dr. Haris Mahmood"
-                        style={{ width: '100%', padding: '11px 14px', borderRadius: '10px', background: 'rgba(0, 0, 0, 0.3)', border: '1px solid rgba(241, 163, 42, 0.25)', color: '#fff', outline: 'none', boxSizing: 'border-box' }}
+                        className="emam-form-input"
                       />
                     </div>
 
@@ -1437,7 +1397,7 @@ export function Home() {
                         value={instituteForm.organization}
                         onChange={(e) => setInstituteForm({ ...instituteForm, organization: e.target.value })}
                         placeholder="e.g. Al-Noor Islamic Academy"
-                        style={{ width: '100%', padding: '11px 14px', borderRadius: '10px', background: 'rgba(0, 0, 0, 0.3)', border: '1px solid rgba(241, 163, 42, 0.25)', color: '#fff', outline: 'none', boxSizing: 'border-box' }}
+                        className="emam-form-input"
                       />
                     </div>
 
@@ -1450,7 +1410,7 @@ export function Home() {
                           value={instituteForm.email}
                           onChange={(e) => setInstituteForm({ ...instituteForm, email: e.target.value })}
                           placeholder="admin@academy.edu"
-                          style={{ width: '100%', padding: '11px 14px', borderRadius: '10px', background: 'rgba(0, 0, 0, 0.3)', border: '1px solid rgba(241, 163, 42, 0.25)', color: '#fff', outline: 'none', boxSizing: 'border-box' }}
+                          className="emam-form-input"
                         />
                       </div>
                       <div>
@@ -1460,7 +1420,7 @@ export function Home() {
                           value={instituteForm.phone}
                           onChange={(e) => setInstituteForm({ ...instituteForm, phone: e.target.value })}
                           placeholder="+44 20 7946 0991"
-                          style={{ width: '100%', padding: '11px 14px', borderRadius: '10px', background: 'rgba(0, 0, 0, 0.3)', border: '1px solid rgba(241, 163, 42, 0.25)', color: '#fff', outline: 'none', boxSizing: 'border-box' }}
+                          className="emam-form-input"
                         />
                       </div>
                     </div>
@@ -1472,7 +1432,7 @@ export function Home() {
                         value={instituteForm.requirements}
                         onChange={(e) => setInstituteForm({ ...instituteForm, requirements: e.target.value })}
                         placeholder="Estimated number of students, teachers, custom branding, or specific curriculum needs..."
-                        style={{ width: '100%', padding: '11px 14px', borderRadius: '10px', background: 'rgba(0, 0, 0, 0.3)', border: '1px solid rgba(241, 163, 42, 0.25)', color: '#fff', outline: 'none', boxSizing: 'border-box', resize: 'vertical' }}
+                        className="emam-form-input" style={{ resize: 'vertical' }}
                       />
                     </div>
                   </div>
@@ -1497,7 +1457,7 @@ export function Home() {
       {/* ======================================================== */}
       <AnimatePresence>
         {facultyModalOpen && (
-          <div style={{ position: 'fixed', inset: 0, zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem', background: 'rgba(0, 0, 0, 0.85)', backdropFilter: 'blur(8px)' }}>
+          <div style={{ position: 'fixed', inset: 0, zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem', background: 'rgba(26, 0, 8, 0.88)', backdropFilter: 'blur(8px)' }}>
             <motion.div
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -1554,22 +1514,22 @@ export function Home() {
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                       <div>
                         <label style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', fontWeight: '600', marginBottom: '0.35rem' }}>First Name *</label>
-                        <input type="text" required value={facultyForm.first_name} onChange={(e) => setFacultyForm({ ...facultyForm, first_name: e.target.value })} placeholder="e.g. Abdullah" style={{ width: '100%', padding: '11px 14px', borderRadius: '10px', background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(241,163,42,0.25)', color: '#fff', outline: 'none', boxSizing: 'border-box' }} />
+                        <input type="text" required value={facultyForm.first_name} onChange={(e) => setFacultyForm({ ...facultyForm, first_name: e.target.value })} placeholder="e.g. Abdullah" className="emam-form-input" />
                       </div>
                       <div>
                         <label style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', fontWeight: '600', marginBottom: '0.35rem' }}>Last Name *</label>
-                        <input type="text" required value={facultyForm.last_name} onChange={(e) => setFacultyForm({ ...facultyForm, last_name: e.target.value })} placeholder="e.g. Al-Farouq" style={{ width: '100%', padding: '11px 14px', borderRadius: '10px', background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(241,163,42,0.25)', color: '#fff', outline: 'none', boxSizing: 'border-box' }} />
+                        <input type="text" required value={facultyForm.last_name} onChange={(e) => setFacultyForm({ ...facultyForm, last_name: e.target.value })} placeholder="e.g. Al-Farouq" className="emam-form-input" />
                       </div>
                     </div>
 
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                       <div>
                         <label style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', fontWeight: '600', marginBottom: '0.35rem' }}>Email Address *</label>
-                        <input type="email" required value={facultyForm.email} onChange={(e) => setFacultyForm({ ...facultyForm, email: e.target.value })} placeholder="ustadh@example.com" style={{ width: '100%', padding: '11px 14px', borderRadius: '10px', background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(241,163,42,0.25)', color: '#fff', outline: 'none', boxSizing: 'border-box' }} />
+                        <input type="email" required value={facultyForm.email} onChange={(e) => setFacultyForm({ ...facultyForm, email: e.target.value })} placeholder="ustadh@example.com" className="emam-form-input" />
                       </div>
                       <div>
                         <label style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', fontWeight: '600', marginBottom: '0.35rem' }}>Phone / WhatsApp</label>
-                        <input type="text" value={facultyForm.phone} onChange={(e) => setFacultyForm({ ...facultyForm, phone: e.target.value })} placeholder="+44 7700 900000" style={{ width: '100%', padding: '11px 14px', borderRadius: '10px', background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(241,163,42,0.25)', color: '#fff', outline: 'none', boxSizing: 'border-box' }} />
+                        <input type="text" value={facultyForm.phone} onChange={(e) => setFacultyForm({ ...facultyForm, phone: e.target.value })} placeholder="+44 7700 900000" className="emam-form-input" />
                       </div>
                     </div>
 
@@ -1600,7 +1560,7 @@ export function Home() {
 
                     <div>
                       <label style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', fontWeight: '600', marginBottom: '0.35rem' }}>Academic Qualification</label>
-                      <input type="text" value={facultyForm.qualification} onChange={(e) => setFacultyForm({ ...facultyForm, qualification: e.target.value })} placeholder="e.g. M.A. Arabic Linguistics, Al-Azhar University" style={{ width: '100%', padding: '11px 14px', borderRadius: '10px', background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(241,163,42,0.25)', color: '#fff', outline: 'none', boxSizing: 'border-box' }} />
+                      <input type="text" value={facultyForm.qualification} onChange={(e) => setFacultyForm({ ...facultyForm, qualification: e.target.value })} placeholder="e.g. M.A. Arabic Linguistics, Al-Azhar University" className="emam-form-input" />
                     </div>
 
                     <div>
@@ -1615,7 +1575,7 @@ export function Home() {
 
                     <div>
                       <label style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', fontWeight: '600', marginBottom: '0.35rem' }}>About You / Teaching Philosophy</label>
-                      <textarea rows={3} value={facultyForm.about} onChange={(e) => setFacultyForm({ ...facultyForm, about: e.target.value })} placeholder="Briefly describe your teaching background, methodology, and why you wish to join Emam faculty..." style={{ width: '100%', padding: '11px 14px', borderRadius: '10px', background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(241,163,42,0.25)', color: '#fff', outline: 'none', boxSizing: 'border-box', resize: 'vertical' }} />
+                      <textarea rows={3} value={facultyForm.about} onChange={(e) => setFacultyForm({ ...facultyForm, about: e.target.value })} placeholder="Briefly describe your teaching background, methodology, and why you wish to join Emam faculty..." className="emam-form-input" style={{ resize: 'vertical' }} />
                     </div>
                   </div>
 

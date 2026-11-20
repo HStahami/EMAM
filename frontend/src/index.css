@@ -1175,3 +1175,15 @@ body {
 [data-theme='light'] .architecture-proposal-card button:hover * {
   color: #2c050d !important;
 }
+
+/* Pricing Period Label (/ month, etc.) */
+.pricing-period-label {
+  font-size: 0.92rem;
+  color: #f0ceb3;
+  font-weight: 500;
+}
+
+[data-theme='light'] .pricing-period-label {
+  color: #5c4d51 !important;
+  font-weight: 600 !important;
+}

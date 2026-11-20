@@ -212,7 +212,7 @@ export function Home() {
       badge: 'Individual Learners',
       priceMonthly: '£19',
       priceAnnual: '£15',
-      period: 'per month',
+      period: '/ month',
       description: 'Complete Arabic fluency, grammar syntax, and certified touch-typing.',
       features: [
         'Complete CEFR A1–B2 Arabic Curriculum',
@@ -230,7 +230,7 @@ export function Home() {
       badge: 'Faculty Appointment',
       priceMonthly: 'Accredited',
       priceAnnual: 'Accredited',
-      period: 'Faculty Appointment',
+      period: '',
       description: 'Teach official enrolled Emam student cohorts with institutional tools.',
       features: [
         'Official Certified Faculty Appointment',
@@ -247,8 +247,8 @@ export function Home() {
       name: 'Institute Campus SaaS',
       badge: 'Most Comprehensive',
       priceMonthly: 'Custom',
-      priceAnnual: 'Annual Contract',
-      period: 'billed annually',
+      priceAnnual: 'Custom',
+      period: '',
       description: 'Dedicated multi-tenant cloud ERP for Arabic academies and schools.',
       features: [
         'Dedicated Multi-Tenant Academy Portal',
@@ -1017,13 +1017,15 @@ export function Home() {
                   </p>
 
                   {/* Price Block */}
-                  <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.5rem', marginBottom: '1.75rem', borderBottom: '1px solid rgba(241, 163, 42, 0.15)', paddingBottom: '1.25rem' }}>
+                  <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.5rem', marginBottom: '1.75rem', borderBottom: '1px solid rgba(241, 163, 42, 0.15)', paddingBottom: '1.25rem', minHeight: '56px' }}>
                     <span style={{ fontSize: '2.6rem', fontWeight: '800', color: 'var(--color-primary)' }}>
                       {price}
                     </span>
-                    <span style={{ fontSize: '0.9rem', color: '#f0ceb3', fontWeight: '500' }}>
-                      {tier.period}
-                    </span>
+                    {tier.period && (
+                      <span className="pricing-period-label">
+                        {tier.period}
+                      </span>
+                    )}
                   </div>
 
                   {/* Features List (4 Clean Points) */}

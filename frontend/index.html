@@ -1,12 +1,83 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/emam_logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Emam</title>
+    
+    <!-- Primary Page Title & SEO Meta -->
+    <title>Emam LMS — Cloud Arabic Learning &amp; Institutional Management Platform</title>
+    <meta
+      name="description"
+      content="Emam is a specialized multi-tenant cloud LMS and institutional ERP built for Arabic language education. Delivering CEFR-aligned curriculum (A1-B2), 200-level typing lab certification, live WebRTC smart classrooms, and private academy management."
+    />
+    <meta name="keywords" content="Emam LMS, Arabic Learning Management System, Learn Arabic, CEFR Arabic, Arabic Touch-Typing Lab, Arabic Grammar, Nahw, Sarf, WebRTC Arabic Classroom, Language Academy ERP" />
+    <meta name="author" content="Emam Technologies Ltd." />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#690E1F" />
+    <link rel="canonical" href="https://emam.app/" />
+
+    <!-- Favicon & Touch Icons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/emam_logo.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/emam_logo.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/emam_logo.png" />
+    <link rel="shortcut icon" href="/emam_logo.png" />
+
+    <!-- Open Graph Meta Tags (WhatsApp, Facebook, LinkedIn, Telegram, Discord, Slack) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Emam Arabic LMS" />
+    <meta property="og:url" content="https://emam.app/" />
+    <meta property="og:title" content="Emam LMS — Cloud Arabic Learning &amp; Institutional Platform" />
+    <meta
+      property="og:description"
+      content="A specialized multi-tenant cloud platform for ambitious students, tutors, and language academies. Delivering CEFR-aligned curriculum, 200-level typing lab, and virtual smart classrooms."
+    />
+    <meta property="og:image" content="https://emam.app/og-cover.png" />
+    <meta property="og:image:secure_url" content="https://emam.app/og-cover.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Emam Arabic LMS &amp; Institutional Management Platform" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter / X Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@EmamArabicLMS" />
+    <meta name="twitter:creator" content="@EmamArabicLMS" />
+    <meta name="twitter:title" content="Emam LMS — Cloud Arabic Learning &amp; Institutional Platform" />
+    <meta
+      name="twitter:description"
+      content="A specialized multi-tenant cloud platform for ambitious students, tutors, and language academies. Delivering CEFR-aligned curriculum, 200-level typing lab, and virtual smart classrooms."
+    />
+    <meta name="twitter:image" content="https://emam.app/og-cover.png" />
+    <meta name="twitter:image:alt" content="Emam Arabic LMS Platform Preview Banner" />
+
+    <!-- Structured Data (JSON-LD) for Search Engines -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "Emam Arabic LMS",
+        "url": "https://emam.app",
+        "logo": "https://emam.app/emam_logo.png",
+        "description": "Unified multi-tenant cloud learning management system and institutional ERP built specifically for Arabic language education.",
+        "sameAs": [
+          "https://twitter.com/EmamArabicLMS",
+          "https://linkedin.com/company/emam-lms",
+          "https://github.com/HStahami/EMAM"
+        ]
+      }
+    </script>
   </head>
   <body>
+    <!-- Fallback content for crawlers & non-JS engines -->
+    <noscript>
+      <div style="font-family: sans-serif; text-align: center; padding: 2rem;">
+        <h1>Emam Arabic LMS &amp; Institutional ERP</h1>
+        <p>A unified cloud platform for Arabic education, CEFR curriculum, and multi-tenant academy management.</p>
+        <p>Please enable JavaScript in your browser to experience the full interactive platform.</p>
+      </div>
+    </noscript>
+
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

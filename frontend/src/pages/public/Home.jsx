@@ -213,14 +213,12 @@ export function Home() {
       priceMonthly: '£19',
       priceAnnual: '£15',
       period: 'per month',
-      description: 'Ideal for independent learners aiming for comprehensive Arabic fluency, grammar syntax, and touch-typing certification.',
+      description: 'Complete Arabic fluency, grammar syntax, and certified touch-typing.',
       features: [
-        'Full access to structured A1 – B2 academic curriculum',
-        '200-Level Arabic Touch-Typing Lab & benchmark grading',
-        'Interactive Smart Classroom access with live lecture archive',
-        'Auto-saved digital Smart Notebook with PDF export',
-        'Official cryptographically verified course certificate',
-        'Standard student support desk'
+        'Complete CEFR A1–B2 Arabic Curriculum',
+        '200-Level Arabic Touch-Typing Lab',
+        'Live WebRTC Smart Classroom & Archive',
+        'Verified Digital Course Certificate'
       ],
       ctaText: 'Start Learning',
       ctaLink: '/admission',
@@ -229,18 +227,16 @@ export function Home() {
     {
       id: 'instructor',
       name: 'Emam Certified Faculty',
-      badge: 'Academic Faculty Appointment',
+      badge: 'Faculty Appointment',
       priceMonthly: 'Accredited',
       priceAnnual: 'Accredited',
       period: 'Faculty Appointment',
-      description: 'Instructors are appointed members of official Emam faculty. We do not sell private tutor subscriptions — faculty teach enrolled Emam students.',
+      description: 'Teach official enrolled Emam student cohorts with institutional tools.',
       features: [
-        'Official Emam Certified Faculty status & public profile',
-        'Directly assigned student cohorts from Emam admissions',
-        'Virtual Smart Classroom with integrated Arabic digital whiteboard',
-        'Assignment distribution, grading, and attendance tracking',
-        'Direct consultation messaging bridge with active students',
-        'Super Admin credential provisioning & academic onboarding'
+        'Official Certified Faculty Appointment',
+        'Assigned Student Cohorts & Direct Messaging',
+        'Smart Classroom with Arabic Whiteboard',
+        'Digital Homework Grading & Attendance'
       ],
       ctaText: 'Apply to Join Faculty',
       actionModal: 'faculty',
@@ -249,19 +245,16 @@ export function Home() {
     {
       id: 'institute',
       name: 'Institute Campus SaaS',
-      badge: 'Most Comprehensive for Academies',
+      badge: 'Most Comprehensive',
       priceMonthly: 'Custom',
       priceAnnual: 'Annual Contract',
       period: 'billed annually',
-      description: 'Dedicated multi-tenant cloud environment for Islamic schools, madrasahs, and language centers, provisioned by Emam Super Admin.',
+      description: 'Dedicated multi-tenant cloud ERP for Arabic academies and schools.',
       features: [
-        'Fully isolated institutional space with dedicated Admin Portal',
-        'Super Admin provisioned credentials and tenant configuration',
-        'Unlimited instructor accounts and scalable student enrollment',
-        'Automated admissions pipeline & unique student code generator',
-        'Financial module: payment verification, receipt logs, and auditing',
-        'Multi-cohort scheduling (Weekday 1-on-1 & Weekend Group Classes)',
-        'Institutional data ownership, compliance, and priority SLA support'
+        'Dedicated Multi-Tenant Academy Portal',
+        'Unlimited Instructors & Student Enrollment',
+        'Automated Admissions & Fee Approval Ledger',
+        'Complete Data Isolation & Priority SLA'
       ],
       ctaText: 'Request Institute Demo',
       actionModal: 'institute',
@@ -990,7 +983,7 @@ export function Home() {
         </motion.div>
 
         {/* 3 Pricing Cards Grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem', alignItems: 'stretch' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))', gap: '2rem', alignItems: 'stretch' }}>
           {pricingTiers.map((tier) => {
             const price = billingCycle === 'annual' ? tier.priceAnnual : tier.priceMonthly;
             return (
@@ -999,43 +992,44 @@ export function Home() {
                 whileHover={{ y: -8, boxShadow: '0 20px 50px rgba(0, 0, 0, 0.7)' }}
                 className="glass-panel"
                 style={{
-                  padding: '2.75rem 2rem',
+                  padding: '2.5rem 1.85rem',
                   borderRadius: '24px',
                   border: tier.isPopular ? '2px solid var(--color-primary)' : '1px solid rgba(241, 163, 42, 0.22)',
                   background: tier.isPopular ? 'linear-gradient(135deg, rgba(105, 14, 31, 0.45), rgba(44, 5, 13, 0.85))' : 'rgba(105, 14, 31, 0.22)',
                   display: 'flex',
                   flexDirection: 'column',
-                  justifyContent: 'space-between',
+                  height: '100%',
+                  boxSizing: 'border-box',
                   position: 'relative'
                 }}
               >
-                <div>
+                <div style={{ flex: '1 0 auto' }}>
                   {/* Top Identifier */}
-                  <div style={{ fontSize: '0.82rem', fontWeight: '700', color: tier.isPopular ? 'var(--color-primary)' : '#f0ceb3', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '1.25rem' }}>
+                  <div style={{ fontSize: '0.8rem', fontWeight: '700', color: tier.isPopular ? 'var(--color-primary)' : '#f0ceb3', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '1rem' }}>
                     {tier.badge}
                   </div>
 
-                  <h3 style={{ fontSize: '1.75rem', fontWeight: '800', color: 'var(--color-white)', marginBottom: '0.5rem' }}>
+                  <h3 style={{ fontSize: '1.65rem', fontWeight: '800', color: 'var(--color-white)', marginBottom: '0.45rem', lineHeight: '1.25' }}>
                     {tier.name}
                   </h3>
-                  <p style={{ color: '#e0d0c8', fontSize: '0.92rem', lineHeight: '1.55', marginBottom: '1.75rem' }}>
+                  <p style={{ color: '#e0d0c8', fontSize: '0.9rem', lineHeight: '1.5', marginBottom: '1.5rem', minHeight: '42px' }}>
                     {tier.description}
                   </p>
 
                   {/* Price Block */}
-                  <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.5rem', marginBottom: '2rem', borderBottom: '1px solid rgba(241, 163, 42, 0.15)', paddingBottom: '1.5rem' }}>
-                    <span style={{ fontSize: '2.8rem', fontWeight: '800', color: 'var(--color-primary)' }}>
+                  <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.5rem', marginBottom: '1.75rem', borderBottom: '1px solid rgba(241, 163, 42, 0.15)', paddingBottom: '1.25rem' }}>
+                    <span style={{ fontSize: '2.6rem', fontWeight: '800', color: 'var(--color-primary)' }}>
                       {price}
                     </span>
-                    <span style={{ fontSize: '0.92rem', color: '#f0ceb3', fontWeight: '500' }}>
+                    <span style={{ fontSize: '0.9rem', color: '#f0ceb3', fontWeight: '500' }}>
                       {tier.period}
                     </span>
                   </div>
 
-                  {/* Features List */}
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem', marginBottom: '2.25rem' }}>
+                  {/* Features List (4 Clean Points) */}
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginBottom: '1.5rem' }}>
                     {tier.features.map((feat, idx) => (
-                      <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', fontSize: '0.93rem', color: '#fdfdfd', lineHeight: '1.5' }}>
+                      <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.65rem', fontSize: '0.9rem', color: '#fdfdfd', lineHeight: '1.45' }}>
                         <span style={{ color: 'var(--color-primary)', fontWeight: '700', flexShrink: 0 }}>—</span>
                         <span>{feat}</span>
                       </div>
@@ -1043,13 +1037,25 @@ export function Home() {
                   </div>
                 </div>
 
-                {/* CTA Action */}
-                <div>
+                {/* CTA Action - Standardized Identical Button Sizing & Baseline Alignment */}
+                <div style={{ marginTop: 'auto', paddingTop: '1.25rem', width: '100%' }}>
                   {tier.actionModal === 'faculty' ? (
                     <button
                       onClick={() => { setFacultySubmitted(false); setFacultyError(null); setFacultyModalOpen(true); }}
                       className="btn-primary"
-                      style={{ width: '100%', padding: '14px', fontSize: '1rem', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
+                      style={{
+                        width: '100%',
+                        height: '52px',
+                        padding: '0 1.5rem',
+                        fontSize: '0.96rem',
+                        fontWeight: '700',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        borderRadius: '30px',
+                        boxSizing: 'border-box',
+                        cursor: 'pointer'
+                      }}
                     >
                       {tier.ctaText}
                     </button>
@@ -1061,7 +1067,19 @@ export function Home() {
                         setInstituteModalOpen(true);
                       }}
                       className="btn-primary"
-                      style={{ width: '100%', padding: '14px', fontSize: '1rem', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
+                      style={{
+                        width: '100%',
+                        height: '52px',
+                        padding: '0 1.5rem',
+                        fontSize: '0.96rem',
+                        fontWeight: '700',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        borderRadius: '30px',
+                        boxSizing: 'border-box',
+                        cursor: 'pointer'
+                      }}
                     >
                       {tier.ctaText}
                     </button>
@@ -1071,11 +1089,14 @@ export function Home() {
                       className="btn-primary"
                       style={{
                         width: '100%',
-                        padding: '14px',
-                        fontSize: '1rem',
+                        height: '52px',
+                        padding: '0 1.5rem',
+                        fontSize: '0.96rem',
+                        fontWeight: '700',
                         display: 'inline-flex',
                         alignItems: 'center',
                         justifyContent: 'center',
+                        borderRadius: '30px',
                         textDecoration: 'none',
                         boxSizing: 'border-box'
                       }}

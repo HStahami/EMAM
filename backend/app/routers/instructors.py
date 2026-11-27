@@ -670,31 +670,83 @@ async def resend_instructor_credentials_api(
 # ========================================================
 
 @router.post("/apply", summary="Submit a new faculty teaching application (Public)")
-async def submit_faculty_application(data: FacultyApplicationCreate):
+async def submit_faculty_application(request: Request):
     db = get_db()
     if db is None:
         raise HTTPException(status_code=503, detail="Database service temporarily unavailable.")
 
-    # 1. Anti-Bot Honeypot
-    if data.bot_field and data.bot_field.strip():
-        return {"message": "Application submitted successfully!", "application_id": "verified"}
+    content_type = request.headers.get("content-type", "")
+    cv_url = None
 
-    # 2. Character & Content Sanitization
-    if contains_emoji(data.first_name) or contains_emoji(data.last_name) or contains_emoji(data.phone):
+    if "multipart/form-data" in content_type:
+        form = await request.form()
+        bot_val = form.get("bot_field", "")
+        if bot_val and str(bot_val).strip():
+            return {"message": "Application submitted successfully!", "application_id": "verified"}
+
+        first_name = str(form.get("first_name", "")).strip()
+        last_name = str(form.get("last_name", "")).strip()
+        email = str(form.get("email", "")).strip()
+        phone = str(form.get("phone", "")).strip()
+        specialization = str(form.get("specialization", "Classical Arabic & Syntax")).strip()
+        qualification = str(form.get("qualification", "Alimiyyah / Ijazah in Arabic")).strip()
+        experience_years = str(form.get("experience_years", "3+ Years")).strip()
+        about = str(form.get("about", "")).strip()
+        preferred_schedule = str(form.get("preferred_schedule", "Flexible")).strip()
+
+        cv_file = form.get("cv_file")
+        if not cv_file or not getattr(cv_file, "filename", None):
+            raise HTTPException(
+                status_code=400,
+                detail="Please upload your CV / Resume or qualification document (PDF or Word)."
+            )
+
+        try:
+            cv_url = await upload_media_file(cv_file, folder="faculty_resumes", prefix="faculty_cv")
+        except ValueError as val_err:
+            raise HTTPException(status_code=400, detail=str(val_err))
+        except Exception as up_err:
+            print(f"[FACULTY CV UPLOAD ERROR]: {up_err}")
+            raise HTTPException(status_code=500, detail="Failed to upload CV document. Please try again.")
+
+    else:
+        body = await request.json()
+        data = FacultyApplicationCreate(**body)
+        if data.bot_field and data.bot_field.strip():
+            return {"message": "Application submitted successfully!", "application_id": "verified"}
+
+        first_name = data.first_name
+        last_name = data.last_name
+        email = data.email
+        phone = data.phone
+        specialization = data.specialization or "Classical Arabic & Syntax"
+        qualification = data.qualification or "Alimiyyah / Ijazah in Arabic"
+        experience_years = str(data.experience_years) or "3+ Years"
+        about = data.about or ""
+        preferred_schedule = data.preferred_schedule or "Flexible"
+        cv_url = data.cv_url
+        if not cv_url:
+            raise HTTPException(
+                status_code=400,
+                detail="Please upload your CV / Resume or qualification document."
+            )
+
+    # Character & Content Sanitization
+    if contains_emoji(first_name) or contains_emoji(last_name) or contains_emoji(phone):
         raise HTTPException(
             status_code=400,
             detail="Emojis and unsupported symbols are not allowed in name or contact fields."
         )
 
-    clean_first_name = sanitize_text(data.first_name)
-    clean_last_name = sanitize_text(data.last_name)
-    clean_phone = sanitize_text(data.phone)
-    clean_email = str(data.email).strip().lower()
-    clean_specialization = sanitize_text(data.specialization or "Classical Arabic & Syntax")
-    clean_qualification = sanitize_text(data.qualification or "Alimiyyah / Ijazah in Arabic")
-    clean_experience = sanitize_text(data.experience_years or "3+ Years")
-    clean_about = sanitize_text(data.about or "")
-    clean_schedule = sanitize_text(data.preferred_schedule or "Flexible")
+    clean_first_name = sanitize_text(first_name)
+    clean_last_name = sanitize_text(last_name)
+    clean_phone = sanitize_text(phone)
+    clean_email = str(email).strip().lower()
+    clean_specialization = sanitize_text(specialization or "Classical Arabic & Syntax")
+    clean_qualification = sanitize_text(qualification or "Alimiyyah / Ijazah in Arabic")
+    clean_experience = sanitize_text(experience_years or "3+ Years")
+    clean_about = sanitize_text(about or "")
+    clean_schedule = sanitize_text(preferred_schedule or "Flexible")
 
     if len(clean_first_name) < 2 or len(clean_last_name) < 2:
         raise HTTPException(status_code=400, detail="First name and Last name must each be at least 2 characters.")
@@ -725,7 +777,7 @@ async def submit_faculty_application(data: FacultyApplicationCreate):
         "experience_years": clean_experience,
         "about": clean_about,
         "preferred_schedule": clean_schedule,
-        "cv_url": data.cv_url,
+        "cv_url": cv_url,
         "status": "Pending",
         "created_at": datetime.now(timezone.utc),
         "updated_at": datetime.now(timezone.utc)

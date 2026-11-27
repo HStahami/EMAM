@@ -49,6 +49,7 @@ export function Home() {
     about: '',
     preferred_schedule: 'Weekday Evenings & Weekend Cohorts'
   });
+  const [facultyCvFile, setFacultyCvFile] = useState(null);
   const [facultySubmitting, setFacultySubmitting] = useState(false);
   const [facultySubmitted, setFacultySubmitted] = useState(false);
   const [facultyError, setFacultyError] = useState(null);
@@ -142,12 +143,25 @@ export function Home() {
       setFacultyError('Please fill in your name and valid email address.');
       return;
     }
+    if (!facultyCvFile) {
+      setFacultyError('Please upload your CV / Resume or qualification document (PDF or Word).');
+      return;
+    }
     setFacultySubmitting(true);
     try {
-      await instructorsApi.applyFaculty({
-        ...facultyForm,
-        experience_years: Number.parseInt(facultyForm.experience_years, 10) || 0
-      });
+      const formData = new FormData();
+      formData.append('first_name', facultyForm.first_name);
+      formData.append('last_name', facultyForm.last_name);
+      formData.append('email', facultyForm.email);
+      formData.append('phone', facultyForm.phone);
+      formData.append('specialization', facultyForm.specialization);
+      formData.append('qualification', facultyForm.qualification);
+      formData.append('experience_years', Number.parseInt(facultyForm.experience_years, 10) || 0);
+      formData.append('about', facultyForm.about || '');
+      formData.append('preferred_schedule', facultyForm.preferred_schedule);
+      formData.append('cv_file', facultyCvFile);
+
+      await instructorsApi.applyFaculty(formData);
       setFacultySubmitted(true);
     } catch (err) {
       console.error(err);
@@ -637,7 +651,7 @@ export function Home() {
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'flex-end', justifyContent: 'center' }}>
                   {current.actionModal === 'faculty' ? (
                     <button
-                      onClick={() => { setFacultySubmitted(false); setFacultyError(null); setFacultyModalOpen(true); }}
+                      onClick={() => { setFacultySubmitted(false); setFacultyCvFile(null); setFacultyError(null); setFacultyModalOpen(true); }}
                       className="btn-primary"
                       style={{ padding: '14px 30px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.95rem' }}
                     >
@@ -1043,7 +1057,7 @@ export function Home() {
                 <div style={{ marginTop: 'auto', paddingTop: '1.25rem', width: '100%' }}>
                   {tier.actionModal === 'faculty' ? (
                     <button
-                      onClick={() => { setFacultySubmitted(false); setFacultyError(null); setFacultyModalOpen(true); }}
+                      onClick={() => { setFacultySubmitted(false); setFacultyCvFile(null); setFacultyError(null); setFacultyModalOpen(true); }}
                       className="btn-primary"
                       style={{
                         width: '100%',
@@ -1579,6 +1593,36 @@ export function Home() {
                         <option value="Weekend Group Sessions Only">Weekend Group Sessions Only</option>
                         <option value="Flexible / As Assigned">Flexible / As Assigned</option>
                       </select>
+                    </div>
+
+                    <div>
+                      <label htmlFor="faculty-cv" style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', fontWeight: '600', marginBottom: '0.35rem' }}>
+                        Curriculum Vitae / Ijazah Document * (PDF, DOCX - Max 10MB)
+                      </label>
+                      <input
+                        id="faculty-cv"
+                        type="file"
+                        required
+                        accept=".pdf,.docx,.doc,application/pdf"
+                        onChange={(e) => {
+                          const file = e.target.files?.[0];
+                          if (file) {
+                            if (file.size > 10 * 1024 * 1024) {
+                              setFacultyError('File size exceeds the 10MB limit. Please upload a smaller document.');
+                              return;
+                            }
+                            setFacultyCvFile(file);
+                            setFacultyError(null);
+                          }
+                        }}
+                        className="emam-form-input"
+                        style={{ padding: '8px 12px' }}
+                      />
+                      {facultyCvFile && (
+                        <div style={{ marginTop: '0.35rem', fontSize: '0.78rem', color: 'var(--color-primary, #f1a32a)' }}>
+                          Selected: {facultyCvFile.name} ({(facultyCvFile.size / (1024 * 1024)).toFixed(2)} MB)
+                        </div>
+                      )}
                     </div>
 
                     <div>

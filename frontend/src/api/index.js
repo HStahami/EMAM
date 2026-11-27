@@ -263,11 +263,20 @@ export const instructorsApi = {
     return res.json();
   },
   applyFaculty: async (data) => {
-    const res = await apiClient("/instructors/apply", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
+    let options;
+    if (data instanceof FormData) {
+      options = {
+        method: "POST",
+        body: data,
+      };
+    } else {
+      options = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      };
+    }
+    const res = await apiClient("/instructors/apply", options);
     if (!res.ok) {
       const err = await res.json().catch(() => ({}));
       throw new Error(err.detail || "Failed to submit faculty application");

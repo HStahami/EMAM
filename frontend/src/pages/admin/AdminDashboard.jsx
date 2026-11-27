@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Plus, Trash2, LogOut, Bell, CheckCircle2, Megaphone, Shield, MessageSquare, Send, RefreshCw, Mail, Award, Search, Key, Hourglass, Users, Trophy, BookOpen, AlertTriangle, Calendar, ArrowRight, X } from 'lucide-react';
+import { Plus, Trash2, LogOut, Bell, CheckCircle2, Megaphone, Shield, MessageSquare, Send, RefreshCw, Mail, Award, Search, Key, Hourglass, Users, Trophy, BookOpen, AlertTriangle, Calendar, ArrowRight, X, FileText, ExternalLink } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
-import { API_BASE, getAvatarUrl } from '../../api/client';
+import { API_BASE, getAvatarUrl, BACKEND_URL } from '../../api/client';
 import { inputStyle } from '../../components/common/styles';
 import { notificationsApi, messagesApi, studentsApi, reschedulesApi, classSessionsApi, dashboardApi } from '../../api';
 
@@ -3824,6 +3824,41 @@ export function AdminDashboard({ onLogout }) {
                             {app.about && (
                               <div style={{ marginTop: '0.75rem', fontSize: '0.84rem', color: '#cbd5e1', fontStyle: 'italic', borderLeft: '2px solid var(--color-primary, #f1a32a)', paddingLeft: '0.75rem', lineHeight: '1.5' }}>
                                 "{app.about}"
+                              </div>
+                            )}
+                            {app.cv_url && (
+                              <div style={{ marginTop: '0.85rem' }}>
+                                <a
+                                  href={app.cv_url.startsWith('http') ? app.cv_url : `${BACKEND_URL}${app.cv_url}`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  style={{
+                                    display: 'inline-flex',
+                                    alignItems: 'center',
+                                    gap: '7px',
+                                    padding: '6px 14px',
+                                    borderRadius: '8px',
+                                    background: 'rgba(241, 163, 42, 0.12)',
+                                    border: '1px solid rgba(241, 163, 42, 0.35)',
+                                    color: 'var(--color-primary, #f1a32a)',
+                                    fontSize: '0.82rem',
+                                    fontWeight: 700,
+                                    textDecoration: 'none',
+                                    transition: 'all 0.2s ease'
+                                  }}
+                                  onMouseEnter={(e) => {
+                                    e.currentTarget.style.background = 'var(--color-primary, #f1a32a)';
+                                    e.currentTarget.style.color = '#2c050d';
+                                  }}
+                                  onMouseLeave={(e) => {
+                                    e.currentTarget.style.background = 'rgba(241, 163, 42, 0.12)';
+                                    e.currentTarget.style.color = 'var(--color-primary, #f1a32a)';
+                                  }}
+                                >
+                                  <FileText size={14} />
+                                  <span>View Submitted CV / Document</span>
+                                  <ExternalLink size={12} />
+                                </a>
                               </div>
                             )}
                             {app.cancel_reason && <div style={{ marginTop: '0.6rem', fontSize: '0.82rem', color: '#ff6b6b' }}>Cancellation reason: {app.cancel_reason}</div>}

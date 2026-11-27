@@ -2305,14 +2305,16 @@ export function AdminDashboard({ onLogout }) {
                           </div>
                         </div>
                         <span style={{
-                          backgroundColor: 'rgba(231, 76, 60, 0.18)',
-                          color: '#e74c3c',
-                          border: '1px solid rgba(231, 76, 60, 0.35)',
-                          padding: '3px 9px',
+                          backgroundColor: 'var(--color-surface, #690e1f)',
+                          color: '#ffffff',
+                          border: '1px solid var(--color-primary, #f1a32a)',
+                          padding: '3px 10px',
                           borderRadius: '12px',
-                          fontSize: '0.72rem',
+                          fontSize: '0.74rem',
                           fontWeight: 700,
-                          flexShrink: 0
+                          letterSpacing: '0.3px',
+                          flexShrink: 0,
+                          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.35)'
                         }}>
                           At Risk
                         </span>
@@ -3790,43 +3792,105 @@ export function AdminDashboard({ onLogout }) {
                       const statusColor = appStatus === 'approved' ? '#2ecc71' : (appStatus === 'cancelled' || appStatus === 'canceled') ? '#e74c3c' : '#f39c12';
                       const statusBg = appStatus === 'approved' ? 'rgba(46,204,113,0.1)' : (appStatus === 'cancelled' || appStatus === 'canceled') ? 'rgba(231,76,60,0.1)' : 'rgba(243,156,18,0.1)';
                       return (
-                        <div key={appId} className="glass-panel" style={{ padding: '1.25rem 1.5rem', borderRadius: '12px' }}>
-                          <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap' }}>
-                            <div style={{ flex: 1, minWidth: '0' }}>
-                              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.5rem', flexWrap: 'wrap' }}>
-                                <span style={{ color: '#fff', fontWeight: 700, fontSize: '1.05rem' }}>{app.first_name} {app.last_name}</span>
+                        <div key={appId} className="glass-panel" style={{ padding: '1.35rem 1.6rem', borderRadius: '14px', border: '1px solid rgba(241, 163, 42, 0.2)' }}>
+                          {/* Card Content Top Section */}
+                          <div>
+                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.75rem', marginBottom: '0.75rem', flexWrap: 'wrap' }}>
+                              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
+                                <span style={{ color: '#fff', fontWeight: 700, fontSize: '1.1rem' }}>{app.first_name} {app.last_name}</span>
                                 <span style={{ padding: '2px 10px', borderRadius: '12px', fontSize: '0.75rem', fontWeight: 700, background: statusBg, color: statusColor, border: `1px solid ${statusColor}40`, textTransform: 'capitalize' }}>{app.status || 'pending'}</span>
                               </div>
-                              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '0.4rem', fontSize: '0.84rem' }}>
-                                <div><span style={{ color: '#64748b' }}>Email: </span><span style={{ color: '#f0ceb3' }}>{app.email}</span></div>
-                                {app.phone && <div><span style={{ color: '#64748b' }}>Phone: </span><span style={{ color: '#f0ceb3' }}>{app.phone}</span></div>}
-                                {app.specialization && <div><span style={{ color: '#64748b' }}>Specialization: </span><span style={{ color: '#fff' }}>{app.specialization}</span></div>}
-                                {app.qualification && <div><span style={{ color: '#64748b' }}>Qualification: </span><span style={{ color: '#fff' }}>{app.qualification}</span></div>}
-                                {app.experience_years !== undefined && <div><span style={{ color: '#64748b' }}>Experience: </span><span style={{ color: '#fff' }}>{app.experience_years} yr{app.experience_years !== 1 ? 's' : ''}</span></div>}
-                                {app.preferred_schedule && <div><span style={{ color: '#64748b' }}>Schedule: </span><span style={{ color: '#fff' }}>{app.preferred_schedule}</span></div>}
-                                <div><span style={{ color: '#64748b' }}>Applied: </span><span style={{ color: '#94a3b8' }}>{app.created_at ? new Date(app.created_at).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) : 'Recently'}</span></div>
-                              </div>
-                              {app.about && <div style={{ marginTop: '0.6rem', fontSize: '0.83rem', color: '#94a3b8', fontStyle: 'italic', borderLeft: '2px solid rgba(241,163,42,0.3)', paddingLeft: '0.75rem' }}>{app.about}</div>}
-                              {app.cancel_reason && <div style={{ marginTop: '0.5rem', fontSize: '0.82rem', color: '#e74c3c' }}>Cancellation reason: {app.cancel_reason}</div>}
                             </div>
 
-                            {appStatus === 'pending' && (
-                              <div style={{ display: 'flex', gap: '0.5rem', flexShrink: 0, flexWrap: 'wrap' }}>
+                            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '0.55rem', fontSize: '0.86rem' }}>
+                              <div><span style={{ color: '#64748b' }}>Email: </span><span style={{ color: 'var(--color-accent, #f0ceb3)' }}>{app.email}</span></div>
+                              {app.phone && <div><span style={{ color: '#64748b' }}>Phone: </span><span style={{ color: 'var(--color-accent, #f0ceb3)' }}>{app.phone}</span></div>}
+                              {app.specialization && <div><span style={{ color: '#64748b' }}>Specialization: </span><span style={{ color: '#fff' }}>{app.specialization}</span></div>}
+                              {app.qualification && <div><span style={{ color: '#64748b' }}>Qualification: </span><span style={{ color: '#fff' }}>{app.qualification}</span></div>}
+                              {app.experience_years !== undefined && <div><span style={{ color: '#64748b' }}>Experience: </span><span style={{ color: '#fff' }}>{app.experience_years} yr{app.experience_years !== 1 ? 's' : ''}</span></div>}
+                              {app.preferred_schedule && <div><span style={{ color: '#64748b' }}>Schedule: </span><span style={{ color: '#fff' }}>{app.preferred_schedule}</span></div>}
+                            </div>
+
+                            {app.about && (
+                              <div style={{ marginTop: '0.75rem', fontSize: '0.84rem', color: '#cbd5e1', fontStyle: 'italic', borderLeft: '2px solid var(--color-primary, #f1a32a)', paddingLeft: '0.75rem', lineHeight: '1.5' }}>
+                                "{app.about}"
+                              </div>
+                            )}
+                            {app.cancel_reason && <div style={{ marginTop: '0.6rem', fontSize: '0.82rem', color: '#ff6b6b' }}>Cancellation reason: {app.cancel_reason}</div>}
+                          </div>
+
+                          {/* Card Action Footer with Emam Brand Tokens */}
+                          <div style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'space-between',
+                            gap: '1rem',
+                            flexWrap: 'wrap',
+                            marginTop: '1.15rem',
+                            paddingTop: '0.95rem',
+                            borderTop: '1px solid rgba(241, 163, 42, 0.15)'
+                          }}>
+                            <div style={{ fontSize: '0.82rem', color: '#94a3b8' }}>
+                              <span style={{ color: '#64748b' }}>Submitted: </span>
+                              <span style={{ color: 'var(--color-accent, #f0ceb3)', fontWeight: 500 }}>
+                                {app.created_at ? new Date(app.created_at).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) : 'Recently'}
+                              </span>
+                            </div>
+
+                            {appStatus === 'pending' ? (
+                              <div style={{ display: 'flex', gap: '0.65rem', flexWrap: 'wrap', alignItems: 'center' }}>
                                 <button
                                   type="button"
                                   disabled={appActionLoading === appId}
                                   onClick={() => handleApproveApplication(appId)}
-                                  style={{ padding: '8px 16px', borderRadius: '8px', fontSize: '0.83rem', fontWeight: 700, cursor: appActionLoading === appId ? 'wait' : 'pointer', background: 'rgba(46,204,113,0.15)', color: '#2ecc71', border: '1px solid rgba(46,204,113,0.4)', whiteSpace: 'nowrap' }}
+                                  style={{
+                                    padding: '8px 20px',
+                                    borderRadius: '8px',
+                                    fontSize: '0.84rem',
+                                    fontWeight: 700,
+                                    cursor: appActionLoading === appId ? 'wait' : 'pointer',
+                                    background: 'var(--color-primary, #f1a32a)',
+                                    color: '#2c050d',
+                                    border: 'none',
+                                    boxShadow: '0 4px 14px rgba(241, 163, 42, 0.25)',
+                                    transition: 'all 0.2s ease',
+                                    whiteSpace: 'nowrap'
+                                  }}
                                 >
                                   {appActionLoading === appId ? 'Approving...' : 'Approve & Provision'}
                                 </button>
                                 <button
                                   type="button"
                                   onClick={() => { setCancelTargetApp(app); setCancelReason(''); setShowCancelModal(true); }}
-                                  style={{ padding: '8px 16px', borderRadius: '8px', fontSize: '0.83rem', fontWeight: 700, cursor: 'pointer', background: 'rgba(231,76,60,0.1)', color: '#e74c3c', border: '1px solid rgba(231,76,60,0.35)', whiteSpace: 'nowrap' }}
+                                  style={{
+                                    padding: '8px 18px',
+                                    borderRadius: '8px',
+                                    fontSize: '0.84rem',
+                                    fontWeight: 600,
+                                    cursor: 'pointer',
+                                    background: 'rgba(105, 14, 31, 0.55)',
+                                    color: 'var(--color-accent, #f0ceb3)',
+                                    border: '1px solid rgba(240, 206, 179, 0.35)',
+                                    transition: 'all 0.2s ease',
+                                    whiteSpace: 'nowrap'
+                                  }}
+                                  onMouseEnter={(e) => {
+                                    e.currentTarget.style.background = '#690e1f';
+                                    e.currentTarget.style.color = '#ffffff';
+                                    e.currentTarget.style.borderColor = 'rgba(240, 206, 179, 0.6)';
+                                  }}
+                                  onMouseLeave={(e) => {
+                                    e.currentTarget.style.background = 'rgba(105, 14, 31, 0.55)';
+                                    e.currentTarget.style.color = 'var(--color-accent, #f0ceb3)';
+                                    e.currentTarget.style.borderColor = 'rgba(240, 206, 179, 0.35)';
+                                  }}
                                 >
                                   Cancel Application
                                 </button>
+                              </div>
+                            ) : (
+                              <div style={{ fontSize: '0.82rem', fontWeight: 600, color: statusColor, textTransform: 'capitalize' }}>
+                                Application {appStatus}
                               </div>
                             )}
                           </div>

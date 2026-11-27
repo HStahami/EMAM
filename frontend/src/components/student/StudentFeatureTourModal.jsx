@@ -16,25 +16,28 @@ import {
 
 const TOUR_STORAGE_KEY = 'emam_student_feature_tour_completed_v1';
 
-export function isFeatureTourCompleted() {
+export function isFeatureTourCompleted(userId) {
+  const key = userId ? (TOUR_STORAGE_KEY + "_" + userId) : TOUR_STORAGE_KEY;
   try {
-    return localStorage.getItem(TOUR_STORAGE_KEY) === 'true';
+    return localStorage.getItem(key) === 'true';
   } catch {
     return false;
   }
 }
 
-export function markFeatureTourCompleted() {
+export function markFeatureTourCompleted(userId) {
+  const key = userId ? (TOUR_STORAGE_KEY + "_" + userId) : TOUR_STORAGE_KEY;
   try {
-    localStorage.setItem(TOUR_STORAGE_KEY, 'true');
+    localStorage.setItem(key, 'true');
   } catch (err) {
     console.warn('Failed to save tour status to localStorage:', err);
   }
 }
 
-export function resetFeatureTour() {
+export function resetFeatureTour(userId) {
+  const key = userId ? (TOUR_STORAGE_KEY + "_" + userId) : TOUR_STORAGE_KEY;
   try {
-    localStorage.removeItem(TOUR_STORAGE_KEY);
+    localStorage.removeItem(key);
   } catch (err) {
     console.warn('Failed to reset tour status in localStorage:', err);
   }
@@ -163,11 +166,11 @@ const TOUR_SLIDES = [
   },
 ];
 
-export function StudentFeatureTourModal({ isOpen, onClose, onComplete }) {
+export function StudentFeatureTourModal({ isOpen, onClose, onComplete, userId }) {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const handleFinish = useCallback(() => {
-    markFeatureTourCompleted();
+    markFeatureTourCompleted(userId);
     if (onComplete) onComplete();
     if (onClose) onClose();
   }, [onComplete, onClose]);

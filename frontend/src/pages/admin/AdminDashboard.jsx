@@ -1219,7 +1219,7 @@ export function AdminDashboard({ onLogout }) {
     { id: 'students', label: 'Students' },
     { id: 'graduates', label: 'Graduates' },
     { id: 'dropouts', label: 'Dropouts' },
-    { id: 'instructors', label: facultyApplications.filter(a => a.status === 'pending').length > 0 ? `Instructors (${facultyApplications.filter(a => a.status === 'pending').length})` : 'Instructors' },
+    { id: 'instructors', label: facultyApplications.filter(a => (a.status || 'pending').toLowerCase() === 'pending').length > 0 ? `Instructors (${facultyApplications.filter(a => (a.status || 'pending').toLowerCase() === 'pending').length})` : 'Instructors' },
     { id: 'modules', label: 'Modules' },
     { id: 'slots', label: 'Slots' },
     { id: 'contacts', label: 'Messages' },
@@ -3610,7 +3610,7 @@ export function AdminDashboard({ onLogout }) {
                 <div style={{ display: 'flex', gap: '0.5rem' }}>
                   {[
                     { id: 'active', label: `Active Faculty (${instructors.length})` },
-                    { id: 'applications', label: `Applications${facultyApplications.filter(a => a.status === 'pending').length > 0 ? ` (${facultyApplications.filter(a => a.status === 'pending').length} Pending)` : ''}` }
+                    { id: 'applications', label: `Applications${facultyApplications.filter(a => (a.status || 'pending').toLowerCase() === 'pending').length > 0 ? ` (${facultyApplications.filter(a => (a.status || 'pending').toLowerCase() === 'pending').length} Pending)` : ''}` }
                   ].map(sv => (
                     <button
                       key={sv.id}
@@ -3786,8 +3786,9 @@ export function AdminDashboard({ onLogout }) {
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                     {facultyApplications.map(app => {
                       const appId = app._id || app.id;
-                      const statusColor = app.status === 'approved' ? '#2ecc71' : app.status === 'cancelled' ? '#e74c3c' : '#f39c12';
-                      const statusBg = app.status === 'approved' ? 'rgba(46,204,113,0.1)' : app.status === 'cancelled' ? 'rgba(231,76,60,0.1)' : 'rgba(243,156,18,0.1)';
+                      const appStatus = (app.status || 'pending').toLowerCase();
+                      const statusColor = appStatus === 'approved' ? '#2ecc71' : (appStatus === 'cancelled' || appStatus === 'canceled') ? '#e74c3c' : '#f39c12';
+                      const statusBg = appStatus === 'approved' ? 'rgba(46,204,113,0.1)' : (appStatus === 'cancelled' || appStatus === 'canceled') ? 'rgba(231,76,60,0.1)' : 'rgba(243,156,18,0.1)';
                       return (
                         <div key={appId} className="glass-panel" style={{ padding: '1.25rem 1.5rem', borderRadius: '12px' }}>
                           <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap' }}>
@@ -3809,7 +3810,7 @@ export function AdminDashboard({ onLogout }) {
                               {app.cancel_reason && <div style={{ marginTop: '0.5rem', fontSize: '0.82rem', color: '#e74c3c' }}>Cancellation reason: {app.cancel_reason}</div>}
                             </div>
 
-                            {app.status === 'pending' && (
+                            {appStatus === 'pending' && (
                               <div style={{ display: 'flex', gap: '0.5rem', flexShrink: 0, flexWrap: 'wrap' }}>
                                 <button
                                   type="button"

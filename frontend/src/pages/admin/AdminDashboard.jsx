@@ -3747,17 +3747,27 @@ export function AdminDashboard({ onLogout }) {
                           <button
                             type="button"
                             onClick={() => handleDeleteInstructor(inst._id || inst.id)}
-                            className="glass-panel"
                             style={{
                               padding: '6px 14px',
                               fontSize: '0.82rem',
-                              color: '#e74c3c',
-                              border: '1px solid rgba(231, 76, 60, 0.4)',
+                              color: 'var(--color-accent, #f0ceb3)',
+                              border: '1px solid rgba(240, 206, 179, 0.35)',
                               borderRadius: '6px',
                               cursor: 'pointer',
                               fontWeight: 600,
-                              background: 'rgba(231, 76, 60, 0.08)',
+                              background: 'rgba(105, 14, 31, 0.55)',
+                              transition: 'all 0.2s ease',
                               whiteSpace: 'nowrap'
+                            }}
+                            onMouseEnter={(e) => {
+                              e.currentTarget.style.background = '#690e1f';
+                              e.currentTarget.style.color = '#ffffff';
+                              e.currentTarget.style.borderColor = 'rgba(240, 206, 179, 0.6)';
+                            }}
+                            onMouseLeave={(e) => {
+                              e.currentTarget.style.background = 'rgba(105, 14, 31, 0.55)';
+                              e.currentTarget.style.color = 'var(--color-accent, #f0ceb3)';
+                              e.currentTarget.style.borderColor = 'rgba(240, 206, 179, 0.35)';
                             }}
                           >
                             Delete

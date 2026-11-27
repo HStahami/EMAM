@@ -192,7 +192,7 @@ export function StudentNotifications() {
                 justifyContent: 'space-between',
                 gap: '1.25rem',
                 borderLeft: notif.is_read ? '4px solid transparent' : '4px solid var(--color-primary)',
-                backgroundColor: notif.is_read ? 'rgba(44, 5, 13, 0.65)' : 'rgba(44, 5, 13, 0.65)',
+                backgroundColor: notif.is_read ? 'rgba(44, 5, 13, 0.45)' : 'rgba(44, 5, 13, 0.75)',
               }}
             >
               <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start', flex: 1, minWidth: 0 }}>

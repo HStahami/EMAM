@@ -177,7 +177,7 @@ export default function StudentTypingLab() {
         setLoading(false);
       }
     }
-    initData();
+    void initData();
   }, []);
 
   // Load specific level
@@ -216,7 +216,7 @@ export default function StudentTypingLab() {
         // Calculate live WPM: (correct characters / 5) / (seconds / 60)
         const correctCount = typedChars.filter(c => c.status === 'correct').length;
         const currentWpm = Math.round((correctCount / 5) / (seconds / 60));
-        setWpm(isNaN(currentWpm) ? 0 : currentWpm);
+        setWpm(Number.isNaN(currentWpm) ? 0 : currentWpm);
 
         // Calculate live accuracy
         const total = typedChars.length;
@@ -305,7 +305,7 @@ export default function StudentTypingLab() {
     setCurrentIndex(nextIndex);
 
     if (nextIndex >= targetText.length) {
-      handleLevelCompletion(newTyped);
+      void handleLevelCompletion(newTyped);
     }
   }, [currentIndex, isCompleted, levelData, startTime, typedChars, soundEnabled]);
 
@@ -363,7 +363,7 @@ export default function StudentTypingLab() {
     if (currentLevelId < 200) {
       const nextId = currentLevelId + 1;
       setCurrentLevelId(nextId);
-      loadLevel(nextId);
+      void loadLevel(nextId);
     }
   };
 
@@ -430,7 +430,7 @@ export default function StudentTypingLab() {
                   onClick={() => {
                     const activeLvl = progress?.current_level || 1;
                     setCurrentLevelId(activeLvl);
-                    loadLevel(activeLvl);
+                    void loadLevel(activeLvl);
                     setViewMode('practice');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
@@ -579,7 +579,7 @@ export default function StudentTypingLab() {
                             disabled={!isUnlocked}
                             onClick={() => {
                               setCurrentLevelId(lvl.level_id);
-                              loadLevel(lvl.level_id);
+                              void loadLevel(lvl.level_id);
                               setViewMode('practice');
                               window.scrollTo({ top: 0, behavior: 'smooth' });
                             }}
@@ -724,6 +724,9 @@ export default function StudentTypingLab() {
 
             {/* Interactive Arabic Text Box */}
             <div
+              role="textbox"
+              aria-label="Arabic typing exercise text area"
+              aria-multiline="true"
               onClick={() => containerRef.current?.focus()}
               className="relative p-6 sm:p-8 bg-[#041416] rounded-xl border-2 border-[#14494e] focus-within:border-cyan-400 text-2xl sm:text-3xl lg:text-4xl leading-loose font-medium select-none cursor-text transition-colors text-right shadow-inner min-h-[140px] flex flex-wrap items-center justify-start gap-1"
               style={{ direction: 'rtl', fontFamily: "'Cairo', 'Tajawal', sans-serif" }}

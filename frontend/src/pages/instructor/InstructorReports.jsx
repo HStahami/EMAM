@@ -183,9 +183,10 @@ export function InstructorReports() {
             value={selectedSlotId}
             onChange={(e) => setSelectedSlotId(e.target.value)}
             style={{
-              backgroundColor: 'rgba(44, 5, 13, 0.95)', border: '1px solid rgba(241, 163, 42, 0.3)', boxShadow: '0 16px 40px rgba(0,0,0,0.6)',
+              backgroundColor: 'rgba(44, 5, 13, 0.95)',
+              boxShadow: '0 16px 40px rgba(0,0,0,0.6)',
               color: '#fff',
-              border: '1px solid rgba(241, 163, 42, 0.18)',
+              border: '1px solid rgba(241, 163, 42, 0.3)',
               padding: '0.6rem 1.2rem',
               borderRadius: '8px',
               fontSize: '0.9rem',

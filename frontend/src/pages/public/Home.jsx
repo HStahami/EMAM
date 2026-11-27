@@ -146,7 +146,7 @@ export function Home() {
     try {
       await instructorsApi.applyFaculty({
         ...facultyForm,
-        experience_years: parseInt(facultyForm.experience_years, 10) || 0
+        experience_years: Number.parseInt(facultyForm.experience_years, 10) || 0
       });
       setFacultySubmitted(true);
     } catch (err) {
@@ -1382,8 +1382,9 @@ export function Home() {
 
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '1.5rem' }}>
                     <div>
-                      <label style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', fontWeight: '600', marginBottom: '0.35rem' }}>Authorized Representative Name *</label>
+                      <label htmlFor="institute-rep-name" style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', fontWeight: '600', marginBottom: '0.35rem' }}>Authorized Representative Name *</label>
                       <input
+                        id="institute-rep-name"
                         type="text"
                         required
                         value={instituteForm.name}
@@ -1394,8 +1395,9 @@ export function Home() {
                     </div>
 
                     <div>
-                      <label style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', fontWeight: '600', marginBottom: '0.35rem' }}>Academy / Madrasah / School Name</label>
+                      <label htmlFor="institute-org-name" style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', fontWeight: '600', marginBottom: '0.35rem' }}>Academy / Madrasah / School Name</label>
                       <input
+                        id="institute-org-name"
                         type="text"
                         value={instituteForm.organization}
                         onChange={(e) => setInstituteForm({ ...instituteForm, organization: e.target.value })}
@@ -1406,8 +1408,9 @@ export function Home() {
 
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                       <div>
-                        <label style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', fontWeight: '600', marginBottom: '0.35rem' }}>Official Email *</label>
+                        <label htmlFor="institute-email" style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', fontWeight: '600', marginBottom: '0.35rem' }}>Official Email *</label>
                         <input
+                          id="institute-email"
                           type="email"
                           required
                           value={instituteForm.email}
@@ -1417,8 +1420,9 @@ export function Home() {
                         />
                       </div>
                       <div>
-                        <label style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', fontWeight: '600', marginBottom: '0.35rem' }}>Phone / WhatsApp</label>
+                        <label htmlFor="institute-phone" style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', fontWeight: '600', marginBottom: '0.35rem' }}>Phone / WhatsApp</label>
                         <input
+                          id="institute-phone"
                           type="text"
                           value={instituteForm.phone}
                           onChange={(e) => setInstituteForm({ ...instituteForm, phone: e.target.value })}
@@ -1429,8 +1433,9 @@ export function Home() {
                     </div>
 
                     <div>
-                      <label style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', fontWeight: '600', marginBottom: '0.35rem' }}>Estimated Student Volume &amp; Requirements</label>
+                      <label htmlFor="institute-requirements" style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', fontWeight: '600', marginBottom: '0.35rem' }}>Estimated Student Volume &amp; Requirements</label>
                       <textarea
+                        id="institute-requirements"
                         rows={3}
                         value={instituteForm.requirements}
                         onChange={(e) => setInstituteForm({ ...instituteForm, requirements: e.target.value })}
@@ -1516,30 +1521,30 @@ export function Home() {
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '1.5rem' }}>
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                       <div>
-                        <label style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', fontWeight: '600', marginBottom: '0.35rem' }}>First Name *</label>
-                        <input type="text" required value={facultyForm.first_name} onChange={(e) => setFacultyForm({ ...facultyForm, first_name: e.target.value })} placeholder="e.g. Abdullah" className="emam-form-input" />
+                        <label htmlFor="faculty-first-name" style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', fontWeight: '600', marginBottom: '0.35rem' }}>First Name *</label>
+                        <input id="faculty-first-name" type="text" required value={facultyForm.first_name} onChange={(e) => setFacultyForm({ ...facultyForm, first_name: e.target.value })} placeholder="e.g. Abdullah" className="emam-form-input" />
                       </div>
                       <div>
-                        <label style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', fontWeight: '600', marginBottom: '0.35rem' }}>Last Name *</label>
-                        <input type="text" required value={facultyForm.last_name} onChange={(e) => setFacultyForm({ ...facultyForm, last_name: e.target.value })} placeholder="e.g. Al-Farouq" className="emam-form-input" />
-                      </div>
-                    </div>
-
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-                      <div>
-                        <label style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', fontWeight: '600', marginBottom: '0.35rem' }}>Email Address *</label>
-                        <input type="email" required value={facultyForm.email} onChange={(e) => setFacultyForm({ ...facultyForm, email: e.target.value })} placeholder="ustadh@example.com" className="emam-form-input" />
-                      </div>
-                      <div>
-                        <label style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', fontWeight: '600', marginBottom: '0.35rem' }}>Phone / WhatsApp</label>
-                        <input type="text" value={facultyForm.phone} onChange={(e) => setFacultyForm({ ...facultyForm, phone: e.target.value })} placeholder="+44 7700 900000" className="emam-form-input" />
+                        <label htmlFor="faculty-last-name" style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', fontWeight: '600', marginBottom: '0.35rem' }}>Last Name *</label>
+                        <input id="faculty-last-name" type="text" required value={facultyForm.last_name} onChange={(e) => setFacultyForm({ ...facultyForm, last_name: e.target.value })} placeholder="e.g. Al-Farouq" className="emam-form-input" />
                       </div>
                     </div>
 
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                       <div>
-                        <label style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', fontWeight: '600', marginBottom: '0.35rem' }}>Area of Specialization</label>
-                        <select value={facultyForm.specialization} onChange={(e) => setFacultyForm({ ...facultyForm, specialization: e.target.value })} style={{ width: '100%', padding: '11px 14px', borderRadius: '10px', background: 'rgba(0,0,0,0.5)', border: '1px solid rgba(241,163,42,0.25)', color: '#fff', outline: 'none', boxSizing: 'border-box' }}>
+                        <label htmlFor="faculty-email" style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', fontWeight: '600', marginBottom: '0.35rem' }}>Email Address *</label>
+                        <input id="faculty-email" type="email" required value={facultyForm.email} onChange={(e) => setFacultyForm({ ...facultyForm, email: e.target.value })} placeholder="ustadh@example.com" className="emam-form-input" />
+                      </div>
+                      <div>
+                        <label htmlFor="faculty-phone" style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', fontWeight: '600', marginBottom: '0.35rem' }}>Phone / WhatsApp</label>
+                        <input id="faculty-phone" type="text" value={facultyForm.phone} onChange={(e) => setFacultyForm({ ...facultyForm, phone: e.target.value })} placeholder="+44 7700 900000" className="emam-form-input" />
+                      </div>
+                    </div>
+
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+                      <div>
+                        <label htmlFor="faculty-specialization" style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', fontWeight: '600', marginBottom: '0.35rem' }}>Area of Specialization</label>
+                        <select id="faculty-specialization" value={facultyForm.specialization} onChange={(e) => setFacultyForm({ ...facultyForm, specialization: e.target.value })} style={{ width: '100%', padding: '11px 14px', borderRadius: '10px', background: 'rgba(0,0,0,0.5)', border: '1px solid rgba(241,163,42,0.25)', color: '#fff', outline: 'none', boxSizing: 'border-box' }}>
                           <option value="Arabic Grammar (Nahw & Sarf)">Arabic Grammar (Nahw &amp; Sarf)</option>
                           <option value="Quranic Arabic & Tafsir">Quranic Arabic &amp; Tafsir</option>
                           <option value="Classical Arabic Literature">Classical Arabic Literature</option>
@@ -1549,8 +1554,8 @@ export function Home() {
                         </select>
                       </div>
                       <div>
-                        <label style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', fontWeight: '600', marginBottom: '0.35rem' }}>Years of Experience</label>
-                        <select value={facultyForm.experience_years} onChange={(e) => setFacultyForm({ ...facultyForm, experience_years: e.target.value })} style={{ width: '100%', padding: '11px 14px', borderRadius: '10px', background: 'rgba(0,0,0,0.5)', border: '1px solid rgba(241,163,42,0.25)', color: '#fff', outline: 'none', boxSizing: 'border-box' }}>
+                        <label htmlFor="faculty-experience" style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', fontWeight: '600', marginBottom: '0.35rem' }}>Years of Experience</label>
+                        <select id="faculty-experience" value={facultyForm.experience_years} onChange={(e) => setFacultyForm({ ...facultyForm, experience_years: e.target.value })} style={{ width: '100%', padding: '11px 14px', borderRadius: '10px', background: 'rgba(0,0,0,0.5)', border: '1px solid rgba(241,163,42,0.25)', color: '#fff', outline: 'none', boxSizing: 'border-box' }}>
                           <option value="1">1 year</option>
                           <option value="2">2 years</option>
                           <option value="3">3 years</option>
@@ -1562,13 +1567,13 @@ export function Home() {
                     </div>
 
                     <div>
-                      <label style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', fontWeight: '600', marginBottom: '0.35rem' }}>Academic Qualification</label>
-                      <input type="text" value={facultyForm.qualification} onChange={(e) => setFacultyForm({ ...facultyForm, qualification: e.target.value })} placeholder="e.g. M.A. Arabic Linguistics, Al-Azhar University" className="emam-form-input" />
+                      <label htmlFor="faculty-qualification" style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', fontWeight: '600', marginBottom: '0.35rem' }}>Academic Qualification</label>
+                      <input id="faculty-qualification" type="text" value={facultyForm.qualification} onChange={(e) => setFacultyForm({ ...facultyForm, qualification: e.target.value })} placeholder="e.g. M.A. Arabic Linguistics, Al-Azhar University" className="emam-form-input" />
                     </div>
 
                     <div>
-                      <label style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', fontWeight: '600', marginBottom: '0.35rem' }}>Preferred Teaching Schedule</label>
-                      <select value={facultyForm.preferred_schedule} onChange={(e) => setFacultyForm({ ...facultyForm, preferred_schedule: e.target.value })} style={{ width: '100%', padding: '11px 14px', borderRadius: '10px', background: 'rgba(0,0,0,0.5)', border: '1px solid rgba(241,163,42,0.25)', color: '#fff', outline: 'none', boxSizing: 'border-box' }}>
+                      <label htmlFor="faculty-schedule" style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', fontWeight: '600', marginBottom: '0.35rem' }}>Preferred Teaching Schedule</label>
+                      <select id="faculty-schedule" value={facultyForm.preferred_schedule} onChange={(e) => setFacultyForm({ ...facultyForm, preferred_schedule: e.target.value })} style={{ width: '100%', padding: '11px 14px', borderRadius: '10px', background: 'rgba(0,0,0,0.5)', border: '1px solid rgba(241,163,42,0.25)', color: '#fff', outline: 'none', boxSizing: 'border-box' }}>
                         <option value="Weekday Evenings & Weekend Cohorts">Weekday Evenings &amp; Weekend Cohorts</option>
                         <option value="Weekday Mornings (1-on-1)">Weekday Mornings (1-on-1)</option>
                         <option value="Weekend Group Sessions Only">Weekend Group Sessions Only</option>
@@ -1577,8 +1582,8 @@ export function Home() {
                     </div>
 
                     <div>
-                      <label style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', fontWeight: '600', marginBottom: '0.35rem' }}>About You / Teaching Philosophy</label>
-                      <textarea rows={3} value={facultyForm.about} onChange={(e) => setFacultyForm({ ...facultyForm, about: e.target.value })} placeholder="Briefly describe your teaching background, methodology, and why you wish to join Emam faculty..." className="emam-form-input" style={{ resize: 'vertical' }} />
+                      <label htmlFor="faculty-about" style={{ display: 'block', fontSize: '0.85rem', color: '#f0ceb3', fontWeight: '600', marginBottom: '0.35rem' }}>About You / Teaching Philosophy</label>
+                      <textarea id="faculty-about" rows={3} value={facultyForm.about} onChange={(e) => setFacultyForm({ ...facultyForm, about: e.target.value })} placeholder="Briefly describe your teaching background, methodology, and why you wish to join Emam faculty..." className="emam-form-input" style={{ resize: 'vertical' }} />
                     </div>
                   </div>
 

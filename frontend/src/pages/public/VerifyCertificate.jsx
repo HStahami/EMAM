@@ -31,7 +31,7 @@ export function VerifyCertificate() {
   useEffect(() => {
     if (paramCertId) {
       setSearchInput(paramCertId);
-      performVerification(paramCertId);
+      void performVerification(paramCertId);
     }
   }, [paramCertId]);
 
@@ -65,7 +65,7 @@ export function VerifyCertificate() {
     e.preventDefault();
     if (searchInput.trim()) {
       navigate(`/verify-certificate/${searchInput.trim()}`);
-      performVerification(searchInput.trim());
+      void performVerification(searchInput.trim());
     }
   };
 

@@ -35,7 +35,7 @@ export function Navbar() {
       <div style={{
         display: isMobile ? (isOpen ? 'flex' : 'none') : 'flex',
         flexDirection: isMobile ? 'column' : 'row',
-        gap: isMobile ? '1.5rem' : '1.5rem',
+        gap: '1.5rem',
         alignItems: 'center',
         justifyContent: isMobile ? 'center' : 'flex-end',
         width: '100%',

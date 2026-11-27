@@ -272,7 +272,7 @@ export function AdminDashboard({ onLogout }) {
         setShowMakeupModal(false);
         setMakeupSuccess('');
         if (selectedInstructorForDetail) {
-          handleSelectCourseTab(selectedCourseTab);
+          void handleSelectCourseTab(selectedCourseTab);
         }
       }, 1800);
     } catch (err) {
@@ -1857,7 +1857,7 @@ export function AdminDashboard({ onLogout }) {
                         if (!dt) return 'Recently';
                         try {
                           const diff = Date.now() - new Date(dt).getTime();
-                          if (isNaN(diff) || diff < 0) return 'Recently';
+                          if (Number.isNaN(diff) || diff < 0) return 'Recently';
                           const h = Math.floor(diff / 3600000);
                           return h < 1 ? 'Just now' : (h < 24 ? `${h}h ago` : `${Math.floor(h / 24)}d ago`);
                         } catch { return 'Recently'; }
@@ -2379,7 +2379,7 @@ export function AdminDashboard({ onLogout }) {
                         if (!dt) return 'Recently';
                         try {
                           const diff = Date.now() - new Date(dt).getTime();
-                          if (isNaN(diff) || diff < 0) return 'Recently';
+                          if (Number.isNaN(diff) || diff < 0) return 'Recently';
                           const h = Math.floor(diff / 3600000);
                           return h < 1 ? 'Just now' : (h < 24 ? `${h}h ago` : `${Math.floor(h / 24)}d ago`);
                         } catch { return 'Recently'; }
@@ -3919,8 +3919,9 @@ export function AdminDashboard({ onLogout }) {
                 You are cancelling the application from <strong>{cancelTargetApp.first_name} {cancelTargetApp.last_name}</strong>. A cancellation notice will be emailed to <span style={{ color: 'var(--color-primary)' }}>{cancelTargetApp.email}</span>.
               </p>
               <div style={{ marginBottom: '1rem' }}>
-                <label style={{ display: 'block', color: '#f0ceb3', fontSize: '0.85rem', fontWeight: 600, marginBottom: '0.4rem' }}>Cancellation Reason *</label>
+                <label htmlFor="faculty-cancel-reason" style={{ display: 'block', color: '#f0ceb3', fontSize: '0.85rem', fontWeight: 600, marginBottom: '0.4rem' }}>Cancellation Reason *</label>
                 <textarea
+                  id="faculty-cancel-reason"
                   rows={4}
                   value={cancelReason}
                   onChange={e => setCancelReason(e.target.value)}
@@ -4019,8 +4020,16 @@ export function AdminDashboard({ onLogout }) {
                     {classStats.map((inst) => (
                       <div
                         key={inst.instructor_id}
+                        role="button"
+                        tabIndex={0}
                         className="glass-panel"
                         onClick={() => handleSelectInstructorForDetail(inst)}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            handleSelectInstructorForDetail(inst);
+                          }
+                        }}
                         style={{
                           padding: '1.5rem',
                           borderRadius: '14px',
@@ -4343,9 +4352,9 @@ export function AdminDashboard({ onLogout }) {
                                   borderRadius: '6px',
                                   fontSize: '0.78rem',
                                   fontWeight: 700,
-                                  background: isMissed ? 'rgba(231, 76, 60, 0.15)' : (isLate ? 'rgba(243, 156, 18, 0.15)' : (isResched ? 'rgba(241, 163, 42, 0.15)' : 'rgba(241, 163, 42, 0.15)')),
-                                  color: isMissed ? '#ff6b6b' : (isLate ? '#f39c12' : (isResched ? 'var(--color-primary)' : 'var(--color-primary)')),
-                                  border: isMissed ? '1px solid rgba(231, 76, 60, 0.3)' : (isLate ? '1px solid rgba(243, 156, 18, 0.3)' : (isResched ? '1px solid rgba(241, 163, 42, 0.15)' : '1px solid rgba(241, 163, 42, 0.15)'))
+                                  background: isMissed ? 'rgba(231, 76, 60, 0.15)' : (isLate ? 'rgba(243, 156, 18, 0.15)' : (isResched ? 'rgba(241, 163, 42, 0.15)' : 'rgba(46, 204, 113, 0.15)')),
+                                  color: isMissed ? '#ff6b6b' : (isLate ? '#f39c12' : (isResched ? 'var(--color-primary)' : '#2ecc71')),
+                                  border: isMissed ? '1px solid rgba(231, 76, 60, 0.3)' : (isLate ? '1px solid rgba(243, 156, 18, 0.3)' : (isResched ? '1px solid rgba(241, 163, 42, 0.25)' : '1px solid rgba(46, 204, 113, 0.3)'))
                                 }}>
                                   {isMissed ? 'Missed' : (isLate ? `Late (+${sess.late_minutes || 15}m)` : (isResched ? 'Rescheduled' : 'On-Time'))}
                                 </span>
@@ -4588,10 +4597,11 @@ export function AdminDashboard({ onLogout }) {
 
                   <form onSubmit={handleSubmitMakeup} style={{ display: 'flex', flexDirection: 'column', gap: '1.1rem' }}>
                     <div>
-                      <label style={{ display: 'block', color: 'var(--color-primary)', fontSize: '0.85rem', fontWeight: 600, marginBottom: '0.4rem' }}>
+                      <label htmlFor="makeup-date-input" style={{ display: 'block', color: 'var(--color-primary)', fontSize: '0.85rem', fontWeight: 600, marginBottom: '0.4rem' }}>
                         Make-up Date *
                       </label>
                       <input
+                        id="makeup-date-input"
                         type="date"
                         value={makeupDate}
                         onChange={(e) => setMakeupDate(e.target.value)}
@@ -4610,10 +4620,11 @@ export function AdminDashboard({ onLogout }) {
                     </div>
 
                     <div>
-                      <label style={{ display: 'block', color: 'var(--color-primary)', fontSize: '0.85rem', fontWeight: 600, marginBottom: '0.4rem' }}>
+                      <label htmlFor="makeup-time-input" style={{ display: 'block', color: 'var(--color-primary)', fontSize: '0.85rem', fontWeight: 600, marginBottom: '0.4rem' }}>
                         Make-up Time *
                       </label>
                       <input
+                        id="makeup-time-input"
                         type="text"
                         placeholder="e.g. 05:00 PM"
                         value={makeupTime}
@@ -4633,10 +4644,11 @@ export function AdminDashboard({ onLogout }) {
                     </div>
 
                     <div>
-                      <label style={{ display: 'block', color: 'var(--color-primary)', fontSize: '0.85rem', fontWeight: 600, marginBottom: '0.4rem' }}>
+                      <label htmlFor="makeup-remarks-input" style={{ display: 'block', color: 'var(--color-primary)', fontSize: '0.85rem', fontWeight: 600, marginBottom: '0.4rem' }}>
                         Remarks / Note
                       </label>
                       <textarea
+                        id="makeup-remarks-input"
                         rows={2}
                         value={makeupRemarks}
                         onChange={(e) => setMakeupRemarks(e.target.value)}

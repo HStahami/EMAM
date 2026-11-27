@@ -204,7 +204,7 @@ export function StudentTasks() {
                 justifyContent: 'space-between',
                 borderLeft: task.is_submitted
                   ? task.submission_status === 'reviewed'
-                    ? '4px solid var(--color-primary)'
+                    ? '4px solid #2ecc71'
                     : '4px solid var(--color-primary)'
                   : '4px solid rgba(241, 163, 42, 0.5)',
               }}
@@ -234,10 +234,10 @@ export function StudentTasks() {
                         borderRadius: '4px',
                         backgroundColor:
                           task.submission_status === 'reviewed'
-                            ? 'rgba(241, 163, 42, 0.15)'
+                            ? 'rgba(46, 204, 113, 0.15)'
                             : 'rgba(241, 163, 42, 0.15)',
                         color:
-                          task.submission_status === 'reviewed' ? 'var(--color-primary)' : 'var(--color-primary)',
+                          task.submission_status === 'reviewed' ? '#2ecc71' : 'var(--color-primary)',
                       }}
                     >
                       {task.submission_status === 'reviewed'

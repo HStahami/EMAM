@@ -743,10 +743,11 @@ export function InstructorClassroom() {
             <form onSubmit={handleSubmitReschedule} style={{ display: 'flex', flexDirection: 'column', gap: '1.1rem' }}>
               {/* Slot Selector Dropdown */}
               <div>
-                <label style={{ display: 'block', color: 'var(--color-primary)', fontSize: '0.85rem', fontWeight: 600, marginBottom: '0.4rem' }}>
+                <label htmlFor="reschedule-slot-id" style={{ display: 'block', color: 'var(--color-primary)', fontSize: '0.85rem', fontWeight: 600, marginBottom: '0.4rem' }}>
                   Select Class Slot
                 </label>
                 <select
+                  id="reschedule-slot-id"
                   value={rescheduleSlotId}
                   onChange={(e) => setRescheduleSlotId(e.target.value)}
                   style={{
@@ -772,10 +773,11 @@ export function InstructorClassroom() {
               {/* Two Dates on Top Side by Side */}
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                 <div>
-                  <label style={{ display: 'block', color: '#f0ceb3', fontSize: '0.82rem', fontWeight: 600, marginBottom: '0.4rem' }}>
+                  <label htmlFor="reschedule-orig-date" style={{ display: 'block', color: '#f0ceb3', fontSize: '0.82rem', fontWeight: 600, marginBottom: '0.4rem' }}>
                     Original Class Date
                   </label>
                   <input
+                    id="reschedule-orig-date"
                     type="date"
                     value={rescheduleOrigDate}
                     onChange={(e) => setRescheduleOrigDate(e.target.value)}
@@ -794,10 +796,11 @@ export function InstructorClassroom() {
                 </div>
 
                 <div>
-                  <label style={{ display: 'block', color: 'var(--color-primary)', fontSize: '0.82rem', fontWeight: 600, marginBottom: '0.4rem' }}>
+                  <label htmlFor="reschedule-new-date" style={{ display: 'block', color: 'var(--color-primary)', fontSize: '0.82rem', fontWeight: 600, marginBottom: '0.4rem' }}>
                     Shift To (New Date)
                   </label>
                   <input
+                    id="reschedule-new-date"
                     type="date"
                     value={rescheduleNewDate}
                     onChange={(e) => setRescheduleNewDate(e.target.value)}
@@ -818,10 +821,11 @@ export function InstructorClassroom() {
 
               {/* Reason Text Area */}
               <div>
-                <label style={{ display: 'block', color: 'var(--color-primary)', fontSize: '0.85rem', fontWeight: 600, marginBottom: '0.4rem' }}>
+                <label htmlFor="reschedule-reason" style={{ display: 'block', color: 'var(--color-primary)', fontSize: '0.85rem', fontWeight: 600, marginBottom: '0.4rem' }}>
                   Reason for Rescheduling
                 </label>
                 <textarea
+                  id="reschedule-reason"
                   rows={3}
                   value={rescheduleReason}
                   onChange={(e) => setRescheduleReason(e.target.value)}

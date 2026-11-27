@@ -25,8 +25,10 @@ async def lifespan(app: FastAPI):
         await init_database(get_db())
     except Exception as e:
         print(f"[INIT DB WARNING] Startup init encountered note: {e}")
-    yield
-    await close_mongo_connection()
+    try:
+        yield
+    finally:
+        await close_mongo_connection()
 
 app = FastAPI(
     title="Emam LMS API",

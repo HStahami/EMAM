@@ -468,7 +468,7 @@ def generate_curriculum():
             "title": f"Level {idx}: {('Final Comprehensive Mastery Exam (Graduation)' if idx == 200 else 'Professional Mastery Assessment')}",
             "target_keys": ["نصوص متقدمة وكاملة"],
             "text": text,
-            "min_accuracy": 92 if idx < 200 else 92,
+            "min_accuracy": 92,
             "min_wpm": 30 if idx < 200 else 25,
         })
 

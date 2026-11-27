@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { BookOpen, Keyboard, Award } from 'lucide-react';
+import { BookOpen, Keyboard, Award, Sparkles } from 'lucide-react';
 import { studentsApi } from '../../api';
 import { useAuth } from '../../context/AuthContext';
 
@@ -92,6 +92,36 @@ export function StudentDashboard() {
           <p style={{ color: '#f0ceb3', fontSize: '0.95rem', margin: 0, maxWidth: '600px', lineHeight: '1.45' }}>
             Welcome to your Emam learning portal. Track assignments, attend live sessions, and view your academic achievements.
           </p>
+
+          <button
+            type="button"
+            onClick={() => window.dispatchEvent(new CustomEvent('open-emam-feature-tour'))}
+            style={{
+              marginTop: '0.9rem',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.45rem',
+              padding: '0.45rem 0.95rem',
+              borderRadius: '6px',
+              backgroundColor: 'rgba(241, 163, 42, 0.12)',
+              border: '1px solid rgba(241, 163, 42, 0.35)',
+              color: 'var(--color-primary)',
+              fontSize: '0.82rem',
+              fontWeight: 600,
+              cursor: 'pointer',
+              transition: 'all 0.15s ease',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = 'rgba(241, 163, 42, 0.22)';
+              e.currentTarget.style.transform = 'translateY(-1px)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = 'rgba(241, 163, 42, 0.12)';
+              e.currentTarget.style.transform = 'none';
+            }}
+          >
+            <Sparkles size={14} /> Take Feature Tour
+          </button>
         </div>
 
         {/* Course & Slot Summary Badge */}

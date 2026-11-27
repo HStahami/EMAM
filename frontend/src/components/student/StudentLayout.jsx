@@ -20,10 +20,12 @@ import {
   Keyboard,
   PanelLeftClose,
   PanelLeftOpen,
+  Sparkles,
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { notificationsApi } from '../../api';
 import { OnboardingModal } from './OnboardingModal';
+import { StudentFeatureTourModal, isFeatureTourCompleted } from './StudentFeatureTourModal';
 
 export function StudentLayout({ children }) {
   const { user, logout, refreshUser } = useAuth();
@@ -33,9 +35,25 @@ export function StudentLayout({ children }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [unreadCount, setUnreadCount] = useState(0);
+  const [showTour, setShowTour] = useState(false);
 
   // Mandatory Onboarding Check from Server-Authoritative State
   const needsOnboarding = !!(user?.first_login || !user?.profile_completed);
+
+  // Automatically trigger feature tour for students who completed account setup but haven't seen the tour
+  useEffect(() => {
+    if (!needsOnboarding && !isFeatureTourCompleted()) {
+      const timer = setTimeout(() => setShowTour(true), 600);
+      return () => clearTimeout(timer);
+    }
+  }, [needsOnboarding]);
+
+  // Global listener for manual tour triggers across any student subview
+  useEffect(() => {
+    const handleOpenTour = () => setShowTour(true);
+    window.addEventListener('open-emam-feature-tour', handleOpenTour);
+    return () => window.removeEventListener('open-emam-feature-tour', handleOpenTour);
+  }, []);
 
   useEffect(() => {
     void loadUnreadNotifications();
@@ -158,6 +176,37 @@ export function StudentLayout({ children }) {
               <strong style={{ color: 'var(--color-primary)' }}>{user.student_code}</strong>
             </div>
           )}
+
+          {/* Feature Tour Button */}
+          <button
+            type="button"
+            onClick={() => setShowTour(true)}
+            title="Take Feature Tour"
+            aria-label="Take Feature Tour"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.4rem',
+              background: 'rgba(241, 163, 42, 0.12)',
+              border: '1px solid rgba(241, 163, 42, 0.35)',
+              color: 'var(--color-primary)',
+              padding: '5px 10px',
+              borderRadius: '6px',
+              fontSize: '0.78rem',
+              fontWeight: 600,
+              cursor: 'pointer',
+              transition: 'all 0.15s ease',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'rgba(241, 163, 42, 0.22)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'rgba(241, 163, 42, 0.12)';
+            }}
+          >
+            <Sparkles size={14} />
+            <span className="hide-mobile">Feature Tour</span>
+          </button>
 
           {/* Notification Bell */}
           <Link
@@ -499,8 +548,34 @@ export function StudentLayout({ children }) {
               })}
             </div>
 
-            {/* Drawer Logout */}
-            <div style={{ borderTop: '1px solid rgba(255, 255, 255, 0.08)', paddingTop: '1rem', marginTop: '1rem' }}>
+            {/* Drawer Actions */}
+            <div style={{ borderTop: '1px solid rgba(255, 255, 255, 0.08)', paddingTop: '1rem', marginTop: '1rem', display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
+              <button
+                type="button"
+                onClick={() => {
+                  setMobileOpen(false);
+                  setShowTour(true);
+                }}
+                style={{
+                  width: '100%',
+                  padding: '0.75rem',
+                  borderRadius: '8px',
+                  border: '1px solid rgba(241, 163, 42, 0.35)',
+                  backgroundColor: 'rgba(241, 163, 42, 0.1)',
+                  color: 'var(--color-primary)',
+                  cursor: 'pointer',
+                  fontWeight: 600,
+                  fontSize: '0.9rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '0.5rem',
+                  transition: 'all 0.2s ease',
+                }}
+              >
+                <Sparkles size={16} /> Take Feature Tour
+              </button>
+
               <button
                 onClick={handleLogout}
                 style={{
@@ -541,8 +616,20 @@ export function StudentLayout({ children }) {
 
       {/* Mandatory Onboarding Gate */}
       {needsOnboarding && (
-        <OnboardingModal user={user} onComplete={refreshUser} />
+        <OnboardingModal
+          user={user}
+          onComplete={() => {
+            refreshUser();
+            setShowTour(true);
+          }}
+        />
       )}
+
+      {/* Interactive Brand-Aligned Feature Tour Modal */}
+      <StudentFeatureTourModal
+        isOpen={showTour && !needsOnboarding}
+        onClose={() => setShowTour(false)}
+      />
     </div>
   );
 }

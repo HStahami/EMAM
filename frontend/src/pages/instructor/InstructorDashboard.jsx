@@ -95,9 +95,39 @@ export function InstructorDashboard() {
           <h1 style={{ fontSize: "1.8rem", fontWeight: "700", marginBottom: "0.4rem" }} className="gradient-text">
             Welcome, {user?.username || "Instructor"}!
           </h1>
-          <p style={{ color: "#f0ceb3", fontSize: "0.95rem" }}>
+          <p style={{ color: "#f0ceb3", fontSize: "0.95rem", margin: 0 }}>
             Here is your daily operational summary for Emam.
           </p>
+
+          <button
+            type="button"
+            onClick={() => window.dispatchEvent(new CustomEvent('open-emam-instructor-tour'))}
+            style={{
+              marginTop: '0.85rem',
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              padding: '0.45rem 1rem',
+              borderRadius: '6px',
+              backgroundColor: 'rgba(241, 163, 42, 0.12)',
+              border: '1px solid rgba(241, 163, 42, 0.35)',
+              color: 'var(--color-primary)',
+              fontSize: '0.82rem',
+              fontWeight: 600,
+              cursor: 'pointer',
+              transition: 'all 0.15s ease',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = 'rgba(241, 163, 42, 0.22)';
+              e.currentTarget.style.transform = 'translateY(-1px)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = 'rgba(241, 163, 42, 0.12)';
+              e.currentTarget.style.transform = 'none';
+            }}
+          >
+            Take Faculty Tour
+          </button>
         </div>
         <div style={{ display: "flex", gap: "0.8rem", flexWrap: "wrap" }}>
           <Link

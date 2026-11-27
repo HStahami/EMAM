@@ -23,6 +23,7 @@ import { useAuth } from "../../context/AuthContext";
 import { notificationsApi, authApi } from "../../api";
 import { getAvatarUrl } from "../../api/client";
 import { inputStyle } from "../common/styles";
+import { InstructorFeatureTourModal, isFeatureTourCompleted } from "./InstructorFeatureTourModal";
 
 export function InstructorLayout({ children }) {
   const { user, logout } = useAuth();
@@ -30,6 +31,23 @@ export function InstructorLayout({ children }) {
 
   const [mobileOpen, setMobileOpen] = useState(false);
   const [unreadCount, setUnreadCount] = useState(0);
+  const [showTour, setShowTour] = useState(false);
+
+  // Automatically trigger feature tour for faculty members who completed initial setup
+  useEffect(() => {
+    const instructorId = user?.id || user?._id || user?.username;
+    if (!user?.first_login && instructorId && !isFeatureTourCompleted(instructorId)) {
+      const timer = setTimeout(() => setShowTour(true), 600);
+      return () => clearTimeout(timer);
+    }
+  }, [user]);
+
+  // Global listener for manual tour triggers across any instructor subview
+  useEffect(() => {
+    const handleOpenTour = () => setShowTour(true);
+    window.addEventListener("open-emam-instructor-tour", handleOpenTour);
+    return () => window.removeEventListener("open-emam-instructor-tour", handleOpenTour);
+  }, []);
 
   // First Login Password Change Modal State
   const [showFirstLoginModal, setShowFirstLoginModal] = useState(user?.first_login || false);
@@ -101,6 +119,7 @@ export function InstructorLayout({ children }) {
       }
       setTimeout(() => {
         setShowFirstLoginModal(false);
+        setShowTour(true);
       }, 1500);
     } catch (err) {
       setPwdError(err.message || "Failed to change password. Please check current password.");
@@ -165,6 +184,35 @@ export function InstructorLayout({ children }) {
         </div>
 
         <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+          {/* Faculty Tour Button */}
+          <button
+            type="button"
+            onClick={() => setShowTour(true)}
+            title="Take Faculty Tour"
+            aria-label="Take Faculty Tour"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              background: "rgba(241, 163, 42, 0.12)",
+              border: "1px solid rgba(241, 163, 42, 0.35)",
+              color: "var(--color-primary)",
+              padding: "5px 12px",
+              borderRadius: "6px",
+              fontSize: "0.78rem",
+              fontWeight: 600,
+              cursor: "pointer",
+              transition: "all 0.15s ease",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = "rgba(241, 163, 42, 0.22)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = "rgba(241, 163, 42, 0.12)";
+            }}
+          >
+            Faculty Tour
+          </button>
+
           <Link
             to="/instructor/notifications"
             style={{
@@ -414,8 +462,34 @@ export function InstructorLayout({ children }) {
               })}
             </div>
 
-            {/* Drawer Logout */}
-            <div style={{ borderTop: "1px solid rgba(255, 255, 255, 0.08)", paddingTop: "1rem", marginTop: "1rem" }}>
+            {/* Drawer Actions */}
+            <div style={{ borderTop: "1px solid rgba(255, 255, 255, 0.08)", paddingTop: "1rem", marginTop: "1rem", display: "flex", flexDirection: "column", gap: "0.65rem" }}>
+              <button
+                type="button"
+                onClick={() => {
+                  setMobileOpen(false);
+                  setShowTour(true);
+                }}
+                style={{
+                  width: "100%",
+                  padding: "0.75rem",
+                  borderRadius: "8px",
+                  border: "1px solid rgba(241, 163, 42, 0.35)",
+                  backgroundColor: "rgba(241, 163, 42, 0.1)",
+                  color: "var(--color-primary)",
+                  cursor: "pointer",
+                  fontWeight: 600,
+                  fontSize: "0.9rem",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "0.5rem",
+                  transition: "all 0.2s ease",
+                }}
+              >
+                Take Faculty Tour
+              </button>
+
               <button
                 onClick={logout}
                 style={{
@@ -568,6 +642,13 @@ export function InstructorLayout({ children }) {
           </div>
         </div>
       )}
+
+      {/* Interactive Brand-Aligned Faculty Tour Modal */}
+      <InstructorFeatureTourModal
+        isOpen={showTour && !showFirstLoginModal}
+        onClose={() => setShowTour(false)}
+        userId={user?.id || user?._id || user?.username}
+      />
     </div>
   );
 }

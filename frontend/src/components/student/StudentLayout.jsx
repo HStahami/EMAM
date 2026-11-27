@@ -20,7 +20,6 @@ import {
   Keyboard,
   PanelLeftClose,
   PanelLeftOpen,
-  Sparkles,
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { notificationsApi } from '../../api';
@@ -204,8 +203,7 @@ export function StudentLayout({ children }) {
               e.currentTarget.style.background = 'rgba(241, 163, 42, 0.12)';
             }}
           >
-            <Sparkles size={14} />
-            <span className="hide-mobile">Feature Tour</span>
+            Feature Tour
           </button>
 
           {/* Notification Bell */}
@@ -573,7 +571,7 @@ export function StudentLayout({ children }) {
                   transition: 'all 0.2s ease',
                 }}
               >
-                <Sparkles size={16} /> Take Feature Tour
+                Take Feature Tour
               </button>
 
               <button

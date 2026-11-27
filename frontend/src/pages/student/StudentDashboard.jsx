@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { BookOpen, Keyboard, Award, Sparkles } from 'lucide-react';
+import { BookOpen, Keyboard, Award } from 'lucide-react';
 import { studentsApi } from '../../api';
 import { useAuth } from '../../context/AuthContext';
 
@@ -100,8 +100,8 @@ export function StudentDashboard() {
               marginTop: '0.9rem',
               display: 'inline-flex',
               alignItems: 'center',
-              gap: '0.45rem',
-              padding: '0.45rem 0.95rem',
+              justifyContent: 'center',
+              padding: '0.45rem 1rem',
               borderRadius: '6px',
               backgroundColor: 'rgba(241, 163, 42, 0.12)',
               border: '1px solid rgba(241, 163, 42, 0.35)',
@@ -120,7 +120,7 @@ export function StudentDashboard() {
               e.currentTarget.style.transform = 'none';
             }}
           >
-            <Sparkles size={14} /> Take Feature Tour
+            Take Feature Tour
           </button>
         </div>
 

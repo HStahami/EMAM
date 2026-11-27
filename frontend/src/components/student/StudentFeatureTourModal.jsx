@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import {
-  Sparkles,
   Video,
   Keyboard,
   FileText,
@@ -10,14 +9,12 @@ import {
   X,
   CheckCircle2,
   Compass,
-  Mic,
-  BookOpen,
 } from 'lucide-react';
 
 const TOUR_STORAGE_KEY = 'emam_student_feature_tour_completed_v1';
 
 export function isFeatureTourCompleted(userId) {
-  const key = userId ? (TOUR_STORAGE_KEY + "_" + userId) : TOUR_STORAGE_KEY;
+  const key = userId ? `${TOUR_STORAGE_KEY}_${userId}` : TOUR_STORAGE_KEY;
   try {
     return localStorage.getItem(key) === 'true';
   } catch {
@@ -26,7 +23,7 @@ export function isFeatureTourCompleted(userId) {
 }
 
 export function markFeatureTourCompleted(userId) {
-  const key = userId ? (TOUR_STORAGE_KEY + "_" + userId) : TOUR_STORAGE_KEY;
+  const key = userId ? `${TOUR_STORAGE_KEY}_${userId}` : TOUR_STORAGE_KEY;
   try {
     localStorage.setItem(key, 'true');
   } catch (err) {
@@ -35,7 +32,7 @@ export function markFeatureTourCompleted(userId) {
 }
 
 export function resetFeatureTour(userId) {
-  const key = userId ? (TOUR_STORAGE_KEY + "_" + userId) : TOUR_STORAGE_KEY;
+  const key = userId ? `${TOUR_STORAGE_KEY}_${userId}` : TOUR_STORAGE_KEY;
   try {
     localStorage.removeItem(key);
   } catch (err) {
@@ -46,8 +43,7 @@ export function resetFeatureTour(userId) {
 const TOUR_SLIDES = [
   {
     id: 'welcome',
-    badge: 'Welcome • جولة تعريفية',
-    arabicTitle: 'أهلاً وسهلاً بك في منصة إمام لتعليم العربية',
+    badge: 'Overview',
     title: 'Welcome to Emam Arabic LMS',
     subtitle: 'Your dedicated online sanctuary for mastering Classical and Modern Standard Arabic through CEFR-aligned pedagogy.',
     icon: Compass,
@@ -70,8 +66,7 @@ const TOUR_SLIDES = [
   },
   {
     id: 'classroom',
-    badge: 'Live Classroom • الفصل الذكي',
-    arabicTitle: 'الفصل الذكي التفاعلي المباشر',
+    badge: 'Live Classroom',
     title: 'Live WebRTC Smart Classroom',
     subtitle: 'Experience seamless bidirectional HD video classes directly inside your browser without installing third-party apps.',
     icon: Video,
@@ -94,8 +89,7 @@ const TOUR_SLIDES = [
   },
   {
     id: 'typing_lab',
-    badge: 'Typing Lab • مهارة الطباعة',
-    arabicTitle: 'مختبر الطباعة باللمس للغة العربية',
+    badge: 'Typing Lab',
     title: '200-Level Arabic Touch-Typing Lab',
     subtitle: 'Build swift 10-finger muscle memory in Arabic with our dedicated 200-stage typing gymnasium.',
     icon: Keyboard,
@@ -118,8 +112,7 @@ const TOUR_SLIDES = [
   },
   {
     id: 'tasks_homework',
-    badge: 'Assignments • الواجبات والتقييم',
-    arabicTitle: 'المهام الدراسية وتسجيلات النطق',
+    badge: 'Assignments',
     title: 'Course Tasks & Audio Recitations',
     subtitle: 'Solidify your learning with modular assignments, vocabulary quizzes, and voice recording homework.',
     icon: FileText,
@@ -142,8 +135,7 @@ const TOUR_SLIDES = [
   },
   {
     id: 'notes_certificates',
-    badge: 'Achievements • الدفتر والشهادة',
-    arabicTitle: 'الدفتر الذكي والشهادة المعتمدة',
+    badge: 'Achievements',
     title: 'Smart Notebook & Verified Certification',
     subtitle: 'Organize your Arabic vocabulary, monitor your attendance, and graduate with a verifiable credential.',
     icon: Award,
@@ -173,7 +165,7 @@ export function StudentFeatureTourModal({ isOpen, onClose, onComplete, userId })
     markFeatureTourCompleted(userId);
     if (onComplete) onComplete();
     if (onClose) onClose();
-  }, [onComplete, onClose]);
+  }, [userId, onComplete, onClose]);
 
   const handleNext = useCallback(() => {
     if (currentSlide < TOUR_SLIDES.length - 1) {
@@ -259,59 +251,48 @@ export function StudentFeatureTourModal({ isOpen, onClose, onComplete, userId })
             background: 'rgba(105, 14, 31, 0.32)',
           }}
         >
-          {/* Brand & Step Tag */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-            <div
-              style={{
-                width: '32px',
-                height: '32px',
-                borderRadius: '8px',
-                background: 'rgba(241, 163, 42, 0.14)',
-                border: '1px solid rgba(241, 163, 42, 0.35)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: 'var(--color-primary)',
-              }}
-            >
-              <Sparkles size={18} />
+          {/* Brand & Step Tag (Star icon removed) */}
+          <div>
+            <div style={{ fontSize: '0.78rem', color: 'var(--color-accent)', fontWeight: 600, letterSpacing: '0.04em' }}>
+              EMAM ARABIC LMS • FEATURE TOUR
             </div>
-            <div>
-              <div style={{ fontSize: '0.78rem', color: 'var(--color-accent)', fontWeight: 600, letterSpacing: '0.04em' }}>
-                EMAM ARABIC LMS • FEATURE TOUR
-              </div>
-              <div style={{ fontSize: '0.9rem', color: '#fff', fontWeight: 700 }}>
-                Step {currentSlide + 1} of {TOUR_SLIDES.length}
-              </div>
+            <div style={{ fontSize: '0.9rem', color: '#fff', fontWeight: 700 }}>
+              Step {currentSlide + 1} of {TOUR_SLIDES.length}
             </div>
           </div>
 
-          {/* Quick Skip / Close Button */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          {/* Controls: Styled Skip Tour & Close */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
             <button
+              type="button"
               onClick={handleFinish}
               style={{
-                background: 'transparent',
-                border: 'none',
-                color: '#94a3b8',
-                fontSize: '0.82rem',
+                backgroundColor: 'rgba(105, 14, 31, 0.45)',
+                border: '1px solid rgba(240, 206, 179, 0.28)',
+                color: 'var(--color-accent)',
+                fontSize: '0.8rem',
+                fontWeight: 600,
                 cursor: 'pointer',
-                padding: '0.35rem 0.65rem',
+                padding: '6px 14px',
                 borderRadius: '6px',
                 transition: 'all 0.15s ease',
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.color = 'var(--color-white)';
-                e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.08)';
+                e.currentTarget.style.color = '#ffffff';
+                e.currentTarget.style.backgroundColor = 'rgba(105, 14, 31, 0.85)';
+                e.currentTarget.style.borderColor = 'var(--color-primary)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.color = '#94a3b8';
-                e.currentTarget.style.backgroundColor = 'transparent';
+                e.currentTarget.style.color = 'var(--color-accent)';
+                e.currentTarget.style.backgroundColor = 'rgba(105, 14, 31, 0.45)';
+                e.currentTarget.style.borderColor = 'rgba(240, 206, 179, 0.28)';
               }}
             >
               Skip Tour
             </button>
+
             <button
+              type="button"
               onClick={handleFinish}
               aria-label="Close tour"
               style={{
@@ -381,7 +362,7 @@ export function StudentFeatureTourModal({ isOpen, onClose, onComplete, userId })
             </div>
 
             <div style={{ flex: 1 }}>
-              {/* Badge */}
+              {/* English Badge */}
               <div
                 style={{
                   display: 'inline-block',
@@ -397,20 +378,6 @@ export function StudentFeatureTourModal({ isOpen, onClose, onComplete, userId })
                 }}
               >
                 {slide.badge}
-              </div>
-
-              {/* Arabic Subtitle */}
-              <div
-                dir="rtl"
-                style={{
-                  fontSize: '1.1rem',
-                  color: 'var(--color-accent)',
-                  fontFamily: 'serif',
-                  marginBottom: '0.2rem',
-                  fontWeight: 600,
-                }}
-              >
-                {slide.arabicTitle}
               </div>
 
               {/* English Heading */}
@@ -526,6 +493,7 @@ export function StudentFeatureTourModal({ isOpen, onClose, onComplete, userId })
           <div>
             {currentSlide > 0 ? (
               <button
+                type="button"
                 onClick={handlePrev}
                 style={{
                   display: 'flex',
@@ -564,6 +532,7 @@ export function StudentFeatureTourModal({ isOpen, onClose, onComplete, userId })
             {TOUR_SLIDES.map((_, idx) => (
               <button
                 key={idx}
+                type="button"
                 onClick={() => setCurrentSlide(idx)}
                 aria-label={`Go to slide ${idx + 1}`}
                 style={{
@@ -584,6 +553,7 @@ export function StudentFeatureTourModal({ isOpen, onClose, onComplete, userId })
           {/* Next / Finish Button */}
           <div>
             <button
+              type="button"
               onClick={handleNext}
               className="btn-primary"
               style={{

@@ -1,6 +1,7 @@
 import os
 import re
 import uuid
+import base64
 import anyio
 from typing import Optional
 from fastapi import UploadFile
@@ -11,10 +12,21 @@ ALLOWED_MIME_TYPES = {
     "image/png": [".png"],
     "image/webp": [".webp"],
     "application/pdf": [".pdf"],
+    "application/msword": [".doc"],
     "application/vnd.openxmlformats-officedocument.wordprocessingml.document": [".docx"]
+}
+EXT_TO_MIME = {
+    ".jpg": "image/jpeg",
+    ".jpeg": "image/jpeg",
+    ".png": "image/png",
+    ".webp": "image/webp",
+    ".pdf": "application/pdf",
+    ".doc": "application/msword",
+    ".docx": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
 }
 ALLOWED_EXTENSIONS = {ext for exts in ALLOWED_MIME_TYPES.values() for ext in exts}
 MAX_FILE_SIZE = 10 * 1024 * 1024  # 10 MB
+MAX_DATA_URI_SIZE = 5 * 1024 * 1024  # 5 MB safe limit for MongoDB data URI fallback
 
 # Track if Cloudinary is enabled
 _cloudinary_configured = False
@@ -106,21 +118,28 @@ async def upload_media_file(
                 return secure_url
         except Exception as e:
             print(f"[STORAGE ERROR] Cloudinary upload failed: {e}")
-            if settings.ENVIRONMENT.lower() in ["production", "prod"]:
-                raise RuntimeError("Cloudinary upload failed in production.")
 
-    # 6. Local development fallback
+    # 6. Serverless / Read-only / No-Cloudinary Safe Fallback (Data URI)
     is_prod = settings.ENVIRONMENT.lower() in ["production", "prod"]
-    if is_prod and not _cloudinary_configured:
-        raise RuntimeError(
-            "Media storage service (Cloudinary) is not configured for production environment."
-        )
+    is_serverless = bool(os.environ.get("VERCEL") or os.environ.get("AWS_LAMBDA_FUNCTION_NAME"))
 
-    uploads_dir = anyio.Path("uploads")
-    await uploads_dir.mkdir(parents=True, exist_ok=True)
-    filepath = uploads_dir / safe_filename
-    await filepath.write_bytes(content)
-    return f"/uploads/{safe_filename}"
+    if not is_prod and not is_serverless:
+        try:
+            uploads_dir = anyio.Path("uploads")
+            await uploads_dir.mkdir(parents=True, exist_ok=True)
+            filepath = uploads_dir / safe_filename
+            await filepath.write_bytes(content)
+            return f"/uploads/{safe_filename}"
+        except OSError as fs_err:
+            print(f"[STORAGE WARNING] Local disk write failed, falling back to data URI: {fs_err}")
+
+    if len(content) > MAX_DATA_URI_SIZE:
+        raise ValueError(
+            "File size exceeds 5 MB limit when cloud storage is not configured. Please upload a smaller file."
+        )
+    resolved_mime = EXT_TO_MIME.get(raw_ext, "application/octet-stream")
+    encoded = base64.b64encode(bytes(content)).decode("ascii")
+    return f"data:{resolved_mime};base64,{encoded}"
 
 
 def is_cloud_storage_enabled() -> bool:

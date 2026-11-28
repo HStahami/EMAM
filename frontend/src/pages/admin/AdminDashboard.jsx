@@ -3641,7 +3641,8 @@ export function AdminDashboard({ onLogout }) {
                             {app.cv_url && (
                               <div style={{ marginTop: '0.85rem' }}>
                                 <a
-                                  href={app.cv_url.startsWith('http') ? app.cv_url : `${BACKEND_URL}${app.cv_url}`}
+                                  href={app.cv_url.startsWith('http') || app.cv_url.startsWith('data:') ? app.cv_url : `${BACKEND_URL}${app.cv_url}`}
+                                  download={app.cv_url.startsWith('data:') ? `${(app.name || 'faculty').replace(/\s+/g, '_')}_CV` : undefined}
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   style={{

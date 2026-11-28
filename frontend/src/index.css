@@ -1187,3 +1187,167 @@ body {
   color: #5c4d51 !important;
   font-weight: 600 !important;
 }
+
+/* ======================================================== */
+/* Emam Light Theme - Admin Portal Overhaul                */
+/* ======================================================== */
+[data-theme='light'] .admin-layout {
+  background: transparent !important;
+  color: #220d12 !important;
+}
+
+[data-theme='light'] .admin-top-bar {
+  background: #ffffff !important;
+  border-bottom: 1px solid rgba(105, 14, 31, 0.12) !important;
+  box-shadow: 0 4px 20px rgba(105, 14, 31, 0.05) !important;
+}
+
+[data-theme='light'] .admin-top-bar span {
+  color: #220d12 !important;
+}
+
+[data-theme='light'] .admin-top-bar span.gradient-text,
+[data-theme='light'] .admin-top-bar span[style*="font-weight: 800"],
+[data-theme='light'] .admin-top-bar span[style*="fontWeight: 800"] {
+  background: linear-gradient(135deg, #690e1f 0%, #8b152b 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* Mobile Sidebar Drawer in Light Mode */
+[data-theme='light'] .admin-sidebar-drawer {
+  background: #ffffff !important;
+  border-right: 1px solid rgba(105, 14, 31, 0.15) !important;
+  box-shadow: 10px 0 35px rgba(105, 14, 31, 0.1) !important;
+}
+
+[data-theme='light'] .admin-sidebar-drawer h4 {
+  color: #220d12 !important;
+}
+
+[data-theme='light'] .admin-sidebar-drawer button {
+  background: #faf6f0 !important;
+  border: 1px solid rgba(105, 14, 31, 0.14) !important;
+  color: #220d12 !important;
+  font-weight: 500 !important;
+}
+
+[data-theme='light'] .admin-sidebar-drawer button:hover {
+  background: rgba(105, 14, 31, 0.08) !important;
+  color: #690e1f !important;
+  border-color: rgba(105, 14, 31, 0.28) !important;
+}
+
+[data-theme='light'] .admin-sidebar-drawer button[style*="var(--color-bg-dark)"],
+[data-theme='light'] .admin-sidebar-drawer button[style*="background: var(--color-primary)"],
+[data-theme='light'] .admin-sidebar-drawer button.active {
+  background: #8b152b !important;
+  color: #ffffff !important;
+  border-color: #8b152b !important;
+  font-weight: 700 !important;
+}
+
+/* Table Responsive Containers & Tables in Light Mode */
+[data-theme='light'] .table-responsive-container {
+  background: #ffffff !important;
+  border: 1px solid rgba(105, 14, 31, 0.14) !important;
+  box-shadow: 0 4px 24px rgba(105, 14, 31, 0.04) !important;
+}
+
+[data-theme='light'] .table-responsive-container table {
+  background: #ffffff !important;
+}
+
+[data-theme='light'] .table-responsive-container th {
+  background: #faf5f0 !important;
+  color: #690e1f !important;
+  border-bottom: 2px solid rgba(105, 14, 31, 0.14) !important;
+  font-weight: 700 !important;
+}
+
+[data-theme='light'] .table-responsive-container td {
+  border-bottom: 1px solid rgba(105, 14, 31, 0.08) !important;
+  color: #220d12 !important;
+}
+
+[data-theme='light'] .table-responsive-container tr:hover td {
+  background: rgba(105, 14, 31, 0.02) !important;
+}
+
+/* Fix All Invisible White/Gray Text Inside Admin Tables in Light Mode */
+[data-theme='light'] .table-responsive-container td strong,
+[data-theme='light'] .table-responsive-container td [style*="#fff"],
+[data-theme='light'] .table-responsive-container td [style*="#ffffff"],
+[data-theme='light'] .table-responsive-container td [style*="color: rgb(255, 255, 255)"],
+[data-theme='light'] .table-responsive-container td div[style*="fontWeight: '600'"],
+[data-theme='light'] .table-responsive-container td div[style*="font-weight: 600"] {
+  color: #220d12 !important;
+}
+
+[data-theme='light'] .table-responsive-container td [style*="#aaa"],
+[data-theme='light'] .table-responsive-container td [style*="#888"],
+[data-theme='light'] .table-responsive-container td [style*="#94a3b8"],
+[data-theme='light'] .table-responsive-container td [style*="#cbd5e1"],
+[data-theme='light'] .table-responsive-container td [style*="#64748b"],
+[data-theme='light'] .table-responsive-container td [style*="#e0e0e0"],
+[data-theme='light'] .table-responsive-container td div[style*="fontSize: '0.85rem'"],
+[data-theme='light'] .table-responsive-container td div[style*="fontSize: '0.78rem'"] {
+  color: #554448 !important;
+}
+
+/* Empty Table States in Light Mode */
+[data-theme='light'] .table-responsive-container [style*="No graduated students"],
+[data-theme='light'] .table-responsive-container [style*="No remarks recorded"],
+[data-theme='light'] .table-responsive-container [style*="When an enrolled student completes"] {
+  color: #6b585c !important;
+}
+
+/* Admin Form Inputs & Search Inputs in Light Mode */
+[data-theme='light'] .admin-layout input[type="text"],
+[data-theme='light'] .admin-layout input[type="search"],
+[data-theme='light'] .admin-layout input[type="password"],
+[data-theme='light'] .admin-layout input[type="email"],
+[data-theme='light'] .admin-layout select,
+[data-theme='light'] .admin-layout textarea {
+  background: #ffffff !important;
+  border: 1px solid rgba(105, 14, 31, 0.22) !important;
+  color: #220d12 !important;
+}
+
+[data-theme='light'] .admin-layout input::placeholder,
+[data-theme='light'] .admin-layout textarea::placeholder {
+  color: #8a787c !important;
+}
+
+/* Overview Cards & Stat Buttons in Light Mode */
+[data-theme='light'] .stats-cards-grid button.stat-card-btn {
+  background: #ffffff !important;
+  border: 1px solid rgba(105, 14, 31, 0.14) !important;
+  box-shadow: 0 4px 16px rgba(105, 14, 31, 0.05) !important;
+  color: #220d12 !important;
+}
+
+[data-theme='light'] .stats-cards-grid button.stat-card-btn:hover {
+  background: #faf5f0 !important;
+  border-color: rgba(184, 128, 30, 0.4) !important;
+}
+
+/* Chat Audit Tab in Light Mode */
+[data-theme='light'] .admin-layout div[style*="Audit Oversight Active"] {
+  background: #faf4ef !important;
+  border: 1px solid rgba(184, 128, 30, 0.3) !important;
+  color: #220d12 !important;
+}
+
+[data-theme='light'] .admin-layout div[style*="Active Threads"] button {
+  background: #faf5f0 !important;
+  border: 1px solid rgba(105, 14, 31, 0.12) !important;
+  color: #220d12 !important;
+}
+
+/* Admin Modals in Light Mode */
+[data-theme='light'] .admin-layout div[style*="position: 'fixed'"][style*="zIndex: 1000"],
+[data-theme='light'] .admin-layout div[style*="position: 'fixed'"][style*="zIndex: 500"] {
+  background-color: rgba(34, 13, 18, 0.55) !important;
+}
+

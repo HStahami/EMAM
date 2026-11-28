@@ -4,6 +4,7 @@ import { useAuth } from '../../context/AuthContext';
 import { API_BASE, getAvatarUrl, BACKEND_URL } from '../../api/client';
 import { inputStyle } from '../../components/common/styles';
 import { notificationsApi, messagesApi, studentsApi, reschedulesApi, classSessionsApi, dashboardApi } from '../../api';
+import { ThemeToggle } from '../../components/common/ThemeToggle';
 
 export function AdminDashboard({ onLogout }) {
   const { user: authUser } = useAuth();
@@ -1206,8 +1207,8 @@ export function AdminDashboard({ onLogout }) {
   };
 
   const tableStyle = { width: '100%', borderCollapse: 'collapse' };
-  const tableHeaderStyle = { padding: '12px', borderBottom: '1px solid rgba(255,255,255,0.1)', color: 'var(--color-primary)', textAlign: 'left' };
-  const tableCellStyle = { padding: '12px', borderBottom: '1px solid rgba(255,255,255,0.05)', color: '#e0e0e0' };
+  const tableHeaderStyle = { padding: '12px', borderBottom: '1px solid rgba(105, 14, 31, 0.12)', color: 'var(--color-primary)', textAlign: 'left' };
+  const tableCellStyle = { padding: '12px', borderBottom: '1px solid rgba(105, 14, 31, 0.08)', color: 'inherit' };
 
   const allAdminTabs = [
     { id: 'overview', label: 'Overview' },
@@ -1234,10 +1235,8 @@ export function AdminDashboard({ onLogout }) {
         alignItems: 'center',
         justifyContent: 'space-between',
         padding: '0.85rem 1.5rem',
-        background: 'rgba(44, 5, 13, 0.85)',
         backdropFilter: 'blur(16px)',
         WebkitBackdropFilter: 'blur(16px)',
-        borderBottom: '1px solid rgba(241, 163, 42, 0.18)',
         gap: '1rem',
         position: 'sticky',
         top: 0,
@@ -1287,23 +1286,8 @@ export function AdminDashboard({ onLogout }) {
             }}
           >
             <img src="/emam_logo.png" alt="Emam Logo" style={{ height: 28, width: 28, objectFit: 'contain' }} />
-            <span style={{ color: '#ffffff', fontWeight: 800, margin: 0, fontSize: '1.25rem', letterSpacing: '-0.02em' }}>
+            <span style={{ color: 'var(--color-trust, #ffffff)', fontWeight: 800, margin: 0, fontSize: '1.25rem', letterSpacing: '-0.02em' }}>
               Emam LMS
-            </span>
-            <span
-              style={{
-                fontSize: '0.72rem',
-                fontWeight: 600,
-                textTransform: 'uppercase',
-                letterSpacing: '0.04em',
-                padding: '2px 8px',
-                borderRadius: '6px',
-                backgroundColor: 'rgba(241, 163, 42, 0.15)',
-                color: 'var(--color-primary)',
-                border: '1px solid rgba(241, 163, 42, 0.28)',
-              }}
-            >
-              Admin Portal
             </span>
             <span style={{ color: 'rgba(241, 163, 42, 0.4)', fontSize: '0.9rem' }} className="hide-on-mobile">•</span>
             <span style={{ color: 'var(--color-primary)', fontSize: '0.9rem', fontWeight: 600, textTransform: 'capitalize' }} className="hide-on-mobile">
@@ -1313,6 +1297,8 @@ export function AdminDashboard({ onLogout }) {
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+          <ThemeToggle />
+
           <button
             type="button"
             onClick={() => {
@@ -3655,61 +3641,158 @@ export function AdminDashboard({ onLogout }) {
 
             {instructorSubView === 'active' && (
               <div>
-                <div className="table-responsive-container">
-              <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-                <thead>
-                  <tr>
-                    <th style={tableHeaderStyle}>Picture</th>
-                    <th style={tableHeaderStyle}>Name & Email</th>
-                    <th style={tableHeaderStyle}>About / Specialty</th>
-                    <th style={tableHeaderStyle}>Active Slots / Students</th>
-                    <th style={tableHeaderStyle}>Total Students</th>
-                    <th style={{ ...tableHeaderStyle, width: '270px', minWidth: '270px' }}>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {instructors.map(inst => (
-                    <tr key={inst._id || inst.id}>
-                      <td style={tableCellStyle}>
-                        <img src={getAvatarUrl(inst.avatar, inst.name)} alt={inst.name} style={{ width: '44px', height: '44px', borderRadius: '50%', objectFit: 'cover', background: 'var(--color-bg-dark)' }} />
-                      </td>
-                      <td style={tableCellStyle}>
-                        <strong>{inst.name}</strong>
-                        {inst.email && (
-                          <div style={{ color: '#94a3b8', fontSize: '0.82rem', marginTop: '2px' }}>{inst.email}</div>
-                        )}
-                        {inst.username && (
-                          <div style={{ color: 'var(--color-primary)', fontSize: '0.78rem', marginTop: '1px' }}>@{inst.username}</div>
-                        )}
-                      </td>
-                      <td style={tableCellStyle}>
-                        <div>{inst.about || inst.specialty || '-'}</div>
-                        {inst.specialty && inst.about && inst.specialty !== inst.about && (
-                          <div style={{ color: 'var(--color-primary)', fontSize: '0.8rem' }}>{inst.specialty}</div>
-                        )}
-                      </td>
-                      <td style={tableCellStyle}>
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontSize: '0.85rem' }}>
-                          {inst.students && inst.students.length > 0 ? (
-                            inst.students.map((s, idx) => (
-                              <span key={idx} style={{ color: '#f0ceb3' }}>
-                                • {s.slot ? `${s.slot}: ` : ''}{s.name}{!s.slot ? ' (Unassigned)' : ''}
+                {instructors.length === 0 ? (
+                  <div className="glass-panel" style={{ padding: '3rem', textAlign: 'center', color: '#94a3b8', marginTop: '1.25rem' }}>
+                    No certified faculty onboarded yet. Click "Onboard Directly" to add your first instructor.
+                  </div>
+                ) : (
+                  <div
+                    style={{
+                      display: 'grid',
+                      gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+                      gap: '1.25rem',
+                      marginTop: '1.25rem',
+                    }}
+                  >
+                    {instructors.map(inst => (
+                      <div
+                        key={inst._id || inst.id}
+                        className="glass-panel"
+                        style={{
+                          padding: '1.5rem',
+                          borderRadius: '14px',
+                          display: 'flex',
+                          flexDirection: 'column',
+                          justifyContent: 'space-between',
+                          transition: 'all 0.2s ease',
+                          border: '1px solid rgba(241, 163, 42, 0.2)',
+                        }}
+                      >
+                        <div>
+                          {/* Card Header: Avatar + Name + Specialization */}
+                          <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem', marginBottom: '1rem' }}>
+                            <img
+                              src={getAvatarUrl(inst.avatar, inst.name)}
+                              alt={inst.name}
+                              style={{
+                                width: '52px',
+                                height: '52px',
+                                borderRadius: '50%',
+                                objectFit: 'cover',
+                                border: '2px solid rgba(241, 163, 42, 0.4)',
+                                flexShrink: 0,
+                              }}
+                            />
+                            <div style={{ flex: 1, minWidth: 0 }}>
+                              <h3 style={{ fontSize: '1.1rem', fontWeight: 700, margin: '0 0 2px 0', color: 'var(--color-trust, #fff)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                                {inst.name}
+                              </h3>
+                              {inst.email && (
+                                <div style={{ color: '#94a3b8', fontSize: '0.82rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                                  {inst.email}
+                                </div>
+                              )}
+                              {inst.username && (
+                                <div style={{ color: 'var(--color-primary)', fontSize: '0.78rem', marginTop: '1px' }}>
+                                  @{inst.username}
+                                </div>
+                              )}
+                            </div>
+                          </div>
+
+                          {/* Specialization Badge */}
+                          {(inst.specialty || inst.about) && (
+                            <div style={{ marginBottom: '0.85rem' }}>
+                              <span
+                                style={{
+                                  display: 'inline-block',
+                                  fontSize: '0.75rem',
+                                  fontWeight: 600,
+                                  padding: '3px 9px',
+                                  borderRadius: '6px',
+                                  background: 'rgba(241, 163, 42, 0.14)',
+                                  color: 'var(--color-primary)',
+                                  border: '1px solid rgba(241, 163, 42, 0.28)',
+                                  marginBottom: '0.4rem',
+                                }}
+                              >
+                                {inst.specialty || 'Classical Arabic & Syntax'}
                               </span>
-                            ))
-                          ) : (
-                            <span style={{ color: '#666' }}>No active assignments</span>
+                              {inst.about && inst.about !== inst.specialty && (
+                                <p
+                                  style={{
+                                    fontSize: '0.84rem',
+                                    color: 'var(--color-accent, #f0ceb3)',
+                                    lineHeight: '1.4',
+                                    margin: 0,
+                                    display: '-webkit-box',
+                                    WebkitLineClamp: 2,
+                                    WebkitBoxOrient: 'vertical',
+                                    overflow: 'hidden',
+                                  }}
+                                >
+                                  {inst.about}
+                                </p>
+                              )}
+                            </div>
                           )}
+
+                          {/* Assigned Slots & Students Summary */}
+                          <div
+                            style={{
+                              padding: '0.75rem 0.9rem',
+                              borderRadius: '8px',
+                              backgroundColor: 'rgba(105, 14, 31, 0.25)',
+                              border: '1px solid rgba(240, 206, 179, 0.12)',
+                              marginBottom: '1rem',
+                            }}
+                          >
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.35rem' }}>
+                              <span style={{ fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.04em', color: 'var(--color-primary)', fontWeight: 700 }}>
+                                Teaching Load
+                              </span>
+                              <span style={{ fontSize: '0.78rem', fontWeight: 700, padding: '2px 8px', borderRadius: '12px', background: 'rgba(241, 163, 42, 0.15)', color: 'var(--color-primary)' }}>
+                                {inst.total_students || 0} Students
+                              </span>
+                            </div>
+
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '3px', fontSize: '0.8rem' }}>
+                              {inst.students && inst.students.length > 0 ? (
+                                inst.students.slice(0, 3).map((s, idx) => (
+                                  <div key={idx} style={{ color: 'var(--color-accent, #f0ceb3)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                                    • {s.slot ? `${s.slot}: ` : ''}{s.name}{!s.slot ? ' (Unassigned)' : ''}
+                                  </div>
+                                ))
+                              ) : (
+                                <span style={{ color: '#888', fontStyle: 'italic' }}>No active student assignments</span>
+                              )}
+                              {inst.students && inst.students.length > 3 && (
+                                <span style={{ fontSize: '0.75rem', color: 'var(--color-primary)', marginTop: '2px' }}>
+                                  +{inst.students.length - 3} more students...
+                                </span>
+                              )}
+                            </div>
+                          </div>
                         </div>
-                      </td>
-                      <td style={tableCellStyle}>{inst.total_students || 0}</td>
-                      <td style={{ ...tableCellStyle, width: '270px', minWidth: '270px' }}>
-                        <div style={{ display: 'flex', gap: '8px', alignItems: 'center', flexWrap: 'nowrap' }}>
+
+                        {/* Card Action Buttons Footer */}
+                        <div
+                          style={{
+                            borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+                            paddingTop: '0.85rem',
+                            display: 'flex',
+                            gap: '8px',
+                            alignItems: 'center',
+                            flexWrap: 'wrap',
+                          }}
+                        >
                           <button
                             type="button"
                             onClick={() => handleEditInstructorClick(inst)}
                             className="glass-panel"
                             style={{
-                              padding: '6px 14px',
+                              flex: 1,
+                              padding: '7px 12px',
                               fontSize: '0.82rem',
                               color: 'var(--color-primary)',
                               border: '1px solid rgba(241, 163, 42, 0.35)',
@@ -3717,11 +3800,13 @@ export function AdminDashboard({ onLogout }) {
                               cursor: 'pointer',
                               fontWeight: 600,
                               background: 'rgba(241, 163, 42, 0.08)',
-                              whiteSpace: 'nowrap'
+                              textAlign: 'center',
+                              transition: 'all 0.15s ease',
                             }}
                           >
                             Edit
                           </button>
+
                           {inst.email && (
                             <button
                               type="button"
@@ -3730,25 +3815,29 @@ export function AdminDashboard({ onLogout }) {
                               className="glass-panel"
                               title="Resend login credentials to instructor email"
                               style={{
-                                padding: '6px 14px',
+                                flex: 1.5,
+                                padding: '7px 12px',
                                 fontSize: '0.82rem',
                                 color: 'var(--color-primary)',
-                                border: '1px solid rgba(241, 163, 42, 0.15)',
+                                border: '1px solid rgba(241, 163, 42, 0.25)',
                                 borderRadius: '6px',
                                 cursor: resendingInstId === (inst._id || inst.id) ? 'not-allowed' : 'pointer',
                                 fontWeight: 600,
                                 background: 'rgba(241, 163, 42, 0.15)',
-                                whiteSpace: 'nowrap'
+                                textAlign: 'center',
+                                whiteSpace: 'nowrap',
+                                transition: 'all 0.15s ease',
                               }}
                             >
                               {resendingInstId === (inst._id || inst.id) ? 'Sending...' : 'Resend Credentials'}
                             </button>
                           )}
+
                           <button
                             type="button"
                             onClick={() => handleDeleteInstructor(inst._id || inst.id)}
                             style={{
-                              padding: '6px 14px',
+                              padding: '7px 14px',
                               fontSize: '0.82rem',
                               color: 'var(--color-accent, #f0ceb3)',
                               border: '1px solid rgba(240, 206, 179, 0.35)',
@@ -3757,7 +3846,7 @@ export function AdminDashboard({ onLogout }) {
                               fontWeight: 600,
                               background: 'rgba(105, 14, 31, 0.55)',
                               transition: 'all 0.2s ease',
-                              whiteSpace: 'nowrap'
+                              textAlign: 'center',
                             }}
                             onMouseEnter={(e) => {
                               e.currentTarget.style.background = '#690e1f';
@@ -3773,13 +3862,11 @@ export function AdminDashboard({ onLogout }) {
                             Delete
                           </button>
                         </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
             )}
 
             {instructorSubView === 'applications' && (

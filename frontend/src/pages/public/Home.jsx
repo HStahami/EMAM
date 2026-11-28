@@ -620,25 +620,25 @@ export function Home() {
               transition={{ duration: 0.35 }}
               className="glass-panel"
               style={{
-                padding: '2.75rem',
+                padding: 'clamp(1.25rem, 4vw, 2.75rem)',
                 borderRadius: '24px',
                 border: '1px solid rgba(241, 163, 42, 0.28)',
                 background: 'linear-gradient(135deg, rgba(105, 14, 31, 0.55), rgba(44, 5, 13, 0.85))'
               }}
             >
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2.5rem', alignItems: 'center', justifyContent: 'space-between' }}>
-                <div style={{ flex: '1', minWidth: '300px' }}>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', alignItems: 'center', justifyContent: 'space-between' }}>
+                <div style={{ flex: '1 1 280px', minWidth: 0 }}>
                   <div style={{ color: 'var(--color-primary)', fontWeight: '700', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '0.6rem' }}>
                     Workspace Specification
                   </div>
-                  <h3 style={{ fontSize: 'clamp(1.6rem, 2.5vw, 2.2rem)', fontWeight: '800', color: 'var(--color-white)', marginBottom: '0.6rem' }}>
+                  <h3 style={{ fontSize: 'clamp(1.5rem, 2.5vw, 2.2rem)', fontWeight: '800', color: 'var(--color-white)', marginBottom: '0.6rem', wordBreak: 'break-word' }}>
                     {current.title}
                   </h3>
                   <p style={{ color: '#f0ceb3', fontSize: '1.05rem', marginBottom: '1.75rem', lineHeight: '1.6' }}>
                     {current.subtitle}
                   </p>
 
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '0.9rem' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))', gap: '0.9rem' }}>
                     {current.points.map((pt, i) => (
                       <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', color: '#fdfdfd', fontSize: '0.94rem', lineHeight: '1.5' }}>
                         <span style={{ color: 'var(--color-primary)', fontWeight: '700', flexShrink: 0 }}>—</span>
@@ -700,7 +700,7 @@ export function Home() {
           </p>
         </motion.div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))', gap: '2rem' }}>
           {/* Card 1: Weekday 1 on 1 */}
           <motion.div
             whileHover={{ y: -8, boxShadow: '0 20px 40px rgba(0,0,0,0.6)' }}
@@ -1140,7 +1140,7 @@ export function Home() {
             background: 'linear-gradient(135deg, rgba(105, 14, 31, 0.65), rgba(44, 5, 13, 0.95))'
           }}
         >
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2.5rem', alignItems: 'center' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))', gap: '2.5rem', alignItems: 'center' }}>
             <div>
 
               <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.6rem)', fontWeight: '800', color: 'var(--color-white)', marginBottom: '1rem', lineHeight: '1.2' }}>
@@ -1302,7 +1302,7 @@ export function Home() {
           whileInView="visible"
           viewport={{ once: true, margin: '-40px' }}
           variants={containerVariants}
-          style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}
+          style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))', gap: '2rem' }}
         >
           {reviews.map((review) => (
             <motion.div

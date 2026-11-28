@@ -74,7 +74,7 @@ export function Home() {
       setInstructorsError(null);
       try {
         const data = await instructorsApi.getAll();
-        setInstructors(data);
+        setInstructors(Array.isArray(data) ? data.filter(i => i.is_active !== false) : []);
       } catch (err) {
         console.error(err);
         setInstructorsError("Unable to load faculty members right now.");

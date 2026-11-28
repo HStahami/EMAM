@@ -262,6 +262,28 @@ export const instructorsApi = {
     if (!res.ok) throw new Error("Failed to delete instructor");
     return res.json();
   },
+  deactivate: async (id, data) => {
+    const res = await apiClient(`/instructors/${id}/deactivate`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data || {}),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.detail || "Failed to deactivate instructor");
+    }
+    return res.json();
+  },
+  reactivate: async (id) => {
+    const res = await apiClient(`/instructors/${id}/reactivate`, {
+      method: "POST",
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.detail || "Failed to reactivate instructor");
+    }
+    return res.json();
+  },
   applyFaculty: async (data) => {
     let options;
     if (data instanceof FormData) {

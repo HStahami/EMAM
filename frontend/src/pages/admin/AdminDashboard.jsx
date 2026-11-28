@@ -87,7 +87,7 @@ export function AdminDashboard({ onLogout }) {
   const [auditMessages, setAuditMessages] = useState([]);
 
   // Faculty Applications State
-  const [instructorSubView, setInstructorSubView] = useState('active'); // 'active' | 'applications'
+  const [instructorSubView, setInstructorSubView] = useState('active'); // 'active' | 'deactivated' | 'applications'
   const [facultyApplications, setFacultyApplications] = useState([]);
   const [facultyAppsLoading, setFacultyAppsLoading] = useState(false);
   const [appActionLoading, setAppActionLoading] = useState(null); // appId being actioned
@@ -95,6 +95,13 @@ export function AdminDashboard({ onLogout }) {
   const [cancelTargetApp, setCancelTargetApp] = useState(null);
   const [cancelReason, setCancelReason] = useState('');
   const [cancelReasonLoading, setCancelReasonLoading] = useState(false);
+
+  // Instructor Deactivation & Reactivation State
+  const [showDeactivateModal, setShowDeactivateModal] = useState(false);
+  const [deactivateTargetInst, setDeactivateTargetInst] = useState(null);
+  const [deactivateReason, setDeactivateReason] = useState('');
+  const [deactivateReasonLoading, setDeactivateReasonLoading] = useState(false);
+  const [reactivatingInstId, setReactivatingInstId] = useState(null);
 
   // Class Tracking & Reschedules State
   const [classStats, setClassStats] = useState([]);
@@ -1048,11 +1055,60 @@ export function AdminDashboard({ onLogout }) {
     }
   };
 
+  const handleDeactivateInstructor = async () => {
+    if (!deactivateTargetInst) return;
+    setDeactivateReasonLoading(true);
+    try {
+      const res = await fetch(`${API_BASE}/instructors/${deactivateTargetInst._id || deactivateTargetInst.id}/deactivate`, {
+        method: 'POST',
+        headers: { ...headers, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ reason: deactivateReason.trim() || 'Administrative restructuring or schedule adjustment' })
+      });
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err.detail || 'Failed to deactivate instructor');
+      }
+      alert('Instructor account deactivated. Notification email sent to instructor.');
+      setShowDeactivateModal(false);
+      setDeactivateTargetInst(null);
+      setDeactivateReason('');
+      await fetchInstructors();
+      await fetchStats();
+    } catch (err) {
+      alert(err.message || 'Failed to deactivate instructor');
+    } finally {
+      setDeactivateReasonLoading(false);
+    }
+  };
+
+  const handleReactivateInstructor = async (inst) => {
+    if (!confirm(`Reactivate instructor account for ${inst.name}? An email notification will be dispatched.`)) return;
+    setReactivatingInstId(inst._id || inst.id);
+    try {
+      const res = await fetch(`${API_BASE}/instructors/${inst._id || inst.id}/reactivate`, {
+        method: 'POST',
+        headers
+      });
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err.detail || 'Failed to reactivate instructor');
+      }
+      alert('Instructor account reactivated successfully. Notification email dispatched.');
+      await fetchInstructors();
+      await fetchStats();
+    } catch (err) {
+      alert(err.message || 'Failed to reactivate instructor');
+    } finally {
+      setReactivatingInstId(null);
+    }
+  };
+
   const handleDeleteInstructor = async (id) => {
-    if (!confirm("Are you sure?")) return;
+    if (!confirm("Are you sure you want to permanently delete this instructor? This action cannot be undone.")) return;
     try {
       const res = await fetch(`${API_BASE}/instructors/${id}`, { method: 'DELETE', headers });
       if (!res.ok) throw new Error();
+      alert("Instructor record permanently removed.");
       await fetchInstructors();
       await fetchStats();
     } catch { alert("Failed to delete instructor"); }
@@ -3318,11 +3374,12 @@ export function AdminDashboard({ onLogout }) {
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '1rem' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
                 <h2 style={{ color: 'var(--color-white)', margin: 0 }}>
-                  {instructorSubView === 'active' ? 'Active Certified Faculty' : 'Faculty Applications'}
+                  {instructorSubView === 'active' ? 'Active Certified Faculty' : (instructorSubView === 'deactivated' ? 'Deactivated Faculty Directory' : 'Faculty Applications')}
                 </h2>
-                <div style={{ display: 'flex', gap: '0.5rem' }}>
+                <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
                   {[
-                    { id: 'active', label: `Active Faculty (${instructors.length})` },
+                    { id: 'active', label: `Active Faculty (${instructors.filter(i => i.is_active !== false).length})` },
+                    { id: 'deactivated', label: `Deactivated Faculty (${instructors.filter(i => i.is_active === false).length})` },
                     { id: 'applications', label: `Applications${facultyApplications.filter(a => (a.status || 'pending').toLowerCase() === 'pending').length > 0 ? ` (${facultyApplications.filter(a => (a.status || 'pending').toLowerCase() === 'pending').length} Pending)` : ''}` }
                   ].map(sv => (
                     <button
@@ -3366,7 +3423,7 @@ export function AdminDashboard({ onLogout }) {
 
             {instructorSubView === 'active' && (
               <div>
-                {instructors.length === 0 ? (
+                {instructors.filter(i => i.is_active !== false).length === 0 ? (
                   <div className="glass-panel" style={{ padding: '3rem', textAlign: 'center', color: '#94a3b8', marginTop: '1.25rem' }}>
                     No certified faculty onboarded yet. Click "Onboard Directly" to add your first instructor.
                   </div>
@@ -3379,7 +3436,7 @@ export function AdminDashboard({ onLogout }) {
                       marginTop: '1.25rem',
                     }}
                   >
-                    {instructors.map(inst => (
+                    {instructors.filter(i => i.is_active !== false).map(inst => (
                       <div
                         key={inst._id || inst.id}
                         className="glass-panel"
@@ -3560,7 +3617,11 @@ export function AdminDashboard({ onLogout }) {
 
                           <button
                             type="button"
-                            onClick={() => handleDeleteInstructor(inst._id || inst.id)}
+                            onClick={() => {
+                              setDeactivateTargetInst(inst);
+                              setDeactivateReason('');
+                              setShowDeactivateModal(true);
+                            }}
                             style={{
                               padding: '7px 14px',
                               fontSize: '0.82rem',
@@ -3582,6 +3643,172 @@ export function AdminDashboard({ onLogout }) {
                               e.currentTarget.style.background = 'rgba(105, 14, 31, 0.55)';
                               e.currentTarget.style.color = 'var(--color-accent, #f0ceb3)';
                               e.currentTarget.style.borderColor = 'rgba(240, 206, 179, 0.35)';
+                            }}
+                          >
+                            Deactivate
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+
+            {instructorSubView === 'deactivated' && (
+              <div>
+                <div style={{ background: 'rgba(231,76,60,0.1)', border: '1px solid rgba(231,76,60,0.25)', borderRadius: '10px', padding: '12px 16px', marginBottom: '1.5rem', fontSize: '0.88rem', color: '#f0ceb3' }}>
+                  Deactivated faculty profiles are archived here. Their portal login is paused, active sessions are stopped, and they are unlisted from the public website. You can reactivate their account anytime, or permanently remove their record.
+                </div>
+
+                {instructors.filter(i => i.is_active === false).length === 0 ? (
+                  <div className="glass-panel" style={{ padding: '3rem', textAlign: 'center', color: '#94a3b8', marginTop: '1.25rem' }}>
+                    No deactivated faculty members. All registered instructors are currently active.
+                  </div>
+                ) : (
+                  <div
+                    style={{
+                      display: 'grid',
+                      gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))',
+                      gap: '1.25rem',
+                      marginTop: '1.25rem',
+                    }}
+                  >
+                    {instructors.filter(i => i.is_active === false).map(inst => (
+                      <div
+                        key={inst._id || inst.id}
+                        className="glass-panel"
+                        style={{
+                          padding: '1.5rem',
+                          borderRadius: '14px',
+                          display: 'flex',
+                          flexDirection: 'column',
+                          justifyContent: 'space-between',
+                          border: '1px solid rgba(231, 76, 60, 0.3)',
+                          background: 'rgba(44, 5, 13, 0.6)',
+                        }}
+                      >
+                        <div>
+                          {/* Card Header */}
+                          <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '1rem', marginBottom: '1rem' }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
+                              <img
+                                src={getAvatarUrl(inst.avatar, inst.name)}
+                                alt={inst.name}
+                                style={{
+                                  width: '50px',
+                                  height: '50px',
+                                  borderRadius: '50%',
+                                  objectFit: 'cover',
+                                  border: '2px solid rgba(231, 76, 60, 0.4)',
+                                  filter: 'grayscale(0.4)',
+                                  flexShrink: 0,
+                                }}
+                              />
+                              <div>
+                                <h3 style={{ fontSize: '1.05rem', fontWeight: 700, margin: '0 0 2px 0', color: '#fff' }}>
+                                  {inst.name}
+                                </h3>
+                                {inst.email && (
+                                  <div style={{ color: '#94a3b8', fontSize: '0.82rem' }}>
+                                    {inst.email}
+                                  </div>
+                                )}
+                                {inst.username && (
+                                  <div style={{ color: 'var(--color-primary)', fontSize: '0.78rem' }}>
+                                    @{inst.username}
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                            <span
+                              style={{
+                                fontSize: '0.75rem',
+                                fontWeight: 700,
+                                padding: '4px 10px',
+                                borderRadius: '12px',
+                                background: 'rgba(231, 76, 60, 0.2)',
+                                color: '#e74c3c',
+                                border: '1px solid rgba(231, 76, 60, 0.4)',
+                                whiteSpace: 'nowrap',
+                              }}
+                            >
+                              Deactivated
+                            </span>
+                          </div>
+
+                          {/* Deactivation Details Box */}
+                          <div
+                            style={{
+                              padding: '0.85rem',
+                              borderRadius: '8px',
+                              background: 'rgba(0, 0, 0, 0.35)',
+                              border: '1px solid rgba(231, 76, 60, 0.2)',
+                              marginBottom: '1rem',
+                              fontSize: '0.82rem',
+                            }}
+                          >
+                            <div style={{ color: '#94a3b8', marginBottom: '4px', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                              Deactivation Reason
+                            </div>
+                            <div style={{ color: '#f0ceb3', lineHeight: '1.4', fontStyle: 'italic', marginBottom: '8px' }}>
+                              "{inst.deactivation_reason || 'Administrative restructuring or schedule adjustment'}"
+                            </div>
+                            {inst.deactivated_at && (
+                              <div style={{ color: '#888', fontSize: '0.75rem' }}>
+                                Date: {new Date(inst.deactivated_at).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })}
+                                {inst.deactivated_by ? ` • By: ${inst.deactivated_by}` : ''}
+                              </div>
+                            )}
+                          </div>
+                        </div>
+
+                        {/* Action Buttons */}
+                        <div
+                          style={{
+                            borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+                            paddingTop: '0.85rem',
+                            display: 'flex',
+                            gap: '8px',
+                            alignItems: 'center',
+                          }}
+                        >
+                          <button
+                            type="button"
+                            onClick={() => handleReactivateInstructor(inst)}
+                            disabled={reactivatingInstId === (inst._id || inst.id)}
+                            style={{
+                              flex: 1.5,
+                              padding: '8px 14px',
+                              fontSize: '0.82rem',
+                              color: '#2ecc71',
+                              border: '1px solid rgba(46, 204, 113, 0.4)',
+                              borderRadius: '6px',
+                              cursor: reactivatingInstId === (inst._id || inst.id) ? 'not-allowed' : 'pointer',
+                              fontWeight: 700,
+                              background: 'rgba(46, 204, 113, 0.12)',
+                              textAlign: 'center',
+                              transition: 'all 0.2s ease',
+                            }}
+                          >
+                            {reactivatingInstId === (inst._id || inst.id) ? 'Reactivating...' : 'Reactivate Account'}
+                          </button>
+
+                          <button
+                            type="button"
+                            onClick={() => handleDeleteInstructor(inst._id || inst.id)}
+                            style={{
+                              flex: 1,
+                              padding: '8px 12px',
+                              fontSize: '0.82rem',
+                              color: '#e74c3c',
+                              border: '1px solid rgba(231, 76, 60, 0.35)',
+                              borderRadius: '6px',
+                              cursor: 'pointer',
+                              fontWeight: 600,
+                              background: 'rgba(231, 76, 60, 0.08)',
+                              textAlign: 'center',
+                              transition: 'all 0.2s ease',
                             }}
                           >
                             Delete
@@ -3856,6 +4083,85 @@ export function AdminDashboard({ onLogout }) {
                 <button type="button" onClick={() => setShowCancelModal(false)} style={{ flex: 1, padding: '11px', borderRadius: '10px', background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)', color: '#fff', cursor: 'pointer', fontWeight: 600 }}>Back</button>
                 <button type="button" disabled={cancelReasonLoading || !cancelReason.trim()} onClick={handleCancelApplication} style={{ flex: 1, padding: '11px', borderRadius: '10px', background: 'rgba(231,76,60,0.9)', border: '1px solid #e74c3c', color: '#fff', cursor: cancelReasonLoading || !cancelReason.trim() ? 'not-allowed' : 'pointer', fontWeight: 700, opacity: cancelReasonLoading || !cancelReason.trim() ? 0.65 : 1 }}>
                   {cancelReasonLoading ? 'Cancelling...' : 'Confirm Cancel & Notify'}
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Deactivate Instructor Modal */}
+        {showDeactivateModal && deactivateTargetInst && (
+          <div style={{ position: 'fixed', inset: 0, zIndex: 2000, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(8px)', padding: '1rem' }}>
+            <div className="admin-modal-card" style={{ width: '100%', maxWidth: '500px', borderRadius: '20px', border: '1px solid rgba(241,163,42,0.4)', background: 'linear-gradient(135deg, rgba(105,14,31,0.98), rgba(44,5,13,0.99))', padding: '2rem', position: 'relative' }}>
+              <button onClick={() => setShowDeactivateModal(false)} style={{ position: 'absolute', top: '1rem', right: '1rem', background: 'rgba(255,255,255,0.1)', border: 'none', borderRadius: '50%', width: '32px', height: '32px', color: '#fff', cursor: 'pointer', fontSize: '1.1rem' }}><X size={16} /></button>
+              <h3 style={{ color: '#fff', marginBottom: '0.5rem' }}>Deactivate Instructor Account</h3>
+              <p style={{ color: '#f0ceb3', fontSize: '0.88rem', marginBottom: '1.25rem' }}>
+                You are deactivating the account for <strong>{deactivateTargetInst.name}</strong> ({deactivateTargetInst.email}). This will pause their portal access, hide them from the public faculty directory, and dispatch an official deactivation notice to their email.
+              </p>
+
+              {/* Quick Presets */}
+              <div style={{ marginBottom: '1rem' }}>
+                <label style={{ display: 'block', color: '#f0ceb3', fontSize: '0.82rem', fontWeight: 600, marginBottom: '0.4rem' }}>Quick Reasons / Presets</label>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                  {[
+                    "Administrative restructuring",
+                    "Personal leave / sabbatical",
+                    "Course schedule completion",
+                    "Policy compliance review",
+                    "Temporary contract pause"
+                  ].map((preset, idx) => (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={() => setDeactivateReason(preset)}
+                      style={{
+                        padding: '4px 10px',
+                        fontSize: '0.78rem',
+                        borderRadius: '12px',
+                        cursor: 'pointer',
+                        border: '1px solid rgba(241,163,42,0.3)',
+                        background: deactivateReason === preset ? 'var(--color-primary)' : 'rgba(241,163,42,0.08)',
+                        color: deactivateReason === preset ? '#1a0008' : '#f0ceb3',
+                        fontWeight: deactivateReason === preset ? 700 : 500,
+                      }}
+                    >
+                      {preset}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div style={{ marginBottom: '1.25rem' }}>
+                <label htmlFor="instructor-deactivate-reason" style={{ display: 'block', color: '#f0ceb3', fontSize: '0.85rem', fontWeight: 600, marginBottom: '0.4rem' }}>Reason / Administrative Notes *</label>
+                <textarea
+                  id="instructor-deactivate-reason"
+                  rows={3}
+                  value={deactivateReason}
+                  onChange={e => setDeactivateReason(e.target.value)}
+                  placeholder="e.g. Temporary leave of absence for semester break."
+                  style={{ width: '100%', padding: '11px 14px', borderRadius: '10px', background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(241,163,42,0.25)', color: '#fff', outline: 'none', boxSizing: 'border-box', resize: 'vertical' }}
+                />
+              </div>
+
+              <div style={{ display: 'flex', gap: '0.75rem' }}>
+                <button type="button" onClick={() => setShowDeactivateModal(false)} style={{ flex: 1, padding: '11px', borderRadius: '10px', background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)', color: '#fff', cursor: 'pointer', fontWeight: 600 }}>Back</button>
+                <button
+                  type="button"
+                  disabled={deactivateReasonLoading || !deactivateReason.trim()}
+                  onClick={handleDeactivateInstructor}
+                  style={{
+                    flex: 1.5,
+                    padding: '11px',
+                    borderRadius: '10px',
+                    background: 'rgba(231,76,60,0.9)',
+                    border: '1px solid #e74c3c',
+                    color: '#fff',
+                    cursor: deactivateReasonLoading || !deactivateReason.trim() ? 'not-allowed' : 'pointer',
+                    fontWeight: 700,
+                    opacity: deactivateReasonLoading || !deactivateReason.trim() ? 0.65 : 1
+                  }}
+                >
+                  {deactivateReasonLoading ? 'Deactivating...' : 'Confirm Deactivation & Notify'}
                 </button>
               </div>
             </div>

@@ -7,13 +7,15 @@ from typing import Optional, List
 from app.database import get_db
 from app.core.dependencies import get_current_user, require_admin, require_roles
 from app.core.security import hash_password
-from app.models import FacultyApplicationCreate, FacultyApplicationCancelRequest
+from app.models import FacultyApplicationCreate, FacultyApplicationCancelRequest, InstructorDeactivateRequest
 from app.services.storage_service import upload_media_file
 from app.services.credential_service import generate_secure_temporary_password, send_instructor_credentials
 from app.services.email_service import (
     send_instructor_application_alert,
     send_instructor_application_ack,
     send_instructor_cancellation_email,
+    send_instructor_deactivation_email,
+    send_instructor_reactivation_email,
     contains_emoji,
     sanitize_text
 )
@@ -550,6 +552,131 @@ async def update_instructor(
     except Exception as e:
         print(f"ERROR updating instructor: {e}")
         raise HTTPException(status_code=500, detail="Could not update instructor.")
+
+
+@router.post("/{instructor_id}/deactivate", summary="Deactivate an instructor account with reason (Admin Only)")
+async def deactivate_instructor(
+    instructor_id: str,
+    data: Optional[InstructorDeactivateRequest] = None,
+    admin_user: dict = Depends(require_admin)
+):
+    db = get_db()
+    try:
+        existing = await db.instructors.find_one({"_id": ObjectId(instructor_id)})
+        if not existing:
+            raise HTTPException(status_code=404, detail="Instructor not found")
+
+        reason = (data.reason.strip() if data and data.reason and data.reason.strip() else "Administrative restructuring or schedule adjustment")
+        now = datetime.now(timezone.utc)
+
+        # Update instructor record
+        await db.instructors.update_one(
+            {"_id": ObjectId(instructor_id)},
+            {"$set": {
+                "is_active": False,
+                "deactivated_at": now,
+                "deactivation_reason": reason,
+                "deactivated_by": admin_user.get("email") or admin_user.get("username", "admin"),
+                "updated_at": now
+            }}
+        )
+
+        # Update linked user account
+        user_id = existing.get("user_id")
+        if user_id:
+            await db.users.update_one({"_id": user_id}, {"$set": {"status": "inactive", "is_active": False, "updated_at": now}})
+        elif existing.get("email"):
+            await db.users.update_one({"email": existing.get("email"), "role": "instructor"}, {"$set": {"status": "inactive", "is_active": False, "updated_at": now}})
+
+        # Send official deactivation notification email
+        inst_email = existing.get("email")
+        inst_name = existing.get("name", "Instructor")
+        if inst_email:
+            try:
+                send_instructor_deactivation_email(inst_name, inst_email, reason)
+            except Exception as mail_err:
+                print(f"[INSTRUCTOR DEACTIVATE EMAIL ERROR]: {mail_err}")
+
+        # In-app notification if user_id exists
+        if user_id:
+            try:
+                await create_notification(
+                    user_id=str(user_id),
+                    type="system",
+                    title="Instructor Account Deactivated",
+                    message=f"Your instructor account has been transitioned to inactive. Reason: {reason}"
+                )
+            except Exception as notif_err:
+                print(f"[INSTRUCTOR DEACTIVATE NOTIF ERROR]: {notif_err}")
+
+        return {"message": "Instructor account deactivated successfully.", "instructor_id": instructor_id}
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"ERROR deactivating instructor: {e}")
+        raise HTTPException(status_code=500, detail="Could not deactivate instructor.")
+
+
+@router.post("/{instructor_id}/reactivate", summary="Reactivate an instructor account (Admin Only)")
+async def reactivate_instructor(
+    instructor_id: str,
+    admin_user: dict = Depends(require_admin)
+):
+    db = get_db()
+    try:
+        existing = await db.instructors.find_one({"_id": ObjectId(instructor_id)})
+        if not existing:
+            raise HTTPException(status_code=404, detail="Instructor not found")
+
+        now = datetime.now(timezone.utc)
+
+        # Update instructor record
+        await db.instructors.update_one(
+            {"_id": ObjectId(instructor_id)},
+            {"$set": {
+                "is_active": True,
+                "reactivated_at": now,
+                "reactivated_by": admin_user.get("email") or admin_user.get("username", "admin"),
+                "previous_deactivation_reason": existing.get("deactivation_reason"),
+                "deactivation_reason": None,
+                "updated_at": now
+            }}
+        )
+
+        # Update linked user account
+        user_id = existing.get("user_id")
+        if user_id:
+            await db.users.update_one({"_id": user_id}, {"$set": {"status": "active", "is_active": True, "updated_at": now}})
+        elif existing.get("email"):
+            await db.users.update_one({"email": existing.get("email"), "role": "instructor"}, {"$set": {"status": "active", "is_active": True, "updated_at": now}})
+
+        # Send official reactivation notification email
+        inst_email = existing.get("email")
+        inst_name = existing.get("name", "Instructor")
+        if inst_email:
+            try:
+                send_instructor_reactivation_email(inst_name, inst_email)
+            except Exception as mail_err:
+                print(f"[INSTRUCTOR REACTIVATE EMAIL ERROR]: {mail_err}")
+
+        # In-app notification if user_id exists
+        if user_id:
+            try:
+                await create_notification(
+                    user_id=str(user_id),
+                    type="system",
+                    title="Instructor Account Reactivated",
+                    message="Your instructor account has been successfully reactivated. Welcome back!"
+                )
+            except Exception as notif_err:
+                print(f"[INSTRUCTOR REACTIVATE NOTIF ERROR]: {notif_err}")
+
+        return {"message": "Instructor account reactivated successfully.", "instructor_id": instructor_id}
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"ERROR reactivating instructor: {e}")
+        raise HTTPException(status_code=500, detail="Could not reactivate instructor.")
 
 
 @router.delete("/{instructor_id}", summary="Delete an instructor (Admin Only)")

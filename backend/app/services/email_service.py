@@ -1,3 +1,4 @@
+import os
 import smtplib
 import re
 from typing import List, Tuple, Optional
@@ -692,6 +693,102 @@ Emam
         ''',
         highlight_box_html=table,
         sub_note_html="You may re-apply in future intake cycles when new faculty slots open across our curriculum tracks."
+    )
+
+    return send_email(instructor_email, subject, body, html_body)
+
+
+def send_instructor_deactivation_email(
+    instructor_name: str,
+    instructor_email: str,
+    reason: Optional[str] = None
+) -> bool:
+    """Notifies instructor when their account is deactivated by Admin."""
+    subject = "Notice regarding your Emam Faculty Account Status"
+    effective_reason = (reason.strip() if reason and reason.strip() else "Administrative restructuring or schedule adjustment")
+
+    body = f"""Dear {instructor_name},
+
+Assalamu Alaikum wa Rahmatullah,
+
+This email is to notify you that your Instructor Portal account at Emam has been deactivated.
+
+Reason / Administrative Notes:
+{effective_reason}
+
+Your profile has been unlisted from the public faculty directory, and active class schedules have been paused. If you believe this action was taken in error or require further clarification, please contact our Academic Office.
+
+Official Contact: info.emam.uk@gmail.com | WhatsApp: +92 317 3141721
+
+JazakAllah Khair,
+Academic Dean's Office
+Emam
+"""
+
+    table = create_table_box([
+        ("Account Holder", instructor_name, False),
+        ("Registered Email", instructor_email, False),
+        ("Account Status", "Deactivated / Inactive", False),
+        ("Reason / Notes", effective_reason, False)
+    ], border_color="#ef4444", bg_color="#fef2f2")
+
+    html_body = build_base_email_html(
+        title="Faculty Account Status Update",
+        recipient_name=instructor_name,
+        badge_label="Account Deactivated",
+        body_html=f'''
+        <p>Assalamu Alaikum wa Rahmatullah,</p>
+        <p>This is to inform you that your official instructor profile at <strong>Emam</strong> has been transitioned to <strong>Deactivated (Inactive)</strong> status.</p>
+        <p>During this period, active cohort sessions and faculty directory listings are paused.</p>
+        ''',
+        highlight_box_html=table,
+        sub_note_html="For inquiries regarding this status change or account reinstatement, please contact our Academic Office directly."
+    )
+
+    return send_email(instructor_email, subject, body, html_body)
+
+
+def send_instructor_reactivation_email(
+    instructor_name: str,
+    instructor_email: str
+) -> bool:
+    """Notifies instructor when their account is reactivated by Admin."""
+    subject = "Your Emam Faculty Account has been Reactivated"
+
+    body = f"""Dear {instructor_name},
+
+Assalamu Alaikum wa Rahmatullah,
+
+We are pleased to inform you that your Instructor Portal account at Emam has been successfully reactivated.
+
+You may now log in to the Instructor Portal with your existing credentials to access your teaching dashboard and assigned student cohorts.
+
+Portal Link: /instructor/login
+
+JazakAllah Khair,
+Academic Dean's Office
+Emam
+"""
+
+    table = create_table_box([
+        ("Account Holder", instructor_name, False),
+        ("Registered Email", instructor_email, False),
+        ("Account Status", "Active / Restored", False)
+    ], border_color="#10b981", bg_color="#f0fdf4")
+
+    html_body = build_base_email_html(
+        title="Faculty Account Reactivated",
+        recipient_name=instructor_name,
+        badge_label="Account Restored",
+        body_html=f'''
+        <p>Assalamu Alaikum wa Rahmatullah,</p>
+        <p>We are pleased to inform you that your certified faculty account at <strong>Emam</strong> has been officially <strong>reactivated</strong>.</p>
+        <p>Your access to the Instructor Portal has been restored.</p>
+        ''',
+        highlight_box_html=table,
+        button_label="Log In to Instructor Portal",
+        button_url="/instructor/login",
+        sub_note_html="You may resume accessing your teaching dashboard, assigned classes, and student records."
     )
 
     return send_email(instructor_email, subject, body, html_body)

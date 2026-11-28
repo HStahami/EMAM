@@ -47,6 +47,10 @@ class FacultyApplicationCancelRequest(BaseModel):
     reason: Optional[str] = "Application requirements or intake quota fulfilled"
 
 
+class InstructorDeactivateRequest(BaseModel):
+    reason: Optional[str] = "Administrative restructuring or schedule adjustment"
+
+
 # --- Contact Models ---
 class ContactCreate(BaseModel):
     first_name: str

@@ -875,7 +875,128 @@ export function Home() {
           <p style={{ color: '#ff6b6b', textAlign: 'center', padding: '3rem', fontSize: '1.1rem' }}>{instructorsError}</p>
         ) : instructors.length === 0 ? (
           <p style={{ color: '#f0ceb3', textAlign: 'center', fontSize: '1.1rem', padding: '3rem' }}>No faculty profiles available at the moment.</p>
+        ) : itemsToShow === 1 ? (
+          /* Mobile View: Full-width responsive card with bottom centered controls */
+          <div style={{ maxWidth: '440px', margin: '0 auto', width: '100%', boxSizing: 'border-box' }}>
+            <AnimatePresence mode="popLayout">
+              {visibleInstructors.map((instructor) => (
+                <motion.div
+                  key={instructor._id || instructor.id || instructor.name}
+                  layout
+                  initial={{ opacity: 0, scale: 0.9, x: 30 }}
+                  animate={{ opacity: 1, scale: 1, x: 0 }}
+                  exit={{ opacity: 0, scale: 0.9, x: -30 }}
+                  transition={{ duration: 0.35, type: 'spring', bounce: 0.2 }}
+                  className="glass-panel"
+                  style={{
+                    padding: '2rem 1.5rem',
+                    textAlign: 'center',
+                    border: '1px solid rgba(241, 163, 42, 0.25)',
+                    background: 'rgba(105, 14, 31, 0.22)',
+                    borderRadius: '20px',
+                    boxShadow: '0 12px 30px rgba(0,0,0,0.4)',
+                    width: '100%',
+                    boxSizing: 'border-box'
+                  }}
+                >
+                  <div className="faculty-avatar-ring" style={{ display: 'inline-block', padding: '3px', borderRadius: '50%', background: 'linear-gradient(135deg, var(--color-primary), var(--color-accent))', marginBottom: '1.1rem' }}>
+                    <img
+                      src={getAvatarUrl(instructor.avatar, instructor.name)}
+                      alt={instructor.name}
+                      className="faculty-avatar-img"
+                      style={{ width: '84px', height: '84px', borderRadius: '50%', display: 'block', background: 'var(--color-bg-dark)', objectFit: 'cover' }}
+                    />
+                  </div>
+
+                  <h3 style={{ fontSize: '1.35rem', marginBottom: '0.4rem', color: 'var(--color-white)', fontWeight: '700', lineHeight: 1.3 }}>
+                    {instructor.name}
+                  </h3>
+                  <p style={{ color: 'var(--color-primary)', fontSize: '0.95rem', fontWeight: '600', marginBottom: instructor.about ? '0.75rem' : '0' }}>
+                    {instructor.specialty || 'Classical Arabic & Syntax'}
+                  </p>
+                  {instructor.about && (
+                    <p style={{ color: '#e0d0c8', fontSize: '0.9rem', lineHeight: '1.6', margin: '0' }}>
+                      {instructor.about}
+                    </p>
+                  )}
+                </motion.div>
+              ))}
+            </AnimatePresence>
+
+            {/* Mobile Carousel Controls (Below Card) */}
+            {instructors.length > 1 && (
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1.25rem', marginTop: '1.5rem' }}>
+                <motion.button
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  onClick={() => scroll('left')}
+                  disabled={startIndex === 0}
+                  className="glass-panel"
+                  style={{
+                    width: '42px',
+                    height: '42px',
+                    borderRadius: '50%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: startIndex === 0 ? 'not-allowed' : 'pointer',
+                    border: '1px solid var(--color-primary)',
+                    background: 'var(--color-bg-dark)',
+                    opacity: startIndex === 0 ? 0.35 : 1
+                  }}
+                  aria-label="Previous instructor"
+                >
+                  <span style={{ color: 'var(--color-primary)', fontSize: '1.3rem', fontWeight: '700', lineHeight: '1' }}>&larr;</span>
+                </motion.button>
+
+                {/* Dots indicator */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  {instructors.map((_, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setStartIndex(idx)}
+                      style={{
+                        width: idx === startIndex ? '22px' : '8px',
+                        height: '8px',
+                        borderRadius: '4px',
+                        background: idx === startIndex ? 'var(--color-primary)' : 'rgba(240, 206, 179, 0.25)',
+                        border: 'none',
+                        padding: 0,
+                        cursor: 'pointer',
+                        transition: 'all 0.3s ease'
+                      }}
+                      aria-label={`Go to slide ${idx + 1}`}
+                    />
+                  ))}
+                </div>
+
+                <motion.button
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  onClick={() => scroll('right')}
+                  disabled={startIndex >= instructors.length - 1}
+                  className="glass-panel"
+                  style={{
+                    width: '42px',
+                    height: '42px',
+                    borderRadius: '50%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: startIndex >= instructors.length - 1 ? 'not-allowed' : 'pointer',
+                    border: '1px solid var(--color-primary)',
+                    background: 'var(--color-bg-dark)',
+                    opacity: startIndex >= instructors.length - 1 ? 0.35 : 1
+                  }}
+                  aria-label="Next instructor"
+                >
+                  <span style={{ color: 'var(--color-primary)', fontSize: '1.3rem', fontWeight: '700', lineHeight: '1' }}>&rarr;</span>
+                </motion.button>
+              </div>
+            )}
+          </div>
         ) : (
+          /* Desktop / Tablet View with Side Nav Buttons */
           <div style={{ position: 'relative', padding: '0 2.5rem' }}>
             <motion.button
               whileHover={{ scale: 1.15 }}

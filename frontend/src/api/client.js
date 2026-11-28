@@ -46,6 +46,14 @@ export const apiClient = async (endpoint, options = {}) => {
 
   if (response.status === 401) {
     if (!endpoint.includes("/auth/login")) {
+      try {
+        const errBody = await response.clone().json();
+        if (errBody?.detail && errBody.detail.toLowerCase().includes("another device")) {
+          sessionStorage.setItem("session_kicked_reason", errBody.detail);
+        }
+      } catch {
+        // ignore JSON parse errors on 401
+      }
       localStorage.removeItem("token");
       localStorage.removeItem("adminToken");
       localStorage.removeItem("user");

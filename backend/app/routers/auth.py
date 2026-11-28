@@ -1,3 +1,4 @@
+import uuid
 from datetime import timezone, datetime
 from bson import ObjectId
 from fastapi import APIRouter, HTTPException, Depends, status
@@ -140,10 +141,15 @@ async def login(data: LoginRequest):
         )
 
 
-    # Update last login timestamp
+    # Enforce single-device active session for students
+    update_fields = {"last_login_at": datetime.now(timezone.utc)}
+    session_id = uuid.uuid4().hex
+    if user.get("role") == "student":
+        update_fields["active_session_id"] = session_id
+
     await db.users.update_one(
         {"_id": user["_id"]},
-        {"$set": {"last_login_at": datetime.now(timezone.utc)}}
+        {"$set": update_fields}
     )
 
     token_data = {
@@ -151,6 +157,9 @@ async def login(data: LoginRequest):
         "role": user.get("role", "student"),
         "email": user.get("email", "")
     }
+    if user.get("role") == "student":
+        token_data["sid"] = session_id
+
     token = create_access_token(token_data)
     user_response = await _resolve_user_response(db, user)
 

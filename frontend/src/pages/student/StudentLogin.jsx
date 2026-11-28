@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Eye, EyeOff } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
@@ -12,6 +12,14 @@ export function StudentLogin() {
 
   const { login, logout } = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const kickedReason = sessionStorage.getItem('session_kicked_reason');
+    if (kickedReason) {
+      setError(kickedReason);
+      sessionStorage.removeItem('session_kicked_reason');
+    }
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

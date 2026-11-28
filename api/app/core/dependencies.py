@@ -62,6 +62,16 @@ async def get_current_user(
             detail="User account is inactive or disabled."
         )
 
+    # Enforce single-device login for students
+    if user.get("role") == "student":
+        db_session_id = user.get("active_session_id")
+        token_session_id = payload.get("sid")
+        if db_session_id and token_session_id != db_session_id:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Your account was logged in from another device. Only 1 active device is allowed at a time.",
+                headers={"WWW-Authenticate": "Bearer"}
+            )
 
     # Sanitize: strip out password hash before passing user downstream
     sanitized_user = {k: v for k, v in user.items() if k != "password_hash"}

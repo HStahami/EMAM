@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Eye, EyeOff } from 'lucide-react';
+import { Eye, EyeOff, Lock } from 'lucide-react';
 import { authApi } from '../../api';
 import { useAuth } from '../../context/AuthContext';
 
@@ -95,11 +95,11 @@ export function StudentSettings() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
           <div>
             <span style={{ display: 'block', fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)' }}>Account Username</span>
-            <span style={{ fontSize: '0.95rem', fontWeight: 600, color: '#e2e8f0' }}>{user?.username || 'N/A'}</span>
+            <span style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--color-white)' }}>{user?.username || 'N/A'}</span>
           </div>
           <div>
             <span style={{ display: 'block', fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)' }}>Email Address</span>
-            <span style={{ fontSize: '0.95rem', fontWeight: 600, color: '#e2e8f0' }}>{user?.email || 'N/A'}</span>
+            <span style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--color-white)' }}>{user?.email || 'N/A'}</span>
           </div>
           <div>
             <span style={{ display: 'block', fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)' }}>Student ID Code</span>
@@ -145,7 +145,7 @@ export function StudentSettings() {
               fontSize: '1.25rem',
             }}
           >
-            
+            <Lock size={20} color="var(--color-primary)" />
           </div>
           <div>
             <h2 style={{ fontSize: '1.2rem', fontWeight: 700, margin: 0, color: '#f8fafc' }}>

@@ -2200,5 +2200,55 @@ body {
   color: #8c777c !important;
 }
 
+/* ========================================= */
+/* Courses, Profile & Settings Light Fixes   */
+/* ========================================= */
+
+/* Labels & React-serialized rgb() inline color overrides */
+[data-theme='light'] .portal-main-content label {
+  color: #220d12 !important;
+  font-weight: 600 !important;
+}
+
+[data-theme='light'] .portal-main-content [style*="rgb(255, 255, 255)"]:not(.btn-primary):not(.btn-primary *):not(.student-chat-msg-sent):not(.student-chat-msg-sent *),
+[data-theme='light'] .portal-main-content [style*="rgb(248, 250, 252)"]:not(.btn-primary):not(.btn-primary *),
+[data-theme='light'] .portal-main-content [style*="rgb(241, 245, 249)"]:not(.btn-primary):not(.btn-primary *),
+[data-theme='light'] .portal-main-content [style*="rgb(226, 232, 240)"]:not(.btn-primary):not(.btn-primary *) {
+  color: #220d12 !important;
+}
+
+[data-theme='light'] .portal-main-content [style*="rgb(240, 206, 179)"] {
+  color: #554448 !important;
+}
+
+/* Student Courses Inner Panel & Stat Pills */
+[data-theme='light'] .course-details-grid {
+  background-color: #faf5f0 !important;
+  border: 1px solid rgba(105, 14, 31, 0.14) !important;
+}
+
+[data-theme='light'] .course-stat-pill {
+  background: #faf5f0 !important;
+  border: 1px solid rgba(105, 14, 31, 0.16) !important;
+  color: #690e1f !important;
+  font-weight: 600 !important;
+}
+
+[data-theme='light'] .course-instructor-avatar {
+  background-color: #ffffff !important;
+  border: 1.5px solid #8b152b !important;
+  color: #8b152b !important;
+}
+
+/* Disabled Inputs in Profile */
+[data-theme='light'] .portal-main-content input:disabled,
+[data-theme='light'] .portal-main-content select:disabled,
+[data-theme='light'] .portal-main-content textarea:disabled {
+  background: #faf5f0 !important;
+  color: #554448 !important;
+  border-color: rgba(105, 14, 31, 0.15) !important;
+}
+
+
 
 

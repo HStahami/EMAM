@@ -106,10 +106,10 @@ export function StudentCourses() {
                   </div>
 
                   <div style={{ display: 'flex', gap: '0.75rem' }}>
-                    <div style={{ padding: '0.4rem 0.8rem', borderRadius: '6px', background: 'rgba(255, 255, 255, 0.05)', fontSize: '0.8rem', color: '#f0ceb3' }}>
+                    <div className="course-stat-pill" style={{ padding: '0.4rem 0.8rem', borderRadius: '6px', background: 'rgba(255, 255, 255, 0.05)', fontSize: '0.8rem', color: '#f0ceb3' }}>
                       {item.tasks_count || 0} Tasks Assigned
                     </div>
-                    <div style={{ padding: '0.4rem 0.8rem', borderRadius: '6px', background: 'rgba(255, 255, 255, 0.05)', fontSize: '0.8rem', color: '#f0ceb3' }}>
+                    <div className="course-stat-pill" style={{ padding: '0.4rem 0.8rem', borderRadius: '6px', background: 'rgba(255, 255, 255, 0.05)', fontSize: '0.8rem', color: '#f0ceb3' }}>
                       {item.resources_count || 0} Learning Materials
                     </div>
                   </div>
@@ -122,6 +122,7 @@ export function StudentCourses() {
 
                 {/* Details Grid: Instructor & Schedule */}
                 <div
+                  className="course-details-grid"
                   style={{
                     display: 'grid',
                     gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
@@ -135,6 +136,7 @@ export function StudentCourses() {
                   {/* Instructor */}
                   <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
                     <div
+                      className="course-instructor-avatar"
                       style={{
                         width: '48px',
                         height: '48px',

@@ -127,7 +127,7 @@ export function StudentClassroom() {
   }, [isLive, slotKey, attendanceMarked]);
 
   const openUnlimitedWindow = () => {
-    const url = `https://meet.jit.si/${roomName}#userInfo.displayName="${encodeURIComponent(displayName)}"&config.startWithVideoMuted=true&config.prejoinPageEnabled=false`;
+    const url = `https://meet.jit.si/${roomName}#userInfo.displayName="${encodeURIComponent(displayName)}"&config.startWithVideoMuted=true&config.prejoinPageEnabled=false&config.defaultLanguage="en"&lang=en`;
     window.open(url, '_blank', 'noopener,noreferrer,width=1280,height=800');
   };
 

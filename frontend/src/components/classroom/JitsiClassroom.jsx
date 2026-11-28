@@ -98,11 +98,13 @@ export function JitsiClassroom({
           roomName: cleanRoomName,
           width: '100%',
           height: '100%',
+          lang: 'en',
           parentNode: containerRef.current,
           userInfo: {
             displayName: formattedDisplayName,
           },
           configOverwrite: {
+            defaultLanguage: 'en',
             startWithAudioMuted: false,
             startWithVideoMuted: true, // Privacy/Parda by default
             prejoinPageEnabled: false,

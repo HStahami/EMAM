@@ -180,36 +180,6 @@ export function StudentLayout({ children }) {
           {/* Theme Toggle */}
           <ThemeToggle />
 
-          {/* Feature Tour Button */}
-          <button
-            type="button"
-            onClick={() => setShowTour(true)}
-            title="Take Feature Tour"
-            aria-label="Take Feature Tour"
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.4rem',
-              background: 'rgba(241, 163, 42, 0.12)',
-              border: '1px solid rgba(241, 163, 42, 0.35)',
-              color: 'var(--color-primary)',
-              padding: '5px 10px',
-              borderRadius: '6px',
-              fontSize: '0.78rem',
-              fontWeight: 600,
-              cursor: 'pointer',
-              transition: 'all 0.15s ease',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = 'rgba(241, 163, 42, 0.22)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'rgba(241, 163, 42, 0.12)';
-            }}
-          >
-            Feature Tour
-          </button>
-
           {/* Notification Bell */}
           <Link
             to="/student/notifications"
@@ -247,29 +217,8 @@ export function StudentLayout({ children }) {
             )}
           </Link>
 
-          {/* Profile Quick Info */}
+          {/* Sign Out Control */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <Link
-              to="/student/profile"
-              style={{
-                width: '34px',
-                height: '34px',
-                borderRadius: '50%',
-                backgroundColor: 'rgba(105, 14, 31, 0.5)',
-                border: '1px solid var(--color-primary)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontWeight: 700,
-                color: 'var(--color-primary)',
-                fontSize: '0.88rem',
-                textDecoration: 'none',
-              }}
-              title="View Student Profile"
-            >
-              {user?.username?.[0]?.toUpperCase() || 'S'}
-            </Link>
-
             <button
               onClick={handleLogout}
               style={{

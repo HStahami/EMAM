@@ -68,8 +68,8 @@ def build_base_email_html(
 
     sub_note_markup = f'''<div style="margin-top: 20px; font-size: 12.5px; color: #64748b; line-height: 1.55; border-top: 1px dashed #e2e8f0; padding-top: 14px;">{sub_note_html}</div>''' if sub_note_html else ""
 
-    official_email = getattr(settings, "EMAIL_FROM", "info.emam.uk@gmail.com") or "info.emam.uk@gmail.com"
-    official_phone = getattr(settings, "INSTITUTE_WHATSAPP_NUMBER", "+92 317 3141721") or "+92 317 3141721"
+    official_email = "info.emam.uk@gmail.com"
+    official_phone = "+92 317 3141721"
 
     html = f'''<!DOCTYPE html>
 <html lang="en">
@@ -90,9 +90,9 @@ def build_base_email_html(
               <table role="presentation" cellpadding="0" cellspacing="0" style="margin: 0 auto; text-align: center;">
                 <tr>
                   <td align="center">
-                    <img src="https://emam.uk/emam-brand-logo.jpg" alt="Emam Logo" width="54" height="54" style="display: block; border-radius: 12px; margin: 0 auto 8px auto; border: 1.5px solid #f1a32a;" />
+                    <img src="cid:emam_brand_logo" alt="Emam Logo" width="54" height="54" style="display: block; border-radius: 12px; margin: 0 auto 8px auto; border: 1.5px solid #f1a32a;" />
                     <div style="font-size: 24px; font-weight: 800; color: #ffffff; letter-spacing: 2px; text-transform: uppercase; line-height: 1.2;">Emam</div>
-                    <div style="font-size: 11px; color: #f0ceb3; text-transform: uppercase; letter-spacing: 1.5px; margin-top: 4px;">Online Learning Institute</div>
+                    <div style="font-size: 11px; color: #f0ceb3; text-transform: uppercase; letter-spacing: 1.5px; margin-top: 4px;">Language and Technology Training Platform</div>
                   </td>
                 </tr>
               </table>
@@ -171,11 +171,27 @@ def send_email(to_email: str, subject: str, body: str, html_body: Optional[str] 
     msg.set_content(body)
     if html_body:
         msg.add_alternative(html_body, subtype="html")
+        logo_path = os.path.join(os.path.dirname(__file__), "..", "emam-brand-logo.jpg")
+        if not os.path.exists(logo_path):
+            logo_path = os.path.join(os.path.dirname(__file__), "..", "..", "..", "frontend", "public", "emam-brand-logo.jpg")
+        if os.path.exists(logo_path):
+            try:
+                with open(logo_path, "rb") as f:
+                    img_data = f.read()
+                # Attach inline to HTML part
+                msg.get_payload()[1].add_related(
+                    img_data,
+                    maintype="image",
+                    subtype="jpeg",
+                    cid="<emam_brand_logo>"
+                )
+            except Exception as img_err:
+                print(f"[EMAIL LOGO WARNING] Could not attach inline logo: {img_err}")
 
     msg['Subject'] = subject
     sender_addr = settings.EMAIL_FROM or settings.SMTP_USERNAME or "info.emam.uk@gmail.com"
     msg['From'] = f"Emam <{sender_addr}>"
-    msg['Reply-To'] = getattr(settings, "FEE_VERIFICATION_EMAIL", None) or sender_addr
+    msg['Reply-To'] = "info.emam.uk@gmail.com"
     msg['To'] = to_email
 
     try:

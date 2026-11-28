@@ -68,8 +68,8 @@ def build_base_email_html(
 
     sub_note_markup = f'''<div style="margin-top: 20px; font-size: 12.5px; color: #64748b; line-height: 1.55; border-top: 1px dashed #e2e8f0; padding-top: 14px;">{sub_note_html}</div>''' if sub_note_html else ""
 
-    official_email = getattr(settings, "EMAIL_FROM", "alarabiafi@gmail.com") or "alarabiafi@gmail.com"
-    official_phone = getattr(settings, "INSTITUTE_WHATSAPP_NUMBER", "+92 331 89675343") or "+92 331 89675343"
+    official_email = getattr(settings, "EMAIL_FROM", "info.emam.uk@gmail.com") or "info.emam.uk@gmail.com"
+    official_phone = getattr(settings, "INSTITUTE_WHATSAPP_NUMBER", "+92 317 3141721") or "+92 317 3141721"
 
     html = f'''<!DOCTYPE html>
 <html lang="en">
@@ -166,7 +166,9 @@ def send_email(to_email: str, subject: str, body: str, html_body: Optional[str] 
         msg.add_alternative(html_body, subtype="html")
 
     msg['Subject'] = subject
-    msg['From'] = settings.EMAIL_FROM or f"Emam <{settings.SMTP_USERNAME}>"
+    sender_addr = settings.EMAIL_FROM or settings.SMTP_USERNAME or "info.emam.uk@gmail.com"
+    msg['From'] = f"Emam <{sender_addr}>"
+    msg['Reply-To'] = getattr(settings, "FEE_VERIFICATION_EMAIL", None) or sender_addr
     msg['To'] = to_email
 
     try:
@@ -529,7 +531,7 @@ def send_instructor_application_alert(
 ) -> bool:
     """Alerts Super Admin when a new faculty teaching application is submitted."""
     subject = f"New Faculty Application: {instructor_name} ({specialization})"
-    admin_email = getattr(settings, "ADMIN_ALERT_EMAIL", "alarabiafi@gmail.com") or "alarabiafi@gmail.com"
+    admin_email = getattr(settings, "ADMIN_ALERT_EMAIL", None) or getattr(settings, "INSTITUTE_NOTIFICATION_EMAIL", None) or "tahami@emam.uk"
 
     body = f"""New Faculty Application Received!
 

@@ -19,12 +19,13 @@ class Settings(BaseSettings):
     SMTP_PORT: int = int(os.getenv("SMTP_PORT", 587))
     SMTP_USERNAME: str = os.getenv("SMTP_USERNAME", "")
     SMTP_PASSWORD: str = os.getenv("SMTP_PASSWORD", "")
-    EMAIL_FROM: str = os.getenv("EMAIL_FROM", "alarabiafi@gmail.com")
-    INSTITUTE_NOTIFICATION_EMAIL: str = os.getenv("INSTITUTE_NOTIFICATION_EMAIL", "alarabiafi@gmail.com")
+    EMAIL_FROM: str = os.getenv("EMAIL_FROM", "info.emam.uk@gmail.com")
+    INSTITUTE_NOTIFICATION_EMAIL: str = os.getenv("INSTITUTE_NOTIFICATION_EMAIL", "tahami@emam.uk")
+    ADMIN_ALERT_EMAIL: str = os.getenv("ADMIN_ALERT_EMAIL", "tahami@emam.uk")
     
     WHATSAPP_API_URL: str = os.getenv("WHATSAPP_API_URL", "")
     WHATSAPP_API_TOKEN: str = os.getenv("WHATSAPP_API_TOKEN", "")
-    INSTITUTE_WHATSAPP_NUMBER: str = os.getenv("INSTITUTE_WHATSAPP_NUMBER", "+92 331 89675343")
+    INSTITUTE_WHATSAPP_NUMBER: str = os.getenv("INSTITUTE_WHATSAPP_NUMBER", "+92 317 3141721")
     
     ENVIRONMENT: str = os.getenv("ENVIRONMENT", os.getenv("VERCEL_ENV", "development"))
 
@@ -51,10 +52,10 @@ class Settings(BaseSettings):
     FEE_ACCOUNT_TITLE: str = os.getenv("FEE_ACCOUNT_TITLE", "Emam")
     FEE_ACCOUNT_NUMBER: str = os.getenv("FEE_ACCOUNT_NUMBER", "01020108924018")
     FEE_IBAN: str = os.getenv("FEE_IBAN", "PK64MEZN0001020108924018")
-    FEE_RAAST_ID: str = os.getenv("FEE_RAAST_ID", "+92 331 89675343")
+    FEE_RAAST_ID: str = os.getenv("FEE_RAAST_ID", "+92 317 3141721")
     FEE_EASYPAISA_JAZZCASH: str = os.getenv("FEE_EASYPAISA_JAZZCASH", "+92 331 89675343 (Emam)")
-    FEE_VERIFICATION_WHATSAPP: str = os.getenv("FEE_VERIFICATION_WHATSAPP", "+92 331 89675343")
-    FEE_VERIFICATION_EMAIL: str = os.getenv("FEE_VERIFICATION_EMAIL", "alarabiafi@gmail.com")
+    FEE_VERIFICATION_WHATSAPP: str = os.getenv("FEE_VERIFICATION_WHATSAPP", "+92 317 3141721")
+    FEE_VERIFICATION_EMAIL: str = os.getenv("FEE_VERIFICATION_EMAIL", "info.emam.uk@gmail.com")
 
     class Config:
         env_file = _active_env

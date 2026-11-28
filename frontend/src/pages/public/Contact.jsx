@@ -35,14 +35,14 @@ export function Contact() {
             <Mail size={32} color="var(--color-primary)" />
             <div>
               <h4 style={{ color: 'var(--color-white)', fontSize: '1.2rem', marginBottom: '0.2rem' }}>Email</h4>
-              <p style={{ color: '#b0c4c6' }}>alarabiafi@gmail.com</p>
+              <p style={{ color: '#b0c4c6' }}>info.emam.uk@gmail.com</p>
             </div>
           </div>
           <div className="glass-panel" style={{ padding: '2rem', display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
             <Phone size={32} color="var(--color-primary)" />
             <div>
               <h4 style={{ color: 'var(--color-white)', fontSize: '1.2rem', marginBottom: '0.2rem' }}>Phone</h4>
-              <p style={{ color: '#b0c4c6' }}>+92 331 89675343</p>
+              <p style={{ color: '#b0c4c6' }}>+92 317 3141721</p>
             </div>
           </div>
           <div className="glass-panel" style={{ padding: '2rem', display: 'flex', gap: '1.5rem', alignItems: 'center' }}>

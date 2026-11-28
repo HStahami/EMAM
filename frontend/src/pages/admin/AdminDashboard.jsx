@@ -1246,18 +1246,7 @@ export function AdminDashboard({ onLogout }) {
           <button
             type="button"
             onClick={() => setSidebarOpen(prev => !prev)}
-            className="btn-primary"
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.6rem',
-              padding: '8px 16px',
-              fontSize: '0.88rem',
-              fontWeight: 600,
-              cursor: 'pointer',
-              borderRadius: '8px',
-              boxShadow: '0 2px 8px rgba(0,0,0,0.3)'
-            }}
+            className="admin-menu-toggle-btn"
             title={sidebarOpen ? "Close Navigation Menu" : "Open Navigation Menu"}
             aria-label={sidebarOpen ? "Close Navigation Menu" : "Open Navigation Menu"}
           >
@@ -1781,43 +1770,19 @@ export function AdminDashboard({ onLogout }) {
               gap: '1.5rem'
             }}>
               {/* Card 1: Pending Request of Admissions */}
-              <div style={{
-                borderRadius: '14px',
-                overflow: 'hidden',
-                border: '1px solid rgba(241, 163, 42, 0.16)',
-                backgroundColor: 'rgba(44, 5, 13, 0.75)',
-                display: 'flex',
-                flexDirection: 'column',
-                boxShadow: '0 8px 24px rgba(0, 0, 0, 0.35)'
-              }}>
+              <div className="admin-overview-card">
                 {/* Header */}
-                <div style={{
-                  backgroundColor: 'rgba(44, 5, 13, 0.85)',
-                  borderBottom: '1px solid rgba(241, 163, 42, 0.12)',
-                  padding: '0.85rem 1.15rem',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between'
-                }}>
+                <div className="admin-overview-card-header">
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                     <Hourglass size={17} style={{ color: '#f39c12' }} />
-                    <span style={{ color: '#fff', fontWeight: 700, fontSize: '0.92rem' }}>
+                    <span className="admin-overview-card-title">
                       Pending Request of Admissions
                     </span>
                   </div>
                   <button
                     type="button"
                     onClick={() => { setActiveTab('admissions'); setAdmissionFilter('pending'); }}
-                    style={{
-                      background: 'rgba(241, 163, 42, 0.08)',
-                      border: '1px solid rgba(241, 163, 42, 0.22)',
-                      color: 'var(--color-primary)',
-                      borderRadius: '20px',
-                      padding: '3px 12px',
-                      fontSize: '0.75rem',
-                      fontWeight: 600,
-                      cursor: 'pointer'
-                    }}
+                    className="admin-overview-viewall-btn"
                   >
                     View All →
                   </button>
@@ -1826,10 +1791,10 @@ export function AdminDashboard({ onLogout }) {
                 {/* Body */}
                 <div style={{ padding: '1rem', display: 'flex', flexDirection: 'column', gap: '0.75rem', flex: 1, justifyContent: 'center' }}>
                   {overviewAnalytics.pending_admissions.length === 0 ? (
-                    <div style={{ textAlign: 'center', padding: '1.75rem 1rem' }}>
+                    <div className="admin-overview-empty" style={{ textAlign: 'center', padding: '1.75rem 1rem' }}>
                       <CheckCircle2 size={24} style={{ color: 'var(--color-primary)', margin: '0 auto 6px auto' }} />
-                      <div style={{ color: '#cbd5e1', fontSize: '0.86rem', fontWeight: 600 }}>No Pending Applications</div>
-                      <div style={{ color: '#64748b', fontSize: '0.78rem', marginTop: '2px' }}>All received admission forms have been processed.</div>
+                      <div className="admin-overview-empty-title">No Pending Applications</div>
+                      <div className="admin-overview-empty-sub">All received admission forms have been processed.</div>
                     </div>
                   ) : (
                     overviewAnalytics.pending_admissions.slice(0, 3).map((adm) => {
@@ -1850,38 +1815,16 @@ export function AdminDashboard({ onLogout }) {
                       };
 
                       return (
-                        <div key={adm.id} style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'space-between',
-                          gap: '0.75rem',
-                          padding: '0.7rem 0.85rem',
-                          backgroundColor: 'rgba(105, 14, 31, 0.25)',
-                          border: '1px solid rgba(241, 163, 42, 0.15)',
-                          borderRadius: '10px'
-                        }}>
+                        <div key={adm.id} className="admin-overview-row">
                           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', minWidth: 0 }}>
-                            <div style={{
-                              width: '36px',
-                              height: '36px',
-                              borderRadius: '50%',
-                              backgroundColor: 'rgba(241, 163, 42, 0.12)',
-                              border: '1px solid rgba(241, 163, 42, 0.25)',
-                              color: 'var(--color-primary)',
-                              fontWeight: 700,
-                              fontSize: '0.8rem',
-                              display: 'flex',
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                              flexShrink: 0
-                            }}>
+                            <div className="admin-overview-avatar">
                               {getInitials(adm.name)}
                             </div>
                             <div style={{ minWidth: 0 }}>
-                              <div style={{ color: '#fff', fontWeight: 600, fontSize: '0.88rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                              <div className="admin-overview-row-title">
                                 {adm.name}
                               </div>
-                              <div style={{ color: '#94a3b8', fontSize: '0.76rem' }}>
+                              <div className="admin-overview-row-sub">
                                 Applied for {adm.course} • {formatTimeAgo(adm.created_at)}
                               </div>
                             </div>
@@ -1906,43 +1849,19 @@ export function AdminDashboard({ onLogout }) {
               </div>
 
               {/* Card 2: Top Instructors */}
-              <div style={{
-                borderRadius: '14px',
-                overflow: 'hidden',
-                border: '1px solid rgba(241, 163, 42, 0.16)',
-                backgroundColor: 'rgba(44, 5, 13, 0.75)',
-                display: 'flex',
-                flexDirection: 'column',
-                boxShadow: '0 8px 24px rgba(0, 0, 0, 0.35)'
-              }}>
+              <div className="admin-overview-card">
                 {/* Header */}
-                <div style={{
-                  backgroundColor: 'rgba(44, 5, 13, 0.85)',
-                  borderBottom: '1px solid rgba(241, 163, 42, 0.12)',
-                  padding: '0.85rem 1.15rem',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between'
-                }}>
+                <div className="admin-overview-card-header">
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                     <Users size={17} style={{ color: 'var(--color-primary)' }} />
-                    <span style={{ color: '#fff', fontWeight: 700, fontSize: '0.92rem' }}>
+                    <span className="admin-overview-card-title">
                       Top Instructors
                     </span>
                   </div>
                   <button
                     type="button"
                     onClick={() => setActiveTab('instructors')}
-                    style={{
-                      background: 'rgba(241, 163, 42, 0.08)',
-                      border: '1px solid rgba(241, 163, 42, 0.22)',
-                      color: 'var(--color-primary)',
-                      borderRadius: '20px',
-                      padding: '3px 12px',
-                      fontSize: '0.75rem',
-                      fontWeight: 600,
-                      cursor: 'pointer'
-                    }}
+                    className="admin-overview-viewall-btn"
                   >
                     View All →
                   </button>
@@ -1951,23 +1870,14 @@ export function AdminDashboard({ onLogout }) {
                 {/* Body */}
                 <div style={{ padding: '1rem', display: 'flex', flexDirection: 'column', gap: '0.75rem', flex: 1, justifyContent: 'center' }}>
                   {overviewAnalytics.top_instructors.length === 0 ? (
-                    <div style={{ textAlign: 'center', padding: '1.75rem 1rem' }}>
+                    <div className="admin-overview-empty" style={{ textAlign: 'center', padding: '1.75rem 1rem' }}>
                       <Users size={24} style={{ color: '#64748b', margin: '0 auto 6px auto' }} />
-                      <div style={{ color: '#cbd5e1', fontSize: '0.86rem', fontWeight: 600 }}>No Instructors Enrolled</div>
-                      <div style={{ color: '#64748b', fontSize: '0.78rem', marginTop: '2px' }}>Add instructors from the Instructors tab.</div>
+                      <div className="admin-overview-empty-title">No Instructors Enrolled</div>
+                      <div className="admin-overview-empty-sub">Add instructors from the Instructors tab.</div>
                     </div>
                   ) : (
                     overviewAnalytics.top_instructors.slice(0, 3).map((inst, idx) => (
-                      <div key={inst.id} style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'space-between',
-                        gap: '0.75rem',
-                        padding: '0.7rem 0.85rem',
-                        backgroundColor: 'rgba(105, 14, 31, 0.25)',
-                        border: '1px solid rgba(241, 163, 42, 0.15)',
-                        borderRadius: '10px'
-                      }}>
+                      <div key={inst.id} className="admin-overview-row">
                         <div style={{ display: 'flex', alignItems: 'center', gap: '10px', minWidth: 0 }}>
                           <img
                             src={getAvatarUrl(inst.avatar, inst.name)}
@@ -1975,28 +1885,15 @@ export function AdminDashboard({ onLogout }) {
                             style={{ width: '36px', height: '36px', borderRadius: '50%', objectFit: 'cover', background: '#2c050d', flexShrink: 0 }}
                           />
                           <div style={{ minWidth: 0 }}>
-                            <div style={{ color: '#fff', fontWeight: 600, fontSize: '0.88rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                            <div className="admin-overview-row-title">
                               {inst.name}
                             </div>
-                            <div style={{ color: '#94a3b8', fontSize: '0.76rem' }}>
+                            <div className="admin-overview-row-sub">
                               {inst.students_count} Student{inst.students_count === 1 ? '' : 's'}
                             </div>
                           </div>
                         </div>
-                        <div style={{
-                          width: '24px',
-                          height: '24px',
-                          borderRadius: '50%',
-                          backgroundColor: '#2c050d',
-                          border: '1px solid rgba(241, 163, 42, 0.30)',
-                          color: 'var(--color-primary)',
-                          fontSize: '0.78rem',
-                          fontWeight: 700,
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          flexShrink: 0
-                        }}>
+                        <div className="admin-overview-rank-badge">
                           {idx + 1}
                         </div>
                       </div>
@@ -2006,43 +1903,19 @@ export function AdminDashboard({ onLogout }) {
               </div>
 
               {/* Card 3: Top Performing Students */}
-              <div style={{
-                borderRadius: '14px',
-                overflow: 'hidden',
-                border: '1px solid rgba(241, 163, 42, 0.16)',
-                backgroundColor: 'rgba(44, 5, 13, 0.75)',
-                display: 'flex',
-                flexDirection: 'column',
-                boxShadow: '0 8px 24px rgba(0, 0, 0, 0.35)'
-              }}>
+              <div className="admin-overview-card">
                 {/* Header */}
-                <div style={{
-                  backgroundColor: 'rgba(44, 5, 13, 0.85)',
-                  borderBottom: '1px solid rgba(241, 163, 42, 0.12)',
-                  padding: '0.85rem 1.15rem',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between'
-                }}>
+                <div className="admin-overview-card-header">
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                     <Trophy size={17} style={{ color: '#f1c40f' }} />
-                    <span style={{ color: '#fff', fontWeight: 700, fontSize: '0.92rem' }}>
+                    <span className="admin-overview-card-title">
                       Top Performing Students
                     </span>
                   </div>
                   <button
                     type="button"
                     onClick={() => { setActiveTab('students'); setStudentFilter('all'); }}
-                    style={{
-                      background: 'rgba(241, 163, 42, 0.08)',
-                      border: '1px solid rgba(241, 163, 42, 0.22)',
-                      color: 'var(--color-primary)',
-                      borderRadius: '20px',
-                      padding: '3px 12px',
-                      fontSize: '0.75rem',
-                      fontWeight: 600,
-                      cursor: 'pointer'
-                    }}
+                    className="admin-overview-viewall-btn"
                   >
                     View All →
                   </button>
@@ -2051,10 +1924,10 @@ export function AdminDashboard({ onLogout }) {
                 {/* Body */}
                 <div style={{ padding: '1rem', display: 'flex', flexDirection: 'column', gap: '0.75rem', flex: 1, justifyContent: 'center' }}>
                   {overviewAnalytics.top_performing_students.length === 0 ? (
-                    <div style={{ textAlign: 'center', padding: '1.75rem 1rem' }}>
+                    <div className="admin-overview-empty" style={{ textAlign: 'center', padding: '1.75rem 1rem' }}>
                       <Trophy size={24} style={{ color: '#64748b', margin: '0 auto 6px auto' }} />
-                      <div style={{ color: '#cbd5e1', fontSize: '0.86rem', fontWeight: 600 }}>No Student Evaluations</div>
-                      <div style={{ color: '#64748b', fontSize: '0.78rem', marginTop: '2px' }}>Ranks compute as coursework is assessed.</div>
+                      <div className="admin-overview-empty-title">No Student Evaluations</div>
+                      <div className="admin-overview-empty-sub">Ranks compute as coursework is assessed.</div>
                     </div>
                   ) : (
                     overviewAnalytics.top_performing_students.slice(0, 3).map((st) => {
@@ -2066,16 +1939,7 @@ export function AdminDashboard({ onLogout }) {
                       const m = medalStyles[st.rank] || medalStyles[3];
 
                       return (
-                        <div key={st.id} style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'space-between',
-                          gap: '0.75rem',
-                          padding: '0.7rem 0.85rem',
-                          backgroundColor: 'rgba(105, 14, 31, 0.25)',
-                          border: '1px solid rgba(241, 163, 42, 0.15)',
-                          borderRadius: '10px'
-                        }}>
+                        <div key={st.id} className="admin-overview-row">
                           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', minWidth: 0 }}>
                             <img
                               src={getAvatarUrl(st.avatar, st.name)}
@@ -2083,10 +1947,10 @@ export function AdminDashboard({ onLogout }) {
                               style={{ width: '36px', height: '36px', borderRadius: '50%', objectFit: 'cover', background: '#2c050d', flexShrink: 0 }}
                             />
                             <div style={{ minWidth: 0 }}>
-                              <div style={{ color: '#fff', fontWeight: 600, fontSize: '0.88rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                              <div className="admin-overview-row-title">
                                 {st.name}
                               </div>
-                              <div style={{ color: 'var(--color-primary)', fontSize: '0.76rem', fontWeight: 600 }}>
+                              <div className="admin-overview-score-sub" style={{ fontSize: '0.76rem', fontWeight: 600 }}>
                                 {st.academic_score}% • {st.grade}
                               </div>
                             </div>
@@ -2115,43 +1979,19 @@ export function AdminDashboard({ onLogout }) {
               </div>
 
               {/* Card 4: Top 3 Modules */}
-              <div style={{
-                borderRadius: '14px',
-                overflow: 'hidden',
-                border: '1px solid rgba(241, 163, 42, 0.16)',
-                backgroundColor: 'rgba(44, 5, 13, 0.75)',
-                display: 'flex',
-                flexDirection: 'column',
-                boxShadow: '0 8px 24px rgba(0, 0, 0, 0.35)'
-              }}>
+              <div className="admin-overview-card">
                 {/* Header */}
-                <div style={{
-                  backgroundColor: 'rgba(44, 5, 13, 0.85)',
-                  borderBottom: '1px solid rgba(241, 163, 42, 0.12)',
-                  padding: '0.85rem 1.15rem',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between'
-                }}>
+                <div className="admin-overview-card-header">
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                     <BookOpen size={17} style={{ color: 'var(--color-primary)' }} />
-                    <span style={{ color: '#fff', fontWeight: 700, fontSize: '0.92rem' }}>
+                    <span className="admin-overview-card-title">
                       Top 3 Modules
                     </span>
                   </div>
                   <button
                     type="button"
                     onClick={() => setActiveTab('modules')}
-                    style={{
-                      background: 'rgba(241, 163, 42, 0.08)',
-                      border: '1px solid rgba(241, 163, 42, 0.22)',
-                      color: 'var(--color-primary)',
-                      borderRadius: '20px',
-                      padding: '3px 12px',
-                      fontSize: '0.75rem',
-                      fontWeight: 600,
-                      cursor: 'pointer'
-                    }}
+                    className="admin-overview-viewall-btn"
                   >
                     View All →
                   </button>
@@ -2160,50 +2000,28 @@ export function AdminDashboard({ onLogout }) {
                 {/* Body */}
                 <div style={{ padding: '1rem', display: 'flex', flexDirection: 'column', gap: '0.75rem', flex: 1, justifyContent: 'center' }}>
                   {overviewAnalytics.top_modules.length === 0 ? (
-                    <div style={{ textAlign: 'center', padding: '1.75rem 1rem' }}>
+                    <div className="admin-overview-empty" style={{ textAlign: 'center', padding: '1.75rem 1rem' }}>
                       <BookOpen size={24} style={{ color: '#64748b', margin: '0 auto 6px auto' }} />
-                      <div style={{ color: '#cbd5e1', fontSize: '0.86rem', fontWeight: 600 }}>No Modules Configured</div>
-                      <div style={{ color: '#64748b', fontSize: '0.78rem', marginTop: '2px' }}>Configure curriculum modules in the Modules tab.</div>
+                      <div className="admin-overview-empty-title">No Modules Configured</div>
+                      <div className="admin-overview-empty-sub">Configure curriculum modules in the Modules tab.</div>
                     </div>
                   ) : (
                     overviewAnalytics.top_modules.slice(0, 3).map((mod, idx) => (
-                      <div key={mod.id} style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'space-between',
-                        gap: '0.75rem',
-                        padding: '0.7rem 0.85rem',
-                        backgroundColor: 'rgba(105, 14, 31, 0.25)',
-                        border: '1px solid rgba(241, 163, 42, 0.15)',
-                        borderRadius: '10px'
-                      }}>
+                      <div key={mod.id} className="admin-overview-row">
                         <div style={{ display: 'flex', alignItems: 'center', gap: '10px', minWidth: 0, flex: 1 }}>
-                          <div style={{
-                            width: '24px',
-                            height: '24px',
-                            borderRadius: '50%',
-                            backgroundColor: '#2c050d',
-                            border: '1px solid rgba(241, 163, 42, 0.30)',
-                            color: 'var(--color-primary)',
-                            fontSize: '0.78rem',
-                            fontWeight: 700,
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            flexShrink: 0
-                          }}>
+                          <div className="admin-overview-rank-badge">
                             {idx + 1}
                           </div>
                           <div style={{ minWidth: 0, flex: 1 }}>
-                            <div style={{ color: '#fff', fontWeight: 600, fontSize: '0.88rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                            <div className="admin-overview-row-title">
                               {mod.name}
                             </div>
-                            <div style={{ color: '#94a3b8', fontSize: '0.76rem' }}>
+                            <div className="admin-overview-row-sub">
                               {mod.avg_progress}% Avg. Progress
                             </div>
                           </div>
                         </div>
-                        <div style={{ width: '80px', height: '6px', background: 'rgba(255, 255, 255, 0.1)', borderRadius: '3px', overflow: 'hidden', flexShrink: 0 }}>
+                        <div className="admin-overview-progress-track" style={{ width: '80px', height: '6px', borderRadius: '3px', overflow: 'hidden', flexShrink: 0 }}>
                           <div style={{ width: `${mod.avg_progress}%`, height: '100%', background: 'var(--color-primary)', borderRadius: '3px' }} />
                         </div>
                       </div>
@@ -2213,43 +2031,19 @@ export function AdminDashboard({ onLogout }) {
               </div>
 
               {/* Card 5: Students at Risk */}
-              <div style={{
-                borderRadius: '14px',
-                overflow: 'hidden',
-                border: '1px solid rgba(241, 163, 42, 0.16)',
-                backgroundColor: 'rgba(44, 5, 13, 0.75)',
-                display: 'flex',
-                flexDirection: 'column',
-                boxShadow: '0 8px 24px rgba(0, 0, 0, 0.35)'
-              }}>
+              <div className="admin-overview-card">
                 {/* Header */}
-                <div style={{
-                  backgroundColor: 'rgba(44, 5, 13, 0.85)',
-                  borderBottom: '1px solid rgba(241, 163, 42, 0.12)',
-                  padding: '0.85rem 1.15rem',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between'
-                }}>
+                <div className="admin-overview-card-header">
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                     <AlertTriangle size={17} style={{ color: '#e74c3c' }} />
-                    <span style={{ color: '#fff', fontWeight: 700, fontSize: '0.92rem' }}>
+                    <span className="admin-overview-card-title">
                       Students at Risk
                     </span>
                   </div>
                   <button
                     type="button"
                     onClick={() => { setActiveTab('students'); setStudentFilter('active'); }}
-                    style={{
-                      background: 'rgba(241, 163, 42, 0.08)',
-                      border: '1px solid rgba(241, 163, 42, 0.22)',
-                      color: 'var(--color-primary)',
-                      borderRadius: '20px',
-                      padding: '3px 12px',
-                      fontSize: '0.75rem',
-                      fontWeight: 600,
-                      cursor: 'pointer'
-                    }}
+                    className="admin-overview-viewall-btn"
                   >
                     View All →
                   </button>
@@ -2258,23 +2052,14 @@ export function AdminDashboard({ onLogout }) {
                 {/* Body */}
                 <div style={{ padding: '1rem', display: 'flex', flexDirection: 'column', gap: '0.75rem', flex: 1, justifyContent: 'center' }}>
                   {overviewAnalytics.students_at_risk.length === 0 ? (
-                    <div style={{ textAlign: 'center', padding: '1.75rem 1rem' }}>
+                    <div className="admin-overview-empty" style={{ textAlign: 'center', padding: '1.75rem 1rem' }}>
                       <CheckCircle2 size={24} style={{ color: 'var(--color-primary)', margin: '0 auto 6px auto' }} />
-                      <div style={{ color: '#cbd5e1', fontSize: '0.86rem', fontWeight: 600 }}>Zero Students at Risk</div>
-                      <div style={{ color: '#94a3b8', fontSize: '0.78rem', marginTop: '2px' }}>All students maintain attendance ≥ 80% & timely tasks.</div>
+                      <div className="admin-overview-empty-title">Zero Students at Risk</div>
+                      <div className="admin-overview-empty-sub">All students maintain attendance ≥ 80% & timely tasks.</div>
                     </div>
                   ) : (
                     overviewAnalytics.students_at_risk.slice(0, 3).map((st) => (
-                      <div key={st.id} style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'space-between',
-                        gap: '0.75rem',
-                        padding: '0.7rem 0.85rem',
-                        backgroundColor: 'rgba(105, 14, 31, 0.25)',
-                        border: '1px solid rgba(241, 163, 42, 0.15)',
-                        borderRadius: '10px'
-                      }}>
+                      <div key={st.id} className="admin-overview-row">
                         <div style={{ display: 'flex', alignItems: 'center', gap: '10px', minWidth: 0 }}>
                           <img
                             src={getAvatarUrl(st.avatar, st.name)}
@@ -2282,7 +2067,7 @@ export function AdminDashboard({ onLogout }) {
                             style={{ width: '36px', height: '36px', borderRadius: '50%', objectFit: 'cover', background: '#2c050d', flexShrink: 0 }}
                           />
                           <div style={{ minWidth: 0 }}>
-                            <div style={{ color: '#fff', fontWeight: 600, fontSize: '0.88rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                            <div className="admin-overview-row-title">
                               {st.name}
                             </div>
                             <div style={{ color: '#f87171', fontSize: '0.76rem', fontWeight: 500, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
@@ -2290,7 +2075,7 @@ export function AdminDashboard({ onLogout }) {
                             </div>
                           </div>
                         </div>
-                        <span style={{
+                        <span className="admin-overview-risk-badge" style={{
                           backgroundColor: 'var(--color-surface, #690e1f)',
                           color: '#ffffff',
                           border: '1px solid var(--color-primary, #f1a32a)',
@@ -2299,8 +2084,7 @@ export function AdminDashboard({ onLogout }) {
                           fontSize: '0.74rem',
                           fontWeight: 700,
                           letterSpacing: '0.3px',
-                          flexShrink: 0,
-                          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.35)'
+                          flexShrink: 0
                         }}>
                           At Risk
                         </span>
@@ -2311,43 +2095,19 @@ export function AdminDashboard({ onLogout }) {
               </div>
 
               {/* Card 6: Recent Rescheduling Requests */}
-              <div style={{
-                borderRadius: '14px',
-                overflow: 'hidden',
-                border: '1px solid rgba(241, 163, 42, 0.16)',
-                backgroundColor: 'rgba(44, 5, 13, 0.75)',
-                display: 'flex',
-                flexDirection: 'column',
-                boxShadow: '0 8px 24px rgba(0, 0, 0, 0.35)'
-              }}>
+              <div className="admin-overview-card">
                 {/* Header */}
-                <div style={{
-                  backgroundColor: 'rgba(44, 5, 13, 0.85)',
-                  borderBottom: '1px solid rgba(241, 163, 42, 0.12)',
-                  padding: '0.85rem 1.15rem',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between'
-                }}>
+                <div className="admin-overview-card-header">
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                     <Calendar size={17} style={{ color: 'var(--color-primary)' }} />
-                    <span style={{ color: '#fff', fontWeight: 700, fontSize: '0.92rem' }}>
+                    <span className="admin-overview-card-title">
                       Recent Rescheduling Requests
                     </span>
                   </div>
                   <button
                     type="button"
                     onClick={() => { setActiveTab('classes'); setClassViewMode('reschedules'); }}
-                    style={{
-                      background: 'rgba(241, 163, 42, 0.08)',
-                      border: '1px solid rgba(241, 163, 42, 0.22)',
-                      color: 'var(--color-primary)',
-                      borderRadius: '20px',
-                      padding: '3px 12px',
-                      fontSize: '0.75rem',
-                      fontWeight: 600,
-                      cursor: 'pointer'
-                    }}
+                    className="admin-overview-viewall-btn"
                   >
                     View All →
                   </button>
@@ -2356,10 +2116,10 @@ export function AdminDashboard({ onLogout }) {
                 {/* Body */}
                 <div style={{ padding: '1rem', display: 'flex', flexDirection: 'column', gap: '0.75rem', flex: 1, justifyContent: 'center' }}>
                   {overviewAnalytics.recent_reschedules.length === 0 ? (
-                    <div style={{ textAlign: 'center', padding: '1.75rem 1rem' }}>
+                    <div className="admin-overview-empty" style={{ textAlign: 'center', padding: '1.75rem 1rem' }}>
                       <CheckCircle2 size={24} style={{ color: 'var(--color-primary)', margin: '0 auto 6px auto' }} />
-                      <div style={{ color: '#cbd5e1', fontSize: '0.86rem', fontWeight: 600 }}>No Rescheduling Requests</div>
-                      <div style={{ color: '#64748b', fontSize: '0.78rem', marginTop: '2px' }}>All classes are executing according to regular timetable.</div>
+                      <div className="admin-overview-empty-title">No Rescheduling Requests</div>
+                      <div className="admin-overview-empty-sub">All classes are executing according to regular timetable.</div>
                     </div>
                   ) : (
                     overviewAnalytics.recent_reschedules.slice(0, 3).map((r) => {
@@ -2374,41 +2134,21 @@ export function AdminDashboard({ onLogout }) {
                       };
 
                       return (
-                        <div key={r.id} style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'space-between',
-                          gap: '0.75rem',
-                          padding: '0.7rem 0.85rem',
-                          backgroundColor: 'rgba(105, 14, 31, 0.25)',
-                          border: '1px solid rgba(241, 163, 42, 0.15)',
-                          borderRadius: '10px'
-                        }}>
+                        <div key={r.id} className="admin-overview-row">
                           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', minWidth: 0 }}>
-                            <div style={{
-                              width: '36px',
-                              height: '36px',
-                              borderRadius: '8px',
-                              backgroundColor: 'rgba(241, 163, 42, 0.08)',
-                              border: '1px solid rgba(241, 163, 42, 0.12)',
-                              display: 'flex',
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                              color: 'var(--color-primary)',
-                              flexShrink: 0
-                            }}>
+                            <div className="admin-overview-calendar-icon">
                               <Calendar size={17} />
                             </div>
                             <div style={{ minWidth: 0 }}>
-                              <div style={{ color: '#fff', fontWeight: 600, fontSize: '0.88rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                              <div className="admin-overview-row-title">
                                 {r.instructor_name}
                               </div>
-                              <div style={{ color: '#94a3b8', fontSize: '0.76rem' }}>
+                              <div className="admin-overview-row-sub">
                                 Reschedule to {r.rescheduled_date}
                               </div>
                             </div>
                           </div>
-                          <span style={{ color: '#64748b', fontSize: '0.76rem', whiteSpace: 'nowrap', flexShrink: 0 }}>
+                          <span className="admin-overview-time-ago" style={{ fontSize: '0.76rem', whiteSpace: 'nowrap', flexShrink: 0 }}>
                             {formatTimeAgo(r.created_at)}
                           </span>
                         </div>
@@ -2606,18 +2346,16 @@ export function AdminDashboard({ onLogout }) {
                   placeholder="Search student, email, ID..."
                   value={studentSearch}
                   onChange={e => setStudentSearch(e.target.value)}
+                  className="admin-search-input"
                   style={{
                     padding: '8px 14px',
                     borderRadius: '8px',
-                    border: '1px solid rgba(255, 255, 255, 0.15)',
-                    background: 'rgba(0, 0, 0, 0.4)',
-                    color: '#fff',
                     fontSize: '0.85rem',
                     minWidth: '220px'
                   }}
                 />
 
-                <div style={{ display: 'flex', gap: '4px', background: 'rgba(0,0,0,0.3)', padding: '3px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.1)' }}>
+                <div className="admin-filter-pill-group">
                   {[
                     { key: 'active', label: `Active (${students.filter(isStudentActive).length})` },
                     { key: 'all', label: `All (${students.length})` },
@@ -2627,16 +2365,7 @@ export function AdminDashboard({ onLogout }) {
                     <button
                       key={tab.key}
                       onClick={() => setStudentFilter(tab.key)}
-                      style={{
-                        padding: '6px 12px',
-                        borderRadius: '6px',
-                        border: 'none',
-                        fontSize: '0.8rem',
-                        fontWeight: 600,
-                        cursor: 'pointer',
-                        background: studentFilter === tab.key ? 'var(--color-primary)' : 'transparent',
-                        color: studentFilter === tab.key ? 'rgba(44, 5, 13, 0.85)' : '#aaa'
-                      }}
+                      className={`admin-filter-pill-btn ${studentFilter === tab.key ? 'active' : ''}`}
                     >
                       {tab.label}
                     </button>
@@ -2820,7 +2549,7 @@ export function AdminDashboard({ onLogout }) {
             {/* Assign Modal Overlay */}
             {selectedStudent && (
               <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0, 0, 0, 0.75)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 200, padding: '1rem' }}>
-                <div style={{ padding: '2rem', maxWidth: '440px', width: '100%', maxHeight: '90vh', overflowY: 'auto', borderRadius: '16px', backgroundColor: 'rgba(44, 5, 13, 0.96)', border: '1px solid rgba(241, 163, 42, 0.25)', boxShadow: '0 25px 60px rgba(0, 0, 0, 0.95)' }}>
+                <div className="admin-modal-card" style={{ padding: '2rem', maxWidth: '440px', width: '100%', maxHeight: '90vh', overflowY: 'auto', borderRadius: '16px', backgroundColor: 'rgba(44, 5, 13, 0.96)', border: '1px solid rgba(241, 163, 42, 0.25)', boxShadow: '0 25px 60px rgba(0, 0, 0, 0.95)' }}>
                   <h3 style={{ color: 'var(--color-white)', marginBottom: '0.5rem', fontSize: '1.25rem' }}>Assign Class Details</h3>
                   <p style={{ color: '#cbd5e1', fontSize: '0.9rem', marginBottom: '1rem' }}>
                     Student: <strong style={{ color: '#fff' }}>{selectedStudent.first_name} {selectedStudent.last_name || selectedStudent.name || ''}</strong> ({selectedStudent.student_code || 'ID Pending'})
@@ -2840,7 +2569,7 @@ export function AdminDashboard({ onLogout }) {
                   <form onSubmit={handleAssignSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
                     <div>
                       <label htmlFor="admin_assign_slot" style={{ display: 'block', color: 'var(--color-primary)', marginBottom: '0.4rem', fontSize: '0.85rem' }}>Assign Class Slot *</label>
-                      <select id="admin_assign_slot" required value={assignSlot} onChange={e => setAssignSlot(e.target.value)} style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.15)', background: 'rgba(0,0,0,0.5)', color: 'white', fontSize: '0.9rem' }}>
+                      <select id="admin_assign_slot" required value={assignSlot} onChange={e => setAssignSlot(e.target.value)} style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.15)', fontSize: '0.9rem' }}>
                         <option value="" disabled>Choose Slot...</option>
                         {slots.filter(s => s.status === 'Active' || (selectedStudent && selectedStudent.slot && (selectedStudent.slot === `${s.days} — ${s.time}` || selectedStudent.slot === `${s.days} ${s.time}`))).map(s => {
                           const val = `${s.days} — ${s.time}`;
@@ -2853,7 +2582,7 @@ export function AdminDashboard({ onLogout }) {
                     </div>
                     <div>
                       <label htmlFor="admin_assign_instructor" style={{ display: 'block', color: 'var(--color-primary)', marginBottom: '0.4rem', fontSize: '0.85rem' }}>Assign Instructor *</label>
-                      <select id="admin_assign_instructor" required value={assignInst} onChange={e => setAssignInst(e.target.value)} style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.15)', background: 'rgba(0,0,0,0.5)', color: 'white', fontSize: '0.9rem' }}>
+                      <select id="admin_assign_instructor" required value={assignInst} onChange={e => setAssignInst(e.target.value)} style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.15)', fontSize: '0.9rem' }}>
                         <option value="" disabled>Choose Instructor...</option>
                         {instructors.map(inst => (
                           <option key={inst._id} value={inst.name}>{inst.name} ({inst.specialty})</option>
@@ -2873,7 +2602,7 @@ export function AdminDashboard({ onLogout }) {
             {/* Edit Student Info Modal */}
             {editingStudent && (
               <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0, 0, 0, 0.75)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 300, padding: '1.5rem' }}>
-                <div style={{ padding: '2rem', maxWidth: '650px', width: '100%', maxHeight: '90vh', overflowY: 'auto', borderRadius: '16px', backgroundColor: 'rgba(44, 5, 13, 0.96)', border: '1px solid rgba(241, 163, 42, 0.30)', boxShadow: '0 25px 60px rgba(0, 0, 0, 0.95)' }}>
+                <div className="admin-modal-card" style={{ padding: '2rem', maxWidth: '650px', width: '100%', maxHeight: '90vh', overflowY: 'auto', borderRadius: '16px', backgroundColor: 'rgba(44, 5, 13, 0.96)', border: '1px solid rgba(241, 163, 42, 0.30)', boxShadow: '0 25px 60px rgba(0, 0, 0, 0.95)' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '0.75rem' }}>
                     <div>
                       <h3 style={{ color: 'var(--color-white)', fontSize: '1.3rem', fontWeight: 700, margin: 0 }}>
@@ -3073,7 +2802,7 @@ export function AdminDashboard({ onLogout }) {
             {/* View Full Student Profile Modal */}
             {viewingStudent && (
               <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0, 0, 0, 0.75)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 200, padding: '1.5rem' }}>
-                <div style={{ padding: '2rem', maxWidth: '620px', width: '100%', maxHeight: '90vh', overflowY: 'auto', borderRadius: '16px', backgroundColor: 'rgba(44, 5, 13, 0.96)', border: '1px solid rgba(241, 163, 42, 0.25)', boxShadow: '0 25px 60px rgba(0, 0, 0, 0.95)' }}>
+                <div className="admin-modal-card" style={{ padding: '2rem', maxWidth: '620px', width: '100%', maxHeight: '90vh', overflowY: 'auto', borderRadius: '16px', backgroundColor: 'rgba(44, 5, 13, 0.96)', border: '1px solid rgba(241, 163, 42, 0.25)', boxShadow: '0 25px 60px rgba(0, 0, 0, 0.95)' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.25rem', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '0.75rem' }}>
                     <div>
                       <h3 style={{ color: 'var(--color-white)', fontSize: '1.35rem', fontWeight: 700 }}>
@@ -3291,12 +3020,10 @@ export function AdminDashboard({ onLogout }) {
                     placeholder="Search graduates by name, ID, course, grade..."
                     value={graduatesSearch}
                     onChange={e => setGraduatesSearch(e.target.value)}
+                    className="admin-search-input"
                     style={{
                       padding: '8px 14px 8px 36px',
                       borderRadius: '8px',
-                      border: '1px solid rgba(255, 255, 255, 0.15)',
-                      background: 'rgba(0, 0, 0, 0.4)',
-                      color: '#fff',
                       fontSize: '0.85rem',
                       minWidth: '280px'
                     }}
@@ -3452,12 +3179,10 @@ export function AdminDashboard({ onLogout }) {
                     placeholder="Search dropouts by name, ID, reason, remarks..."
                     value={dropoutsSearch}
                     onChange={e => setDropoutsSearch(e.target.value)}
+                    className="admin-search-input"
                     style={{
                       padding: '8px 14px 8px 36px',
                       borderRadius: '8px',
-                      border: '1px solid rgba(255, 255, 255, 0.15)',
-                      background: 'rgba(0, 0, 0, 0.4)',
-                      color: '#fff',
                       fontSize: '0.85rem',
                       minWidth: '280px'
                     }}
@@ -3545,7 +3270,7 @@ export function AdminDashboard({ onLogout }) {
                           </span>
                         </td>
                         <td style={tableCellStyle}>
-                          <div style={{ fontSize: '0.8rem', color: '#f0ceb3', maxWidth: '220px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }} title={std.dropout_remarks || 'None'}>
+                          <div className="admin-remarks-text" style={{ fontSize: '0.8rem', maxWidth: '220px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }} title={std.dropout_remarks || 'None'}>
                             {std.dropout_remarks || 'No remarks recorded'}
                           </div>
                         </td>
@@ -4039,7 +3764,7 @@ export function AdminDashboard({ onLogout }) {
         {/* Direct Onboard / Edit Instructor Modal */}
         {showInstructorModal && (
           <div style={{ position: 'fixed', inset: 0, zIndex: 2000, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(8px)', padding: '1rem' }}>
-            <div style={{ width: '100%', maxWidth: '620px', maxHeight: '90vh', overflowY: 'auto', borderRadius: '20px', border: '1px solid rgba(241,163,42,0.3)', background: 'linear-gradient(135deg, rgba(44,5,13,0.98), rgba(26,0,8,0.99))', padding: '2rem', position: 'relative', boxShadow: '0 20px 40px rgba(0,0,0,0.6)' }}>
+            <div className="admin-modal-card" style={{ width: '100%', maxWidth: '620px', maxHeight: '90vh', overflowY: 'auto', borderRadius: '20px', border: '1px solid rgba(241,163,42,0.3)', background: 'linear-gradient(135deg, rgba(44,5,13,0.98), rgba(26,0,8,0.99))', padding: '2rem', position: 'relative', boxShadow: '0 20px 40px rgba(0,0,0,0.6)' }}>
               <button
                 type="button"
                 onClick={handleCancelEditInstructor}
@@ -4109,7 +3834,7 @@ export function AdminDashboard({ onLogout }) {
         {/* Cancel Application Reason Modal */}
         {showCancelModal && cancelTargetApp && (
           <div style={{ position: 'fixed', inset: 0, zIndex: 2000, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(8px)', padding: '1rem' }}>
-            <div style={{ width: '100%', maxWidth: '480px', borderRadius: '20px', border: '1px solid rgba(231,76,60,0.4)', background: 'linear-gradient(135deg, rgba(105,14,31,0.97), rgba(44,5,13,0.99))', padding: '2rem', position: 'relative' }}>
+            <div className="admin-modal-card" style={{ width: '100%', maxWidth: '480px', borderRadius: '20px', border: '1px solid rgba(231,76,60,0.4)', background: 'linear-gradient(135deg, rgba(105,14,31,0.97), rgba(44,5,13,0.99))', padding: '2rem', position: 'relative' }}>
               <button onClick={() => setShowCancelModal(false)} style={{ position: 'absolute', top: '1rem', right: '1rem', background: 'rgba(255,255,255,0.1)', border: 'none', borderRadius: '50%', width: '32px', height: '32px', color: '#fff', cursor: 'pointer', fontSize: '1.1rem' }}><X size={16} /></button>
               <h3 style={{ color: '#fff', marginBottom: '0.5rem' }}>Cancel Faculty Application</h3>
               <p style={{ color: '#f0ceb3', fontSize: '0.88rem', marginBottom: '1.25rem' }}>
@@ -5003,7 +4728,7 @@ export function AdminDashboard({ onLogout }) {
                   </div>
                   <div style={{ flex: 1, minWidth: '150px' }}>
                     <label htmlFor="admin_slot_status" style={{ display: 'block', color: 'var(--color-primary)', marginBottom: '0.4rem', fontSize: '0.9rem' }}>Status *</label>
-                    <select id="admin_slot_status" value={slotStatus} onChange={e => setSlotStatus(e.target.value)} style={{ ...inputStyle, width: '100%', background: 'rgba(0,0,0,0.4)', color: 'white' }}>
+                    <select id="admin_slot_status" value={slotStatus} onChange={e => setSlotStatus(e.target.value)} style={{ ...inputStyle, width: '100%' }}>
                       <option value="Active">Active</option>
                       <option value="Inactive">Inactive</option>
                     </select>
@@ -5595,23 +5320,23 @@ export function AdminDashboard({ onLogout }) {
               </div>
 
               {/* Live Preview Card */}
-              <div className="glass-panel" style={{ padding: '1.8rem', borderRadius: '12px' }}>
-                <h3 style={{ color: '#fff', fontSize: '1.1rem', marginBottom: '1.2rem', fontWeight: 'bold' }}>Recipient Notification Preview</h3>
-                <p style={{ color: '#aaa', fontSize: '0.82rem', marginBottom: '1rem' }}>
+              <div className="glass-panel admin-broadcast-panel" style={{ padding: '1.8rem', borderRadius: '12px' }}>
+                <h3 className="admin-broadcast-panel-title" style={{ fontSize: '1.1rem', marginBottom: '1.2rem', fontWeight: 'bold' }}>Recipient Notification Preview</h3>
+                <p className="admin-broadcast-panel-sub" style={{ fontSize: '0.82rem', marginBottom: '1rem' }}>
                   Here is how this announcement will render in recipient notification lists:
                 </p>
 
-                <div style={{ background: 'rgba(44, 5, 13, 0.75)', border: '1px solid rgba(241, 163, 42, 0.15)', borderRadius: '10px', padding: '1.2rem' }}>
+                <div className="admin-broadcast-preview-box" style={{ borderRadius: '10px', padding: '1.2rem' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                    <span style={{ fontSize: '0.75rem', fontWeight: 'bold', padding: '2px 8px', borderRadius: '4px', background: 'rgba(241, 163, 42, 0.15)', color: 'var(--color-primary)', border: '1px solid rgba(241, 163, 42, 0.15)' }}>
+                    <span className="admin-broadcast-badge" style={{ fontSize: '0.75rem', fontWeight: 'bold', padding: '2px 8px', borderRadius: '4px' }}>
                       ADMIN ANNOUNCEMENT
                     </span>
-                    <span style={{ fontSize: '0.75rem', color: '#888' }}>Just now</span>
+                    <span className="admin-broadcast-time" style={{ fontSize: '0.75rem' }}>Just now</span>
                   </div>
-                  <h4 style={{ color: '#fff', fontSize: '1rem', margin: '6px 0', fontWeight: 'bold' }}>
+                  <h4 className="admin-broadcast-preview-title" style={{ fontSize: '1rem', margin: '6px 0', fontWeight: 'bold' }}>
                     {bcTitle || 'Sample Announcement Title'}
                   </h4>
-                  <p style={{ color: '#f0ceb3', fontSize: '0.88rem', margin: 0, whiteSpace: 'pre-wrap' }}>
+                  <p className="admin-broadcast-preview-msg" style={{ fontSize: '0.88rem', margin: 0, whiteSpace: 'pre-wrap' }}>
                     {bcMessage || 'Sample announcement text will be displayed here for the selected target audience.'}
                   </p>
                 </div>
@@ -5794,6 +5519,7 @@ export function AdminDashboard({ onLogout }) {
         >
           <div
             role="presentation"
+            className="admin-modal-card"
             style={{
               background: 'rgba(44, 5, 13, 0.96)',
               border: '1px solid rgba(241, 163, 42, 0.25)',
@@ -5901,7 +5627,7 @@ export function AdminDashboard({ onLogout }) {
           zIndex: 9999,
           padding: '1rem'
         }}>
-          <div style={{
+          <div className="admin-modal-card" style={{
             background: 'rgba(44, 5, 13, 0.96)',
             border: '1px solid rgba(241, 163, 42, 0.25)',
             boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.7)',
@@ -6030,7 +5756,7 @@ export function AdminDashboard({ onLogout }) {
       {/* Graduate Student Modal */}
       {graduatingStudent && (
         <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0, 0, 0, 0.75)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 220, padding: '1rem' }}>
-          <div style={{ padding: '2rem', maxWidth: '500px', width: '100%', maxHeight: '90vh', overflowY: 'auto', borderRadius: '16px', backgroundColor: 'rgba(44, 5, 13, 0.96)', border: '1px solid rgba(46, 204, 113, 0.4)', boxShadow: '0 25px 60px rgba(0, 0, 0, 0.95)' }}>
+          <div className="admin-modal-card" style={{ padding: '2rem', maxWidth: '500px', width: '100%', maxHeight: '90vh', overflowY: 'auto', borderRadius: '16px', backgroundColor: 'rgba(44, 5, 13, 0.96)', border: '1px solid rgba(46, 204, 113, 0.4)', boxShadow: '0 25px 60px rgba(0, 0, 0, 0.95)' }}>
             <h3 style={{ color: 'var(--color-white)', margin: '0 0 1rem 0', fontSize: '1.3rem' }}>Mark Student as Graduated</h3>
 
             <p style={{ color: '#cbd5e1', fontSize: '0.9rem', marginBottom: '1.25rem' }}>
@@ -6062,7 +5788,7 @@ export function AdminDashboard({ onLogout }) {
                     id="admin_grad_grade"
                     value={graduateForm.final_grade}
                     onChange={e => setGraduateForm({ ...graduateForm, final_grade: e.target.value })}
-                    style={{ ...inputStyle, width: '100%', background: '#2c050d' }}
+                    style={{ ...inputStyle, width: '100%' }}
                   >
                     <option value="A+">A+ (Outstanding)</option>
                     <option value="A">A (Excellent)</option>
@@ -6140,7 +5866,7 @@ export function AdminDashboard({ onLogout }) {
       {/* Dropout Student Modal */}
       {droppingStudent && (
         <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0, 0, 0, 0.75)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 220, padding: '1rem' }}>
-          <div style={{ padding: '2rem', maxWidth: '500px', width: '100%', maxHeight: '90vh', overflowY: 'auto', borderRadius: '16px', backgroundColor: 'rgba(44, 5, 13, 0.96)', border: '1px solid rgba(231, 76, 60, 0.4)', boxShadow: '0 25px 60px rgba(0, 0, 0, 0.95)' }}>
+          <div className="admin-modal-card" style={{ padding: '2rem', maxWidth: '500px', width: '100%', maxHeight: '90vh', overflowY: 'auto', borderRadius: '16px', backgroundColor: 'rgba(44, 5, 13, 0.96)', border: '1px solid rgba(231, 76, 60, 0.4)', boxShadow: '0 25px 60px rgba(0, 0, 0, 0.95)' }}>
             <h3 style={{ color: 'var(--color-white)', margin: '0 0 1rem 0', fontSize: '1.3rem' }}>Mark Student as Dropout</h3>
 
             <p style={{ color: '#cbd5e1', fontSize: '0.9rem', marginBottom: '1.25rem' }}>
@@ -6156,7 +5882,7 @@ export function AdminDashboard({ onLogout }) {
                   id="admin_drop_reason"
                   value={dropoutForm.dropout_reason}
                   onChange={e => setDropoutForm({ ...dropoutForm, dropout_reason: e.target.value })}
-                  style={{ ...inputStyle, width: '100%', background: '#2c050d' }}
+                  style={{ ...inputStyle, width: '100%' }}
                 >
                   <option value="Time constraints / Schedule conflict">Time constraints / Schedule conflict</option>
                   <option value="Financial reasons / Fee constraints">Financial reasons / Fee constraints</option>
@@ -6225,7 +5951,7 @@ export function AdminDashboard({ onLogout }) {
       {/* Cancel Admission Modal with Reason Dispatch */}
       {cancelingAdmission && (
         <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0, 0, 0, 0.75)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 220, padding: '1rem' }}>
-          <div style={{ padding: '2rem', maxWidth: '520px', width: '100%', maxHeight: '90vh', overflowY: 'auto', borderRadius: '16px', backgroundColor: 'rgba(44, 5, 13, 0.96)', border: '1px solid rgba(231, 76, 60, 0.45)', boxShadow: '0 25px 60px rgba(0, 0, 0, 0.95)' }}>
+          <div className="admin-modal-card" style={{ padding: '2rem', maxWidth: '520px', width: '100%', maxHeight: '90vh', overflowY: 'auto', borderRadius: '16px', backgroundColor: 'rgba(44, 5, 13, 0.96)', border: '1px solid rgba(231, 76, 60, 0.45)', boxShadow: '0 25px 60px rgba(0, 0, 0, 0.95)' }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
               <h3 style={{ color: '#ff6b6b', margin: 0, fontSize: '1.25rem', fontWeight: 'bold' }}>Cancel Admission Application</h3>
               <button
@@ -6241,7 +5967,7 @@ export function AdminDashboard({ onLogout }) {
               Please specify the cancellation reason. This reason will be recorded in the system and <strong>emailed directly to the applicant</strong>.
             </p>
 
-            <div style={{ background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '8px', padding: '12px 16px', marginBottom: '1.25rem', fontSize: '0.85rem' }}>
+            <div className="admin-modal-info-box" style={{ background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '8px', padding: '12px 16px', marginBottom: '1.25rem', fontSize: '0.85rem' }}>
               <div style={{ color: '#fff', fontWeight: '600' }}>
                 {cancelingAdmission.first_name} {cancelingAdmission.last_name || ''}
               </div>
@@ -6262,7 +5988,7 @@ export function AdminDashboard({ onLogout }) {
                   id="admin_cancel_preset"
                   value={cancelReasonPreset}
                   onChange={e => setCancelReasonPreset(e.target.value)}
-                  style={{ ...inputStyle, width: '100%', background: '#2c050d', color: '#fff' }}
+                  style={{ ...inputStyle, width: '100%' }}
                 >
                   <option value="Fee payment receipt not verified within stipulated deadline">Fee payment receipt not verified within stipulated deadline</option>
                   <option value="Batch / slot capacity for the selected timings is full">Batch / slot capacity for the selected timings is full</option>

@@ -583,7 +583,7 @@ export default function StudentTypingLab() {
                               setViewMode('practice');
                               window.scrollTo({ top: 0, behavior: 'smooth' });
                             }}
-                            className={`relative aspect-square rounded-lg flex flex-col items-center justify-center text-xs font-bold transition-all ${
+                            className={`relative aspect-square rounded-lg flex flex-col items-center justify-center gap-0.5 text-xs font-bold transition-all ${
                               isCurrent
                                 ? 'bg-gradient-to-br from-[#dfb259] to-[#b8862d] text-[#072224] ring-2 ring-[#dfb259] shadow-lg scale-105'
                                 : isCompleted
@@ -602,12 +602,12 @@ export default function StudentTypingLab() {
                                 : `Level ${lvl.level_id}`
                             }
                           >
-                            <span>{lvl.level_id}</span>
+                            <span style={{ lineHeight: 1 }}>{lvl.level_id}</span>
                             {isCompleted && (
-                              <CheckCircle2 size={11} className="text-emerald-400 absolute bottom-1" />
+                              <CheckCircle2 size={10} className="text-emerald-400" />
                             )}
                             {!isUnlocked && (
-                              <Lock size={10} className="text-gray-600 absolute bottom-1" />
+                              <Lock size={9} className="text-gray-600" />
                             )}
                           </button>
                         );

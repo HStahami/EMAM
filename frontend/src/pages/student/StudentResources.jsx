@@ -79,15 +79,15 @@ export function StudentResources() {
           justifyContent: 'space-between',
         }}
       >
-        <div style={{ display: 'flex', gap: '1rem', flex: 1, minWidth: '260px' }}>
+        <div style={{ display: 'flex', gap: '0.75rem', flex: 1, minWidth: 0, flexWrap: 'wrap' }}>
           <input
             type="text"
             placeholder="Search study materials by keyword..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             style={{
-              flex: 1,
-              minWidth: '220px',
+              flex: '1 1 200px',
+              minWidth: 0,
               backgroundColor: 'rgba(44, 5, 13, 0.65)',
               color: '#fff',
               border: '1px solid rgba(241, 163, 42, 0.25)',
@@ -107,7 +107,8 @@ export function StudentResources() {
               padding: '0.6rem 1rem',
               borderRadius: '8px',
               fontSize: '0.9rem',
-              minWidth: '160px',
+              flex: '1 1 150px',
+              minWidth: 0,
             }}
           >
             <option value="all">All Formats</option>
@@ -141,7 +142,7 @@ export function StudentResources() {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 300px), 1fr))',
             gap: '1.25rem',
           }}
         >
@@ -175,7 +176,6 @@ export function StudentResources() {
                       }}
                     >
                       <span>{getTypeIcon(resType)}</span>
-                      {resType}
                     </span>
 
                     <span
@@ -235,7 +235,7 @@ export function StudentResources() {
                       gap: '0.4rem',
                     }}
                   >
-                    Open Material ?
+                    Open Material →
                   </a>
 
                   <span style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)' }}>

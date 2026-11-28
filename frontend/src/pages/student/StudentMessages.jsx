@@ -90,8 +90,8 @@ export function StudentMessages() {
   };
 
   return (
-    <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "1.5rem" }}>
-      <div style={{ marginBottom: "1.5rem", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+    <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+      <div style={{ marginBottom: "1.5rem", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "0.75rem" }}>
         <div>
           <h1 style={{ fontSize: "1.8rem", fontWeight: "700", color: "#fff" }} className="gradient-text">
             Instructor Chat & Messages
@@ -111,7 +111,7 @@ export function StudentMessages() {
 
       {error && <p style={{ color: "#ff6b6b", marginBottom: "1rem" }}>{error}</p>}
 
-      <div style={{ display: "grid", gridTemplateColumns: "320px 1fr", gap: "1.5rem", minHeight: "550px" }}>
+      <div className="student-chat-grid" style={{ display: "grid", gridTemplateColumns: "300px 1fr", gap: "1.25rem", minHeight: "520px" }}>
         {/* Left Sidebar: Threads List */}
         <div className="glass-panel" style={{ padding: "1.2rem", display: "flex", flexDirection: "column" }}>
           <h3 style={{ color: "#fff", fontSize: "1.1rem", marginBottom: "1rem", display: "flex", alignItems: "center", gap: "8px" }}>
@@ -219,7 +219,7 @@ export function StudentMessages() {
               </div>
 
               {/* Message Input Box */}
-              <form onSubmit={handleSendMessage} style={{ marginTop: "1rem", display: "flex", gap: "10px", borderTop: "1px solid rgba(255, 255, 255, 0.1)", paddingTop: "1rem" }}>
+              <form onSubmit={handleSendMessage} style={{ marginTop: "1rem", display: "flex", gap: "8px", borderTop: "1px solid rgba(255, 255, 255, 0.1)", paddingTop: "1rem", minWidth: 0 }}>
                 <input
                   type="text"
                   placeholder="Type your message to Instructor..."
@@ -228,16 +228,17 @@ export function StudentMessages() {
                   className="student-chat-input"
                   style={{
                     flex: 1,
-                    padding: "12px 16px",
+                    minWidth: 0,
+                    padding: "10px 14px",
                     borderRadius: "8px",
-                    fontSize: "0.95rem"
+                    fontSize: "0.92rem"
                   }}
                 />
                 <button
                   type="submit"
                   disabled={isSending || !newMsgContent.trim()}
                   className="btn-primary"
-                  style={{ padding: "12px 20px", display: "flex", alignItems: "center", gap: "6px", opacity: isSending || !newMsgContent.trim() ? 0.6 : 1 }}
+                  style={{ padding: "10px 16px", display: "flex", alignItems: "center", gap: "6px", flexShrink: 0, opacity: isSending || !newMsgContent.trim() ? 0.6 : 1 }}
                 >
                   <Send size={16} /> Send
                 </button>

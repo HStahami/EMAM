@@ -125,6 +125,7 @@ export function SmartNotebook({ slotId, slotName, initialNoteId = null, isInstru
 
   return (
     <div
+      className="glass-panel smart-notebook-card"
       style={{
         display: 'flex',
         flexDirection: 'column',
@@ -138,6 +139,7 @@ export function SmartNotebook({ slotId, slotName, initialNoteId = null, isInstru
     >
       {/* Notebook Header */}
       <div
+        className="smart-notebook-header"
         style={{
           padding: '1rem 1.25rem',
           backgroundColor: 'rgba(35, 4, 10, 0.92)',
@@ -333,6 +335,7 @@ export function SmartNotebook({ slotId, slotName, initialNoteId = null, isInstru
 
       {/* Footer Manual Save Bar */}
       <div
+        className="smart-notebook-footer"
         style={{
           padding: '0.6rem 1.25rem',
           backgroundColor: 'rgba(35, 4, 10, 0.92)',

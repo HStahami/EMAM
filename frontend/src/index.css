@@ -2249,6 +2249,65 @@ body {
   border-color: rgba(105, 14, 31, 0.15) !important;
 }
 
+/* ========================================= */
+/* Smart Notebook & Mobile Responsive Fixes  */
+/* ========================================= */
+
+[data-theme='light'] .smart-notebook-card {
+  background-color: #ffffff !important;
+  border: 1px solid rgba(105, 14, 31, 0.14) !important;
+  box-shadow: 0 4px 20px rgba(105, 14, 31, 0.05) !important;
+}
+
+[data-theme='light'] .smart-notebook-header,
+[data-theme='light'] .smart-notebook-footer {
+  background-color: #faf5f0 !important;
+  border-color: rgba(105, 14, 31, 0.12) !important;
+}
+
+[data-theme='light'] .smart-notebook-header h3 {
+  color: #220d12 !important;
+}
+
+[data-theme='light'] .smart-notebook-header span {
+  color: #554448 !important;
+}
+
+[data-theme='light'] .smart-notebook-header button {
+  background: #ffffff !important;
+  border: 1px solid rgba(105, 14, 31, 0.16) !important;
+  color: #690e1f !important;
+}
+
+[data-theme='light'] .smart-notebook-card textarea,
+[data-theme='light'] .smart-notebook-card input {
+  background-color: #ffffff !important;
+  color: #220d12 !important;
+  border-color: rgba(105, 14, 31, 0.18) !important;
+}
+
+[data-theme='light'] .portal-mobile-theme-row {
+  background-color: #faf5f0 !important;
+  border: 1px solid rgba(105, 14, 31, 0.15) !important;
+  color: #220d12 !important;
+}
+
+[data-theme='light'] .portal-mobile-user-card {
+  background-color: #faf5f0 !important;
+  border: 1px solid rgba(105, 14, 31, 0.15) !important;
+}
+
+[data-theme='light'] .portal-mobile-user-card div {
+  color: #220d12 !important;
+}
+
+@media (max-width: 900px) {
+  .student-chat-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+
 
 
 

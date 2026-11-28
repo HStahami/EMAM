@@ -186,11 +186,12 @@ export function StudentNotifications() {
               key={notif.id}
               className="glass-panel"
               style={{
-                padding: '1.25rem 1.5rem',
+                padding: '1.25rem',
                 display: 'flex',
                 alignItems: 'flex-start',
                 justifyContent: 'space-between',
-                gap: '1.25rem',
+                flexWrap: 'wrap',
+                gap: '1rem',
                 borderLeft: notif.is_read ? '4px solid transparent' : '4px solid var(--color-primary)',
                 backgroundColor: notif.is_read ? 'rgba(44, 5, 13, 0.45)' : 'rgba(44, 5, 13, 0.75)',
               }}
@@ -261,18 +262,17 @@ export function StudentNotifications() {
                       <Link
                         to={notif.link}
                         onClick={() => handleMarkRead(notif.id)}
+                        className="btn-primary"
                         style={{
                           display: 'inline-flex',
                           alignItems: 'center',
                           gap: '6px',
-                          padding: '5px 12px',
+                          padding: '6px 14px',
                           borderRadius: '6px',
-                          backgroundColor: 'var(--color-primary)',
-                          color: '#fff',
                           fontSize: '0.8rem',
                           fontWeight: 700,
                           textDecoration: 'none',
-                          boxShadow: '0 0 10px rgba(241, 163, 42, 0.15)'
+                          whiteSpace: 'nowrap',
                         }}
                       >
                         Join Live Class Now →

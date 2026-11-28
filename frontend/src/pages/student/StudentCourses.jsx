@@ -182,18 +182,18 @@ export function StudentCourses() {
                 </div>
 
                 {/* Actions */}
-                <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.75rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.75rem', flexWrap: 'wrap' }}>
                   <Link
                     to="/student/tasks"
                     className="btn-primary"
-                    style={{ textDecoration: 'none', padding: '0.6rem 1.25rem', fontSize: '0.85rem' }}
+                    style={{ textDecoration: 'none', padding: '0.6rem 1.25rem', fontSize: '0.85rem', whiteSpace: 'nowrap', textAlign: 'center' }}
                   >
                     View Module Tasks →
                   </Link>
                   <Link
                     to="/student/resources"
                     className="glass-panel"
-                    style={{ textDecoration: 'none', padding: '0.6rem 1.25rem', fontSize: '0.85rem', color: '#fff', border: '1px solid rgba(241, 163, 42, 0.18)' }}
+                    style={{ textDecoration: 'none', padding: '0.6rem 1.25rem', fontSize: '0.85rem', color: '#fff', border: '1px solid rgba(241, 163, 42, 0.18)', whiteSpace: 'nowrap', textAlign: 'center' }}
                   >
                     View Course Resources →
                   </Link>

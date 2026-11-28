@@ -107,9 +107,9 @@ export function StudentLayout({ children }) {
             {mobileOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
 
-          <Link to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+          <Link to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.6rem', flexShrink: 0 }}>
             <img src="/emam_logo.png" alt="Emam Logo" style={{ height: 32, width: 32, objectFit: 'contain' }} />
-            <span style={{ fontSize: '1.15rem', fontWeight: '700' }} className="gradient-text">
+            <span style={{ fontSize: '1.15rem', fontWeight: '700', whiteSpace: 'nowrap' }} className="gradient-text">
               Emam LMS
             </span>
           </Link>
@@ -177,8 +177,10 @@ export function StudentLayout({ children }) {
             </div>
           )}
 
-          {/* Theme Toggle */}
-          <ThemeToggle />
+          {/* Theme Toggle (Desktop Header Only - Mobile uses Sidebar Drawer) */}
+          <div className="hide-mobile">
+            <ThemeToggle />
+          </div>
 
           {/* Notification Bell */}
           <Link
@@ -384,10 +386,29 @@ export function StudentLayout({ children }) {
               </button>
             </div>
 
+            {/* Theme Mode Toggle at Top of Mobile Sidebar */}
+            <div
+              className="portal-mobile-theme-row"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                padding: '0.65rem 0.85rem',
+                marginTop: '0.85rem',
+                borderRadius: '10px',
+                backgroundColor: 'rgba(241, 163, 42, 0.08)',
+                border: '1px solid rgba(241, 163, 42, 0.18)',
+              }}
+            >
+              <span style={{ fontSize: '0.88rem', fontWeight: 600 }}>Theme Mode</span>
+              <ThemeToggle />
+            </div>
+
             {/* Student Info Card in Drawer */}
             <div
+              className="portal-mobile-user-card"
               style={{
-                margin: '1rem 0',
+                margin: '0.85rem 0 1rem 0',
                 padding: '0.85rem',
                 backgroundColor: 'rgba(105, 14, 31, 0.35)',
                 borderRadius: '10px',
@@ -503,37 +524,6 @@ export function StudentLayout({ children }) {
 
             {/* Drawer Actions */}
             <div style={{ borderTop: '1px solid rgba(255, 255, 255, 0.08)', paddingTop: '1rem', marginTop: '1rem', display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0.4rem 0.5rem' }}>
-                <span style={{ fontSize: '0.85rem', fontWeight: 600 }}>Theme Mode</span>
-                <ThemeToggle />
-              </div>
-
-              <button
-                type="button"
-                onClick={() => {
-                  setMobileOpen(false);
-                  setShowTour(true);
-                }}
-                style={{
-                  width: '100%',
-                  padding: '0.75rem',
-                  borderRadius: '8px',
-                  border: '1px solid rgba(241, 163, 42, 0.35)',
-                  backgroundColor: 'rgba(241, 163, 42, 0.1)',
-                  color: 'var(--color-primary)',
-                  cursor: 'pointer',
-                  fontWeight: 600,
-                  fontSize: '0.9rem',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '0.5rem',
-                  transition: 'all 0.2s ease',
-                }}
-              >
-                Take Feature Tour
-              </button>
-
               <button
                 onClick={handleLogout}
                 style={{

@@ -133,12 +133,11 @@ export function StudentMessages() {
                     type="button"
                     key={t._id || t.id}
                     onClick={() => setActiveThread(t)}
+                    className={`student-chat-thread-btn ${isSelected ? 'active' : ''}`}
                     style={{
                       padding: "12px",
                       borderRadius: "10px",
                       cursor: "pointer",
-                      background: isSelected ? "rgba(241, 163, 42, 0.12)" : "rgba(255, 255, 255, 0.03)",
-                      border: isSelected ? "1px solid var(--color-primary)" : "1px solid rgba(255, 255, 255, 0.05)",
                       transition: "all 0.2s",
                       width: "100%",
                       textAlign: "left",
@@ -146,16 +145,16 @@ export function StudentMessages() {
                     }}
                   >
                     <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "4px" }}>
-                      <span style={{ fontWeight: "600", color: "#fff", fontSize: "0.95rem" }}>
+                      <span className="thread-title" style={{ fontWeight: "600", fontSize: "0.95rem" }}>
                         {t.instructor_name || "Instructor"}
                       </span>
                       {t.unread_count_student > 0 && (
-                        <span style={{ background: "var(--color-primary)", color: "var(--color-bg-dark)", fontSize: "0.75rem", padding: "2px 8px", borderRadius: "10px", fontWeight: "bold" }}>
+                        <span style={{ background: "var(--color-primary)", color: "#fff", fontSize: "0.75rem", padding: "2px 8px", borderRadius: "10px", fontWeight: "bold" }}>
                           {t.unread_count_student} new
                         </span>
                       )}
                     </div>
-                    <p style={{ color: "rgba(241,163,42,0.55)", fontSize: "0.82rem", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                    <p className="thread-sub" style={{ fontSize: "0.82rem", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", margin: 0 }}>
                       {t.last_message || "Start chatting..."}
                     </p>
                   </button>
@@ -194,22 +193,21 @@ export function StudentMessages() {
                   </div>
                 ) : (
                   messages.map((m, idx) => {
-                    const isMe = m.sender_role === "student" || m.sender_user_id === str(user?.id || user?._id);
+                    const isMe = m.sender_role === "student" || String(m.sender_user_id) === String(user?.id || user?._id);
                     return (
                       <div
                         key={m._id || m.id || idx}
+                        className={`student-chat-msg ${isMe ? 'student-chat-msg-sent' : 'student-chat-msg-received'}`}
                         style={{
                           alignSelf: isMe ? "flex-end" : "flex-start",
                           maxWidth: "70%",
-                          background: isMe ? "var(--color-primary)" : "rgba(255, 255, 255, 0.08)",
-                          color: isMe ? "var(--color-bg-dark)" : "#fff",
                           padding: "10px 14px",
                           borderRadius: isMe ? "14px 14px 2px 14px" : "14px 14px 14px 2px",
-                          boxShadow: "0 2px 8px rgba(0,0,0,0.2)"
+                          boxShadow: "0 2px 8px rgba(0,0,0,0.12)"
                         }}
                       >
                         <p style={{ margin: 0, fontSize: "0.95rem", lineHeight: "1.4", wordBreak: "break-word" }}>{m.content}</p>
-                        <div style={{ textAlign: "right", marginTop: "4px", fontSize: "0.7rem", opacity: 0.75, display: "flex", alignItems: "center", justifyContent: "flex-end", gap: "4px" }}>
+                        <div style={{ textAlign: "right", marginTop: "4px", fontSize: "0.7rem", opacity: 0.85, display: "flex", alignItems: "center", justifyContent: "flex-end", gap: "4px" }}>
                           <span>{new Date(m.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
                           {isMe && <CheckCheck size={12} />}
                         </div>
@@ -227,13 +225,11 @@ export function StudentMessages() {
                   placeholder="Type your message to Instructor..."
                   value={newMsgContent}
                   onChange={(e) => setNewMsgContent(e.target.value)}
+                  className="student-chat-input"
                   style={{
                     flex: 1,
                     padding: "12px 16px",
                     borderRadius: "8px",
-                    border: "1px solid rgba(241, 163, 42, 0.18)",
-                    background: "rgba(0, 0, 0, 0.3)",
-                    color: "#fff",
                     fontSize: "0.95rem"
                   }}
                 />

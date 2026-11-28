@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { CheckCircle2, Clock, Award, FileText, ChevronRight, X, ExternalLink } from 'lucide-react';
 import { submissionsApi } from '../../api';
 
 export function StudentSubmissions() {
@@ -92,78 +93,124 @@ export function StudentSubmissions() {
           </p>
         </div>
       ) : (
-        <div className="glass-panel" style={{ padding: '1.5rem', overflowX: 'auto' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
-            <thead>
-              <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)', color: 'rgba(241,163,42,0.55)', fontSize: '0.85rem' }}>
-                <th style={{ padding: '0.75rem 1rem' }}>Task</th>
-                <th style={{ padding: '0.75rem 1rem' }}>Date Submitted</th>
-                <th style={{ padding: '0.75rem 1rem' }}>Status</th>
-                <th style={{ padding: '0.75rem 1rem' }}>Score & Grade</th>
-                <th style={{ padding: '0.75rem 1rem', textAlign: 'right' }}>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filtered.map((sub) => (
-                <tr key={sub.id} style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.05)' }}>
-                  <td style={{ padding: '1rem', color: '#fff', fontWeight: 600 }}>
-                    {sub.task_title}
-                    {sub.module_title && (
-                      <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)', fontWeight: 400 }}>
-                        {sub.module_title}
-                      </div>
-                    )}
-                  </td>
-                  <td style={{ padding: '1rem', color: '#f0ceb3', fontSize: '0.85rem' }}>
-                    {sub.submitted_at ? new Date(sub.submitted_at).toLocaleDateString() : 'Recent'}
-                  </td>
-                  <td style={{ padding: '1rem' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+            gap: '1.25rem',
+          }}
+        >
+          {filtered.map((sub) => {
+            const isReviewed = sub.status === 'reviewed';
+            return (
+              <div
+                key={sub.id}
+                className="glass-panel"
+                style={{
+                  padding: '1.4rem',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  gap: '1rem',
+                  borderRadius: '14px',
+                  borderTop: isReviewed ? '3px solid var(--color-primary)' : '3px solid rgba(241, 163, 42, 0.45)',
+                  transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+                }}
+              >
+                <div>
+                  {/* Card Header: Status pill and Date */}
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.75rem' }}>
                     <span
                       style={{
-                        padding: '2px 8px',
-                        borderRadius: '4px',
-                        fontSize: '0.75rem',
-                        fontWeight: 600,
+                        padding: '3px 10px',
+                        borderRadius: '20px',
+                        fontSize: '0.72rem',
+                        fontWeight: 700,
+                        letterSpacing: '0.03em',
                         textTransform: 'uppercase',
-                        backgroundColor:
-                          sub.status === 'reviewed'
-                            ? 'rgba(241, 163, 42, 0.15)'
-                            : 'rgba(251, 191, 36, 0.15)',
-                        color: sub.status === 'reviewed' ? 'var(--color-primary)' : '#fbbf24',
+                        backgroundColor: isReviewed ? 'rgba(241, 163, 42, 0.14)' : 'rgba(251, 191, 36, 0.14)',
+                        color: isReviewed ? 'var(--color-primary)' : '#b45309',
+                        border: isReviewed ? '1px solid rgba(241, 163, 42, 0.25)' : '1px solid rgba(251, 191, 36, 0.3)',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '4px',
                       }}
                     >
-                      {sub.status === 'reviewed' ? 'Reviewed' : 'Submitted'}
+                      {isReviewed ? <CheckCircle2 size={12} /> : <Clock size={12} />}
+                      <span>{isReviewed ? 'Reviewed' : 'Awaiting Review'}</span>
                     </span>
-                  </td>
-                  <td style={{ padding: '1rem' }}>
-                    {sub.grade ? (
-                      <span style={{ fontWeight: 700, color: 'var(--color-primary)', fontSize: '0.9rem' }}>
-                        Grade: {sub.grade} ({sub.score}%)
+
+                    <span style={{ fontSize: '0.78rem', color: 'rgba(241, 163, 42, 0.65)', fontWeight: 500 }}>
+                      {sub.submitted_at ? new Date(sub.submitted_at).toLocaleDateString() : 'Recent'}
+                    </span>
+                  </div>
+
+                  {/* Task & Module Title */}
+                  <h3 style={{ fontSize: '1.05rem', fontWeight: 700, margin: '0 0 0.35rem 0', color: 'var(--color-white)', lineHeight: 1.35 }}>
+                    {sub.task_title}
+                  </h3>
+                  {sub.module_title && (
+                    <div style={{ fontSize: '0.78rem', color: 'var(--color-primary)', fontWeight: 600, marginBottom: '0.75rem' }}>
+                      {sub.module_title}
+                    </div>
+                  )}
+
+                  {/* Score & Grade Display */}
+                  <div
+                    style={{
+                      marginTop: '0.75rem',
+                      padding: '0.65rem 0.85rem',
+                      borderRadius: '8px',
+                      backgroundColor: isReviewed ? 'rgba(241, 163, 42, 0.08)' : 'rgba(255, 255, 255, 0.03)',
+                      border: '1px solid rgba(241, 163, 42, 0.15)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                    }}
+                  >
+                    <span style={{ fontSize: '0.78rem', color: 'rgba(241, 163, 42, 0.7)', fontWeight: 500 }}>
+                      {isReviewed ? 'Achieved Grade:' : 'Status:'}
+                    </span>
+                    {isReviewed && sub.grade ? (
+                      <span style={{ fontWeight: 800, color: 'var(--color-primary)', fontSize: '0.9rem', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                        <Award size={14} />
+                        <span>Grade: {sub.grade} ({sub.score}%)</span>
                       </span>
                     ) : (
-                      <span style={{ color: 'rgba(241,163,42,0.55)', fontSize: '0.85rem' }}>Awaiting Review</span>
+                      <span style={{ fontSize: '0.78rem', color: '#fbbf24', fontWeight: 600 }}>
+                        In Evaluation Queue
+                      </span>
                     )}
-                  </td>
-                  <td style={{ padding: '1rem', textAlign: 'right' }}>
-                    <button
-                      onClick={() => setSelectedSub(sub)}
-                      className="glass-panel"
-                      style={{
-                        padding: '0.4rem 0.85rem',
-                        fontSize: '0.8rem',
-                        cursor: 'pointer',
-                        color: 'var(--color-primary)',
-                        border: '1px solid rgba(241, 163, 42, 0.18)',
-                        fontWeight: 600,
-                      }}
-                    >
-                      View Feedback ?
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                  </div>
+                </div>
+
+                {/* Card Action Footer */}
+                <div style={{ paddingTop: '0.5rem', borderTop: '1px solid rgba(255, 255, 255, 0.06)' }}>
+                  <button
+                    type="button"
+                    onClick={() => setSelectedSub(sub)}
+                    className="btn-primary"
+                    style={{
+                      width: '100%',
+                      padding: '0.6rem 1rem',
+                      fontSize: '0.85rem',
+                      cursor: 'pointer',
+                      fontWeight: 700,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '0.4rem',
+                      borderRadius: '8px',
+                      textDecoration: 'none',
+                    }}
+                  >
+                    <span>View Feedback & Details</span>
+                    <ChevronRight size={15} />
+                  </button>
+                </div>
+              </div>
+            );
+          })}
         </div>
       )}
 
@@ -183,18 +230,19 @@ export function StudentSubmissions() {
           }}
         >
           <div
-            className="glass-panel"
+            className="glass-panel admin-modal-card"
             style={{
               width: '100%',
               maxWidth: '560px',
               padding: '2rem',
-              backgroundColor: 'rgba(44, 5, 13, 0.65)',
-              border: '1px solid rgba(241, 163, 42, 0.18)',
+              backgroundColor: 'rgba(44, 5, 13, 0.92)',
+              border: '1px solid rgba(241, 163, 42, 0.25)',
+              borderRadius: '16px',
             }}
           >
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.25rem' }}>
               <div>
-                <span style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)', textTransform: 'uppercase' }}>
+                <span style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                   Submission Details
                 </span>
                 <h2 style={{ fontSize: '1.3rem', color: '#fff', margin: '0.2rem 0 0 0', fontWeight: 700 }}>
@@ -202,16 +250,18 @@ export function StudentSubmissions() {
                 </h2>
               </div>
               <button
+                type="button"
                 onClick={() => setSelectedSub(null)}
-                style={{ background: 'none', border: 'none', color: 'rgba(241,163,42,0.55)', fontSize: '1.2rem', cursor: 'pointer' }}
+                style={{ background: 'none', border: 'none', color: 'rgba(241,163,42,0.65)', cursor: 'pointer', padding: '4px' }}
+                aria-label="Close"
               >
-                Close
+                <X size={20} />
               </button>
             </div>
 
             {/* Content Submitted */}
-            <div style={{ marginBottom: '1.25rem', backgroundColor: 'rgba(255, 255, 255, 0.03)', padding: '1rem', borderRadius: '8px' }}>
-              <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)', textTransform: 'uppercase', marginBottom: '0.3rem' }}>
+            <div style={{ marginBottom: '1.25rem', backgroundColor: 'rgba(255, 255, 255, 0.03)', padding: '1rem', borderRadius: '8px', border: '1px solid rgba(241, 163, 42, 0.12)' }}>
+              <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)', textTransform: 'uppercase', marginBottom: '0.3rem', fontWeight: 600 }}>
                 Your Submitted Text
               </div>
               <p style={{ color: '#e2e8f0', fontSize: '0.9rem', lineHeight: '1.5', whiteSpace: 'pre-wrap', margin: 0 }}>
@@ -220,7 +270,7 @@ export function StudentSubmissions() {
 
               {selectedSub.attachment_urls && selectedSub.attachment_urls.length > 0 && (
                 <div style={{ marginTop: '0.75rem' }}>
-                  <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)' }}>Your Attachments:</div>
+                  <div style={{ fontSize: '0.75rem', color: 'rgba(241,163,42,0.55)', fontWeight: 600 }}>Your Attachments:</div>
                   <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginTop: '0.3rem' }}>
                     {selectedSub.attachment_urls.map((url, i) => (
                       <a
@@ -228,9 +278,10 @@ export function StudentSubmissions() {
                         href={url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        style={{ color: 'var(--color-primary)', fontSize: '0.8rem', textDecoration: 'none' }}
+                        style={{ color: 'var(--color-primary)', fontSize: '0.8rem', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '4px' }}
                       >
-                        File {i + 1} ?
+                        <ExternalLink size={12} />
+                        <span>File {i + 1}</span>
                       </a>
                     ))}
                   </div>
@@ -240,7 +291,7 @@ export function StudentSubmissions() {
 
             {/* Assessment Feedback */}
             {selectedSub.status === 'reviewed' ? (
-              <div style={{ padding: '1.25rem', borderRadius: '8px', backgroundColor: 'rgba(241, 163, 42, 0.15)', border: '1px solid rgba(241, 163, 42, 0.15)', marginBottom: '1.5rem' }}>
+              <div style={{ padding: '1.25rem', borderRadius: '8px', backgroundColor: 'rgba(241, 163, 42, 0.12)', border: '1px solid rgba(241, 163, 42, 0.22)', marginBottom: '1.5rem' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
                   <span style={{ fontSize: '0.85rem', color: 'var(--color-primary)', fontWeight: 700 }}>
                     Instructor Feedback
@@ -260,13 +311,13 @@ export function StudentSubmissions() {
                 )}
               </div>
             ) : (
-              <div style={{ padding: '1rem', borderRadius: '8px', backgroundColor: 'rgba(251, 191, 36, 0.1)', color: '#fbbf24', fontSize: '0.85rem', marginBottom: '1.5rem', textAlign: 'center' }}>
+              <div style={{ padding: '1rem', borderRadius: '8px', backgroundColor: 'rgba(251, 191, 36, 0.1)', color: '#b45309', fontSize: '0.85rem', marginBottom: '1.5rem', textAlign: 'center', border: '1px solid rgba(251, 191, 36, 0.25)' }}>
                 This submission is queued for grading by your instructor.
               </div>
             )}
 
             <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-              <button onClick={() => setSelectedSub(null)} className="btn-primary" style={{ padding: '0.6rem 1.4rem', border: 'none', cursor: 'pointer' }}>
+              <button type="button" onClick={() => setSelectedSub(null)} className="btn-primary" style={{ padding: '0.6rem 1.4rem', border: 'none', cursor: 'pointer' }}>
                 Close
               </button>
             </div>

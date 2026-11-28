@@ -2094,4 +2094,111 @@ body {
   color: #8c777c !important;
 }
 
+/* ========================================= */
+/* Student Messages & Instructor Chat Styles */
+/* ========================================= */
+.student-chat-thread-btn {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+.student-chat-thread-btn .thread-title {
+  color: #ffffff;
+}
+.student-chat-thread-btn .thread-sub {
+  color: rgba(241, 163, 42, 0.55);
+}
+.student-chat-thread-btn.active {
+  background: rgba(241, 163, 42, 0.12);
+  border: 1px solid var(--color-primary);
+}
+.student-chat-thread-btn.active .thread-title {
+  color: var(--color-primary);
+}
+
+.student-chat-msg-sent {
+  background: linear-gradient(135deg, #8b152b, #690e1f);
+  color: #ffffff;
+  border: 1px solid rgba(241, 163, 42, 0.25);
+}
+.student-chat-msg-sent p,
+.student-chat-msg-sent span,
+.student-chat-msg-sent div {
+  color: #ffffff !important;
+}
+
+.student-chat-msg-received {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(241, 163, 42, 0.15);
+  color: #f0ceb3;
+}
+.student-chat-msg-received p,
+.student-chat-msg-received span,
+.student-chat-msg-received div {
+  color: #f0ceb3;
+}
+
+.student-chat-input {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(241, 163, 42, 0.18);
+  color: #ffffff;
+}
+
+/* Light Mode Overrides for Student Chat */
+[data-theme='light'] .student-chat-thread-btn {
+  background: #ffffff !important;
+  border: 1px solid rgba(105, 14, 31, 0.1) !important;
+}
+[data-theme='light'] .student-chat-thread-btn .thread-title {
+  color: #220d12 !important;
+}
+[data-theme='light'] .student-chat-thread-btn .thread-sub {
+  color: #8c777c !important;
+}
+
+[data-theme='light'] .student-chat-thread-btn.active {
+  background: #faf5f0 !important;
+  border: 1.5px solid #8b152b !important;
+  box-shadow: 0 2px 8px rgba(105, 14, 31, 0.08) !important;
+}
+[data-theme='light'] .student-chat-thread-btn.active .thread-title {
+  color: #690e1f !important;
+}
+[data-theme='light'] .student-chat-thread-btn.active .thread-sub {
+  color: #554448 !important;
+}
+
+[data-theme='light'] .student-chat-msg-sent {
+  background: linear-gradient(135deg, #690e1f, #8b152b) !important;
+  border: none !important;
+  box-shadow: 0 4px 14px rgba(105, 14, 31, 0.22) !important;
+}
+[data-theme='light'] .student-chat-msg-sent p,
+[data-theme='light'] .student-chat-msg-sent span,
+[data-theme='light'] .student-chat-msg-sent div,
+[data-theme='light'] .student-chat-msg-sent svg {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+[data-theme='light'] .student-chat-msg-received {
+  background: #faf5f0 !important;
+  border: 1.5px solid rgba(105, 14, 31, 0.14) !important;
+  box-shadow: 0 2px 8px rgba(105, 14, 31, 0.04) !important;
+}
+[data-theme='light'] .student-chat-msg-received p,
+[data-theme='light'] .student-chat-msg-received span,
+[data-theme='light'] .student-chat-msg-received div {
+  color: #220d12 !important;
+}
+
+[data-theme='light'] .student-chat-input {
+  background: #ffffff !important;
+  border: 1.5px solid rgba(105, 14, 31, 0.22) !important;
+  color: #220d12 !important;
+}
+[data-theme='light'] .student-chat-input::placeholder {
+  color: #8c777c !important;
+}
+
+
 

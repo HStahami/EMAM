@@ -750,45 +750,63 @@ async def submit_faculty_application(request: Request):
 
     if len(clean_first_name) < 2 or len(clean_last_name) < 2:
         raise HTTPException(status_code=400, detail="First name and Last name must each be at least 2 characters.")
-    if len(clean_phone) < 7:
-        raise HTTPException(status_code=400, detail="Please enter a valid contact phone number.")
+    if clean_phone and len(clean_phone) < 7:
+        raise HTTPException(status_code=400, detail="Please enter a valid contact phone number (at least 7 digits).")
+    if not clean_phone:
+        clean_phone = "Not provided"
 
     full_name = f"{clean_first_name} {clean_last_name}".strip()
 
-    # 3. Prevent duplicate pending applications
+    # 3. If an active pending application exists, update it with newly submitted details & CV
     existing_pending = await db.faculty_applications.find_one({
         "email": clean_email,
         "status": "Pending"
     })
     if existing_pending:
-        raise HTTPException(
-            status_code=400,
-            detail="An active faculty application for this email address is already under review."
+        update_data = {
+            "first_name": clean_first_name,
+            "last_name": clean_last_name,
+            "name": full_name,
+            "phone": clean_phone,
+            "specialization": clean_specialization,
+            "qualification": clean_qualification,
+            "experience_years": clean_experience,
+            "about": clean_about,
+            "preferred_schedule": clean_schedule,
+            "updated_at": datetime.now(timezone.utc)
+        }
+        if cv_url:
+            update_data["cv_url"] = cv_url
+        await db.faculty_applications.update_one(
+            {"_id": existing_pending["_id"]},
+            {"$set": update_data}
         )
-
-    doc = {
-        "first_name": clean_first_name,
-        "last_name": clean_last_name,
-        "name": full_name,
-        "email": clean_email,
-        "phone": clean_phone,
-        "specialization": clean_specialization,
-        "qualification": clean_qualification,
-        "experience_years": clean_experience,
-        "about": clean_about,
-        "preferred_schedule": clean_schedule,
-        "cv_url": cv_url,
-        "status": "Pending",
-        "created_at": datetime.now(timezone.utc),
-        "updated_at": datetime.now(timezone.utc)
-    }
-
-    try:
-        res = await db.faculty_applications.insert_one(doc)
-        app_id = str(res.inserted_id)
-    except Exception as e:
-        print(f"[FACULTY APPLICATION ERROR] DB Insert failed: {e}")
-        raise HTTPException(status_code=503, detail="Could not submit application at this time.")
+        app_id = str(existing_pending["_id"])
+        is_update = True
+    else:
+        doc = {
+            "first_name": clean_first_name,
+            "last_name": clean_last_name,
+            "name": full_name,
+            "email": clean_email,
+            "phone": clean_phone,
+            "specialization": clean_specialization,
+            "qualification": clean_qualification,
+            "experience_years": clean_experience,
+            "about": clean_about,
+            "preferred_schedule": clean_schedule,
+            "cv_url": cv_url,
+            "status": "Pending",
+            "created_at": datetime.now(timezone.utc),
+            "updated_at": datetime.now(timezone.utc)
+        }
+        try:
+            res = await db.faculty_applications.insert_one(doc)
+            app_id = str(res.inserted_id)
+            is_update = False
+        except Exception as e:
+            print(f"[FACULTY APPLICATION ERROR] DB Insert failed: {e}")
+            raise HTTPException(status_code=503, detail="Could not submit application at this time.")
 
     # 4. Email acknowledgment to applicant
     try:

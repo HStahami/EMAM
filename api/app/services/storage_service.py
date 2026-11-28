@@ -12,8 +12,18 @@ ALLOWED_MIME_TYPES = {
     "image/png": [".png"],
     "image/webp": [".webp"],
     "application/pdf": [".pdf"],
-    "application/msword": [".doc"],
-    "application/vnd.openxmlformats-officedocument.wordprocessingml.document": [".docx"]
+    "application/x-pdf": [".pdf"],
+    "application/acrobat": [".pdf"],
+    "applications/vnd.pdf": [".pdf"],
+    "text/pdf": [".pdf"],
+    "application/msword": [".doc", ".docx"],
+    "application/vnd.ms-word": [".doc", ".docx"],
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document": [".docx", ".doc"],
+    "application/zip": [".docx"],
+    "application/x-zip-compressed": [".docx"],
+    "application/octet-stream": [".pdf", ".doc", ".docx", ".jpg", ".jpeg", ".png", ".webp"],
+    "binary/octet-stream": [".pdf", ".doc", ".docx", ".jpg", ".jpeg", ".png", ".webp"],
+    "application/download": [".pdf", ".doc", ".docx"]
 }
 EXT_TO_MIME = {
     ".jpg": "image/jpeg",
@@ -26,7 +36,7 @@ EXT_TO_MIME = {
 }
 ALLOWED_EXTENSIONS = {ext for exts in ALLOWED_MIME_TYPES.values() for ext in exts}
 MAX_FILE_SIZE = 10 * 1024 * 1024  # 10 MB
-MAX_DATA_URI_SIZE = 5 * 1024 * 1024  # 5 MB safe limit for MongoDB data URI fallback
+MAX_DATA_URI_SIZE = 10 * 1024 * 1024  # 10 MB safe limit matching MAX_FILE_SIZE
 
 # Track if Cloudinary is enabled
 _cloudinary_configured = False
@@ -119,24 +129,17 @@ async def upload_media_file(
         except Exception as e:
             print(f"[STORAGE ERROR] Cloudinary upload failed: {e}")
 
-    # 6. Serverless / Read-only / No-Cloudinary Safe Fallback (Data URI)
-    is_prod = settings.ENVIRONMENT.lower() in ["production", "prod"]
-    is_serverless = bool(os.environ.get("VERCEL") or os.environ.get("AWS_LAMBDA_FUNCTION_NAME"))
+    # 6. Local disk storage (try first if filesystem is writable)
+    try:
+        uploads_dir = anyio.Path("uploads")
+        await uploads_dir.mkdir(parents=True, exist_ok=True)
+        filepath = uploads_dir / safe_filename
+        await filepath.write_bytes(content)
+        return f"/uploads/{safe_filename}"
+    except (OSError, PermissionError) as fs_err:
+        print(f"[STORAGE WARNING] Local disk write not available, falling back to data URI: {fs_err}")
 
-    if not is_prod and not is_serverless:
-        try:
-            uploads_dir = anyio.Path("uploads")
-            await uploads_dir.mkdir(parents=True, exist_ok=True)
-            filepath = uploads_dir / safe_filename
-            await filepath.write_bytes(content)
-            return f"/uploads/{safe_filename}"
-        except OSError as fs_err:
-            print(f"[STORAGE WARNING] Local disk write failed, falling back to data URI: {fs_err}")
-
-    if len(content) > MAX_DATA_URI_SIZE:
-        raise ValueError(
-            "File size exceeds 5 MB limit when cloud storage is not configured. Please upload a smaller file."
-        )
+    # 7. Safe Data URI fallback for serverless / read-only filesystem
     resolved_mime = EXT_TO_MIME.get(raw_ext, "application/octet-stream")
     encoded = base64.b64encode(bytes(content)).decode("ascii")
     return f"data:{resolved_mime};base64,{encoded}"

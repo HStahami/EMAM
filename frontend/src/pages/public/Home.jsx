@@ -139,26 +139,26 @@ export function Home() {
   const handleFacultySubmit = async (e) => {
     e.preventDefault();
     setFacultyError(null);
-    if (!facultyForm.first_name || !facultyForm.last_name || !facultyForm.email) {
-      setFacultyError('Please fill in your name and valid email address.');
+    if (!facultyForm.first_name?.trim() || !facultyForm.last_name?.trim() || !facultyForm.email?.trim()) {
+      setFacultyError('Please fill in your first name, last name, and a valid email address.');
       return;
     }
     if (!facultyCvFile) {
-      setFacultyError('Please upload your CV / Resume or qualification document (PDF or Word).');
+      setFacultyError('Please upload your CV / Resume or qualification document (PDF, DOC, or DOCX).');
       return;
     }
     setFacultySubmitting(true);
     try {
       const formData = new FormData();
-      formData.append('first_name', facultyForm.first_name);
-      formData.append('last_name', facultyForm.last_name);
-      formData.append('email', facultyForm.email);
-      formData.append('phone', facultyForm.phone);
-      formData.append('specialization', facultyForm.specialization);
-      formData.append('qualification', facultyForm.qualification);
-      formData.append('experience_years', Number.parseInt(facultyForm.experience_years, 10) || 0);
-      formData.append('about', facultyForm.about || '');
-      formData.append('preferred_schedule', facultyForm.preferred_schedule);
+      formData.append('first_name', facultyForm.first_name.trim());
+      formData.append('last_name', facultyForm.last_name.trim());
+      formData.append('email', facultyForm.email.trim());
+      formData.append('phone', facultyForm.phone?.trim() || '');
+      formData.append('specialization', facultyForm.specialization || 'Arabic Grammar (Nahw & Sarf)');
+      formData.append('qualification', facultyForm.qualification?.trim() || "Master's in Arabic Linguistics");
+      formData.append('experience_years', facultyForm.experience_years || '3');
+      formData.append('about', facultyForm.about?.trim() || '');
+      formData.append('preferred_schedule', facultyForm.preferred_schedule || 'Weekday Evenings & Weekend Cohorts');
       formData.append('cv_file', facultyCvFile);
 
       await instructorsApi.applyFaculty(formData);
@@ -1723,6 +1723,12 @@ export function Home() {
                       <textarea id="faculty-about" rows={3} value={facultyForm.about} onChange={(e) => setFacultyForm({ ...facultyForm, about: e.target.value })} placeholder="Briefly describe your teaching background, methodology, and why you wish to join Emam faculty..." className="emam-form-input" style={{ resize: 'vertical' }} />
                     </div>
                   </div>
+
+                  {facultyError && (
+                    <div style={{ background: 'rgba(231,76,60,0.18)', border: '1px solid rgba(231,76,60,0.5)', borderRadius: '10px', padding: '12px 14px', color: '#ff7675', fontSize: '0.9rem', marginBottom: '1.25rem', fontWeight: '600', lineHeight: '1.4' }}>
+                      {facultyError}
+                    </div>
+                  )}
 
                   <button type="submit" disabled={facultySubmitting} className="btn-primary" style={{ width: '100%', padding: '14px', fontSize: '1rem', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', opacity: facultySubmitting ? 0.7 : 1 }}>
                     {facultySubmitting ? 'Submitting Application...' : 'Submit Faculty Application'}

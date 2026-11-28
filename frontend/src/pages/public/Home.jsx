@@ -1251,68 +1251,50 @@ export function Home() {
       {/* ======================================================== */}
       {/* 7. INSTITUTIONAL MULTI-TENANT PROVISIONING SPOTLIGHT     */}
       {/* ======================================================== */}
-      <section style={{ padding: '4.5rem 1.5rem', maxWidth: '1200px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
-        <div
-          className="glass-panel architecture-spotlight-panel"
-          style={{
-            padding: '3.5rem 2.5rem',
-            borderRadius: '24px',
-            border: '1px solid rgba(241, 163, 42, 0.3)',
-            background: 'linear-gradient(135deg, rgba(105, 14, 31, 0.65), rgba(44, 5, 13, 0.95))'
-          }}
-        >
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))', gap: '2.5rem', alignItems: 'center' }}>
-            <div>
-
-              <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.6rem)', fontWeight: '800', color: 'var(--color-white)', marginBottom: '1rem', lineHeight: '1.2' }}>
+      <section className="architecture-spotlight-section" style={{ maxWidth: '1200px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
+        <div className="glass-panel architecture-spotlight-panel">
+          <div className="architecture-spotlight-grid">
+            <div className="architecture-spotlight-content">
+              <div style={{ color: 'var(--color-primary)', fontSize: '0.8rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '0.45rem' }}>
+                Institutional Security &amp; Data Isolation
+              </div>
+              <h2 className="architecture-spotlight-title">
                 How Emam Multi-Tenant Architecture Protects Your Academy
               </h2>
-              <p style={{ color: '#f0ceb3', fontSize: '1.02rem', lineHeight: '1.65', marginBottom: '1.8rem' }}>
+              <p className="architecture-spotlight-intro">
                 When an institute joins Emam, our Super Admin provisions a dedicated tenant partition. Your academy maintains independent administrative control over student records, fee approvals, instructor assignments, and academic reports.
               </p>
 
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
+              <div className="architecture-spotlight-points">
+                <div className="spotlight-point-item">
                   <span style={{ color: 'var(--color-primary)', fontWeight: '800', fontSize: '1.1rem', flexShrink: 0, lineHeight: '1.2' }}>—</span>
                   <div>
-                    <strong style={{ color: '#fff', fontSize: '1rem' }}>Isolated Student Lifecycle</strong>
-                    <p style={{ color: '#e0d0c8', fontSize: '0.88rem', margin: '2px 0 0 0' }}>Sequential student IDs (EMAM-YYYY-XXXX), private enrollment records, and dedicated admission forms.</p>
+                    <strong>Isolated Student Lifecycle</strong>
+                    <p>Sequential student IDs (EMAM-YYYY-XXXX), private enrollment records, and dedicated admission forms.</p>
                   </div>
                 </div>
 
-                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
+                <div className="spotlight-point-item">
                   <span style={{ color: 'var(--color-primary)', fontWeight: '800', fontSize: '1.1rem', flexShrink: 0, lineHeight: '1.2' }}>—</span>
                   <div>
-                    <strong style={{ color: '#fff', fontSize: '1rem' }}>Financial &amp; Fee Verification Engine</strong>
-                    <p style={{ color: '#e0d0c8', fontSize: '0.88rem', margin: '2px 0 0 0' }}>Institutional bank account reconciliation, proof verification, and automated email receipts.</p>
+                    <strong>Financial &amp; Fee Verification Engine</strong>
+                    <p>Institutional bank account reconciliation, proof verification, and automated email receipts.</p>
                   </div>
                 </div>
 
-                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
+                <div className="spotlight-point-item">
                   <span style={{ color: 'var(--color-primary)', fontWeight: '800', fontSize: '1.1rem', flexShrink: 0, lineHeight: '1.2' }}>—</span>
                   <div>
-                    <strong style={{ color: '#fff', fontSize: '1rem' }}>Centralized Super Admin Oversight</strong>
-                    <p style={{ color: '#e0d0c8', fontSize: '0.88rem', margin: '2px 0 0 0' }}>Emam guarantees 99.9% platform availability, server security hardening, and regular feature updates.</p>
+                    <strong>Centralized Super Admin Oversight</strong>
+                    <p>Emam guarantees 99.9% platform availability, server security hardening, and regular feature updates.</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div
-              className="architecture-proposal-card"
-              style={{
-                textAlign: 'center',
-                padding: '2.5rem 2rem',
-                borderRadius: '20px',
-                background: 'linear-gradient(135deg, #690e1f, #2c050d)',
-                border: '1px solid rgba(241, 163, 42, 0.35)',
-                boxShadow: '0 10px 30px rgba(0, 0, 0, 0.4)'
-              }}
-            >
-              <h3 style={{ fontSize: '1.5rem', color: '#ffffff', fontWeight: '700', marginBottom: '0.6rem' }}>
-                Deploy Emam for Your Academy
-              </h3>
-              <p style={{ color: '#f0ceb3', fontSize: '0.92rem', lineHeight: '1.55', marginBottom: '1.75rem' }}>
+            <div className="architecture-proposal-card">
+              <h3>Deploy Emam for Your Academy</h3>
+              <p>
                 Connect with our Super Admin team to evaluate student volume, faculty seats, and obtain a tailored campus deployment proposal.
               </p>
               <button
@@ -1322,16 +1304,6 @@ export function Home() {
                   setInstituteModalOpen(true);
                 }}
                 className="btn-primary architecture-walkthrough-btn"
-                style={{
-                  width: '100%',
-                  padding: '14px',
-                  fontSize: '1rem',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  borderRadius: '30px',
-                  cursor: 'pointer'
-                }}
               >
                 Schedule Institutional Walkthrough
               </button>

@@ -86,9 +86,16 @@ def build_base_email_html(
           
           <!-- BRAND HEADER -->
           <tr>
-            <td style="background-color: #690e1f; padding: 26px 24px 22px 24px; text-align: center; border-bottom: 3px solid #f1a32a;">
-              <div style="font-size: 24px; font-weight: 800; color: #f1a32a; letter-spacing: 2px; text-transform: uppercase;">Emam</div>
-              <div style="font-size: 12px; color: #f0ceb3; margin-top: 4px; letter-spacing: 0.5px;">Online Learning Institute</div>
+            <td style="background-color: #690e1f; padding: 24px 24px 20px 24px; text-align: center; border-bottom: 3px solid #f1a32a;">
+              <table role="presentation" cellpadding="0" cellspacing="0" style="margin: 0 auto; text-align: center;">
+                <tr>
+                  <td align="center">
+                    <img src="https://emam.uk/emam-brand-logo.jpg" alt="Emam Logo" width="54" height="54" style="display: block; border-radius: 12px; margin: 0 auto 8px auto; border: 1.5px solid #f1a32a;" />
+                    <div style="font-size: 24px; font-weight: 800; color: #ffffff; letter-spacing: 2px; text-transform: uppercase; line-height: 1.2;">Emam</div>
+                    <div style="font-size: 11px; color: #f0ceb3; text-transform: uppercase; letter-spacing: 1.5px; margin-top: 4px;">Online Learning Institute</div>
+                  </td>
+                </tr>
+              </table>
             </td>
           </tr>
 

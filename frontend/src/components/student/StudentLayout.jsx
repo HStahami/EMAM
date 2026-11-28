@@ -23,6 +23,7 @@ import {
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { notificationsApi } from '../../api';
+import { ThemeToggle } from '../common/ThemeToggle';
 import { OnboardingModal } from './OnboardingModal';
 import { StudentFeatureTourModal, isFeatureTourCompleted } from './StudentFeatureTourModal';
 
@@ -175,6 +176,9 @@ export function StudentLayout({ children }) {
               <strong style={{ color: 'var(--color-primary)' }}>{user.student_code}</strong>
             </div>
           )}
+
+          {/* Theme Toggle */}
+          <ThemeToggle />
 
           {/* Feature Tour Button */}
           <button
@@ -339,6 +343,7 @@ export function StudentLayout({ children }) {
                     e.preventDefault();
                   }
                 }}
+                className={`portal-nav-item ${isActive ? 'active' : ''} ${isLocked ? 'locked' : ''}`}
                 title={isLocked ? 'Locked: Complete profile to access' : item.label}
                 style={{
                   display: 'flex',
@@ -498,6 +503,7 @@ export function StudentLayout({ children }) {
                   <Link
                     key={item.path}
                     to={isLocked ? '#' : item.path}
+                    className={`portal-nav-item ${isActive ? 'active' : ''} ${isLocked ? 'locked' : ''}`}
                     onClick={(e) => {
                       if (isLocked) {
                         e.preventDefault();
@@ -548,6 +554,11 @@ export function StudentLayout({ children }) {
 
             {/* Drawer Actions */}
             <div style={{ borderTop: '1px solid rgba(255, 255, 255, 0.08)', paddingTop: '1rem', marginTop: '1rem', display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0.4rem 0.5rem' }}>
+                <span style={{ fontSize: '0.85rem', fontWeight: 600 }}>Theme Mode</span>
+                <ThemeToggle />
+              </div>
+
               <button
                 type="button"
                 onClick={() => {

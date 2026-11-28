@@ -1786,3 +1786,312 @@ body {
   color: #220d12 !important;
 }
 
+/* ========================================= */
+/* Student Portal Light Theme Overhaul       */
+/* ========================================= */
+
+/* Root and Layout Shell */
+[data-theme='light'] .portal-root {
+  background-color: #fbf8f3 !important;
+  color: #220d12 !important;
+}
+
+/* Header */
+[data-theme='light'] .portal-header {
+  background: #ffffff !important;
+  border-bottom: 1px solid rgba(105, 14, 31, 0.12) !important;
+  box-shadow: 0 4px 20px rgba(105, 14, 31, 0.05) !important;
+}
+
+[data-theme='light'] .portal-header .gradient-text {
+  background: linear-gradient(135deg, #690e1f, #8b152b) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+[data-theme='light'] .portal-header button.hide-mobile {
+  background: #faf5f0 !important;
+  border: 1px solid rgba(105, 14, 31, 0.16) !important;
+  color: #690e1f !important;
+}
+
+[data-theme='light'] .portal-mobile-toggle {
+  color: #690e1f !important;
+}
+
+[data-theme='light'] .portal-header-badge {
+  background: #faf5f0 !important;
+  border: 1px solid rgba(105, 14, 31, 0.18) !important;
+  color: #690e1f !important;
+}
+
+[data-theme='light'] .portal-header-id {
+  background: #faf5f0 !important;
+  border: 1px solid rgba(105, 14, 31, 0.18) !important;
+  color: #220d12 !important;
+}
+
+[data-theme='light'] .portal-header-id span {
+  color: #8c777c !important;
+}
+
+[data-theme='light'] .portal-header-id strong {
+  color: #690e1f !important;
+}
+
+[data-theme='light'] .portal-header button[aria-label="Take Feature Tour"],
+[data-theme='light'] .portal-header button[title="Take Feature Tour"] {
+  background: #faf5f0 !important;
+  border: 1px solid rgba(105, 14, 31, 0.22) !important;
+  color: #690e1f !important;
+}
+
+[data-theme='light'] .portal-header button[aria-label="Take Feature Tour"]:hover {
+  background: #f4eae1 !important;
+}
+
+[data-theme='light'] .portal-header a[title="Notifications"] {
+  color: #690e1f !important;
+}
+
+[data-theme='light'] .portal-header a[href="/student/profile"] {
+  background: #faf5f0 !important;
+  border-color: rgba(105, 14, 31, 0.2) !important;
+  color: #690e1f !important;
+}
+
+/* Sidebar and Mobile Drawer */
+[data-theme='light'] .portal-desktop-sidebar,
+[data-theme='light'] .portal-mobile-drawer {
+  background: #ffffff !important;
+  border-right: 1px solid rgba(105, 14, 31, 0.12) !important;
+  box-shadow: 4px 0 25px rgba(105, 14, 31, 0.05) !important;
+}
+
+[data-theme='light'] .portal-desktop-sidebar div[style*="borderTop"],
+[data-theme='light'] .portal-mobile-drawer div[style*="borderTop"] {
+  border-top-color: rgba(105, 14, 31, 0.1) !important;
+}
+
+[data-theme='light'] .portal-desktop-sidebar div[style*="borderTop"] div,
+[data-theme='light'] .portal-mobile-drawer div[style*="borderTop"] span {
+  color: #8c777c !important;
+}
+
+/* Navigation Items */
+[data-theme='light'] .portal-nav-item {
+  color: #554448 !important;
+  background-color: transparent !important;
+  transition: all 0.2s ease !important;
+}
+
+[data-theme='light'] .portal-nav-item span {
+  color: #554448 !important;
+}
+
+[data-theme='light'] .portal-nav-item svg {
+  color: #8b152b !important;
+}
+
+[data-theme='light'] .portal-nav-item:hover {
+  background-color: rgba(105, 14, 31, 0.06) !important;
+  color: #690e1f !important;
+}
+
+[data-theme='light'] .portal-nav-item:hover span {
+  color: #690e1f !important;
+}
+
+[data-theme='light'] .portal-nav-item:hover svg {
+  color: #690e1f !important;
+}
+
+[data-theme='light'] .portal-nav-item.active {
+  background: #8b152b !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(105, 14, 31, 0.22) !important;
+}
+
+[data-theme='light'] .portal-nav-item.active span {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+}
+
+[data-theme='light'] .portal-nav-item.active svg {
+  color: #ffffff !important;
+}
+
+[data-theme='light'] .portal-nav-item.locked {
+  color: #94a3b8 !important;
+  opacity: 0.65 !important;
+}
+
+[data-theme='light'] .portal-nav-item.locked span {
+  color: #94a3b8 !important;
+}
+
+[data-theme='light'] .portal-nav-item.locked svg {
+  color: #94a3b8 !important;
+}
+
+/* Sidebar Onboarding Lock Warning */
+[data-theme='light'] .portal-desktop-sidebar div[style*="rgba(255, 183, 3, 0.1)"] {
+  background: #fff8eb !important;
+  border-color: rgba(184, 128, 30, 0.35) !important;
+  color: #b45309 !important;
+}
+
+/* Mobile Drawer Controls */
+[data-theme='light'] .portal-mobile-drawer h3 {
+  color: #220d12 !important;
+}
+
+[data-theme='light'] .portal-mobile-drawer button {
+  color: #554448 !important;
+}
+
+/* Main Content Surface & Cards */
+[data-theme='light'] .portal-main-content .glass-panel {
+  background: #ffffff !important;
+  border: 1px solid rgba(105, 14, 31, 0.14) !important;
+  box-shadow: 0 4px 20px rgba(105, 14, 31, 0.04) !important;
+}
+
+[data-theme='light'] .portal-main-content .glass-panel[style*="linear-gradient"] {
+  background: #ffffff !important;
+  border: 1px solid rgba(105, 14, 31, 0.14) !important;
+}
+
+/* Icon Containers in Banners */
+[data-theme='light'] .portal-main-content div[style*="width: '52px'"],
+[data-theme='light'] .portal-main-content div[style*="width: 52px"],
+[data-theme='light'] .portal-main-content div[style*="width: 54px"] {
+  background-color: #faf5f0 !important;
+  border-color: rgba(105, 14, 31, 0.15) !important;
+  color: #690e1f !important;
+}
+
+/* Typography Overrides in Main Content */
+[data-theme='light'] .portal-main-content h1,
+[data-theme='light'] .portal-main-content h2,
+[data-theme='light'] .portal-main-content h3,
+[data-theme='light'] .portal-main-content h4,
+[data-theme='light'] .portal-main-content strong {
+  color: #220d12 !important;
+}
+
+[data-theme='light'] .portal-main-content p,
+[data-theme='light'] .portal-main-content li {
+  color: #554448 !important;
+}
+
+/* High Contrast Replacement for Hardcoded Colors */
+[data-theme='light'] .portal-main-content [style*="color: #fff"],
+[data-theme='light'] .portal-main-content [style*="color: '#fff'"],
+[data-theme='light'] .portal-main-content [style*="color:#fff"] {
+  color: #220d12 !important;
+}
+
+[data-theme='light'] .portal-main-content [style*="color: #f0ceb3"],
+[data-theme='light'] .portal-main-content [style*="color: '#f0ceb3'"],
+[data-theme='light'] .portal-main-content [style*="color:#f0ceb3"] {
+  color: #554448 !important;
+}
+
+[data-theme='light'] .portal-main-content [style*="rgba(241,163,42,0.55)"],
+[data-theme='light'] .portal-main-content [style*="rgba(241, 163, 42, 0.55)"],
+[data-theme='light'] .portal-main-content [style*="rgba(241, 163, 42, 0.45)"] {
+  color: #690e1f !important;
+}
+
+/* Ensure Primary Buttons Keep White Text */
+[data-theme='light'] .portal-main-content .btn-primary,
+[data-theme='light'] .portal-main-content .btn-primary *,
+[data-theme='light'] .portal-main-content button.btn-primary,
+[data-theme='light'] .portal-main-content button.btn-primary *,
+[data-theme='light'] .portal-main-content a.btn-primary,
+[data-theme='light'] .portal-main-content a.btn-primary * {
+  color: #ffffff !important;
+}
+
+[data-theme='light'] .portal-main-content .btn-primary {
+  background: #8b152b !important;
+  box-shadow: 0 4px 14px rgba(105, 14, 31, 0.2) !important;
+}
+
+/* Secondary Actions / Glass Links */
+[data-theme='light'] .portal-main-content a.glass-panel,
+[data-theme='light'] .portal-main-content button.glass-panel {
+  background: #faf5f0 !important;
+  border: 1px solid rgba(105, 14, 31, 0.16) !important;
+  color: #690e1f !important;
+  font-weight: 600 !important;
+}
+
+[data-theme='light'] .portal-main-content a.glass-panel:hover,
+[data-theme='light'] .portal-main-content button.glass-panel:hover {
+  background: #f4eae1 !important;
+  color: #220d12 !important;
+}
+
+/* Timetable & Course Card Inside Banner */
+[data-theme='light'] .portal-main-content div[style*="backgroundColor: 'rgba(255, 255, 255, 0.05)'"],
+[data-theme='light'] .portal-main-content div[style*="background-color: rgba(255, 255, 255, 0.05)"] {
+  background-color: #faf5f0 !important;
+  border: 1px solid rgba(105, 14, 31, 0.16) !important;
+}
+
+/* Inner Item Rows in Lists */
+[data-theme='light'] .portal-main-content div[style*="backgroundColor: 'rgba(255, 255, 255, 0.03)'"],
+[data-theme='light'] .portal-main-content div[style*="background-color: rgba(255, 255, 255, 0.03)"],
+[data-theme='light'] .portal-main-content div[style*="backgroundColor: 'rgba(255, 255, 255, 0.02)'"],
+[data-theme='light'] .portal-main-content div[style*="background-color: rgba(255, 255, 255, 0.02)"] {
+  background-color: #faf5f0 !important;
+  border: 1px solid rgba(105, 14, 31, 0.12) !important;
+}
+
+/* Progress Bar Background */
+[data-theme='light'] .portal-main-content div[style*="backgroundColor: 'rgba(255, 255, 255, 0.1)'"],
+[data-theme='light'] .portal-main-content div[style*="background-color: rgba(255, 255, 255, 0.1)"] {
+  background-color: #f0e6dc !important;
+}
+
+/* Tables */
+[data-theme='light'] .portal-main-content table th {
+  background: #faf5f0 !important;
+  color: #690e1f !important;
+  border-bottom: 2px solid rgba(105, 14, 31, 0.12) !important;
+  font-weight: 600 !important;
+}
+
+[data-theme='light'] .portal-main-content table td {
+  color: #220d12 !important;
+  border-bottom: 1px solid rgba(105, 14, 31, 0.08) !important;
+}
+
+[data-theme='light'] .portal-main-content table tr:hover td {
+  background-color: #fbf7f4 !important;
+}
+
+/* Form Controls in Portal */
+[data-theme='light'] .portal-main-content input,
+[data-theme='light'] .portal-main-content select,
+[data-theme='light'] .portal-main-content textarea {
+  background: #ffffff !important;
+  border: 1.5px solid rgba(105, 14, 31, 0.2) !important;
+  color: #220d12 !important;
+}
+
+[data-theme='light'] .portal-main-content input:focus,
+[data-theme='light'] .portal-main-content select:focus,
+[data-theme='light'] .portal-main-content textarea:focus {
+  border-color: #8b152b !important;
+  box-shadow: 0 0 0 3px rgba(139, 21, 43, 0.12) !important;
+}
+
+[data-theme='light'] .portal-main-content input::placeholder,
+[data-theme='light'] .portal-main-content textarea::placeholder {
+  color: #8c777c !important;
+}
+
+
